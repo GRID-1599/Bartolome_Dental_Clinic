@@ -1,0 +1,14 @@
+.message_cont {
+    .message-body {
+        background-color: whitesmoke;
+        margin: 10px;
+        box-sizing: border-box;
+        .card-text {
+            text-indent: 40px;
+            text-align: justify;
+        }
+    }
+    .read {
+        background-color: white;
+    }
+}

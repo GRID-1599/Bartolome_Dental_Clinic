@@ -1,0 +1,105 @@
+RewriteEngine on
+
+
+
+
+#  url for service 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^service service.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for appoinment 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^appoinment contactUs.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for patients
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^patients patients.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for calendar
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^calendar calendar.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+
+#  url for message
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^message message.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for message
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^message message.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for admin 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule admin admin.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+
+
+
+
+
+
+
+# #  url for admin
+
+# RewriteCond %{Request_FileName} !-d
+
+# RewriteCond %{Request_FileName}\.php -f
+
+# RewriteRule admin admin/index.php [NC,L,QSA]
+# # ----------------------------------------------- 
+
+# #  url for admin
+
+# RewriteCond %{Request_FileName} !-d
+
+# RewriteCond %{Request_FileName}\.php -f
+
+# RewriteRule admin/service admin/service.php [NC,L,QSA]
+# # ----------------------------------------------- 
+
+
+#  url for index
+
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^(.*)$ index.php?$1 [NC,L,QSA]
+# ----------------------------------------------- 
+
+

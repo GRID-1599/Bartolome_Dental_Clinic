@@ -1,0 +1,219 @@
+// .header {
+//     background-color: white;
+//     //background-image: linear-gradient(95deg, $pink2, $pink1, white 50%);
+//     position: sticky;
+//     top: 0;
+//     box-shadow: 0 0px 10px gray;
+//     width: 100%;
+//     z-index: 50;
+//     .active {
+//         font-weight: bold;
+//         color: $pinkBG1;
+//         &::before {
+//             content: "";
+//             display: block;
+//             position: absolute;
+//             height: 5px;
+//             left: 0;
+//             right: 0;
+//             bottom: -25px;
+//             background-color: $pinkBG1;
+//             opacity: 1;
+//             transition: opacity 200ms ease-in-out;
+//         }
+//     }
+//     &__logo {
+//         img {
+//             width: 300px;
+//             height: 100px;
+//         }
+//     }
+//     &__links {
+//         margin-top: 35px;
+//         letter-spacing: 0.1rem;
+//         a {
+//             position: relative;
+//             font-size: $font-med;
+//             font-family: $font-style-header;
+//             line-height: 50px;
+//             text-align: center;
+//             color: $font-color-gray;
+//             transition: color 200ms ease-in-out;
+//             &:not(:last-child) {
+//                 margin-right: 35px;
+//             }
+//             &::before {
+//                 content: "";
+//                 display: block;
+//                 position: absolute;
+//                 height: 5px;
+//                 left: 0;
+//                 right: 0;
+//                 bottom: -25px;
+//                 background-color: $pink2;
+//                 opacity: 0;
+//                 transition: opacity 200ms ease-in-out;
+//             }
+//             &:hover {
+//                 color: $pink1;
+//                 font-weight: bold;
+//                 transform: scale(1.175);
+//                 &::before {
+//                     opacity: 1;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+/*
+&::before {
+            content: '';
+            background-image: url("../resources/images/dentistBG1.jpg");
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background-position: top center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: .90;
+        }
+
+*/
+
+header {
+    // max-width: 2500px;
+    margin: auto 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    transition: 500ms;
+    // border-bottom: solid 1px black;
+    background-color: white;
+    .logo {
+        flex: 1;
+        font-size: 35px;
+        margin-left: 70px;
+        transition: 500ms;
+        img {
+            height: 70px;
+            width: auto;
+        }
+    }
+    nav {
+        margin-right: 70px;
+        height: inherit;
+    }
+    // .bookNow_link {
+    //     // background-color: $pinkBG1;
+    // }
+    nav a {
+        display: inline-block;
+        margin-left: 10px;
+        text-decoration: none;
+        padding: 10px 1px;
+        transition: 200ms;
+        font-size: 20px;
+        padding-top: 35px;
+        // color: rgb(133, 133, 133);
+        font-family: $font-family-Balsamiq;
+        letter-spacing: .125rem;
+    }
+    .active {
+        color: $font-color-pink;
+        font-weight: 550;
+    }
+    nav a:hover {
+        transition: 500ms;
+        transform: scale(1.125);
+        //padding-top: 20px;
+        color: $pinkBG1;
+        // text-shadow: 0px 0px 6px rgba(43, 39, 39, 0.57);
+    }
+}
+
+.homepage {
+    background-color: rgba(255, 255, 255, 0);
+    height: 120px;
+    a {
+        color: rgb(255, 255, 255);
+    }
+    .active {
+        color: $font-color-pink;
+        font-weight: 550;
+    }
+    .logo {
+        font-size: 30px;
+        color: #000;
+        margin-top: 15px;
+        transition: none;
+        img {
+            height: 100px;
+            width: auto;
+            // background-color: white;
+            transition: none;
+        }
+    }
+}
+
+.bgc {
+    box-shadow: 0 0px 10px gray;
+    background: #fff;
+    padding: 5px;
+    height: 55px;
+    .logo {
+        font-size: 30px;
+        color: #000;
+        margin-top: 15px;
+        img {
+            height: 50px;
+            width: auto;
+        }
+    }
+    nav {
+        a {
+            color: #222;
+            font-size: $font-med;
+            // font-family: $font-style-txt;
+            font-family: $font-style-header;
+            padding-top: 25px;
+            &:before {
+                display: block;
+                content: '';
+                width: 0;
+                height: 3px;
+                bottom: 5px;
+                left: 0;
+                bottom: -1px;
+                z-index: 0;
+                position: absolute;
+                background-color: $pink2;
+                transition: all 0.3s ease-in-out;
+            }
+            &:hover {
+                background-position: 0%;
+                transform: scale(1);
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+        .active {
+            border-color: #bf2441;
+            font-weight: normal;
+            color: $font-color-pink;
+            background-position: 0%;
+            transform: scale(1);
+            &:before {
+                width: 100%;
+                background-color: #bf2441;
+            }
+        }
+    }
+}

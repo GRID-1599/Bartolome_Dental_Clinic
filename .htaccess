@@ -1,0 +1,97 @@
+RewriteEngine on
+
+
+
+
+#  url for about 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^about about.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for contact 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^contact contactUs.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for book now 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^bookNow bookNow.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for registration
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^registration registration.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+
+#  url for serviceCategory
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^service/([A-Za-z-\s]+) servicePage.php?serviceCategory=$1 [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+
+#  url for service 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule service service.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+
+
+
+
+
+
+
+# #  url for admin
+
+# RewriteCond %{Request_FileName} !-d
+
+# RewriteCond %{Request_FileName}\.php -f
+
+# RewriteRule admin admin/index.php [NC,L,QSA]
+# # ----------------------------------------------- 
+
+# #  url for admin
+
+# RewriteCond %{Request_FileName} !-d
+
+# RewriteCond %{Request_FileName}\.php -f
+
+# RewriteRule admin/service admin/service.php [NC,L,QSA]
+# # ----------------------------------------------- 
+
+
+#  url for index
+
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^(.*)$ index.php?$1 [NC,L,QSA]
+# ----------------------------------------------- 
+
+

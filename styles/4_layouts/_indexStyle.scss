@@ -1,0 +1,465 @@
+.banner {
+    position: relative;
+    height: 650px;
+    max-width: 2500px;
+    content: '';
+    background-image: url("../resources/images/dentistBG1.jpg");
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #b63d6760;
+    background-blend-mode: soft-light;
+    z-index: 10;
+    .header__slogan {
+        position: relative;
+        top: 300px;
+        text-align: left;
+        font-family: $font-style-header;
+        font-size: $font-XXlrg;
+        text-transform: none;
+        line-height: 1em;
+        padding-left: 12px;
+        height: 350px;
+        // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(240, 95, 121, 1) 100%);
+        .slogan--1 {
+            color: white;
+            text-shadow: 2px 0px 10px rgba(70, 69, 69, 0.508);
+        }
+        .slogan--2 {
+            color: $pinkBG1;
+        }
+    }
+    .register_cont {
+        // background-color: whitesmoke;
+        color: white;
+        position: absolute;
+        bottom: 50px;
+        left: 520px;
+        left: 20px;
+        // background: rgb(255, 255, 255);
+        // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 21%, rgba(141, 134, 136, 0.7426568039325105) 100%);
+        // text-align: left;
+        h3 {
+            font-family: $font-style-header;
+            font-size: $font-Xlrg;
+        }
+        a {
+            // text-decoration: underline;
+            font-size: $font-lrg;
+            color: whitesmoke;
+            background-color: transparent;
+            &:before {
+                display: block;
+                content: '';
+                width: 70%;
+                height: 3px;
+                bottom: 5px;
+                left: 0;
+                bottom: -1px;
+                z-index: 0;
+                position: absolute;
+                background-color: white;
+                transition: all 0.3s ease-in-out;
+            }
+            &:hover {
+                // color: black;
+                font-size: 33px;
+                transition: all .15s ease-in-out;
+                background-color: white;
+                color: $pinkBG1;
+                text-decoration: none;
+                padding: 5px 18px;
+                font-size: 28px;
+                font-weight: 550;
+                border-radius: 75px;
+                margin-top: 0 15px 12px 15px;
+                padding-bottom: 12px;
+                &:before {
+                    transition: 0ms;
+                    width: 0;
+                }
+            }
+        }
+    }
+    .bookAppointment {
+        z-index: 11;
+        right: 50px;
+        bottom: 50px;
+        width: 520px;
+        position: absolute;
+        box-sizing: border-box;
+        display: grid;
+        .bookAppointmentNow {
+            letter-spacing: 0.225rem;
+            font-size: 44px;
+            padding: 15px 25px;
+            background-color: $pinkBG1;
+            color: white;
+            font-family: $font-style-header;
+            cursor: pointer;
+            transition: all 0.25s;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: 5px solid white;
+                opacity: 0;
+                // z-index: -1;
+            }
+            &:hover::after {
+                transition: all 0.25s ease-in-out;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.hpClinicInfo {
+    // background-image: linear-gradient(-45deg, rgb(250, 159, 174), pink, rgba(255, 192, 203, 0.583), white 50%);
+    max-width: 2500px;
+    &__cont {
+        margin: auto 0;
+        margin: 0px 25px;
+        padding: 50px 50px;
+        padding-top: 100px;
+        display: grid;
+        grid-auto-flow: column;
+        gap: 25px;
+        height: fit-content;
+        position: relative;
+    }
+    &__txt {
+        text-align: left;
+        text-transform: none;
+        font-size: $font-sm;
+        line-height: 2em;
+        padding-right: 35px;
+        //width: 65%;
+        h1 {
+            font-size: $font-Xlrg;
+            line-height: 1.25em;
+        }
+        h3 {
+            font-size: $font-lrg;
+        }
+        p {
+            margin: 20px 0;
+            text-align: justify;
+            font-size: $font-med;
+        }
+    }
+    &__img {
+        width: 600px;
+        height: 500px;
+        margin: 0 15px;
+        box-sizing: content-box;
+        position: relative;
+        .img1 {
+            position: absolute;
+            overflow: hidden;
+            right: 0px;
+            border-radius: 75% 25% 77% 23% / 26% 80% 20% 74%;
+            // border-bottom-right-radius: 10%;
+            // border-top-left-radius: 10%;
+            img {
+                height: auto;
+                width: 400px;
+                box-sizing: border-box;
+            }
+        }
+        .img2 {
+            position: absolute;
+            overflow: hidden;
+            bottom: 0px;
+            left: 50px;
+            border-radius: 71% 29% 59% 41% / 33% 35% 65% 67%;
+            box-shadow: 0 10px 25px 1px rgb(89, 88, 88);
+            background-color: rgba(255, 255, 255, 0.83);
+            img {
+                height: 250px;
+                width: 250px;
+                box-sizing: border-box;
+                transform: scale(1.125);
+            }
+            &:hover {
+                // transform: scale(1.3);
+                /* Start the shake animation and make the animation last for 0.5 seconds */
+                animation: shake 0.5s;
+                /* When the animation is finished, start again */
+                animation-iteration-count: infinite;
+                transition: all 1s ease-in-out;
+            }
+        }
+        .img3 {
+            position: absolute;
+            overflow: hidden;
+            left: 0px;
+            top: 30px;
+            img {
+                height: auto;
+                width: 400px;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+    20% {
+        transform: translate(-5px, 0px) rotate(1deg);
+    }
+    40% {
+        transform: translate(0px, -5px) rotate(1deg);
+    }
+    60% {
+        transform: translate(-5px, 1px) rotate(0deg);
+    }
+    80% {
+        transform: translate(-1px, -5px) rotate(1deg);
+    }
+    100% {
+        transform: translate(1px, -1px) rotate(-1deg);
+    }
+}
+
+.hpChooseUs {
+    background-color: #fff;
+    height: fit-content;
+    box-sizing: border-box;
+    max-width: 2500px;
+    &__cont {
+        padding: 50px 0 0 0;
+    }
+    &__top {
+        display: grid;
+        grid-auto-flow: column;
+        .imgCont {
+            height: 400px;
+            width: 750px;
+            border-bottom-right-radius: 200px;
+            border-top-right-radius: 200px;
+            overflow: hidden;
+            box-sizing: border-box;
+            img {
+                height: inherit;
+                width: 750px;
+            }
+            &:hover {
+                width: 750px;
+                transition: all 1s ease-in-out;
+            }
+        }
+        .txtCont {
+            padding: 10px 45px 0 25px;
+            h1 {
+                font-size: $font-Xlrg;
+            }
+            p {
+                margin: 20px 0;
+                text-align: justify;
+                font-size: $font-med;
+            }
+        }
+    }
+    &__bottom {
+        padding: 25px 100px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 50px;
+        align-items: center;
+        .othertxtBox {
+            box-shadow: 0 4px 9px -6px #222;
+            background-color: white;
+            box-sizing: border-box;
+            padding: 18px;
+            width: 350px;
+            height: fit-content;
+            h3 {
+                font-size: $font-med;
+                text-align: center;
+            }
+            p {
+                margin: 20px 0;
+                text-align: center;
+                font-size: $font-med;
+                color: $font-color-gray;
+            }
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.175);
+                transition: all .25s ease-in-out;
+            }
+        }
+    }
+}
+
+.hpServices {
+    height: fit-content;
+    max-width: 2500px;
+    &__cont {
+        display: grid;
+        grid-auto-flow: row;
+        gap: 25px;
+        h1 {
+            font-size: $font-Xlrg;
+        }
+    }
+    .service {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 25px 100px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 10px;
+        position: relative;
+        h1 {
+            font-size: $font-Xlrg;
+            width: 250px;
+            background-color: white;
+        }
+        &__box {
+            background-color: whitesmoke;
+            height: 250px;
+            width: 250px;
+            position: relative;
+            border-radius: 50px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 9px -6px #222;
+        }
+        &__box:hover {
+            cursor: pointer;
+            transform: scale(1.075);
+            bottom: 20px;
+            transition: all .25s ease-in-out;
+            box-shadow: 0 4px 9px -16px #222;
+        }
+        &__img {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            box-sizing: border-box;
+            img {
+                width: inherit;
+                height: inherit;
+                border-radius: 5%;
+                //box-sizing: border-box;
+            }
+        }
+        &__title {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            height: fit-content;
+            color: white;
+            padding: 0 0 5px 5px;
+            p {
+                letter-spacing: .2rem;
+                font-weight: 650;
+                margin: 20px 0;
+                margin: 0 10px;
+                padding: 5px 0;
+                text-align: center;
+                font-size: $font-med;
+                color: white;
+                font-family: $font-style-header;
+                background-color: rgba(128, 128, 128, 0.255);
+            }
+        }
+        &__imgBg {
+            border-radius: 5%;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            position: absolute;
+            &:hover {
+                //background-color: #fa7eb293;
+                //cursor: pointer;
+                transition: all .25s ease-in-out;
+            }
+        }
+    }
+}
+
+.hpAbouts {
+    max-width: 2500px;
+    padding: 50px 0;
+    background-image: linear-gradient(to bottom, #ffffff, #f6effa, #f5ddf0, #f8cade, #fab7c4);
+    &__cont {
+        height: fit-content;
+        padding: 50px 0;
+        display: grid;
+        grid-auto-flow: column;
+    }
+    .info {
+        border: 1px solid rgba(0, 0, 0, 0.241);
+        position: relative;
+        font-size: $font-lrg;
+        font-family: $font-style-header;
+        line-height: 1.5em;
+        width: 800px;
+        height: 400px;
+        overflow: hidden;
+        a {
+            display: block;
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            padding: 10px;
+            font-size: 25px;
+            &:hover {
+                z-index: 100;
+                text-decoration: underline;
+                transform: scale(1em);
+                transition: all .25s ease-in-out;
+            }
+        }
+    }
+    .img-holder {
+        width: 100%;
+        height: 100%;
+        background-image: url("../resources/images/GmapSample.JPG");
+        background-position: top center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: rgba(255, 255, 255, 0);
+        background-blend-mode: soft-light;
+        transition: all 1s ease-in-out;
+        &:hover {
+            transform: scale(2.5);
+            z-index: -1;
+        }
+    }
+    .officeHours {
+        text-decoration: none;
+        width: fit-content;
+        padding: 0 25px;
+        // line-height: 1.5rem;
+        position: relative;
+        right: 10px;
+        h1 {
+            font-size: $font-lrg;
+            font-family: $font-style-header;
+            margin-bottom: 12px;
+        }
+        .officeWeek {
+            line-height: 1.5rem;
+            display: flex;
+            gap: 30px;
+            .hour {
+                color: $font-color-gray;
+            }
+        }
+    }
+}

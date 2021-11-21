@@ -1,0 +1,15 @@
+@mixin horizontalcenter() {
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+@mixin verticalcenter() {
+    top: 50%;
+    transform: translatey(-50%);
+}
+
+@mixin centercenter() {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

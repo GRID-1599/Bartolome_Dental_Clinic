@@ -1,0 +1,19 @@
+.svServiceCategory {
+    &__cont {
+        margin: 0px 25px;
+        padding: 50px 100px;
+        padding-top: 100px;
+        height: fit-content;
+        .serviceUnder {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+            grid-gap: 25px;
+            .serviceCard {
+                width: 100%;
+                margin: 0;
+                height: fit-content;
+            }
+        }
+    }
+}

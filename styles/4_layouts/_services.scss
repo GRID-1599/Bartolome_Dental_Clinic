@@ -1,0 +1,143 @@
+.svServices {
+    &__cont {
+        margin: 0px 25px;
+        padding-top: 100px;
+        display: grid;
+        grid-auto-flow: row;
+        gap: 25px;
+        height: fit-content;
+        position: relative;
+    }
+    .servicePageHeader {
+        position: sticky;
+        top: 80px;
+        z-index: 25;
+        width: 100%;
+        margin: 0;
+        padding: 10px 25px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    #servicePageSearch {
+        box-shadow: none;
+        padding: 5px 10px;
+    }
+    .btnSv {
+        border: 1px solid $pinkBG1;
+        background-color: white;
+        &:hover {
+            background-color: $pink1;
+        }
+    }
+    .selected {
+        background-color: $pinkBG1;
+        color: rgb(255, 255, 255);
+        &:hover {
+            background-color: $pinkBG1;
+        }
+    }
+    .svService {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 25px;
+        height: fit-content;
+        position: relative;
+        background-image: linear-gradient(to right, #f8a2b1, #fe899b, #ff6e82, #ff4f68, #ff214c);
+        padding: 50px;
+        margin: 25px 50px;
+        &:hover &__img {
+            transform: scale(1.125);
+        }
+        &__img {
+            img {
+                max-width: 400px;
+            }
+        }
+        &__txt {
+            text-align: left;
+            text-transform: none;
+            font-size: $font-sm;
+            line-height: 2em;
+            padding: 25px 35px;
+            padding-left: 70px;
+            position: relative;
+            border-left: 5px solid rgb(255, 255, 255);
+            h1 {
+                position: relative;
+                margin-bottom: 10px;
+                font-size: $font-lrg;
+            }
+            p {
+                position: relative;
+                font-size: $font-med;
+                line-height: 2em;
+                color: white;
+            }
+            // button {
+            //     width: 250px;
+            //     height: 50px;
+            //     font-size: $font-lrg;
+            //     font-family: $font-style-header;
+            //     color: white;
+            //     border: none;
+            //     position: absolute;
+            //     bottom: 20px;
+            //     right: 20px;
+            //     background-image: linear-gradient(to left top, #f05b76, #f5506c, #f94362, #fc3557, #ff214c);
+            // }
+            .btn-grad {
+                width: 200px;
+                height: 30px;
+                font-size: $font-lrg;
+                font-family: $font-style-header;
+                border: none;
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                border: none;
+                background-image: linear-gradient(to right, #f25591 0%, pink 51%, #f25591 100%);
+                margin: 10px;
+                padding: 15px 45px;
+                text-align: center;
+                // text-transform: uppercase;
+                transition: 0.5s;
+                background-size: 200% auto;
+                color: white;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            .btn-grad:hover {
+                background-position: right center;
+                /* change the direction of the change here */
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+        &__img {
+            width: auto;
+            height: 350px;
+            margin: 0 15px;
+            box-sizing: content-box;
+            position: relative;
+            img {
+                height: inherit;
+                width: inherit;
+                box-sizing: border-box;
+            }
+        }
+    }
+    .allServiceDisplay {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 25px;
+        .serviceCard {
+            margin: 0;
+            height: fit-content;
+        }
+    }
+    .svUnshow {
+        display: none;
+    }
+}
