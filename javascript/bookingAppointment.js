@@ -282,6 +282,8 @@ $(document).ready(function() {
         } else {
             $('#appointmentPatientId').val(null);
             $('#patientIdSubmitted').val(null);
+            $('#patientName').text("");
+
 
             // console.log("Not Found");
 
@@ -291,6 +293,7 @@ $(document).ready(function() {
     $('#patientId').keyup(function() {
         if ($(this).val().length == 4) {
             getPatients($(this).val());
+            getPatientByID($(this).val())
             $('.patientID-input ').each(function() {
                 $(this).addClass("unShow")
             });
@@ -416,18 +419,21 @@ $(document).ready(function() {
 
         }
     });
+    var newConditionId = 1;
 
     $('#addNewCondition').click(function() {
+
         // console.log($("#conditionsOther").val());
         if ($("#conditionsOther").val() !== "") {
             var condition = $("#conditionsOther").val();
             const output = condition.charAt(0).toUpperCase() + condition.slice(1);
             var markup = `
             <div>
-            <input type="checkbox" id="" name="conditions" value="` + output + `" checked>
-            <label for=""> ` + output + `</label>
+            <input type="checkbox" id="newCondtion` + newConditionId + `" name="conditions" value="` + output + `" checked>
+            <label for="newCondtion` + newConditionId + `"> ` + output + `</label>
             </div>
             `;
+            newConditionId += 1;
             $(".condtionsCheckBox").append(markup);
             $("#conditionsOther").val(null);
         }
@@ -508,6 +514,50 @@ function getPatients(patientID) {
             } catch (e) {
                 patientIdErrorMessage("Patient ID Number Not Found")
             }
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+}
+
+function getPatientByID(patientID) {
+    $.ajax({
+        url: './ajaxRequest/getPatientByID.php',
+        method: 'POST',
+        data: {
+            getPatientByID: 1,
+            patientID: patientID
+        },
+        success: function(response) {
+            // console.log(response);
+            // if (!response) {
+            //     console.log("Not Found");
+            // } else {
+            var patients = JSON.parse(response);
+            $('#patientContact').val(patients['Contact']);
+            $('#appointmentPatientContact').val(patients['Contact']);
+            $('#patientName').text("Patient Name: " + patients['Name']);
+
+            // }
+            // console.log(response);
         },
         error: function(jqXHR, exception) {
             var msg = '';

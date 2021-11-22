@@ -169,30 +169,59 @@ $(document).ready(function() {
     });
 });
 
+function toUpperCaseFirstLetterofText(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        // You do not need to check if i is larger than splitStr length, as your for does that for you
+        // Assign it back to the array
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    // Directly return the joined string
+    return splitStr.join(' ');
+}
+
 
 function ajaxAddNewPatient() {
+    var PatientName = toUpperCaseFirstLetterofText($('#regPatientName').val());
+    var PatientNickname = toUpperCaseFirstLetterofText($('#regPatientNickname').val());
+    var PatientBday = $('#regPatientBday').val();
+    var PatientAge = $('#regPatientAge').val();
+    var PatientGender = toUpperCaseFirstLetterofText($('#regPatientGender').val());
+    var PatientCivil = toUpperCaseFirstLetterofText($('#regPatientCivil').val());
+    var PatientAddress = toUpperCaseFirstLetterofText($('#regPatientAddress').val());
+    var PatientEmail = $('#regPatientEmail').val();
+    var PatientContact = 0 + $('#regPatientContact').val();
+    console.log(PatientName);
+    console.log(PatientNickname);
+    console.log(PatientBday);
+    console.log(PatientAge);
+    console.log(PatientGender);
+    console.log(PatientCivil);
+    console.log(PatientAddress);
+    console.log(PatientEmail);
+    console.log(PatientContact);
     $.ajax({
         url: './registration.php',
         method: 'POST',
         data: {
             registration: 1,
-            regPatientName: $('#regPatientName').val(),
-            regPatientNickname: $('#regPatientNickname').val(),
-            regPatientBday: $('#regPatientBday').val(),
-            regPatientAge: $('#regPatientAge').val(),
-            regPatientGender: $('#regPatientGender').val(),
-            regPatientCivil: $('#regPatientCivil').val(),
-            regPatientAddress: $('#regPatientAddress').val(),
-            regPatientEmail: $('#regPatientEmail').val(),
-            regPatientContact: 0 + $('#regPatientContact').val()
+            regPatientName: PatientName,
+            regPatientNickname: PatientNickname,
+            regPatientBday: PatientBday,
+            regPatientAge: PatientAge,
+            regPatientGender: PatientGender,
+            regPatientCivil: PatientCivil,
+            regPatientAddress: PatientAddress,
+            regPatientEmail: PatientEmail,
+            regPatientContact: PatientContact,
         },
-        success: function(response) {
+        success: function(responseData) {
             // console.log(1212);
             // console.log(response);
             // console.log(patient_data[0].patient_id);
             // console.log(patient_data[0].name);
             // console.log(patient_data[0].email);
-            var patient_data = JSON.parse(response);
+            var patient_data = JSON.parse(responseData);
             addSuccessful(patient_data[0].patient_id, patient_data[0].name, patient_data[0].email);
             setRegInputEmpty();
         },

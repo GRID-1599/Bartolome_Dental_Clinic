@@ -46,7 +46,10 @@
             <h3>New Patient?</h3>
             <a href="registration">Register Now</a>
         </div>
-        <div class="bookAppointment"><a href="bookNow" class="bookAppointmentNow">Book Appointment</a></div>
+        <div class="bookAppointment">
+            <a href="bookNow" class="bookAppointmentNow">Book Appointment</a>
+            <a href="">View my appointment</a>
+        </div>
 
     </div>
 

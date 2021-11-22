@@ -103,7 +103,7 @@
                                         
                                             <h5 class="card-title">$serviceName</h5>
                                             <p class="card-text">$serviceServiceCategory_ID</p>
-                                            <p class="card-text"></span class="servicePrice">Price: $serviceStarting_Price Php</span></p>
+                                            <p class="card-text"><span class="servicePrice">Price: $serviceStarting_Price Php</span></p>
                                             <p class="card-text">$serviceDescription</p>
                                             
                                             <form action="bookNow" method="post">

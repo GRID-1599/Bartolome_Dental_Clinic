@@ -406,7 +406,8 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
 
                     <a href="registration.php" class=" patientID-input unShow">New Patient?</a>
                     <a class=" patientID-input unShow">Forgot Patient Id?</a>
-                    <div id="patientIdError" class="unShow">asdad</a>
+                    <div id="patientIdError" class="unShow">asdad</div>
+                    <div id="patientName" ></a>
                     </div>
                 </div>
 
@@ -493,14 +494,14 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     <div class="container ">
                         <div class="input-group ">
                             <span class="input-group-text">Patient ID: </span>
-                            <input type="text" class="form-control" id="appointmentPatientId">
+                            <input type="text" class="form-control" id="appointmentPatientId" readonly>
                         </div>
 
                     </div>
                     <div class="container">
                         <div class="input-group ">
                             <span class="input-group-text">Contact No.: </span>
-                            <input type="text" class="form-control" id="appointmentPatientContact">
+                            <input type="text" class="form-control" id="appointmentPatientContact" readonly>
                         </div>
                     </div>
                 </div>
@@ -524,15 +525,15 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             <div class="row">
                 <div class="input-group ">
                     <span class="input-group-text">Patient ID: </span>
-                    <input type="text" class="form-control" id="patientIdSubmitted">
+                    <input type="text" class="form-control" id="patientIdSubmitted" readonly>
                 </div>
                 <div class="input-group ">
                     <span class="input-group-text">Appointment # </span>
-                    <input type="text" class="form-control" id="appointmentCode">
+                    <input type="text" class="form-control" id="appointmentCode" readonly>
                 </div>
                 <div class="input-group ">
                     <span class="input-group-text">SubTotal Amount: </span>
-                    <input type="text" class="form-control" id="appointmentSubTotalAmount">
+                    <input type="text" class="form-control" id="appointmentSubTotalAmount" readonly>
                 </div>
                 <div class="container">
                     <br>

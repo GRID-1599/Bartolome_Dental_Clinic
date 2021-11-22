@@ -138,15 +138,21 @@
     .allServiceDisplay {
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr;
         grid-gap: 25px;
         .serviceCard {
             margin: 0;
             height: fit-content;
+            max-width: 700px;
+            min-width: 300px;
         }
         .servicePrice {
             font-weight: 550;
+        }
+        .card-img-top {
+            max-width: 700px;
+            max-height: 500px;
         }
     }
     .svUnshow {

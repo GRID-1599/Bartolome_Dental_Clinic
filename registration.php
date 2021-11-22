@@ -111,7 +111,7 @@ if (isset($_POST['registration'])) {
                                         <span class="details">Birthday</span>
                                     </div>
                                     <div class="input-box">
-                                        <input type="text" name="regPatientAge" id="regPatientAge" required='required' maxlength="3">
+                                        <input type="text" name="regPatientAge" id="regPatientAge" onkeypress="return onlyNumberKey(event)" required='required' maxlength="3">
                                         <div class="underline"></div>
                                         <span class="details">Age</span>
                                     </div>
