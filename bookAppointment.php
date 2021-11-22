@@ -460,7 +460,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
 
                         <tfoot>
                             <tr class="totalAmountRow">
-                                <th>Minimum payment: </th>
+                                <th>Estimated Cost:</th>
                                 <th class="w-auto" id="totalAmountofAppoinment"></th>
                             </tr>
                         </tfoot>

@@ -42,7 +42,8 @@
         gap: 25px;
         height: fit-content;
         position: relative;
-        background-image: linear-gradient(to right, #f8a2b1, #fe899b, #ff6e82, #ff4f68, #ff214c);
+        // background-image: linear-gradient(to right, #f8a2b1, #fe899b, #ff6e82, #ff4f68, #ff214c);
+        background-color: $pinkBG1;
         padding: 50px;
         margin: 25px 50px;
         &:hover &__img {
@@ -66,12 +67,16 @@
                 position: relative;
                 margin-bottom: 10px;
                 font-size: $font-lrg;
+                color: white;
+                font-weight: 600;
+                letter-spacing: .3rem;
             }
             p {
                 position: relative;
                 font-size: $font-med;
                 line-height: 2em;
                 color: white;
+                font-size: 20px;
             }
             // button {
             //     width: 250px;
@@ -95,22 +100,26 @@
                 bottom: 20px;
                 right: 20px;
                 border: none;
-                background-image: linear-gradient(to right, #f25591 0%, pink 51%, #f25591 100%);
+                // background-image: linear-gradient(to right, $pinkBG1 0%, #fabdbd 51%, $pinkBG1 100%);
                 margin: 10px;
                 padding: 15px 45px;
                 text-align: center;
                 // text-transform: uppercase;
+                // box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
                 transition: 0.5s;
                 background-size: 200% auto;
                 color: white;
                 border-radius: 10px;
+                background-color: $pinkBG1;
+                border: 5px solid white;
                 cursor: pointer;
             }
             .btn-grad:hover {
                 background-position: right center;
                 /* change the direction of the change here */
-                color: #fff;
+                color: white;
                 text-decoration: none;
+                transform: scale(1.05);
             }
         }
         &__img {

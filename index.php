@@ -185,14 +185,16 @@
                         <p>Wednesday</p>
                         <p>Thursday</p>
                         <p>Friday</p>
+                        <p>Saturday</p>
                     </div>
 
                     <div class="hour">
-                        <p>8:30am to 5:30pm </p>
-                        <p>8:30am to 5:30pm </p>
-                        <p>8:30am to 5:30pm </p>
-                        <p>8:30am to 5:30pm </p>
-                        <p>8:30am to 5:30pm </p>
+                        <p>9:00am to 5:00pm </p>
+                        <p>9:00am to 5:00pm </p>
+                        <p>9:00am to 5:00pm </p>
+                        <p>9:00am to 5:00pm </p>
+                        <p>9:00am to 5:00pm </p>
+                        <p>9:00am to 6:00pm </p>
                     </div>
                 </div>
 

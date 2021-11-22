@@ -583,7 +583,7 @@ function showCalendar(month, year) {
                     if (setSelectedDate(year, month, tableCalendarRow)) {
                         calendarCell_Day.classList.add("selected");
                     }
-                    if (j === 0 || j === 6) {
+                    if (j === 0) {
                         calendarCell_Day.classList.add("date");
                         calendarCell_Day.classList.remove("pwedeDate");
                     }
