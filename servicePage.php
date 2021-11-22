@@ -59,15 +59,19 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
         <div class="svServiceCategory__cont">
 
 
-            <div class="card mb-4 serviceCat-card">
+            <div class="card mb-4 serviceCat-card ">
                 <img src="<?php echo $imagePath ?>" alt="<?php echo $serviceCategory_Name . " ServiceCategory Image" ?>" class="card-img-top h-50">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $serviceCategory_Name; ?></h5>
                     <p class="card-text"> <?php echo $serviceCategory_Description; ?></p>
+                    <br>
+                    <br>
                     <span>
                         <h3>Service under <?php echo $serviceCategory_Name; ?><ctegory>
                         </h3>
+
                     </span>
+                    <br>
                     <div class="serviceUnder">
                         <?php
 
@@ -96,13 +100,14 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
 
                             echo <<<SERVICECARD
                                 <div class="col">
-                                    <div class="card">
+                                    <div class="card  serviceCard">
                                         <img src="$imagePath" class="card-img-top" alt="$serviceName | $serviceImgFilename">
                                         <div class="card-body">
                                             <h5 class="card-title">$serviceName</h5>
                                             <p class="card-text">$serviceServiceCategory_ID</p>
+                                            <p class="card-text">Price: <span class="servicePrice">$serviceStarting_Price Php </span> </p>
                                             <p class="card-text">$serviceDescription</p>
-                                            <p class="card-text">Price: $serviceStarting_Price Php </p>
+                                            
                                             <form action="bookNow" method="post">
                                                 <input type="hidden" name="serviceID" value="$serviceService_ID">
                                                 <input type="hidden" name="serviceName" value="$serviceName">

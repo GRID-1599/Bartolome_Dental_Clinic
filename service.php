@@ -69,7 +69,7 @@
             
             
 
-            <div class="allServiceDisplay border svUnshow">
+            <div class="allServiceDisplay svUnshow">
 
                 <?php
 
@@ -100,10 +100,12 @@
                                     <div class="card serviceCard">
                                         <img src="$imagePath" class="card-img-top" alt="$serviceName | $serviceImgFilename">
                                         <div class="card-body">
+                                        
                                             <h5 class="card-title">$serviceName</h5>
                                             <p class="card-text">$serviceServiceCategory_ID</p>
+                                            <p class="card-text"></span class="servicePrice">Price: $serviceStarting_Price Php</span></p>
                                             <p class="card-text">$serviceDescription</p>
-                                            <p class="card-text">Price: $serviceStarting_Price Php</p>
+                                            
                                             <form action="bookNow" method="post">
                                                 <input type="hidden" name="serviceID" value="$serviceService_ID">
                                                 <input type="hidden" name="serviceName" value="$serviceName">

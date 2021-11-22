@@ -1374,6 +1374,10 @@ header nav a:hover {
   height: fit-content;
 }
 
+.svServices .allServiceDisplay .servicePrice {
+  font-weight: 550;
+}
+
 .svServices .svUnshow {
   display: none;
 }
@@ -1387,22 +1391,30 @@ header nav a:hover {
   height: fit-content;
 }
 
+.svServiceCategory__cont .serviceCat-card {
+  border: none;
+}
+
 .svServiceCategory__cont .serviceUnder {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
   grid-gap: 25px;
 }
 
 .svServiceCategory__cont .serviceUnder .serviceCard {
-  width: 100%;
-  margin: 0;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.svServiceCategory__cont .serviceUnder .servicePrice {
+  font-weight: 550;
 }
 
 .clinicInfo {
