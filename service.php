@@ -20,7 +20,7 @@
     include('header.php') ?>
 
     <section class="svServices">
-        <div class="svServices__cont border">
+        <div class="svServices__cont ">
             <div class="container servicePageHeader">
                 <div class="row">
                     <div class="col-auto">

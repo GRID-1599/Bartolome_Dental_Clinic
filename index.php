@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <?php include_once('font_links.php') ?>
@@ -174,11 +174,17 @@
     <section class="hpAbouts">
         <div class="hpAbouts__cont">
             <div class="info">
-                <a href="https://goo.gl/maps/u1NMVXMtfFro9HHg9" target="_blank">Calle Gipit, Brgy San Pablo 3000 Malolos, Bulacan</a>
-                <div class="img-holder">
-
+                <div class="info__map">
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.6956766118165!2d120.84433771484316!3d14.84232828964889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339653fafe0843b5%3A0x6a774ff99d0d60ba!2sBartolome%20Dental%20Clinic!5e0!3m2!1sen!2sph!4v1632594667618!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></iframe>
+                    </div>
                 </div>
+
             </div>
+            <!-- <div class="address">
+                <h3>Calle Gipit, Brgy San Pablo 3000 Malolos, Bulacan</h3>
+            </div> -->
+            
             <div class="officeHours">
                 <h1>Office Hours</h1>
                 <div class="officeWeek">
