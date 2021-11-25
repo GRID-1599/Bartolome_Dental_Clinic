@@ -326,7 +326,7 @@
         .serviceFormCategory:nth-child(3) {
             margin-right: 175px;
         }
-        .serviceFormCategory:nth-child(5) {
+        .questionCategoryWrapper {
             // border: 1px solid black;
             // margin-right: 75px;
             p {
@@ -374,7 +374,7 @@
         .condtionsCheckBox {
             margin: 20px 0px;
             display: grid;
-            grid-template-columns: repeat(1, 1fr) minmax(200px, 1fr);
+            grid-template-columns: 1fr minmax(200px, 1fr);
             grid-template-rows: auto;
             grid-gap: 0;
             height: fit-content;

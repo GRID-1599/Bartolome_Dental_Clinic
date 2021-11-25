@@ -9,7 +9,10 @@
     <script src="https://kit.fontawesome.com/4bb5a1c9ed.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./styles/bootstap_css/styles.css">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">   
+    <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
+
+
     <title>Book Appointment | Bartolome Dental</title>
 </head>
 
@@ -25,6 +28,8 @@
         </div>
     </section>
     <?php include('footer.php') ?>
+    <script src="sweetalert2/sweetalert2.min.js"></script>
+
     <script src="javascript/bookingAppointment.js"></script>
 </body>
 

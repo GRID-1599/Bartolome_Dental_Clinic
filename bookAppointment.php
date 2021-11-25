@@ -6,7 +6,7 @@ $appService_obj = new Service();
 $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name();
 ?>
 <div class="appointmentInputs">
-    <div class="serviceInputs ">
+    <div class="serviceInputs">
         <div class="top">
             <div class="container">
                 <div class="row">
@@ -15,8 +15,6 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     </div>
                     <div class="col-4">
                         <input type="text" placeholder="Search a service" id="searchService">
-                        <button><i class="fas fa-search"></i></button>
-
                     </div>
                 </div>
             </div>
@@ -37,7 +35,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                         ?>
                     </div>
                     <div class="col-7  appService-box">
-                        <table class="table-appService ">
+                        <table class="table-appService " id="serviceTables" >
                             <tbody>
                                 <?php
                                 $services = $appService_obj->getAllServices();
@@ -182,6 +180,8 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
     </div>
 
     <div class="container patientForm unShow">
+        <br>
+        <h3>Please answer this form</h3>
         <!-- Dental History -->
         <div class="row serviceFormCategory  ">
             <br><br>
@@ -189,11 +189,11 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             <div class="container questionCategoryWrapper">
                 <div class="input-group flex-nowrap ">
                     <span class="input-group-text">Last Dental Visit: </span>
-                    <input type="date" class="form-control ">
+                    <input type="date" class="form-control " id="inpt_LastDentalVisit">
                 </div>
                 <div class="input-group flex-nowrap question">
                     <span class="input-group-text">Purpose of last Dental Visit</span>
-                    <input type="text" class="form-control ">
+                    <input type="text" class="form-control " id="inpt_PurposeLastDentalVisit">
                 </div>
             </div>
             <!-- Dental History end -->
@@ -365,7 +365,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                 </div>
                 <div class="addConditionWrapper" >
                     <label for="conditionsOther" class="fs-6">Other condition : </label>
-                    <input type="text" id="conditionsOther"  class="inputNewConditions" autocapitalize="words" autofocus>
+                    <input type="text" id="conditionsOther"  class="inputNewConditions" autocapitalize="words" >
                     <button type="button" id="addNewCondition"> Add this condition</button>
                 </div>
             </div>
@@ -400,15 +400,15 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             <div class="row">
                 <div class="col patientId-form">
                     <div class="form-floating  patient-inputs">
-                        <input type="text" class="form-control " id="patientId" placeholder="Your Patient ID" onkeypress="return onlyNumberKey(event)" required maxlength="4">
+                        <input type="text" class="form-control " id="patientId" placeholder="Your Patient ID" onkeypress="return onlyNumberKey(event)" required maxlength="4" autofocus>
                         <label for="patientId">Patient ID</label>
                     </div>
 
                     <a href="registration.php" class=" patientID-input unShow">New Patient?</a>
                     <a class=" patientID-input unShow">Forgot Patient Id?</a>
                     <div id="patientIdError" class="unShow">asdad</div>
-                    <div id="patientName" ></a>
-                    </div>
+                    <div id="patientName" ></div>
+                    <div><input type="text" id="patientGender" class="unShow" readonly></div>
                 </div>
 
                 <div class="row">
@@ -428,7 +428,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             <div class="row">
                 <h6>Choosed Service/s</h6>
                 <div class="servicesChoosed ">
-                    <table class="table  table-borderless choosedServiceTable">
+                    <table class="table  table-borderless choosedServiceTable" id="choosedServicesTable">
                         <thead>
                             <tr>
                                 <th>Service</th>
@@ -444,7 +444,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                                 $svPrice = $_POST["servicePrice"];
                                 echo <<<SERVICEROW
                                         <tr class="choosedServiceRow">
-                                            <td>$svName</td>
+                                            <td class="svName">$svName</td>
                                             <td class="serviceId">$svId</td>
                                             <td class="servicePrice">$svPrice </td>
                                             <td><button type="button" class="btn-close removeService"></button></td>
@@ -521,7 +521,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
 
         </div>
 
-        <div class="container patient-TransactionWay unShow ">
+        <div class="container patient-TransactionWay  unShow">
             <div class="row">
                 <div class="input-group ">
                     <span class="input-group-text">Patient ID: </span>
@@ -540,9 +540,9 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     <span>How do you want to pay?</span>
 
                     <div class="container payment">
-                        <input type="radio" id="gcash" name="payment" value="GCash" checked>
+                        <input type="radio" id="gcash" class="paymentMethod" name="payment" value="GCash" checked>
                         <label for="gcash">GCash</label><br>
-                        <input type="radio" id="rdPayLayer" name="payment" value="PayLater">
+                        <input type="radio" id="rdPayLayer" class="paymentMethod" name="payment" value="PayLater">
                         <label for="rdPayLayer">I want to pay later</label><br>
 
                         <br>

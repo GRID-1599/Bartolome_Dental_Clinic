@@ -2519,7 +2519,7 @@ header nav a:hover {
   margin-right: 175px;
 }
 
-.bookNow .patientForm .serviceFormCategory:nth-child(5) p {
+.bookNow .patientForm .questionCategoryWrapper p {
   color: #bf2441;
   text-align: justify;
   text-indent: 50px;
@@ -2575,8 +2575,8 @@ header nav a:hover {
   margin: 20px 0px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[1] minmax(200px, 1fr);
-      grid-template-columns: repeat(1, 1fr) minmax(200px, 1fr);
+  -ms-grid-columns: 1fr minmax(200px, 1fr);
+      grid-template-columns: 1fr minmax(200px, 1fr);
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   grid-gap: 0;

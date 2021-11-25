@@ -122,7 +122,7 @@ function thisServiceAddToChoosedService(service) {
 function addChoosedServiceInTable(serviceName, serviceId, servicePrice) {
     var markup = `
         <tr class="choosedServiceRow">
-            <td>` + serviceName + `</td>
+            <td class="svName">` + serviceName + `</td>
             <td class="serviceId">` + serviceId + `</td>
             <td class="servicePrice">` + servicePrice + `</td>
             <td><button type="button" class="btn-close removeService"></button></td>
@@ -185,6 +185,54 @@ function resetDatePicked() {
 
 }
 
+function messagePromt(message) {
+    Swal.fire({
+        icon: 'info',
+        text: message,
+        confirmButtonText: "Ok, Got it!",
+        confirmButtonColor: "#F05F79"
+    })
+}
+
+function goToFormCondition() {
+    console.log("tabble" + $("#appointmentDate_WeekDay").text());
+    if ($("#appointmentPatientId").val() === "") {
+        $("#patientId").focus();
+        messagePromt("Please input your Patient ID");
+        // $("#patientId").focus();
+        return false;
+    } else if ($("#appointmentPatientContact").val() === "") {
+        $("#patientId").focus();
+        messagePromt("Please input your contact number");
+        // $("#patientId").focus();
+        return false;
+    } else if ($(".choosedServiceTable > tbody > tr").length == 0) {
+        // $("#choosedServicesTable").focus();
+        $('#serviceTables tr:first').focus();
+        messagePromt("Please choose a service");
+        // $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 100, function() {
+        //     $(this).animate({ scrollTop: 20 }, 100);
+        // });
+        return false;
+
+    } else if ($("#appointmentDate_WeekDay").text() == "") {
+        messagePromt("Please choose for yout appointment date and time ");
+        return false;
+    } else if ($("#appointmentTime").text() == "") {
+        messagePromt("Please choose for yout appointment time ");
+        return false;
+    }
+    return true;
+}
+
+function submitCondition() {
+    if ($('#inpt_LastDentalVisit').val() == "") {
+        messagePromt("");
+        return false;
+    }
+    return true;
+}
+
 //  document ready
 // ________________________________________________________________________
 // ------------------------------------------------------------------------
@@ -192,31 +240,46 @@ $(document).ready(function() {
 
 
     $('#btnProceedAppointment').click(function() {
-        $('.serviceInputs').addClass("unShow");
-        $('.patient-details ').addClass("unShow");
-        $('#btnBackAppointment ').removeClass("unShow");
-        $('.patient-TransactionWay').removeClass("unShow");
-        $('.patientForm').removeClass("unShow");
+        if (goToFormCondition()) {
+
+            $('.serviceInputs').addClass("unShow");
+            $('.patient-details ').addClass("unShow");
+            $('.removeService').addClass("unShow");
+            $('#btnBackAppointment ').removeClass("unShow");
+            $('.patient-TransactionWay').removeClass("unShow");
+            $('.patientForm').removeClass("unShow");
 
 
-        $(this).addClass("unShow");
+            $(this).addClass("unShow");
 
 
-        $('#appointmentCode').val(generateRandomCharacters());
+            $('#appointmentCode').val(generateRandomCharacters());
+
+            if ($('#patientGender').val() == "Male") {
+                $('.forFemales').addClass("unShow");
+            } else {
+                $('.forFemales').removeClass("unShow");
+
+            }
 
 
-        $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 100, function() {
-            $(this).animate({ scrollTop: 10 }, 100);
-        });
+            $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 100, function() {
+                $(this).animate({ scrollTop: 10 }, 100);
+            });
+        }
+
 
     });
 
     $('#btnBackAppointment').click(function() {
         $('.serviceInputs').removeClass("unShow");
         $('.patient-details ').removeClass("unShow");
+        $('.removeService').removeClass("unShow");
+
         $('#btnProceedAppointment').removeClass("unShow");
         $('.patient-TransactionWay').addClass("unShow");
         $('.patientForm').addClass("unShow");
+
 
 
         $(this).addClass("unShow");
@@ -360,7 +423,6 @@ $(document).ready(function() {
     });
 
     $('.timeRange').each(function() {
-
         $(this).click(function() {
             $('.timeRange').each(function() {
                 $(this).removeClass("selected");
@@ -368,6 +430,7 @@ $(document).ready(function() {
             // console.log($(this).attr("value"));
             $(this).addClass("selected")
             $('#appointmentTime').text($(this).text());
+            appointmentTime = $(this).text();
         });
 
 
@@ -437,6 +500,16 @@ $(document).ready(function() {
             $(".condtionsCheckBox").append(markup);
             $("#conditionsOther").val(null);
         }
+
+
+    });
+
+    $('#btnSubmitAppointment').click(function() {
+        var agree = $('#agree').prop('checked');
+        // alert(agree)
+        getDatas()
+        showData();
+        // addNewAppointment();
 
 
     });
@@ -555,6 +628,7 @@ function getPatientByID(patientID) {
             $('#patientContact').val(patients['Contact']);
             $('#appointmentPatientContact').val(patients['Contact']);
             $('#patientName').text("Patient Name: " + patients['Name']);
+            $('#patientGender').val(patients['Gender']);
 
             // }
             // console.log(response);
@@ -666,6 +740,7 @@ function showCalendar(month, year) {
             $('#appointmentDate_WeekDay').text(longDate.substring(0, indx));
             $('#appointmentDate_YearMonthDay').text(longDate.substring(indx + 1, longDate.length));
 
+            appointmentDate = $(this).attr("id");
 
 
             $('.timeRange').each(function() {
@@ -737,4 +812,116 @@ function compareDates(date1, date2) {
             }
     }
     return false;
+}
+
+const convertTime = timeStr => {
+    const [time, modifier] = timeStr.split(' ');
+    let [hours, minutes] = time.split(':');
+    if (hours === '12') {
+        hours = '00';
+    }
+    if (modifier === 'PM' || modifier === 'pm') {
+        hours = parseInt(hours, 10) + 12;
+    }
+    return `${hours}:${minutes}`;
+};
+
+
+// APPOINTMENT DATAS  
+var appointmentId;
+var appointmentDate;
+var appointmentTime;
+var patientID;
+var patientContact;
+var appointmentServices = [];
+var appointmentAmount;
+var appointmentPaymentMethod;
+var IsPaid = false;
+
+
+function getDatas() {
+    var serviceChoosedList = [];
+    $('.choosedServiceRow ').each(function() {
+        var serviceArrData = [
+            $(this).find(".serviceId").text(),
+            $(this).find(".svName").text(),
+            $(this).find(".servicePrice").text(),
+        ]
+        serviceChoosedList.push(serviceArrData);
+    });
+
+    patientID = $("#appointmentPatientId").val();
+    patientContact = $("#appointmentPatientContact").val();
+    appointmentTime = convertTime(appointmentTime);
+    appointmentServices = serviceChoosedList;
+    appointmentAmount = $('#totalAmountofAppoinment').text();
+    appointmentPaymentMethod = $(".paymentMethod:checked").val();
+    appointmentId = $('#appointmentCode').val();
+
+}
+
+function showData() {
+    console.log("appointmentId : " + appointmentId);
+    console.log("patientID : " + patientID);
+    console.log("patientContact : " + patientContact);
+    console.log("appointmentDate : " + appointmentDate);
+    console.log("appointmentTime : " + appointmentTime);
+    console.log("appointmentServices : " + appointmentServices);
+    console.log("appointmentAmount : " + appointmentAmount);
+    console.log("appointmentPaymentMethod : " + appointmentPaymentMethod);
+    console.log("IsPaid : " + IsPaid);
+}
+
+function addNewAppointment() {
+    $.ajax({
+        url: './ajaxRequest/addNewAppointment.php',
+        method: 'POST',
+        data: {
+            addNewAppointment: 1,
+            appointmentId: appointmentId,
+            patientID: patientID,
+            patientContact: patientContact,
+            appointmentDate: appointmentDate,
+            appointmentTime: appointmentTime,
+            appointmentServices: appointmentServices,
+            appointmentAmount: appointmentAmount,
+            appointmentPaymentMethod: appointmentPaymentMethod,
+            IsPaid: IsPaid,
+        },
+        success: function(response) {
+            alert(response)
+                // console.log(response);
+                // if (!response) {
+                //     console.log("Not Found");
+                // } else {
+                // var patients = JSON.parse(response);
+                // $('#patientContact').val(patients['Contact']);
+                // $('#appointmentPatientContact').val(patients['Contact']);
+                // $('#patientName').text("Patient Name: " + patients['Name']);
+                // $('#patientGender').val(patients['Gender']);
+
+            // }
+            // console.log(response);
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
 }
