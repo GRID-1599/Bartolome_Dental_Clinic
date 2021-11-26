@@ -116,28 +116,18 @@
                                         $isPaid = ($appointment[0]["IsPaid"]) ? "Paid" : "Not Paid";
                                         echo $isPaid
                                         ?></dd>
-                                </dl>
-                                <dl class="row">
-                                    <h5>Appointment Service/s</h5>
-                                    <ul class="list-unstyled">
+                                    <dt class="col-sm-3">Appointment Service/s</dt>
+                                    <dd class="col-sm-9">
+                                        <p></p>
                                         <?php
                                         foreach ($appointment[1] as $service) {
-                                                 $svId =   $service["Service_Id"]  ;
-                                                 $svName =   $service["Service_Name"] ;
-                                                 $svPrc =   $service["Service_Prc"];
-                                            echo<<< service
-                                                <li>
-                                                    $svId\t$svName\t$svPrc 
-                                                </li>
-                                            service;
+                                            $svId =   $service["Service_Id"];
+                                            $svName =   $service["Service_Name"];
+                                            $svPrc =   $service["Service_Prc"];
+                                            echo "<p>".$svId."\t\t\t".$svName."\t\t\t".$svPrc."</p>";
                                         }
                                         ?>
-                                        <li>Total: <?php
-                                        echo $appointment[0]["Amount"]
-                                        ?></li>
-                                    </ul>
-
-
+                                    </dd>
                                 </dl>
                             </div>
                         </div>
