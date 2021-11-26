@@ -16,8 +16,9 @@ class Service extends DatabaseConnection
         // }
         return $stmt;
     }
-
-    public function addNewPatient( $Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created){
+    // copy only 
+    public function addNewPatient($Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created)
+    {
 
         $sql = 'INSERT INTO `patient`( `Name`, `Nickname`, `Birthday`, `Age`, `Gender`, `Civil Status`, `Address`, `Email`, `Contact`, `Date_Created`) VALUES (?,?,?,?,?,?,?,?,?,?)';
         $stmt = $this->connect()->prepare($sql);
@@ -25,13 +26,29 @@ class Service extends DatabaseConnection
 
         // echo implode(" ",[$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created]);
         $stmt->execute([$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created]);
-        
+    }
 
+    public function getServiceByID($serviceID)
+    {
+        $sql = "SELECT * FROM `service` WHERE `Service_ID` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$serviceID]);
+        while ($row = $stmt->fetch()) {
+            $service = array(
+                "ServiceCategory_ID" => $row["ServiceCategory_ID"],
+                "Name" => $row["Name"],
+                "Description" => $row["Description"],
+                "Duration" => $row["Duration"],
+                "Starting_Price" => $row["Starting_Price"],
+                "ImgFilename" => $row["ImgFilename"]
+            );
+            return $service;
+        };
     }
 
     public function getAllServices_ByCategoryID($serCategory_ID)
     {
-      
+
         $sql = "SELECT `Service_ID` FROM `service` WHERE `ServiceCategory_ID`= ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$serCategory_ID]);

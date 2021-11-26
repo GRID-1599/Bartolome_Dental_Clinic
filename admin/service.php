@@ -35,6 +35,8 @@
         </div>
     </div>
     <?php include'scripts.php'?>
+    <script src="js/service.js"></script>
+
 </body>
 
 </html>

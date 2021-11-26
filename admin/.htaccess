@@ -1,7 +1,14 @@
 RewriteEngine on
 
+#  url for service  view
 
+RewriteCond %{Request_FileName} !-d
 
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^service/([0-9A-Za-z-\s]+) serviceView.php?serviceId=$1 [NC,L,QSA]
+
+# ----------------------------------------------- 
 
 #  url for service 
 RewriteCond %{Request_FileName} !-d

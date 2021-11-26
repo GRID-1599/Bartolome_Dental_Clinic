@@ -15,7 +15,7 @@ $imageType = ".jpg";
 ?>
 
 
-<table class="datatablesSimple">
+<table class="datatablesSimple"  id="servicesTable">
     <thead>
         <tr>
             <th>Service ID</th>
@@ -32,7 +32,7 @@ $imageType = ".jpg";
             <th>Service Category</th>
         </tr>
     </tfoot>
-    <tbody>
+    <tbody >
         <?php
         while ($row = $stmt_GetAllServices->fetch()) {
             $serviceName = $row["Name"];
@@ -46,7 +46,7 @@ $imageType = ".jpg";
             $imagePath = "resources/Dental_Pics/" . $serviceImgFilename;
             // $imagePath = "resources/Dental_Pics/logov2.png";
 
-            $row = "<tr>" .
+            $row = '<tr class="servicerow" >' .
                 "<td>" . $serviceService_ID . "</td>" .
                 "<td>" . $serviceName. "</td>" .
                 "<td>" . $serviceStarting_Price . "</td>" .
