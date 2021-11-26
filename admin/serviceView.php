@@ -95,7 +95,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                         ?>
                                         <img src="<?php echo $imagePath; ?>" alt="" class="img-thumbnail">
                                         <input type="file" id="inputGroupFile01" class="imgInp custom-file-input" aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         <input type="image" src="" alt="">
                                     </dd>
 
