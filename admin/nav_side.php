@@ -7,7 +7,7 @@
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index">
+                        <a class="nav-link" href="appointment">
                             <div class="sb-nav-link-icon"><i class="fas fa-calendar-check"></i></div>
                             Appointments
                         </a>

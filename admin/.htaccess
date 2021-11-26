@@ -17,7 +17,7 @@ RewriteCond %{Request_FileName} !-d
 
 RewriteCond %{Request_FileName}\.php -f
 
-RewriteRule ^appoinment contactUs.php [NC,L,QSA]
+RewriteRule ^appointment appointment.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
