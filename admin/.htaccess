@@ -12,6 +12,15 @@ RewriteRule ^service service.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for appoinment view
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^appointment/([0-9A-Za-z-\s]+) appointmentView.php?appoinmentId=$1 [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 #  url for appoinment 
 RewriteCond %{Request_FileName} !-d
 
@@ -20,6 +29,8 @@ RewriteCond %{Request_FileName}\.php -f
 RewriteRule ^appointment appointment.php [NC,L,QSA]
 
 # ----------------------------------------------- 
+
+
 
 #  url for patients
 RewriteCond %{Request_FileName} !-d

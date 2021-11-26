@@ -5,6 +5,7 @@
 <meta name="author" content="" />
 <title>Admin | Bartolome Dental Clinic</title>
 <!-- <link rel="icon" href="../resources/icons/logov2.png"> -->
+<base href="/Dental Clinic/admin/"> 
 <link rel="icon" href="../resources/icons/icon.jpg">
 
 <script src="https://kit.fontawesome.com/4bb5a1c9ed.js" crossorigin="anonymous"></script>

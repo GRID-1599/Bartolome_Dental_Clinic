@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+
+    
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,16 +22,16 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Appoinment</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">List of Appoinment</li>
+                        <li class="breadcrumb-item active" aria-current="page">List of Appoinment</li>
                     </ol>
 
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i> Appoinment
+                            <i class="fas fa-table me-1"></i> Appoinments
                         </div>
                         <div class="card-body">
                             <?php
-                            // include 'patientTable.php'
+                            include 'appointmentTable.php'
                             ?>
                         </div>
                     </div>
@@ -37,6 +41,8 @@
         </div>
     </div>
     <?php include 'scripts.php' ?>
+    <script src="js/appointment.js"></script>
+
 </body>
 
 </html>
