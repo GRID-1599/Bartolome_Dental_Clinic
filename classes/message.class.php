@@ -12,7 +12,7 @@ class Message extends DatabaseConnection
 
     public function getAllMessage()
     {
-        $sql = "SELECT `Message_ID`, `Body`, `From_Name`, `Phone`, `Email`, `Date_Send`, `IsRead` FROM `message`";
+        $sql = "SELECT `Message_ID`, `Body`, `From_Name`, `Phone`, `Email`, `Date_Send`, `IsRead` FROM `message` ORDER BY `message`.`Date_Send` DESC";
         $stmt = $this->connect()->query($sql);
         $allMsg = array();
         while ($row = $stmt->fetch()) {

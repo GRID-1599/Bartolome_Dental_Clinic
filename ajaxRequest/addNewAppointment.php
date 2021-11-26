@@ -36,9 +36,5 @@ if (isset($_POST["addNewAppointment"])) {
     //     echo $service[2] . "<id>";
     // }
 
-
-
-
-
     echo "added";
 }
