@@ -509,7 +509,7 @@ $(document).ready(function() {
         // alert(agree)
         getDatas()
         showData();
-        // addNewAppointment();
+        addNewAppointment();
 
 
     });
@@ -901,7 +901,7 @@ function addNewAppointment() {
                 // $('#patientGender').val(patients['Gender']);
 
             // }
-            // console.log(response);
+            // console.log("response1" + response);
         },
         error: function(jqXHR, exception) {
             var msg = '';
