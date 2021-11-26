@@ -42,7 +42,7 @@ $patients = $patient->getAllPatients();
         <?php
         $data = json_encode($patients);
         foreach ($patients as $entry) {
-            $row = "<tr>" .
+            $row = "<tr class='patientRow'>" .
                 "<td>" . $entry["Patient_ID"] . "</td>" .
                 "<td>" . $entry["Name"] . "</td>" .
                 "<td>" . $entry["Nickname"] . "</td>" .

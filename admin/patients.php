@@ -35,6 +35,7 @@
         </div>
     </div>
     <?php include'scripts.php'?>
+    <script src="js/patient.js"></script>
 </body>
 
 </html>
