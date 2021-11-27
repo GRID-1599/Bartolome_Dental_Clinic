@@ -22,6 +22,7 @@ $imageType = ".jpg";
             <th>Name</th>
             <th>Starting Price</th>
             <th>Service Category</th>
+            <th>Availability</th>
         </tr>
     </thead>
     <tfoot>
@@ -30,6 +31,7 @@ $imageType = ".jpg";
             <th>Name</th>
             <th>Starting Price</th>
             <th>Service Category</th>
+            <th>Availability</th>
         </tr>
     </tfoot>
     <tbody >
@@ -45,12 +47,14 @@ $imageType = ".jpg";
             $serviceImgFilename = (strcmp($row["ImgFilename"], "") != 0) ? $row["ServiceCategory_ID"] . "/" . $row["ImgFilename"] . $imageType : "logov2.png";
             $imagePath = "resources/Dental_Pics/" . $serviceImgFilename;
             // $imagePath = "resources/Dental_Pics/logov2.png";
+            $serviceAvailability = ($row["Availability"])? "Available" : "Not Available" ;
 
             $row = '<tr class="servicerow" >' .
                 "<td>" . $serviceService_ID . "</td>" .
                 "<td>" . $serviceName. "</td>" .
                 "<td>" . $serviceStarting_Price . "</td>" .
                 "<td>" . $serviceServiceCategory_ID. "</td>" .
+                "<td>" . $serviceAvailability. "</td>" .
                 "</tr>";
             echo $row;
         }

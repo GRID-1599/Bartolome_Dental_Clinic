@@ -99,7 +99,23 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                         <input type="image" src="" alt="">
                                     </dd>
 
+                                    <dt class="col-sm-3">Availability</dt>
+                                    <dd class="col-sm-9">
+                                        <select class="form-select w-25">
+                                            <?php
+                                            $avail = "";
+                                            $notAvail = "";
+                                            if ($service["Availability"]) {
+                                                $avail = "selected";
+                                            }else{
+                                                 $notAvail = "selected";
+                                            }
+                                            echo "<option value='1' " . $avail . ">Available</option>";
+                                            echo "<option value='0' " . $notAvail . ">Not Available</option>";
 
+                                            ?>
+                                        </select>
+                                    </dd>
 
                                 </dl>
                             </div>

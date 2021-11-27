@@ -40,7 +40,9 @@ class Service extends DatabaseConnection
                 "Description" => $row["Description"],
                 "Duration" => $row["Duration"],
                 "Starting_Price" => $row["Starting_Price"],
-                "ImgFilename" => $row["ImgFilename"]
+                "ImgFilename" => $row["ImgFilename"],
+                "Availability" => $row["Availability"]
+
             );
             return $service;
         };
