@@ -38,7 +38,7 @@ class Service extends DatabaseConnection
                 "ServiceCategory_ID" => $row["ServiceCategory_ID"],
                 "Name" => $row["Name"],
                 "Description" => $row["Description"],
-                "Duration" => $row["Duration"],
+                "Duration" => $row["Duration_Minutes"],
                 "Starting_Price" => $row["Starting_Price"],
                 "ImgFilename" => $row["ImgFilename"],
                 "Availability" => $row["Availability"]
@@ -46,6 +46,7 @@ class Service extends DatabaseConnection
             );
             return $service;
         };
+        return 0;
     }
 
     public function getAllServices_ByCategoryID($serCategory_ID)
@@ -74,4 +75,21 @@ class Service extends DatabaseConnection
     //         echo $serviceName . "<br>";
     //     }
     // }
+
+    public function editService($service_id, $service_data)
+    {
+        $set = "";
+        foreach ($service_data as $key => $val) {
+            $set .= "`" . $key . "` = '" . $val . "', ";
+        }
+
+        $set = substr($set, 0, -2);
+
+        $sql1 = "UPDATE `service` SET  " . $set . " WHERE `service`.`Service_ID` = '" . $service_id ."'";
+        // $sql = "UPDATE `service` SET `Availability` = '0' WHERE `service`.`Service_ID` = 'S101'";
+        // echo $sql1 . "<br>";
+        // echo $sql;
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+    }
 }

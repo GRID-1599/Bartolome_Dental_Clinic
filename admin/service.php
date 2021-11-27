@@ -23,7 +23,16 @@
                     
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i> Service Table
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-table me-1"></i> Service Table
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-info w-100"> <i class="fas fa-plus "></i> Add New Service</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <?php include 'serviceTable.php' ?>
