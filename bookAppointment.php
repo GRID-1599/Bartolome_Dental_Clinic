@@ -35,32 +35,35 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                         ?>
                     </div>
                     <div class="col-7  appService-box">
-                        <table class="table-appService " id="serviceTables" >
+                        <table class="table-appService " id="serviceTables">
                             <tbody>
                                 <?php
                                 $services = $appService_obj->getAllServices();
 
                                 while ($row = $services->fetch()) {
-                                    $serviceName = $row["Name"];
-                                    // $serviceDescription = $row["Description"];
-                                    $serviceStarting_Price = $row["Starting_Price"];
-                                    // $ImgFilename = $row["ImgFilename"];
-                                    $serviceService_ID = $row["Service_ID"];
+                                    if ($row["Availability"]) {
 
-                                    $serviceServiceCategory_ID = $serviceCategoryIdAndName_Array[$row["ServiceCategory_ID"]];
+                                        $serviceName = $row["Name"];
+                                        // $serviceDescription = $row["Description"];
+                                        $serviceStarting_Price = $row["Starting_Price"];
+                                        // $ImgFilename = $row["ImgFilename"];
+                                        $serviceService_ID = $row["Service_ID"];
 
-                                    $isSelected = "";
-                                    if (isset($_GET["serviceID"]) && $_GET["serviceID"] == $serviceService_ID) {
-                                        $isSelected = "serviceSelected";
-                                    }
-                                    // $imagePath = "resources/Dental_Pics/logov2.png";
+                                        $serviceServiceCategory_ID = $serviceCategoryIdAndName_Array[$row["ServiceCategory_ID"]];
 
-                                    echo <<<SERVICEROW
+                                        $isSelected = "";
+                                        if (isset($_GET["serviceID"]) && $_GET["serviceID"] == $serviceService_ID) {
+                                            $isSelected = "serviceSelected";
+                                        }
+                                        // $imagePath = "resources/Dental_Pics/logov2.png";
+
+                                        echo <<<SERVICEROW
                                     <tr id="$serviceService_ID" class="serviceRow $isSelected">
                                     <td colspan="2" class="serviceName">$serviceName</td>
                                     <td class="servicePrice">$serviceStarting_Price</td>
                                     </tr>
                                 SERVICEROW;
+                                    }
                                 }
 
                                 ?>
@@ -244,9 +247,9 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                 <div class="input-group flex-nowrap question">
                     <span class="input-group-text">Have you been ever hospitalized ?</span>
                     <div class="form-control no-border">
-                        <input type="radio" id="rdHospitalizedYes" name="hospitalized" value="yes" >
+                        <input type="radio" id="rdHospitalizedYes" name="hospitalized" value="yes">
                         <label for="rdHospitalizedYes">Yes</label>
-                        <input type="radio" id="rdHospitalizedNo" name="hospitalized" value="no" >
+                        <input type="radio" id="rdHospitalizedNo" name="hospitalized" value="no">
                         <label for="rdHospitalizedNo">No</label>
                     </div>
                 </div>
@@ -363,9 +366,9 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     ?>
 
                 </div>
-                <div class="addConditionWrapper" >
+                <div class="addConditionWrapper">
                     <label for="conditionsOther" class="fs-6">Other condition : </label>
-                    <input type="text" id="conditionsOther"  class="inputNewConditions" autocapitalize="words" >
+                    <input type="text" id="conditionsOther" class="inputNewConditions" autocapitalize="words">
                     <button type="button" id="addNewCondition"> Add this condition</button>
                 </div>
             </div>
@@ -375,8 +378,8 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
         <!-- NOte  -->
         <div class="row serviceFormCategory  ">
             <div class="container questionCategoryWrapper">
-                <p>     
-                        I understand that <strong>DENTISTRY</strong> is not an exact Science & that no dentist can properly guarantee results. It is my responsibility to
+                <p>
+                    I understand that <strong>DENTISTRY</strong> is not an exact Science & that no dentist can properly guarantee results. It is my responsibility to
                     inform the dentist of any medical condition/any medication I am taking. I hereby authorize the dentist to proceed & perform
                     the treatment's as explained to me. I understand that I am responsible for the payment of all dental fees. I agree to pay any
                     attorney's fee, or court costs that may be incurred to satisfy any obligation to this office. Any untoward circumstances that may
@@ -384,8 +387,9 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     undergo dental treatment under her care.
                 </p>
                 <div>
-                        <input type="checkbox" id="agree" name="agree" value="agree">
-                        <label for="agree" class="agreeLabel" > I confirm that I have read, understand and agree to the statement above. </div>
+                    <input type="checkbox" id="agree" name="agree" value="agree">
+                    <label for="agree" class="agreeLabel"> I confirm that I have read, understand and agree to the statement above.
+                </div>
             </div>
             <!-- notey end  -->
         </div>
@@ -407,7 +411,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     <a href="registration.php" class=" patientID-input unShow">New Patient?</a>
                     <a class=" patientID-input unShow">Forgot Patient Id?</a>
                     <div id="patientIdError" class="unShow">asdad</div>
-                    <div id="patientName" ></div>
+                    <div id="patientName"></div>
                     <div><input type="text" id="patientGender" class="unShow" readonly></div>
                 </div>
 
