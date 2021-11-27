@@ -56,10 +56,43 @@ thead {
                 transition: 250ms ease-in-out;
             }
         }
+        .todayDate {
+            background-color: $pink2;
+            color: white;
+            position: relative;
+            &::after {
+                position: absolute;
+                // bottom: 45%;
+                // left: 50%;
+                left: 5%;
+                top: 5%;
+                width: fit-content;
+                height: fit-content;
+                // transform: translate(-100%, 0%);
+                font-size: 18px;
+                content: 'Today';
+                z-index: 100;
+                color: white;
+            }
+            &:hover {
+                background-color: $pink2;
+            }
+        }
+        .hasAppoinment {
+            background-color: blueviolet;
+        }
+        .appoinment {
+            padding: 3px;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            color: black;
+            height: fit-content;
+            width: fit-content;
+            min-width: fit-content;
+            margin-bottom: 3px;
+            text-align: left;
+            font-size: .725rem;
+        }
     }
-}
-
-td.todayDate {
-    background-color: rgb(220, 228, 228);
-    color: white;
 }

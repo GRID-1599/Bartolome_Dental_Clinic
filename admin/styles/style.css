@@ -57,9 +57,54 @@ thead tr {
   transition: 250ms ease-in-out;
 }
 
-td.todayDate {
-  background-color: #dce4e4;
+#calendarBody tr .todayDate {
+  background-color: #FFA3AD;
   color: white;
+  position: relative;
+}
+
+#calendarBody tr .todayDate::after {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 18px;
+  content: 'Today';
+  z-index: 100;
+  color: white;
+}
+
+#calendarBody tr .todayDate:hover {
+  background-color: #FFA3AD;
+}
+
+#calendarBody tr .hasAppoinment {
+  background-color: blueviolet;
+}
+
+#calendarBody tr .appoinment {
+  padding: 3px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin-bottom: 3px;
+  text-align: left;
+  font-size: .725rem;
 }
 
 .adminLogin {

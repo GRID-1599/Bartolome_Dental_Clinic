@@ -26,6 +26,9 @@ function jumpp() {
 }
 
 function showCalendar(month, year) {
+    var dates_Arr = JSON.parse(datesArray(month + 1, year));
+
+
     var firstday = (new Date(year, month)).getDay();
     var daysInTodayMonth = 32 - new Date(year, month, 32).getDate();
     // console.log(firstday + " || " + daysInTodayMonth);
@@ -50,18 +53,83 @@ function showCalendar(month, year) {
             } else {
                 var calendarCell_Day = document.createElement("td");
                 var calendarCell_DayText = document.createTextNode(tableCalendarRow);
+                calendarCell_Day.appendChild(calendarCell_DayText);
                 if (tableCalendarRow === todayDate.getDate() && year === todayDate.getFullYear() && month === todayDate.getMonth()) {
                     console.log("Today Y-" + todayDate.getFullYear() + " D-" + todayDate.getDate() + " M-" + todayDate.getMonth());
                     calendarCell_Day.classList.add("todayDate");
-                    // calendarCell_Day.classList.toggle("bg-primary");
-                    calendarCell_Day.setAttribute("style", "background-color: lightseagreen;");
 
                 }
-                calendarCell_Day.appendChild(calendarCell_DayText);
+
+                var thisDate = year + "-" + oneDigit_to_twoDigit(month + 1) + "-" + oneDigit_to_twoDigit(tableCalendarRow);
+
+                dates_Arr.forEach(appointment => {
+                    if (appointment["Appoinment_Date"] === thisDate) {
+                        let appointment_wrapper = document.createElement('div');
+                        appointment_wrapper.textContent = "Appointment";
+                        appointment_wrapper.classList.add("appoinment");
+
+                        // calendarCell_Day.classList.add("hasAppoinment");
+                        calendarCell_Day.appendChild(appointment_wrapper);
+                    }
+                });
+
+
                 calendarRow_Week.appendChild(calendarCell_Day);
                 tableCalendarRow++;
             }
         }
         table.appendChild(calendarRow_Week);
     }
+}
+
+
+function datesArray(month, year) {
+    var dates_array = null;
+    $.ajax({
+        async: false,
+        global: false,
+        url: '../ajaxRequest/getDates.php',
+        method: 'POST',
+        data: {
+            getAdminCalendarDates: 1,
+            getMonth: month,
+            getYear: year,
+        },
+        success: function(response) {
+            // response = JSON.stringify(response);
+            dates_array = response;
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+    return dates_array;
+};
+
+
+
+// function 
+
+function oneDigit_to_twoDigit(digit) {
+    if (digit.toString().length == 1) {
+        digit = "0" + digit;
+    }
+    return digit;
 }
