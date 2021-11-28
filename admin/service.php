@@ -29,7 +29,9 @@
                                         <i class="fas fa-table me-1"></i> Service Table
                                     </div>
                                     <div class="col">
-                                        <button type="button" class="btn btn-info w-100"> <i class="fas fa-plus "></i> Add New Service</button>
+                                        <a href="service/add"> 
+                                        <button type="button" class="btn btn-info w-100"> <i class="fas fa-plus " id="btnAddNewService" ></i> Add New Service</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

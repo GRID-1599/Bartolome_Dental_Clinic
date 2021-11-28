@@ -12,6 +12,7 @@ var service_duration;
 var ifChangesHappen = true;
 var isImageDeleted = false;
 var isImageEdited = false;
+var ifImageOnlyChanged = true;
 
 $(document).ready(function() {
     initDatas();
@@ -33,22 +34,26 @@ $(document).ready(function() {
     });
 
     $('#bntConfirmChanges').click(function() {
-        editService();
+        if (ifImageOnlyChanged === false) {
+            editService();
+        }
         if (isImageEdited) {
-            console.log("image changes");
+            // console.log("image changes");
             imageChange();
         }
-
         setTimeout(function() {
+            $("#serviceChanges").modal("hide");
             location.reload();
         }, 500);
 
 
+
     });
 
-    $('#bntConfirmDelete').click(function() {
-        window.location.href = "service";
+    $('#btnConfirmDelete').click(function() {
+        deleteService();
     });
+
 
     profileEdit();
     testHaveImage();
@@ -78,6 +83,7 @@ function initDatas() {
 
 function checkIfDataEdited() {
     isImageEdited = false;
+    ifImageOnlyChanged = true;
     let changesList = {};
     var imageFile = $('#service_image').val();
     testHaveImage();
@@ -101,22 +107,27 @@ function checkIfDataEdited() {
     if (new_service_name !== service_name) {
         $('#changesList').append(changes("Service Name", service_name, new_service_name));
         flag = false; // false - if changes happen
+        ifImageOnlyChanged = false;
+
         changesList["Name"] = new_service_name;
     }
     if (new_service_category !== service_category) {
         $('#changesList').append(changes("Service Category", service_category_text, $('#service_category').find("option:selected").text()));
+        ifImageOnlyChanged = false;
         flag = false; // false - if changes happen
         changesList["ServiceCategory_ID"] = new_service_category;
 
     }
     if (new_service_price !== service_price) {
         $('#changesList').append(changes("Service Price", service_price, new_service_price));
+        ifImageOnlyChanged = false;
         flag = false; // false - if changes happen
         changesList["Starting_Price"] = new_service_price;
 
     }
     if (new_service_description !== service_description) {
         $('#changesList').append(changes("Description", service_description, new_service_description));
+        ifImageOnlyChanged = false;
         flag = false; // false - if changes happen
         changesList["Description"] = new_service_description;
 
@@ -131,6 +142,7 @@ function checkIfDataEdited() {
     }
     if (isImageDeleted) {
         $('#changesList').append(changes2("Service Image", "Deleted image service"));
+        ifImageOnlyChanged = false;
         flag = false; // false - if changes happen
         changesList["ImgFilename"] = imageFile;
 
@@ -138,12 +150,14 @@ function checkIfDataEdited() {
 
     if (new_service_availability !== service_availability) {
         $('#changesList').append(changes("Service Availablity", service_availability_text, $('#service_availability').find("option:selected").text()));
+        ifImageOnlyChanged = false;
         flag = false; // false - if changes happen
         changesList["Availability"] = new_service_availability;
 
     }
     if (new_service_duration !== service_duration) {
         $('#changesList').append(changes("Service Duration", service_duration, new_service_duration));
+        ifImageOnlyChanged = false;
         flag = false; // false - if changes happen
         changesList["Duration_Minutes"] = new_service_duration;
 
@@ -156,6 +170,8 @@ function checkIfDataEdited() {
         // <div> Nothing to changes </div>
     }
     serviceEditList = changesList;
+
+    return flag;
 
 }
 
@@ -195,6 +211,7 @@ var serviceEditList = {};
 
 function editService() {
     // console.log(serviceEditList["Duration_Minutes"]);
+    // console.log("nasama");
     console.log(JSON.stringify(serviceEditList));
 
     $.ajax({
@@ -240,7 +257,7 @@ function imageChange() {
     var files = $('#service_image')[0].files;
     fd.append('file', files[0]);
     var theURL = '../ajaxRequest/services.ajax.php?serviceId=' + service_id;
-    console.log("url -" + theURL);
+    // console.log("url -" + theURL);
     $.ajax({
         url: theURL,
         type: 'post',
@@ -249,7 +266,46 @@ function imageChange() {
         processData: false,
         success: function(response) {
             // response = JSON.stringify(response);
-            console.log(response);
+            console.log("response txt : " + response);
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+}
+
+function deleteService() {
+    var theURL = '../ajaxRequest/services.ajax.php';
+    // console.log("url -" + theURL);
+    $.ajax({
+        url: theURL,
+        type: 'post',
+        data: {
+            deleteService: 1,
+            service_id: service_id,
+        },
+        success: function(response) {
+            // response = JSON.stringify(response);
+            $("#serviceDelete").modal("hide");
+            alert(response);
+            window.location.href = "service";
         },
         error: function(jqXHR, exception) {
             var msg = '';

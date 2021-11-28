@@ -1,5 +1,16 @@
 RewriteEngine on
 
+
+#  url for service  add
+
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^service/add serviceAdd.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 #  url for service  view
 
 RewriteCond %{Request_FileName} !-d
@@ -88,7 +99,17 @@ RewriteCond %{Request_FileName} !-d
 
 RewriteCond %{Request_FileName}\.php -f
 
-RewriteRule admin admin.php [NC,L,QSA]
+RewriteRule ^login login.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+
+#  url for admin 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^admin admin.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 

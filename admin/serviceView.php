@@ -140,7 +140,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                     </div>
 
                                     <div class="col">
-                                        <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#serviceDelete"><i class="fa fa-trash" aria-hidden="true"></i>
+                                        <button type="button" id="btnDeleteService" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#serviceDelete"><i class="fa fa-trash" aria-hidden="true"></i>
                                             Delete</button>
                                     </div>
 
@@ -203,7 +203,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                                 <div class="modal-footer">
                                                     <!-- <p>Press confirm to save the changes</p> -->
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-danger" id="bntConfirmDelete">Confirm Delete</button>
+                                                    <button type="button" class="btn btn-danger" id="btnConfirmDelete">Confirm Delete</button>
                                                 </div>
                                             </div>
                                         </div>

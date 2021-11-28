@@ -16,17 +16,7 @@ class Service extends DatabaseConnection
         // }
         return $stmt;
     }
-    // copy only 
-    public function addNewPatient($Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created)
-    {
 
-        $sql = 'INSERT INTO `patient`( `Name`, `Nickname`, `Birthday`, `Age`, `Gender`, `Civil Status`, `Address`, `Email`, `Contact`, `Date_Created`) VALUES (?,?,?,?,?,?,?,?,?,?)';
-        $stmt = $this->connect()->prepare($sql);
-        // print [$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created];
-
-        // echo implode(" ",[$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created]);
-        $stmt->execute([$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created]);
-    }
 
     public function getServiceByID($serviceID)
     {
@@ -86,18 +76,62 @@ class Service extends DatabaseConnection
         $set = substr($set, 0, -2);
 
         $sql1 = "UPDATE `service` SET  " . $set . " WHERE `service`.`Service_ID` = '" . $service_id . "'";
-        $sql = "UPDATE `service` SET `Availability` = '0' WHERE `service`.`Service_ID` = 'S101'";
-        echo $sql1 . "<br>";
-        echo $sql;
+     
         $stmt = $this->connect()->query($sql1);
         $stmt->execute();
     }
 
     public function changeServiceImage($service_id, $filename)
     {
-        $sql = "UPDATE `service` SET `ImgFilename`='".$filename."' WHERE `service`.`Service_ID` = '" . $service_id . "'";
-        echo $sql; 
+        $sql = "UPDATE `service` SET `ImgFilename`='" . $filename . "' WHERE `service`.`Service_ID` = '" . $service_id . "'";
+        echo $sql;
         $stmt = $this->connect()->query($sql);
         $stmt->execute();
+    }
+
+    public function getLastServiceID()
+    {
+        $sql = "SELECT `Service_ID` FROM `service` ORDER BY `Service_ID` DESC LIMIT 1";
+        $stmt = $this->connect()->query($sql);
+        while ($row = $stmt->fetch()) {
+            return $row["Service_ID"];
+        };
+    }
+    public function addNewService(
+        $Id,
+        $CatId,
+        $Name,
+        $Description,
+        $Duration,
+        $Price,
+        $Image,
+        $Availability
+    ) {
+
+        $sql = 'INSERT INTO `service`(`Service_ID`, `ServiceCategory_ID`, `Name`, `Description`, `Duration_Minutes`, `Starting_Price`, `ImgFilename`, `Availability`)  VALUES (?,?,?,?,?,?,?,?)';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute(
+            [
+                $Id,
+                $CatId,
+                $Name,
+                $Description,
+                $Duration,
+                $Price,
+                "",
+                $Availability
+            ]
+        );
+
+        echo $Id. " " .$Name. "New Service Successfully Added";
+    }
+
+    public function deleteService($service_id)
+    {
+        $sql1 = "DELETE FROM `service` WHERE `Service_ID` = '" . $service_id . "'";
+     
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+        echo "Service Id ".$service_id . " succssfully deleted";
     }
 }

@@ -11,9 +11,6 @@ if (isset($_POST["editService"])) {
     $service_obj->editService($_POST["service_id"], $serviceDataToEdit);
 }
 
-if (isset($_POST["editServiceImage"])) {
-    echo $_POST["service_id"];
-}
 
 if (isset($_FILES['file']['name'])) {
     $filename = $_FILES['file']['name'];
@@ -37,4 +34,22 @@ if (isset($_FILES['file']['name'])) {
     }else{
         echo "Error : Invalid File";
     }
+}
+
+
+if(isset($_POST["addNewService"])){
+     $service_obj->addNewService(
+         $_POST["service_id"],
+         $_POST["service_category"],
+         $_POST["service_name"],
+         $_POST["service_description"],
+         $_POST["service_duration"],
+         $_POST["service_price"],
+         $_POST["service_image"],
+         $_POST["service_availability"],
+     );
+}
+
+if (isset($_POST["deleteService"])) {
+    $service_obj->deleteService($_POST["service_id"]);
 }
