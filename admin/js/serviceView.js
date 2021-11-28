@@ -11,6 +11,7 @@ var service_duration;
 
 var ifChangesHappen = true;
 var isImageDeleted = false;
+var isImageEdited = false;
 
 $(document).ready(function() {
     initDatas();
@@ -18,7 +19,7 @@ $(document).ready(function() {
 
     $('#btnImage').click(function() {
         if (confirm("Delete this service image?")) {
-            $("#serviceImage").attr("src", "../resources/Dental_Pics/logov2.png");
+            $("#serviceImage").attr("src", "../resources/Dental_Pics/SERVICE_IMAGES/logov2.png");
             $('#service_image').val("");
             $('#btnImage').hide();
             isImageDeleted = true;
@@ -29,12 +30,19 @@ $(document).ready(function() {
 
     $('#btnEditService').click(function() {
         checkIfDataEdited();
-        console.log("edit pressed");
     });
 
     $('#bntConfirmChanges').click(function() {
         editService();
-        window.location.href = "service/" + service_id;
+        if (isImageEdited) {
+            console.log("image changes");
+            imageChange();
+        }
+
+        setTimeout(function() {
+            location.reload();
+        }, 500);
+
 
     });
 
@@ -57,18 +65,19 @@ function initDatas() {
     service_availability = $('#service_availability').val();
     service_duration = $('#service_duration').val();
     service_availability_text = $('#service_availability').find("option:selected").text();
-    console.log(service_id);
-    console.log(service_name);
-    console.log(service_category);
-    console.log(service_price);
-    console.log(service_description);
-    console.log(service_image);
-    console.log(service_availability);
-    console.log(service_duration);
+    // console.log(service_id);
+    // console.log(service_name);
+    // console.log(service_category);
+    // console.log(service_price);
+    // console.log(service_description);
+    // console.log(service_image);
+    // console.log(service_availability);
+    // console.log(service_duration);
 }
 
 
 function checkIfDataEdited() {
+    isImageEdited = false;
     let changesList = {};
     var imageFile = $('#service_image').val();
     testHaveImage();
@@ -115,7 +124,9 @@ function checkIfDataEdited() {
     if (imageFile !== "") {
         $('#changesList').append(changes2("Service Image", "Changed to : " + imageFile));
         flag = false; // false - if changes happen
-        changesList["ImgFilename"] = imageFile;
+        isImageEdited = true;
+
+        // changesList["ImgFilename"] = imgdata;
 
     }
     if (isImageDeleted) {
@@ -198,7 +209,7 @@ function editService() {
         },
         success: function(response) {
             // response = JSON.stringify(response);
-            // alert(response);
+            console.log(response);
         },
         error: function(jqXHR, exception) {
             var msg = '';
@@ -222,6 +233,45 @@ function editService() {
 
     });
 
+}
+
+function imageChange() {
+    var fd = new FormData();
+    var files = $('#service_image')[0].files;
+    fd.append('file', files[0]);
+    var theURL = '../ajaxRequest/services.ajax.php?serviceId=' + service_id;
+    console.log("url -" + theURL);
+    $.ajax({
+        url: theURL,
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            // response = JSON.stringify(response);
+            console.log(response);
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
 }
 
 

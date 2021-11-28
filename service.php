@@ -92,8 +92,8 @@
                         $serviceService_ID = $row["Service_ID"];
                         $serviceServiceCategory_ID = $serviceCategoryIdAndName_Array[$row["ServiceCategory_ID"]];
                         $serviceDescription = (strcmp($row["Description"], "") != 0) ? $row["Description"] : $sampleTxt;
-                        $serviceImgFilename = (strcmp($row["ImgFilename"], "") != 0) ? $row["ServiceCategory_ID"] . "/" . $row["ImgFilename"] . $imageType : "logov2.png";
-                        $imagePath = "resources/Dental_Pics/" . $serviceImgFilename;
+                        $serviceImgFilename = (strcmp($row["ImgFilename"], "") != 0) ? $row["ImgFilename"] . $imageType : "logov2.png";
+                        $imagePath = "resources/Dental_Pics/SERVICE_IMAGES/" . $serviceImgFilename;
                         // $imagePath = "resources/Dental_Pics/logov2.png";
 
 

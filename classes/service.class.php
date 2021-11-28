@@ -85,11 +85,19 @@ class Service extends DatabaseConnection
 
         $set = substr($set, 0, -2);
 
-        $sql1 = "UPDATE `service` SET  " . $set . " WHERE `service`.`Service_ID` = '" . $service_id ."'";
-        // $sql = "UPDATE `service` SET `Availability` = '0' WHERE `service`.`Service_ID` = 'S101'";
-        // echo $sql1 . "<br>";
-        // echo $sql;
+        $sql1 = "UPDATE `service` SET  " . $set . " WHERE `service`.`Service_ID` = '" . $service_id . "'";
+        $sql = "UPDATE `service` SET `Availability` = '0' WHERE `service`.`Service_ID` = 'S101'";
+        echo $sql1 . "<br>";
+        echo $sql;
         $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+    }
+
+    public function changeServiceImage($service_id, $filename)
+    {
+        $sql = "UPDATE `service` SET `ImgFilename`='".$filename."' WHERE `service`.`Service_ID` = '" . $service_id . "'";
+        echo $sql; 
+        $stmt = $this->connect()->query($sql);
         $stmt->execute();
     }
 }

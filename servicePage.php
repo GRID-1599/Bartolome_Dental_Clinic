@@ -40,7 +40,6 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
     <!-- <base href="/Dental Clinic/">  -->
 
     <?php include_once('font_links.php') ?>
-    <link rel="icon" href="resources/icons/logov2.png">
 
     <link rel="stylesheet" href="styles/bootstap_css/styles.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -96,8 +95,8 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
                                 $serviceService_ID = $row["Service_ID"];
                                 $serviceServiceCategory_ID = $serviceCategoryIdAndName_Array[$row["ServiceCategory_ID"]];
                                 $serviceDescription = (strcmp($row["Description"], "") != 0) ? $row["Description"] : $sampleTxt;
-                                $serviceImgFilename = (strcmp($row["ImgFilename"], "") != 0) ? $row["ServiceCategory_ID"] . "/" . $row["ImgFilename"] . $imageType : "logov2.png";
-                                $imagePath = "resources/Dental_Pics/" . $serviceImgFilename;
+                                $serviceImgFilename = (strcmp($row["ImgFilename"], "") != 0) ? $row["ImgFilename"] . $imageType : "logov2.png";
+                                $imagePath = "resources/Dental_Pics/SERVICE_IMAGES/" . $serviceImgFilename;
                                 // $imagePath = "resources/Dental_Pics/logov2.png";
 
 

@@ -1,5 +1,7 @@
 <!-- <link rel="icon" href="resources/icons/logov2.png"> -->
-<link rel="icon" href="resources/icons/icon.jpg">
+<!-- <link rel="icon" href="resources/icons/icon.jpg"> -->
+    <link rel="icon" href="resources/icons/logov2.png">
+
     <base href="/Dental Clinic/"> 
 
 

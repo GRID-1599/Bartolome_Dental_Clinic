@@ -83,7 +83,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                         <input type="text" name="svName" id="service_price" value="<?php echo $service["Starting_Price"]; ?>" class="">
                                     </dd>
 
-                                    
+
 
                                     <dt class="col-sm-3">Description</dt>
                                     <dd class="col-sm-9">
@@ -97,13 +97,15 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                     <dt class="col-sm-3">Service Image</dt>
                                     <dd class="col-sm-9">
                                         <?php
-                                        $serviceImgFilename = (strcmp($service["ImgFilename"], "") != 0) ? $service["ServiceCategory_ID"] . "/" . $service["ImgFilename"] . ".jpg" : "logov2.png";
-                                        $imagePath = "../resources/Dental_Pics/" . $serviceImgFilename;
+                                        $serviceImgFilename = (strcmp($service["ImgFilename"], "") != 0) ? $service["ImgFilename"] . ".jpg" : "logov2.png";
+                                        $imagePath = "../resources/Dental_Pics/SERVICE_IMAGES/" . $serviceImgFilename;
                                         ?>
                                         <img src="<?php echo $imagePath; ?>" alt="" class="img-thumbnail" id="serviceImage">
+                                        <form id="formImage" onsubmit="return false">
                                         <input type="file" id="service_image" class="" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
                                         <label class="" for="service_image">Choose file</label>
-                                        <button type="button" id="btnImage" class="btn btn-secondary " > <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </form>
+                                        <button type="button" id="btnImage" class="btn btn-secondary "> <i class="fa fa-trash" aria-hidden="true"></i>
                                             Delete Picture</button>
                                     </dd>
 
