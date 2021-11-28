@@ -5,7 +5,7 @@ if(isset($_GET['adminUser'])){
 $_SESSION['userAdmin'] = $_GET['adminUser'];
 }
 if(!isset($_SESSION['userAdmin'])){
-    echo header("Location: adminLogin.php");
+    echo header("Location: admin");
     exit();
 }else{}
 
