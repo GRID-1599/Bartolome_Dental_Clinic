@@ -94,7 +94,7 @@ RewriteRule ^message message.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
-#  url for admin 
+#  url for admin log in
 RewriteCond %{Request_FileName} !-d
 
 RewriteCond %{Request_FileName}\.php -f
