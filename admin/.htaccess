@@ -11,7 +11,7 @@ RewriteRule ^service/add serviceAdd.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
-#  url for service  add
+#  url for service  add category
 
 RewriteCond %{Request_FileName} !-d
 
@@ -86,15 +86,23 @@ RewriteRule ^calendar calendar.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
-
-#  url for message
+#  url for message unread
 RewriteCond %{Request_FileName} !-d
 
 RewriteCond %{Request_FileName}\.php -f
 
-RewriteRule ^message message.php [NC,L,QSA]
+RewriteRule ^message/unread messageUnread.php [NC,L,QSA]
 
 # ----------------------------------------------- 
+#  url for message view
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^message/([0-9A-Za-z-\s]+) messageView.php?messageId=$1 [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 
 #  url for message
 RewriteCond %{Request_FileName} !-d

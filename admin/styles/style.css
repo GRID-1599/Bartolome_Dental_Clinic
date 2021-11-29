@@ -216,19 +216,11 @@ thead tr {
           transform: scale(1.125);
 }
 
-.message_cont .message-body {
-  background-color: whitesmoke;
-  margin: 10px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.Unread {
+  background-color: #f3f3f3;
 }
 
-.message_cont .message-body .card-text {
-  text-indent: 40px;
-  text-align: justify;
-}
-
-.message_cont .read {
-  background-color: white;
+.message-wrapper {
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

@@ -5,7 +5,7 @@
 
 
 
-include 'databaseConnection.class.php';
+include_once 'databaseConnection.class.php';
 
 class Message extends DatabaseConnection
 {
@@ -16,13 +16,14 @@ class Message extends DatabaseConnection
         $stmt = $this->connect()->query($sql);
         $allMsg = array();
         while ($row = $stmt->fetch()) {
-            $msg = array("Message_ID" =>$row["Message_ID"], "Body" =>$row["Body"],  "From_Name" =>$row["From_Name"],"Phone" =>$row["Phone"], "Email"=>$row["Email"], "Date_Send"=>$row["Date_Send"], "IsRead"=>$row["IsRead"]);
+            $msg = array("Message_ID" => $row["Message_ID"], "Body" => $row["Body"],  "From_Name" => $row["From_Name"], "Phone" => $row["Phone"], "Email" => $row["Email"], "Date_Send" => $row["Date_Send"], "IsRead" => $row["IsRead"]);
             array_push($allMsg, $msg);
         }
         return $allMsg;
     }
 
-    public function addMessage( $body, $from_Name, $phone, $email, $date_Send){
+    public function addMessage($body, $from_Name, $phone, $email, $date_Send)
+    {
 
         $sql = 'INSERT INTO `message`(`Body`, `From_Name`, `Phone`, `Email`, `Date_Send`, `IsRead`) VALUES (?,?,?,?,?,?)';
         $stmt = $this->connect()->prepare($sql);
@@ -33,26 +34,35 @@ class Message extends DatabaseConnection
         echo "done";
     }
 
-    public function getPatientIdByName($name, $bday)
+
+    public function getMessageById($message_id)
     {
-        // $sql = "SELECT `Patient_ID` FROM `patient` WHERE`Name` LIKE '".$name."' AND `Birthday` = '".$bday."'";
-        $sql = "SELECT `Patient_ID` FROM `patient` WHERE Name = ? AND Birthday = ? ";
+        $sql = "SELECT * FROM `message` WHERE `Message_ID` = ? ";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$name, $bday]);
+        $stmt->execute([$message_id]);
         while ($row = $stmt->fetch()) {
-            $Patient_ID = $row["Patient_ID"];
-            return $Patient_ID;
+            $msg = array("Message_ID" => $row["Message_ID"], "Body" => $row["Body"],  "From_Name" => $row["From_Name"], "Phone" => $row["Phone"], "Email" => $row["Email"], "Date_Send" => $row["Date_Send"], "IsRead" => $row["IsRead"]);
+            return $msg;
         }
         return 'Not found';
     }
-    // public function getUserStmt()
-    // {
-    //     $sql = "SELECT * FROM service_category ";
-    //     $stmt = $this->connect()->query($sql);
 
-    //     while ($row = $stmt->fetch()) {
-    //         $serviceName = $row["Name"];
-    //         echo $serviceName . "<br>";
-    //     }
-    // }
+    public function setMessageRead($message_id, $isRead)
+    {
+        $sql = "UPDATE `message` SET `IsRead`='" . $isRead . "' WHERE `message`.`Message_ID` = '" . $message_id . "'";
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+    }
+
+    public function getUnreadMessage()
+    {
+        $sql = "SELECT * FROM `message` WHERE `IsRead` = 0 ORDER BY `Message_ID` DESC";
+        $stmt = $this->connect()->query($sql);
+        $allMsg = array();
+        while ($row = $stmt->fetch()) {
+            $msg = array("Message_ID" => $row["Message_ID"], "Body" => $row["Body"],  "From_Name" => $row["From_Name"], "Phone" => $row["Phone"], "Email" => $row["Email"], "Date_Send" => $row["Date_Send"], "IsRead" => $row["IsRead"]);
+            array_push($allMsg, $msg);
+        }
+        return $allMsg;
+    }
 }

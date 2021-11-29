@@ -25,17 +25,19 @@ foreach ($unreadMessages as $unread) {
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Messages</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Messages List</li>
+                        <li class="breadcrumb-item active">
+                            <a href="message">Messages List</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Unread Message</li>
                     </ol>
-                    <a href="message/unread">
-                        <button type="button" class="btn btn-info position-relative">
-                            Unread Message
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?php echo $unreadMessageNum; ?>
-                                <span class="visually-hidden">unread messages</span>
-                            </span>
-                        </button>
-                    </a>
+
+                    <button type="button" class="btn btn-secondary position-relative">
+                        Unread Message
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-white border text-black">
+                            <?php echo $unreadMessageNum; ?>
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </button>
                     <br>
                     <br>
 
@@ -45,20 +47,23 @@ foreach ($unreadMessages as $unread) {
                                 <?php
                                 $messages = $objMessage->getAllMessage();
                                 foreach ($messages as $entry) {
-                                    $from_name = (strcmp($entry["From_Name"], "") != 0) ? $entry["From_Name"] : "Anonymous";
-                                    $from_body = $entry["Body"];
-                                    $Message_ID = $entry["Message_ID"];
-                                    $from_phone = (strcmp($entry["Phone"], "") != 0) ? $entry["Phone"] : "";
-                                    $from_email =  (strcmp($entry["Email"], "") != 0) ? $entry["Email"] . "<br>" : "";
+                                    if (!$entry["IsRead"]) {
 
-                                    // echo $from_email . "  " . $from_phone;
 
-                                    $send_TimeStamp = new DateTime($entry["Date_Send"]);
-                                    $date_send = $send_TimeStamp->format('D, M d Y');
-                                    $time_send = $send_TimeStamp->format('g:ia');
+                                        $from_name = (strcmp($entry["From_Name"], "") != 0) ? $entry["From_Name"] : "Anonymous";
+                                        $from_body = $entry["Body"];
+                                        $Message_ID = $entry["Message_ID"];
+                                        $from_phone = (strcmp($entry["Phone"], "") != 0) ? $entry["Phone"] : "";
+                                        $from_email =  (strcmp($entry["Email"], "") != 0) ? $entry["Email"] . "<br>" : "";
 
-                                    $isReadClass = $entry["IsRead"] ? "Read" : "Unread";
-                                    echo <<<MESSAGE
+                                        // echo $from_email . "  " . $from_phone;
+
+                                        $send_TimeStamp = new DateTime($entry["Date_Send"]);
+                                        $date_send = $send_TimeStamp->format('D, M d Y');
+                                        $time_send = $send_TimeStamp->format('g:ia');
+
+                                        $isReadClass = $entry["IsRead"] ? "Read" : "Unread";
+                                        echo <<<MESSAGE
                                                 <div class="row p-3 mb-3 border rounded-3 $isReadClass message-wrapper" id="$Message_ID">
                                                 <div class="col ">
                                                     <p class="card-text">From : <span class="fs-5"> $from_name </span></p>
@@ -69,6 +74,7 @@ foreach ($unreadMessages as $unread) {
                                                 </div>
                                                 </div>
                                         MESSAGE;
+                                    }
                                 }
                                 ?>
 

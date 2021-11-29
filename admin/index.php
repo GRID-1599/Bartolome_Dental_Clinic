@@ -30,6 +30,14 @@ foreach ($appAddedToday_stmt as $data) {
     $appoinmentAddedTodayNum = $appoinmentAddedTodayNum + 1;
 };
 
+include_once '../classes/Message.class.php';
+$objMessage = new Message();
+$unreadMessages = $objMessage->getUnreadMessage();
+$unreadMessageNum = 0;
+foreach ($unreadMessages as $unread) {
+    $unreadMessageNum += 1;
+}
+
 
 ?>
 
@@ -119,7 +127,7 @@ foreach ($appAddedToday_stmt as $data) {
                                                     foreach ($appAddedToday_stmt as $data) {
                                                         $time = $data["Date_Created"];
                                                         $appTime = new DateTime($time);
-                                                        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "New Appointment".
+                                                        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "New Appointment" .
                                                             " added at " . $appTime->format('h:i a') .
                                                             "</a>";
                                                     };
@@ -184,17 +192,17 @@ foreach ($appAddedToday_stmt as $data) {
                                                 <div class="row">
                                                     <span>Appointment Done</span>
                                                     <div class="ms-3">
-                                                    <?php
-                                                    foreach ($appToday_stmt as $data) {
-                                                        if ($data["IsDone"]) {
-                                                            $time = $data["Appoinment_Time"];
-                                                            $appTime = new DateTime($time);
-                                                            echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at " .
-                                                                " " . $appTime->format('h:i a') .
-                                                                "</a><br>";
-                                                        }
-                                                    };
-                                                    ?>
+                                                        <?php
+                                                        foreach ($appToday_stmt as $data) {
+                                                            if ($data["IsDone"]) {
+                                                                $time = $data["Appoinment_Time"];
+                                                                $appTime = new DateTime($time);
+                                                                echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at " .
+                                                                    " " . $appTime->format('h:i a') .
+                                                                    "</a><br>";
+                                                            }
+                                                        };
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,17 +212,17 @@ foreach ($appAddedToday_stmt as $data) {
                                                 <div class="row">
                                                     <span>Appointment Not Done</span>
                                                     <div class="ms-3">
-                                                    <?php
-                                                    foreach ($appToday_stmt as $data) {
-                                                        if (!$data["IsDone"]) {
-                                                            $time = $data["Appoinment_Time"];
-                                                            $appTime = new DateTime($time);
-                                                            echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at" .
-                                                                " " . $appTime->format('h:i a') .
-                                                                "</a><br>";
-                                                        }
-                                                    };
-                                                    ?>
+                                                        <?php
+                                                        foreach ($appToday_stmt as $data) {
+                                                            if (!$data["IsDone"]) {
+                                                                $time = $data["Appoinment_Time"];
+                                                                $appTime = new DateTime($time);
+                                                                echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at" .
+                                                                    " " . $appTime->format('h:i a') .
+                                                                    "</a><br>";
+                                                            }
+                                                        };
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -230,11 +238,21 @@ foreach ($appAddedToday_stmt as $data) {
                                         <div class="card-header">
                                             <i class="fas fa-chart-area me-1"></i> Area
                                         </div>
-                                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                        <div class="card-body">
+                                            <a href="message/unread">
+                                                <button type="button" class="btn btn-info position-relative">
+                                                    Unread Message
+                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        <?php echo $unreadMessageNum; ?>
+                                                        <span class="visually-hidden">unread messages</span>
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                     </div>
