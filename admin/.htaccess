@@ -11,6 +11,17 @@ RewriteRule ^service/add serviceAdd.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for service  add
+
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^service/categories serviceCategories.php [NC,L,QSA]
+
+# ----------------------------------------------
+
+
 #  url for service  view
 
 RewriteCond %{Request_FileName} !-d

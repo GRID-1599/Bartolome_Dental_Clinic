@@ -99,7 +99,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                         <img src="<?php echo $imagePath; ?>" alt="" class="img-thumbnail" id="serviceImage">
                                         <form id="formImage" onsubmit="return false">
                                         <input type="file" id="service_image" class="" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
-                                        <label class="" for="service_image">Choose file</label>
+                                        <label class="" for="service_image">Choose file <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
                                         </form>
                                         <button type="button" id="btnImage" class="btn btn-secondary "> <i class="fa fa-trash" aria-hidden="true"></i>
                                             Delete Picture</button>

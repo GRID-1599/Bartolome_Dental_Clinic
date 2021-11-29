@@ -20,7 +20,16 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">List of Service</li>
                     </ol>
-                    
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col">
+                                <a href="service/categories">
+                                    <button type="button" class="btn btn-secondary ">View Service Categories</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="card mb-4">
                         <div class="card-header">
                             <div class="container">
@@ -29,8 +38,8 @@
                                         <i class="fas fa-table me-1"></i> Service Table
                                     </div>
                                     <div class="col">
-                                        <a href="service/add"> 
-                                        <button type="button" class="btn btn-info w-100"> <i class="fas fa-plus " id="btnAddNewService" ></i> Add New Service</button>
+                                        <a href="service/add">
+                                            <button type="button" class="btn btn-info w-100"> <i class="fas fa-plus " id="btnAddNewService"></i> Add New Service</button>
                                         </a>
                                     </div>
                                 </div>
@@ -45,7 +54,7 @@
             <?php include 'html-footer.php' ?>
         </div>
     </div>
-    <?php include'scripts.php'?>
+    <?php include 'scripts.php' ?>
     <script src="js/service.js"></script>
 
 </body>
