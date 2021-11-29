@@ -49,7 +49,7 @@ $imageType = ".jpg";
             // $imagePath = "resources/Dental_Pics/logov2.png";
             $serviceAvailability = ($row["Availability"])? "Available" : "Not Available" ;
 
-            $row = '<tr class="servicerow" >' .
+            $row = '<tr class="servicerow" data-bs-toggle="tooltip" data-bs-placement="bttom" title="Click to view" >' .
                 "<td>" . $serviceService_ID . "</td>" .
                 "<td>" . $serviceName. "</td>" .
                 "<td>" . $serviceStarting_Price . "</td>" .
