@@ -87,11 +87,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Description</dt>
                                     <dd class="col-sm-9">
-                                        <textarea class="form-control" rows="8" id="service_description">
-                                            <?php
-                                            echo $service["Description"];
-                                            ?>
-                                        </textarea>
+                                        <textarea class="form-control" rows="8" id="service_description"><?php echo $service["Description"]?></textarea>
                                     </dd>
 
                                     <dt class="col-sm-3">Service Image</dt>
