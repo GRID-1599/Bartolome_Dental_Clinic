@@ -93,9 +93,12 @@
                 <div class="txtCont">
                     <h1>Why choose Us?</h1>
                     <p>
-                        From the minute you walk into our dentist, you’ll realize why you choose us-not only do we have the expertise and affordable services to meet your dental needs, our patients frequently comment on how pleasant our dental clinic is, offering a refreshingly easy experience. <br><br>
-                        When you meet our friendly, highly experienced dentist, any fear of dentists will be gone. We'll make sure you're properly diagnosed and informed so you can be assured that your needs are being met, and this is just one of the many reasons our patients put their trust in us. <br><br>
-                        Here at Bartolome Dental Clinic, have combined old-fashioned care with advanced dental technology and techniques to provide you and your family with the best dental treatment available at Malolos, Bulacan. Our dental services will leave you with a smile on your face.
+                        From the minute you walk into our clinic, you can be assured that you made that right choice in choosing us. Not only do we have the expertise and affordability in the dental services we offer, our patients frequently comment on our pleasant service that gives them a refreshingly easy experience.  
+                        <br><br>
+                        When you meet our friendly, highly experienced dentist, she can put you at ease and any fear you have of dentists will be gone. We’ll make sure you are properly diagnosed and well informed so you can be assured that your needs and expectations are being met. This is just one of the many reasons patients put their trust in us. 
+                        <br><br>
+                        Here at Bartolome Dental Clinic, we have combined old-fashioned care with advanced dental technology and techniques to provide you and your family with the best dental treatment available at Malolos, Bulacan. Our dental services will leave you with a smile on your face.
+
                     </p>
                 </div>
             </div>
@@ -122,7 +125,7 @@
                 <div class="othertxtBox">
                     <h3>Comfort</h3>
                     <p>
-                        We respect and understand that many patients experience dental fear/anxiety. At our dental clinic, we do everything we can to ensure that your visit is as pleasant as possible. We are often able to lessen dental fear by describing clearly what to expect during your treatment. During your treatment, we have a television and a music player to help you relax.
+                        We respect and understand that many patients experience dental fear/anxiety. At our dental clinic, we do everything we can to ensure that your visit is as pleasant as possible.  We are often able to lessen dental fear by describing clearly what to expect during your treatment. During your treatment, we have a television and a music player to help you relax.
                     </p>
                 </div>
                 <div class="othertxtBox">
