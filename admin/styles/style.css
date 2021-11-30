@@ -107,6 +107,10 @@ thead tr {
   font-size: .725rem;
 }
 
+.bg-pink {
+  background-color: #F05F79;
+}
+
 .adminLogin {
   display: -ms-grid;
   display: grid;
