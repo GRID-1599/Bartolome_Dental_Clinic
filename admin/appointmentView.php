@@ -31,7 +31,18 @@
 
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i> Appoinment View
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-table me-1"></i> Service Table
+                                    </div>
+                                    <div class="col  ">
+                                        <a class="float-end">
+                                            <button type="button" class="btn btn-dark w-auto px-4"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <?php
@@ -57,78 +68,120 @@
                             // }
                             ?>
 
+
+
                             <div class="container">
-                                <dl class="row">
-                                    <dt class="col-sm-3">Appointment ID:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        echo $appointmentId;
-                                        ?></dd>
+                                <div class="row">
+                                    <div class="col">
+                                        <dl class="row">
+                                            <div class="row">
+                                                <dt class="col-sm-5">Appointment ID:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo $appointmentId;
+                                                    ?>
+                                                </dd>
 
-                                    <dt class="col-sm-3">Patient ID:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        echo $appointment[0]["Patient_ID"];
-                                        ?></dd>
+                                                <dt class="col-sm-5">Patient ID:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo $appointment[0]["Patient_ID"];
+                                                    ?>
+                                                </dd>
 
-                                    <dt class="col-sm-3">Contact:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        echo $appointment[0]["Contact"]
-                                        ?></dd>
+                                                <dt class="col-sm-5">Contact:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo $appointment[0]["Contact"]
+                                                    ?>
+                                                </dd>
+                                            </div>
 
-                                    <dt class="col-sm-3">Amount:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        echo $appointment[0]["Amount"]
-                                        ?></dd>
 
-                                    <dt class="col-sm-3">Appoinment_Date:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        $appDate = date_create($appointment[0]["Appoinment_Date"]);
-                                        echo date_format($appDate, "M d, Y");
-                                        ?></dd>
 
-                                    <dt class="col-sm-3">Appoinment_Time:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        $appTime = date_create($appointment[0]["Appoinment_Time"]);
-                                        echo date_format($appTime, " h:i a");
-                                        ?></dd>
 
-                                    <dt class="col-sm-3">Date_Created:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        $dateCreated = date_create($appointment[0]["Date_Created"]);
-                                        echo date_format($dateCreated, "M d, Y h:i a");
-                                        ?></dd>
+                                            <div class="col mt-5">
+                                                <dt class="col-sm-5">Appoinment Date:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    $appDate = date_create($appointment[0]["Appoinment_Date"]);
+                                                    echo date_format($appDate, "M d, Y");
+                                                    ?>
+                                                </dd>
 
-                                    <dt class="col-sm-3">Payment_Method:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        echo $appointment[0]["Payment_Method"]
-                                        ?></dd>
+                                                <dt class="col-sm-5">Appoinment Time:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    $appTime = date_create($appointment[0]["Appoinment_Time"]);
+                                                    echo date_format($appTime, " h:i a");
+                                                    ?>
+                                                </dd>
 
-                                    <dt class="col-sm-3">IsPaid:</dt>
-                                    <dd class="col-sm-9">
-                                        <?php
-                                        $isPaid = ($appointment[0]["IsPaid"]) ? "Paid" : "Not Paid";
-                                        echo $isPaid
-                                        ?></dd>
-                                    <dt class="col-sm-3">Appointment Service/s</dt>
-                                    <dd class="col-sm-9">
-                                        <p></p>
-                                        <?php
-                                        foreach ($appointment[1] as $service) {
-                                            $svId =   $service["Service_Id"];
-                                            $svName =   $service["Service_Name"];
-                                            $svPrc =   $service["Service_Prc"];
-                                            echo "<p>".$svId."\t\t\t".$svName."\t\t\t".$svPrc."</p>";
-                                        }
-                                        ?>
-                                    </dd>
-                                </dl>
+                                                <dt class="col-sm-5">Date Created:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    $dateCreated = date_create($appointment[0]["Date_Created"]);
+                                                    echo date_format($dateCreated, "M d, Y h:i a");
+                                                    ?>
+                                                </dd>
+                                            </div>
+
+                                            <div class="row">
+                                                <dt class="col-sm-5">Payment Method:</dt>
+                                            <dd class="col-sm-7">
+                                                <?php
+                                                echo $appointment[0]["Payment_Method"]
+                                                ?>
+                                            </dd>
+
+                                            <dt class="col-sm-5">IsPaid:</dt>
+                                            <dd class="col-sm-7">
+
+                                                <?php
+                                                $isPaid = ($appointment[0]["IsPaid"]) ? "Paid" : "Not Paid";
+                                                $color = ($appointment[0]["IsPaid"]) ? "info" : "warning";
+                                                echo '<span class="bg-' . $color . ' px-2 py-1">' . $isPaid . '</span>';
+                                                ?>
+
+                                            </dd>
+                                            </div>
+
+                                        </dl>
+                                    </div>
+                                    <div class="col-xl-6 ">
+                                        <p class="h5">Appointment Service/s</p>
+                                        <div class="row">
+                                            <?php
+                                            foreach ($appointment[1] as $service) {
+                                                $svId =   $service["Service_Id"];
+                                                $svName =   $service["Service_Name"];
+                                                $svPrc =   $service["Service_Prc"];
+                                                echo <<<SERVICE
+                                                    <div class="card mx-3 shadow bg-body rounded mb-3" style="width: 15rem;">
+                                                        <div class="card-body">
+                                                            <p class="card-title">
+                                                                $svName <br>
+                                                                <small class="text-muted">$svId</small>
+                                                            </p>
+                                                    
+                                                            <p class="text-end">$svPrc php</p>
+                                                        </div>
+                                                    </div>
+                                                SERVICE;
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-8">
+                                                Estimated Minimum Amount:
+                                            </div>
+                                            <div class="col-4 text-end pe-4">
+                                                <strong><?php echo $appointment[0]["Amount"] ?> php</strong>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
