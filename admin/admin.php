@@ -21,49 +21,66 @@
                         <li class="breadcrumb-item active">List of Admin</li>
                     </ol>
 
-                    <div class="container-fluid border">
+                    <div class="container-fluid ">
                         <div class="row mb-3  ">
-                            <a href="service/add">
-                                <button type="button" class="btn btn-info float-end"> <i class="fas fa-plus " id="btnAddNewService"></i> Register New Admin</button>
+                            <a href="register">
+                                <button type="button" class="btn btn-info float-end"> <i class="fas fa-plus "></i> Register New Admin</button>
                             </a>
                         </div>
-                        <div class="row g-3 border">
-                                <div class="card me-3" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">jude</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
-                                        <p class="card-text">
-                                            Christian jude catudior
-                                        <p class="text-end">
-                                            asdadad<br>
-                                            asdsadasd@asdasd
-                                        </p>
-                                    </div>
+                        <div class="row g-3  ">
+                            <div class="card mx-3 shadow bg-body rounded" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">jude</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
+                                    <p class="card-text">
+                                        Christian jude catudior
+                                    <p class="text-end">
+                                        asdadad<br>
+                                        asdsadasd@asdasd
+                                    </p>
                                 </div>
-                                <div class="card me-3" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">jude</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
-                                        <p class="card-text">
-                                            Christian jude catudior
-                                        <p class="text-end">
-                                            asdadad<br>
-                                            asdsadasd@asdasd
-                                        </p>
-                                    </div>
+                            </div>
+
+                            <div class="card mx-3 shadow bg-body rounded" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">jude</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
+                                    <p class="card-text">
+                                        Christian jude catudior
+                                    <p class="text-end">
+                                        asdadad<br>
+                                        asdsadasd@asdasd
+                                    </p>
+                                    <a href="edit" type="button" class="btn btn-info float-end" >Edit my acoount</a>
                                 </div>
-                                <div class="card me-3" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">jude</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
-                                        <p class="card-text">
-                                            Christian jude catudior
-                                        <p class="text-end">
-                                            asdadad<br>
-                                            asdsadasd@asdasd
-                                        </p>
+                            </div>
+                            <?php
+                            include '../classes/admin.class.php';
+                            $admin = new Admin();
+                            $admins = $admin->getAllAdmin();
+                            foreach ($admins as $entry) { 
+                                    $username= $entry["Username"] ;
+                                    $fname= $entry["First_Name"] ;
+                                    $lname= $entry["Last_Name"] ;
+                                    $contact= $entry["Contact"] ;
+                                    $email = $entry["Email"] ;
+
+                                echo<<<ADMINCARD
+                                    <div class="card mx-3 shadow bg-body rounded" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">$username</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
+                                            <p class="card-text">
+                                                $fname $lname
+                                            <p class="text-end">
+                                                $contact<br>
+                                                $email
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                ADMINCARD;
+                            }
+                            ?>
                         </div>
                     </div>
             </main>

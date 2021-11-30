@@ -2,6 +2,14 @@
     background-color: $pinkBG1;
 }
 
+.bttn-pink {
+    background-color: $pinkBG1;
+    color: white;
+    &:hover {
+        background-color: $pink;
+    }
+}
+
 .adminLogin {
     display: grid;
     place-content: center;

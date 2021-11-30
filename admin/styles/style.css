@@ -111,6 +111,15 @@ thead tr {
   background-color: #F05F79;
 }
 
+.btn-pink {
+  background-color: #F05F79;
+  color: white;
+}
+
+.btn-pink:hover {
+  background-color: #faa2b2;
+}
+
 .adminLogin {
   display: -ms-grid;
   display: grid;

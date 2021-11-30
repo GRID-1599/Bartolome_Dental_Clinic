@@ -122,6 +122,24 @@ RewriteRule ^login login.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for admin register account
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^register register.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for admin edit account
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^edit edit.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 
 #  url for admin 
 RewriteCond %{Request_FileName} !-d
