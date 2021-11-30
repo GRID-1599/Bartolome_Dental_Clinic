@@ -31,13 +31,14 @@ foreach ($unreadMessages as $unread) {
                         <li class="breadcrumb-item active" aria-current="page">Unread Message</li>
                     </ol>
 
-                    <button type="button" class="btn btn-secondary position-relative">
-                        Unread Message
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-white border text-black">
+                    <button type="button" class="btn btn-outline-secondary position-relative">
+                        Showing Unread Message
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-black border text-white">
                             <?php echo $unreadMessageNum; ?>
                             <span class="visually-hidden">unread messages</span>
                         </span>
                     </button>
+
                     <br>
                     <br>
 
