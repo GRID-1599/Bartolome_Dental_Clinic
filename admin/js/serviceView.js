@@ -204,8 +204,8 @@ function checkIfDataEdited() {
 
 function changes(title, dati, bago) {
     var txt = `
-        <dt class="col-sm-3">` + title + `</dt>
-            <dd class="col-sm-9">
+        <dt class="col-sm-5 ">` + title + `</dt>
+            <dd class="col-sm-7 ">
             <p >` + dati + `</p>
             <p >to</p>
             <p >` + bago + `</p>
@@ -216,8 +216,8 @@ function changes(title, dati, bago) {
 
 function changes2(title, bago) {
     var txt = `
-        <dt class="col-sm-3">` + title + `</dt>
-            <dd class="col-sm-9">
+        <dt class="col-sm-5">` + title + `</dt>
+            <dd class="col-sm-7">
             <p >` + bago + `</p>
             </dd>
     `;
