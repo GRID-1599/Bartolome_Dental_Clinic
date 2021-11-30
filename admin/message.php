@@ -39,9 +39,9 @@ foreach ($unreadMessages as $unread) {
                     <br>
                     <br>
 
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xl-7">
+                            <div class="col-xl-6">
                                 <?php
                                 $messages = $objMessage->getAllMessage();
                                 foreach ($messages as $entry) {
