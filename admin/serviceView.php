@@ -60,7 +60,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Name</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text" name="svName" value="<?php echo $service["Name"]; ?>" class="w-100" id="service_name">
+                                        <input type="text"  value="<?php echo $service["Name"]; ?>" class="w-100 form-control" id="service_name">
                                     </dd>
 
                                     <dt class="col-sm-3">Category</dt>
@@ -80,7 +80,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Starting Price</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text" name="svName" id="service_price" value="<?php echo $service["Starting_Price"]; ?>" class="">
+                                        <input type="text"  id="service_price" value="<?php echo $service["Starting_Price"]; ?>" class="form-control">
                                     </dd>
 
 
@@ -125,7 +125,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Service Duration</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text" name="svName" id="service_duration" value="<?php echo $service["Duration"]; ?>" maxlength="3">Minutes
+                                        <input type="text"  class="form-control" id="service_duration" value="<?php echo $service["Duration"]; ?>" maxlength="3">Minutes
                                     </dd>
 
                                 </dl>

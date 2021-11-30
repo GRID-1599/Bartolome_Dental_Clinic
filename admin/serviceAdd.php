@@ -51,7 +51,7 @@ $newService_Id = "S" . ($lastService_Id + 1) ;
 
                                     <dt class="col-sm-3">Name</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text" name="svName" value="" class="w-100" id="service_name">
+                                        <input type="text"  value="" class="w-100 form-control" id="service_name">
                                     </dd>
 
                                     <dt class="col-sm-3">Category</dt>
@@ -67,7 +67,7 @@ $newService_Id = "S" . ($lastService_Id + 1) ;
 
                                     <dt class="col-sm-3">Starting Price</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text" name="svName" id="service_price" value="" class="">
+                                        <input type="text"  id="service_price" value="" class="form-control">
                                     </dd>
 
 
@@ -100,7 +100,7 @@ $newService_Id = "S" . ($lastService_Id + 1) ;
 
                                     <dt class="col-sm-3">Service Duration</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text" name="svName" id="service_duration" value="0" maxlength="3">Minutes
+                                        <input type="text" class="form-control" id="service_duration" value="0" maxlength="3">Minutes
                                     </dd>
 
                                 </dl>
