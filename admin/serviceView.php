@@ -125,7 +125,8 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Service Duration</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text"  class="form-control" id="service_duration" value="<?php echo $service["Duration"]; ?>" maxlength="3">Minutes
+                                        <input type="range" class="form-range w-50"  id="service_duration"  value="<?php echo $service["Duration"]; ?>" min="0" step="15" max="240">
+                                        <span id="duration_value"></span>
                                     </dd>
 
                                 </dl>

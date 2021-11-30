@@ -100,7 +100,8 @@ $newService_Id = "S" . ($lastService_Id + 1) ;
 
                                     <dt class="col-sm-3">Service Duration</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text" class="form-control" id="service_duration" value="0" maxlength="3">Minutes
+                                        <input type="range" class="form-range w-50" id="service_duration" value="0" min="0" step="15" max="240">
+                                        <span id="duration_value">0 mins</span>
                                     </dd>
 
                                 </dl>

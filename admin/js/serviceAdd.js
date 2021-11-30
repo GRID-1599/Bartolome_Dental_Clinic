@@ -11,7 +11,25 @@ var service_duration;
 
 var isImageAdded = false;
 
-
+const durationInMinutes = {
+    0: "0 mins ",
+    15: "15 mins",
+    30: "30 mins",
+    45: "45 mins",
+    60: "60 mins",
+    75: "1 hr and 15 mins",
+    90: "1 hr and 30 mins",
+    105: "1 hr and 45 mins",
+    120: "2 hrs",
+    135: "2 hr and 15 mins",
+    150: "2 hr and 30 mins",
+    165: "2 hr and 45 mins",
+    180: "3 hrs",
+    195: "3 hr and 15 mins",
+    210: "3 hr and 30 mins",
+    225: "3 hr and 45 mins",
+    240: "4 hrs",
+};
 
 $(document).ready(function() {
     $('#service_name').focus();
@@ -49,11 +67,12 @@ $(document).ready(function() {
         alert(service_id + "  " + service_name + " successfully added");
         window.location.href = "service";
 
-
-
     });
 
+    $('#service_duration').change(function() {
 
+        $('#duration_value').text(this.value + " | " + durationInMinutes[this.value]);
+    });
 
 
     profileEdit();

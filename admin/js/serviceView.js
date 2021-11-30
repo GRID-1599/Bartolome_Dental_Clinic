@@ -14,6 +14,27 @@ var isImageDeleted = false;
 var isImageEdited = false;
 var ifImageOnlyChanged = true;
 
+const durationInMinutes = {
+    0: "0 mins ",
+    15: "15 mins",
+    30: "30 mins",
+    45: "45 mins",
+    60: "60 mins",
+    75: "1 hr and 15 mins",
+    90: "1 hr and 30 mins",
+    105: "1 hr and 45 mins",
+    120: "2 hrs",
+    135: "2 hr and 15 mins",
+    150: "2 hr and 30 mins",
+    165: "2 hr and 45 mins",
+    180: "3 hrs",
+    195: "3 hr and 15 mins",
+    210: "3 hr and 30 mins",
+    225: "3 hr and 45 mins",
+    240: "4 hrs",
+};
+
+
 $(document).ready(function() {
     initDatas();
 
@@ -53,6 +74,12 @@ $(document).ready(function() {
     $('#btnConfirmDelete').click(function() {
         deleteService();
     });
+
+    $('#service_duration').change(function() {
+        $('#duration_value').text(this.value + " | " + durationInMinutes[this.value]);
+    });
+    console.log();
+    $('#duration_value').text(durationInMinutes[$('#service_duration').val()]);
 
 
     profileEdit();
