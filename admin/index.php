@@ -1,15 +1,8 @@
 <?php
 session_start();
 
-
-
 if (isset($_GET['adminUser'])) {
     $_SESSION['userAdmin'] = $_GET['adminUser'];
-}
-
-if (!isset($_SESSION['userAdmin'])) {
-    echo header("Location: login");
-    exit();
 }
 
 include_once '../classes/appoinment.class.php';

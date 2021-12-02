@@ -40,4 +40,10 @@ if(isset($_POST["savePassword"])){
     );
 }
 
+if(isset($_POST["checkUsername"])){
+    $admin_obj->getAdminByUsername(
+        $_POST["admin_username"]
+    );
+}
+
 ?>

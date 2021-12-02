@@ -45,7 +45,7 @@ class Admin extends DatabaseConnection
             $admin = array("Username" => $row["Username"], "First_Name" => $row["First_Name"],  "Last_Name" => $row["Last_Name"], "Contact" => $row["Contact"], "Email" => $row["Email"]);
             return  $admin;
         }
-        return 'Not found';
+        echo 'Not found';
     }
 
     public function editAdminNewInfo($admin_firstname, $admin_lastname, $admin_email, $admin_contact, $admin_username)
@@ -76,4 +76,6 @@ class Admin extends DatabaseConnection
         $stmt->execute();
         echo "Password changes saved";
     }
+
+
 }
