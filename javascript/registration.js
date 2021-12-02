@@ -68,7 +68,7 @@ function isInputsEmpty() {
             icon: 'error',
             text: 'Invalid Email!'
         })
-        $('#regPatientAddress').focus();
+        $('#regPatientEmail').focus();
         flag = true;
     } else if ($('#regPatientEmail').val() == "") {
         $('#regPatientEmail').focus();
