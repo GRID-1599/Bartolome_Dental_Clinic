@@ -29,62 +29,82 @@
                     <h1>Admin Register</h1>
 
                     <div class="container-sm ">
-                        <div class="col-xxl-8 justify-content-start">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                        <div class="row ">
+                            <div class="col-lg-5 justify-content-start px-3 mb-5">
+                                <p>Account information</p>
+                                <!-- first name  -->
+                                <div class="col mb-3">
                                     <div class="form-floating mb-3 mb-md-0">
                                         <input class="form-control" id="inputAdminFirstName" type="text" placeholder="Enter your first name" />
                                         <label for="inputAdminFirstName">First name</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- last name  -->
+                                <div class="col mb-3">
                                     <div class="form-floating">
                                         <input class="form-control" id="inputAdminLastName" type="text" placeholder="Enter your last name" />
                                         <label for="inputAdminLastName">Last name</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                                <!-- email  -->
+                                <div class="col">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputAdminEmail" type="email" placeholder="name@example.com" />
                                         <label for="inputAdminEmail">Email address</label>
+                                        <div class="invalid-feedback" id="email-msg"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- contact  -->
+                                <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputAdminContact" type="text" placeholder="+63**********" />
+                                        <input class="form-control" id="inputAdminContact" onkeypress="return onlyNumberKey(event)" required maxlength="11" placeholder="+63**********" />
                                         <label for="inputAdminContact">Contact Number</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="inputAdminPassword" type="password" placeholder="Create a password" />
-                                        <label for="inputAdminPassword">Password</label>
+                            <div class="col-lg-4">
+                                <p>Account login</p>
+                                <div class="row  mb-5 ">
+                                    <div class="mb-3 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputAdminUserName" type="text" placeholder="Account User" />
+                                            <label for="inputAdminUserName">Account Username</label>
+                                            <div class="invalid-feedback" id="username_errormsg">
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputAdminPassword" type="password" placeholder="Create password" />
+                                            <label for="inputAdminPassword">Password</label>
+                                        </div>
+                                        <div class="form-floating ">
+                                            <input class="form-control " id="inputAdminPasswordConfirm" type="password" placeholder="Confirm password" />
+                                            <label for="inputAdminPasswordConfirm">Confirm password</label>
+                                            <div class="invalid-feedback" id="pwsd2-invalid">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="inputAdminPasswordConfirm" type="password" placeholder="Confirm password" />
-                                        <label for="inputAdminPasswordConfirm">Confirm Password</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-4 mb-0">
-                                <div class="d-grid"><button class="btn bg-pink text-white btn-block" id="btnAdminCreate">Create Admin Account</button></div>
                             </div>
                         </div>
+
+                        <div class="row-lg-4  mb-5 ">
+                            <button class="btn bg-pink text-white  w-75" id="btnAdminRegister">
+                                Register
+                                <span class="spinner-border-sm" role="status" aria-hidden="true" id="loader" ></span>
+                                <span class="visually-hidden"></span>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
             </main>
             <?php include 'html-footer.php' ?>
         </div>
     </div>
     <?php include 'scripts.php' ?>
+    <!-- <script src="js/helper.js"></script> -->
+    <script src="js/register.js"></script>
 </body>
 
 </html>

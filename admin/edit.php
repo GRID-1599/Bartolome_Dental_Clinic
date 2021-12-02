@@ -1,5 +1,6 @@
 <?php session_start();
-
+include '../classes/admin.class.php';
+$admin_obj = new Admin();
 ?>
 
 <!DOCTYPE html>
@@ -27,103 +28,122 @@
                     </ol>
 
                     <h1>Admin Edit Account</h1>
+                    <?php
+                    $admin = $admin_obj->getAdminByUsername($_SESSION["userAdmin"]);
+
+                    $admin_username = $admin["Username"];
+                    $admin_firstname = $admin["First_Name"];
+                    $admin_lastname = $admin["Last_Name"];
+                    $admin_contact = $admin["Contact"];
+                    $admin_email = $admin["Email"];
+                    // $admin_ = $admin["First_Name"];
+                    // $admin_ = $admin["First_Name"];
+
+                    ?>
 
                     <div class="container">
                         <div class="row">
                             <p>Account information</p>
-                            <div class="col-lg-6 justify-content-start px-3 mb-5">
+                            <div class="col-xl-4  col-md-6 justify-content-start px-3 mb-5">
                                 <!-- first name  -->
                                 <div class="col mb-3">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="inputAdminFirstName" type="text" placeholder="Enter your first name" />
+                                        <input class="form-control" id="inputAdminFirstName" type="text" placeholder="Enter your first name" value="<?php echo $admin_firstname ?>" />
                                         <label for="inputAdminFirstName">First name</label>
                                     </div>
                                 </div>
                                 <!-- last name  -->
                                 <div class="col mb-3">
                                     <div class="form-floating">
-                                        <input class="form-control" id="inputAdminLastName" type="text" placeholder="Enter your last name" />
+                                        <input class="form-control" id="inputAdminLastName" type="text" placeholder="Enter your last name" value="<?php echo $admin_lastname ?>" />
                                         <label for="inputAdminLastName">Last name</label>
                                     </div>
                                 </div>
                                 <!-- email  -->
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputAdminEmail" type="email" placeholder="name@example.com" />
+                                        <input class="form-control" id="inputAdminEmail" type="email" placeholder="name@example.com" value="<?php echo $admin_email ?>" />
                                         <label for="inputAdminEmail">Email address</label>
                                     </div>
                                 </div>
                                 <!-- contact  -->
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputAdminContact" type="text" placeholder="+63**********" />
+                                        <input class="form-control" id="inputAdminContact" type="text" onkeypress="return onlyNumberKey(event)" required maxlength="11" placeholder="+63**********" value="<?php echo $admin_contact ?>" />
                                         <label for="inputAdminContact">Contact Number</label>
                                     </div>
                                 </div>
 
-
-
                                 <div class="mt-4 mb-0">
-                                    <div class="d-grid"><button class="btn bg-pink text-white btn-block" id="btnAdminCreate">Save Changes</button></div>
+                                    <div class="d-grid"><button class="btn bg-pink text-white btn-block" id="btnAdminSaveChanges" value="<?php echo $admin_username ?>">Save Changes</button></div>
                                 </div>
                             </div>
-
-                            <div class="col">
+                            <!-- login changes  -->
+                            <div class="col-lg-8">
                                 <div class="container ">
                                     <div class="row shadow mb-5 rounded">
-                                        <p class="my-3 h5">For Changing Admin Username</p>
-                                        <div class="mb-3">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputAdminFirstName" type="text" placeholder="Enter your first name" />
-                                                <label for="inputAdminFirstName">New User Name</label>
+                                        <!-- admin username  -->
+                                        <div class="col-md-6">
+                                            <p class="my-3 h5">For Username</p>
+                                            <div class="mb-3">
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="inputNewAdminUserName" type="text" placeholder="Enter your first name" />
+                                                    <label for="inputNewAdminUserName">New User Name</label>
+                                                </div>
+
+                                                <div class="form-floating ">
+                                                    <input class="form-control " id="inputAdminPassword" type="password" placeholder="Confirm password" />
+                                                    <label for="inputAdminPassword">Input Password</label>
+
+                                                    <div class="invalid-feedback">
+                                                        Incorrect Password
+                                                    </div>
+                                                </div>
+
                                             </div>
 
-                                            <div class="form-floating ">
-                                                <input class="form-control is-invalid" id="inputAdminPasswordConfirm" type="password" placeholder="Confirm password" />
-                                                <label for="inputAdminPasswordConfirm">Input Password</label>
+                                            <div class="mt-4 mb-5">
+                                                <button class="btn bg-pink text-white w-auto float-end" id="btnSaveNewUsername" value="<?php echo $admin_username ?>">Save Username Changes</button>
 
-                                                <div class="invalid-feedback">
-                                                    Incorrect Password
+                                            </div>
+                                        </div>
+
+                                        <!-- admin password  -->
+
+                                        <div class="col-md-6 mb-5">
+                                            <p class="my-3 h5">Changing Password</p>
+                                            <div class="mb-3 ">
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="inputCurrentAdminPassword" type="password" placeholder="Current password" />
+                                                    <label for="inputCurrentAdminPassword">Current Password</label>
+                                                    <div class="invalid-feedback">
+                                                        Incorrect Password
+                                                    </div>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="inputNewAdminPassword" type="password" placeholder="Create a new password" />
+                                                    <label for="inputNewAdminPassword">New Password</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control " id="inputNewAdminPasswordConfirm" type="password" placeholder="Confirm password" />
+                                                    <label for="inputNewAdminPasswordConfirm">Confirm New Password</label>
+                                                    <div class="invalid-feedback">
+                                                        Password not match
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="mt-4 mb-5">
+                                                <button class="btn bg-pink text-white w-auto float-end" id="btnSavenewPassword" value="<?php echo $admin_username ?>">Save New Password
+                                                </button>
+                                                <div class="visually-hidden" id="loader">
+                                                    Checking...
+                                                    <span class="spinner-border-sm spinner-border" role="status" aria-hidden="true" id="loader"></span>
                                                 </div>
                                             </div>
-
                                         </div>
 
-                                        <div class="mt-4 mb-5">
-                                            <button class="btn bg-pink text-white w-auto float-end" id="btnAdminCreate">Save Username Changes</button>
-
-                                        </div>
                                     </div>
-
-                                    <div class="row shadow mb-5 rounded">
-                                        <p class="my-3 h5">Changing Password</p>
-                                        <div class="mb-3 ">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputAdminPassword" type="password" placeholder="Current password" />
-                                                <label for="inputAdminPassword">Current Password</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputAdminPassword" type="password" placeholder="Create a new password" />
-                                                <label for="inputAdminPassword">New Password</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control is-invalid" id="inputAdminPasswordConfirm" type="password" placeholder="Confirm password" />
-                                                <label for="inputAdminPasswordConfirm">Confirm New Password</label>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    Password not match
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="mt-4 mb-5">
-                                            <button class="btn bg-pink text-white w-auto float-end" id="btnAdminCreate">Save Username</button>
-
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -135,6 +155,7 @@
         </div>
     </div>
     <?php include 'scripts.php' ?>
+    <script src="js/adminEdit.js"></script>
 </body>
 
 </html>

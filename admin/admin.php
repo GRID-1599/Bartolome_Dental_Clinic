@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+include '../classes/admin.class.php';
+$admin = new Admin();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,44 +31,21 @@
                             </a>
                         </div>
                         <div class="row g-3  ">
-                            <div class="card mx-3 shadow bg-body rounded" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">jude</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
-                                    <p class="card-text">
-                                        Christian jude catudior
-                                    <p class="text-end">
-                                        asdadad<br>
-                                        asdsadasd@asdasd
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="card mx-3 shadow bg-body rounded" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">jude</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
-                                    <p class="card-text">
-                                        Christian jude catudior
-                                    <p class="text-end">
-                                        asdadad<br>
-                                        asdsadasd@asdasd
-                                    </p>
-                                    <a href="edit" type="button" class="btn btn-info float-end" >Edit my acoount</a>
-                                </div>
-                            </div>
                             <?php
-                            include '../classes/admin.class.php';
-                            $admin = new Admin();
-                            $admins = $admin->getAllAdmin();
-                            foreach ($admins as $entry) { 
-                                    $username= $entry["Username"] ;
-                                    $fname= $entry["First_Name"] ;
-                                    $lname= $entry["Last_Name"] ;
-                                    $contact= $entry["Contact"] ;
-                                    $email = $entry["Email"] ;
 
-                                echo<<<ADMINCARD
+                            $admins = $admin->getAllAdmin();
+                            foreach ($admins as $entry) {
+                                
+                                $username = $entry["Username"];
+                                $fname = $entry["First_Name"];
+                                $lname = $entry["Last_Name"];
+                                $contact = $entry["Contact"];
+                                $email = $entry["Email"];
+                                $istoEdit = "";
+                                if($username == $_SESSION["userAdmin"]){
+                                    $istoEdit = '<a href="edit" type="button" class="btn btn-info float-end">Edit my acoount</a>';
+                                }
+                                echo <<<ADMINCARD
                                     <div class="card mx-3 shadow bg-body rounded" style="width: 18rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">$username</h5>
@@ -76,6 +56,7 @@
                                                 $contact<br>
                                                 $email
                                             </p>
+                                            $istoEdit
                                         </div>
                                     </div>
                                 ADMINCARD;
