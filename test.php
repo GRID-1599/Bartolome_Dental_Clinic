@@ -2,8 +2,10 @@
 <?php
 //  password hashing  
 $br = "<br><br>";
+
 $str = "catudio";
-$str1 = "catudio1";
+$str1 = "catudio";
+
 echo $str;
 echo $br;
 
@@ -18,7 +20,7 @@ echo strlen( $password);
 echo $br; 
 
 // echo 'return'.password_verify($str, $password);
-echo 'return: '.password_verify($str, "password");
+echo 'return: '.password_verify($str, $password);
 
 echo $br; 
 
