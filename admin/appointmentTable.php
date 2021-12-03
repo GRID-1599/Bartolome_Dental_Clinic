@@ -36,14 +36,15 @@ $stmt_appointments = $appointment_obj->getAllAppointment();
         while ($row = $stmt_appointments->fetch()) {
             $isPaid = ($row["IsPaid"] ) ? "Paid" : "Not Paid";
             $appDate = date_create($row["Appoinment_Date"]);
-            $appTime = date_create($row["Appoinment_Time"]);
+            $appTime_Start = date_create($row["Appointment_StartTime"]);
+            $appTime_End = date_create($row["Appointment_EndTime"]);
             $dateCreated = date_create($row["Date_Created"]);
             $row = "<tr class='appointmentRow' data-bs-toggle='tooltip' data-bs-placement='bottom' ".           
                 "title='Click to view'>" .
                 "<td class='appid'>" . $row["Appointment_Id"] . "</td>" .
                 "<td>" . $row["Patient_ID"] . "</td>" .
                 "<td>" . date_format($appDate, "M d, Y"). "</td>" .
-                "<td>" . date_format($appTime, " h:i a") . "</td>" .
+                "<td>" . date_format($appTime_Start, " h:i a") ." - " .date_format($appTime_End, " h:i a"). "</td>" .
                 "<td>" . date_format($dateCreated, "M d, Y h:ia") . "</td>" .
                 "<td>" . $row["Amount"] . "</td>" .
                 "<td>" . $row["Payment_Method"] . "</td>" .

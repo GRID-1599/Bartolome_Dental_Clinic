@@ -66,6 +66,16 @@
                             //      echo $service["Service_Name"] . "<br>";
                             //      echo $service["Service_Prc"] . "<br>";
                             // }
+
+                            function convertToHoursMins($time, $format = '%02d:%02d')
+                            {
+                                if ($time < 1) {
+                                    return;
+                                }
+                                $hours = floor($time / 60);
+                                $minutes = ($time % 60);
+                                return sprintf($format, $hours, $minutes);
+                            }
                             ?>
 
 
@@ -97,10 +107,7 @@
                                                 </dd>
                                             </div>
 
-
-
-
-                                            <div class="col mt-5">
+                                            <div class="row mt-5 ">
                                                 <dt class="col-sm-5">Appoinment Date:</dt>
                                                 <dd class="col-sm-7">
                                                     <?php
@@ -112,8 +119,27 @@
                                                 <dt class="col-sm-5">Appoinment Time:</dt>
                                                 <dd class="col-sm-7">
                                                     <?php
-                                                    $appTime = date_create($appointment[0]["Appoinment_Time"]);
-                                                    echo date_format($appTime, " h:i a");
+                                                    $appTime_Start = date_create($appointment[0]["Appointment_StartTime"]);
+                                                    $appTime_End = date_create($appointment[0]["Appointment_EndTime"]);
+                                                    echo date_format($appTime_Start, " h:i a") . " - " . date_format($appTime_End, " h:i a");
+                                                    ?>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Duration In Minutes :</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    $appTime_Duration = $appointment[0]["Duration_Minutes"];
+                                                    echo $appTime_Duration . " mins / " .  convertToHoursMins($appTime_Duration, '%02d hours %02d minutes');;
+                                                    // echo "<br>" . date('H:i', mktime(0,$appTime_Duration ));
+                                                    
+                                                    ?>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Alloted Hours:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    $appTime_Allotted = $appointment[0]["Allotted_Hours"];
+                                                    echo $appTime_Allotted . " hour/s";
                                                     ?>
                                                 </dd>
 
@@ -126,24 +152,24 @@
                                                 </dd>
                                             </div>
 
-                                            <div class="row">
+                                            <div class="row  mt-5 ">
                                                 <dt class="col-sm-5">Payment Method:</dt>
-                                            <dd class="col-sm-7">
-                                                <?php
-                                                echo $appointment[0]["Payment_Method"]
-                                                ?>
-                                            </dd>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo $appointment[0]["Payment_Method"]
+                                                    ?>
+                                                </dd>
 
-                                            <dt class="col-sm-5">IsPaid:</dt>
-                                            <dd class="col-sm-7">
+                                                <dt class="col-sm-5">IsPaid:</dt>
+                                                <dd class="col-sm-7">
 
-                                                <?php
-                                                $isPaid = ($appointment[0]["IsPaid"]) ? "Paid" : "Not Paid";
-                                                $color = ($appointment[0]["IsPaid"]) ? "info" : "warning";
-                                                echo '<span class="bg-' . $color . ' px-2 py-1">' . $isPaid . '</span>';
-                                                ?>
+                                                    <?php
+                                                    $isPaid = ($appointment[0]["IsPaid"]) ? "Paid" : "Not Paid";
+                                                    $color = ($appointment[0]["IsPaid"]) ? "info" : "warning";
+                                                    echo '<span class="bg-' . $color . ' px-2 py-1">' . $isPaid . '</span>';
+                                                    ?>
 
-                                            </dd>
+                                                </dd>
                                             </div>
 
                                         </dl>

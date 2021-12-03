@@ -74,7 +74,10 @@ class Appointment extends DatabaseConnection
                 "Patient_ID" => $row["Patient_ID"],
                 "Contact" => $row["Contact"],
                 "Appoinment_Date" => $row["Appoinment_Date"],
-                "Appoinment_Time" => $row["Appoinment_Time"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
                 "Date_Created" => $row["Date_Created"],
                 "Payment_Method" => $row["Payment_Method"],
                 "IsPaid" => $row["IsPaid"],
@@ -103,7 +106,7 @@ class Appointment extends DatabaseConnection
 
     public function getAppointmentByDate($appoinmentDate)
     {
-        $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` = ? ORDER BY `appointment`.`Appoinment_Time` ASC";
+        $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` = ? ORDER BY `appointment`.`Appointment_StartTime` ASC";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$appoinmentDate]);
         $appointmentData = array();
@@ -113,7 +116,10 @@ class Appointment extends DatabaseConnection
                 "Patient_ID" => $row["Patient_ID"],
                 "Contact" => $row["Contact"],
                 "Appoinment_Date" => $row["Appoinment_Date"],
-                "Appoinment_Time" => $row["Appoinment_Time"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
                 "Date_Created" => $row["Date_Created"],
                 "Payment_Method" => $row["Payment_Method"],
                 "IsPaid" => $row["IsPaid"],
@@ -128,7 +134,7 @@ class Appointment extends DatabaseConnection
 
     public function getAppointmentAddedToday($appoinmentDate)
     {
-        $sql = "SELECT * FROM `appointment` WHERE `Date_Created` LIKE '%" . $appoinmentDate . "%' ORDER BY `appointment`.`Appoinment_Time` ASC";
+        $sql = "SELECT * FROM `appointment` WHERE `Date_Created` LIKE '%" . $appoinmentDate . "%' ORDER BY `appointment`.`Appointment_StartTime` ASC";
         $stmt = $this->connect()->query($sql);
         // $stmt->execute([$appoinmentDate]);
         $appointmentData = array();
@@ -138,7 +144,10 @@ class Appointment extends DatabaseConnection
                 "Patient_ID" => $row["Patient_ID"],
                 "Contact" => $row["Contact"],
                 "Appoinment_Date" => $row["Appoinment_Date"],
-                "Appoinment_Time" => $row["Appoinment_Time"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
                 "Date_Created" => $row["Date_Created"],
                 "Payment_Method" => $row["Payment_Method"],
                 "IsPaid" => $row["IsPaid"],
