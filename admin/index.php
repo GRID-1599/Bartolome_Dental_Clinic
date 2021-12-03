@@ -80,7 +80,7 @@ foreach ($unreadMessages as $unread) {
 
                                                     <?php
                                                     foreach ($appToday_stmt as $data) {
-                                                        $time = $data["Appoinment_Time"];
+                                                        $time = $data["Appointment_StartTime"];
                                                         $appTime = new DateTime($time);
                                                         echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
                                                             " at " . $appTime->format('h:i a') .
@@ -188,7 +188,7 @@ foreach ($unreadMessages as $unread) {
                                                         <?php
                                                         foreach ($appToday_stmt as $data) {
                                                             if ($data["IsDone"]) {
-                                                                $time = $data["Appoinment_Time"];
+                                                                $time = $data["Appointment_StartTime"];
                                                                 $appTime = new DateTime($time);
                                                                 echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at " .
                                                                     " " . $appTime->format('h:i a') .
@@ -208,7 +208,7 @@ foreach ($unreadMessages as $unread) {
                                                         <?php
                                                         foreach ($appToday_stmt as $data) {
                                                             if (!$data["IsDone"]) {
-                                                                $time = $data["Appoinment_Time"];
+                                                                $time = $data["Appointment_StartTime"];
                                                                 $appTime = new DateTime($time);
                                                                 echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at" .
                                                                     " " . $appTime->format('h:i a') .

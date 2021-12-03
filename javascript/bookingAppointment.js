@@ -852,9 +852,11 @@ function showCalendar(month, year) {
 
             appointmentDate = $(this).attr("id");
 
+            getAppointmentByDate(appointmentDate);
+
 
             $('.timeRange').each(function() {
-                $(this).removeClass("selected");
+                $(this).removeClass("choosed");
             });
             $('#appointmentTime').text(null);
             $('#time_msg').text(null)
@@ -989,7 +991,7 @@ function showData() {
 
 function addNewAppointment() {
     $.ajax({
-        url: './ajaxRequest/addNewAppointment.php',
+        url: './ajaxRequest/appointment.ajax.php',
         method: 'POST',
         data: {
             addNewAppointment: 1,
@@ -1021,6 +1023,38 @@ function addNewAppointment() {
             // }
             // console.log("response1" + response);
         },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+}
+
+function getAppointmentByDate(date) {
+    $.ajax({
+        url: './ajaxRequest/appointment.ajax.php',
+        method: 'POST',
+        data: {
+            getAppointment: 1,
+            appointmentDate: date
+        },
+        success: function(response) {},
         error: function(jqXHR, exception) {
             var msg = '';
             if (jqXHR.status === 0) {

@@ -1,12 +1,13 @@
 <?php
-
+include_once '../classes/appoinment.class.php';
+$appoinment_obj = new Appointment();
 if (isset($_POST["addNewAppointment"])) {
-    include_once '../classes/appoinment.class.php';
+
     $currentDate = new DateTime();
     $currentDate->setTimezone(new DateTimeZone('Asia/Manila'));
     $DateCreated = $currentDate->format('Y-m-d H:i:s');
-    $appoinment_obj = new Appointment();
-    $appoinment_obj->addNewAppointment( 
+
+    $appoinment_obj->addNewAppointment(
         $_POST["appointmentId"],
         $_POST["patientID"],
         $_POST["patientContact"],
@@ -40,4 +41,16 @@ if (isset($_POST["addNewAppointment"])) {
     // }
 
     echo "added";
+}
+
+if (isset($_POST["getAppointment"])) {
+    $appointment_array = $appoinment_obj->getAppointmentByDate($_POST["appointmentDate"]);
+    foreach ($appointment_array as $data) {
+        $start_time = $data["Appoinment_Time"];
+        $allotted_time = $data["Appoinment_Time"];
+        $appTime = new DateTime($time);
+        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
+            " at " . $appTime->format('h:i a') .
+            "</a>";
+    };
 }
