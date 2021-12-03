@@ -39,18 +39,20 @@ if (isset($_POST["addNewAppointment"])) {
     //     echo $service[1] . "<name>";
     //     echo $service[2] . "<id>";
     // }
-
-    echo "added";
 }
 
 if (isset($_POST["getAppointment"])) {
     $appointment_array = $appoinment_obj->getAppointmentByDate($_POST["appointmentDate"]);
+    $time_array = array();
     foreach ($appointment_array as $data) {
-        $start_time = $data["Appoinment_Time"];
-        $allotted_time = $data["Appoinment_Time"];
-        $appTime = new DateTime($time);
-        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
-            " at " . $appTime->format('h:i a') .
-            "</a>";
+        $start_time = $data["Appointment_StartTime"];
+        $appTime = new DateTime($start_time);
+        $allotted_time = $data["Allotted_Hours"];
+        $appointment = array(
+            "start_time" => $appTime->format('H'),
+            "allotted_time" => $allotted_time
+        );
+        array_push($time_array, $appointment);
     };
+    echo json_encode($time_array);
 }

@@ -62,7 +62,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                                             <tr id="$serviceService_ID" class="serviceRow $isSelected">
                                                 <td colspan="2" class="serviceName">$serviceName</td>
                                                 <td class="servicePrice">$serviceStarting_Price</td>
-                                                <td class="serviceDuration">$serviceDuration</td>
+                                                <td class="serviceDuration unShow">$serviceDuration</td>
                                             </tr>
                                         SERVICEROW;
                                     }

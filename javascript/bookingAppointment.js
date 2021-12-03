@@ -537,11 +537,6 @@ $(document).ready(function() {
                 } else {
                     $(this).find("td").text("Appoinment Allotted time out range");
                 }
-
-                console.log(appointmentTotalDuration);
-                console.log(appointmentAllottedHours);
-                console.log(appointmentStartTime);
-                console.log(appointmentEndTime);
             }
         });
     });
@@ -618,7 +613,7 @@ $(document).ready(function() {
         var agree = $('#agree').prop('checked');
         // alert(agree)
         getDatas()
-        showData();
+            // showData();
         addNewAppointment();
 
 
@@ -857,6 +852,8 @@ function showCalendar(month, year) {
 
             $('.timeRange').each(function() {
                 $(this).removeClass("choosed");
+                $(this).removeClass("setted");
+                $(this).find("td").text(null);
             });
             $('#appointmentTime').text(null);
             $('#time_msg').text(null)
@@ -1009,19 +1006,16 @@ function addNewAppointment() {
             IsPaid: IsPaid,
         },
         success: function(response) {
-            alert(response)
-                // console.log(response);
-                // if (!response) {
-                //     console.log("Not Found");
-                // } else {
-                // var patients = JSON.parse(response);
-                // $('#patientContact').val(patients['Contact']);
-                // $('#appointmentPatientContact').val(patients['Contact']);
-                // $('#patientName').text("Patient Name: " + patients['Name']);
-                // $('#patientGender').val(patients['Gender']);
+            if (response == 0) {
+                console.log(response);
+                alert("Please try again");
+                $('#appointmentCode').val(generateRandomCharacters());
+            } else {
+                console.log(response);
+                alert("Successfully added");
+                location.reload();
 
-            // }
-            // console.log("response1" + response);
+            }
         },
         error: function(jqXHR, exception) {
             var msg = '';
@@ -1046,6 +1040,16 @@ function addNewAppointment() {
     });
 }
 
+const timeRangesWithKey = {
+    "09": "t9",
+    "10": "t10",
+    "11": "t11",
+    "13": "t1",
+    "14": "t2",
+    "15": "t3",
+    "16": "t4"
+};
+
 function getAppointmentByDate(date) {
     $.ajax({
         url: './ajaxRequest/appointment.ajax.php',
@@ -1054,7 +1058,27 @@ function getAppointmentByDate(date) {
             getAppointment: 1,
             appointmentDate: date
         },
-        success: function(response) {},
+        success: function(response) {
+            var appoinment_data = JSON.parse(response);
+            // console.log(appoinment_data);
+            appoinment_data.forEach(element => {
+                var app_time = element.start_time
+                var app_allotted = element.allotted_time
+
+                var ID = "#" + timeRangesWithKey[app_time];
+
+                // $(ID).find("td").text("Have an appoinment");
+
+                var indexOfSelected1 = timeRanges.indexOf(timeRangesWithKey[app_time]);
+                var lastrange1 = (indexOfSelected1 + (app_allotted - 1));
+
+
+                for (let i = indexOfSelected1; i <= lastrange1; i++) {
+                    var id = "#" + timeRanges[i]
+                    $(id).addClass("setted");
+                }
+            });
+        },
         error: function(jqXHR, exception) {
             var msg = '';
             if (jqXHR.status === 0) {

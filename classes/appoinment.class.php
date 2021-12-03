@@ -18,6 +18,7 @@ class Appointment extends DatabaseConnection
         $Amount,
         $appointmentServices
     ) {
+        try{
 
         $sql = 'INSERT INTO `appointment`(`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinment_Date`, `Appointment_StartTime`, `Appointment_EndTime`, `Duration_Minutes`, `Allotted_Hours`,`Date_Created`, `Payment_Method`, `IsPaid`, `Amount`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
         $stmt = $this->connect()->prepare($sql);
@@ -47,6 +48,12 @@ class Appointment extends DatabaseConnection
                 $service[1],
                 $service[2]
             ]);
+        }
+
+        echo "added";
+
+        } catch (Exception $ex) {
+            echo "0";
         }
     }
 

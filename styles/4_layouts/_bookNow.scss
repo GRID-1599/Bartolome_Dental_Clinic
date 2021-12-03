@@ -281,10 +281,22 @@
                             th {
                                 color: crimson;
                             }
+                            &:hover {
+                                th,
+                                td {
+                                    font-size: 1.2rem;
+                                }
+                            }
                         }
                         .setted {
-                            background-color: pink;
+                            background-color: $pinkBG1;
                             border-top: none;
+                            th {
+                                color: white;
+                            }
+                            &:hover {
+                                cursor: not-allowed;
+                            }
                         }
                         .choosed {
                             background-color: $pink2;
@@ -296,6 +308,9 @@
                         }
                         .disable {
                             background-color: #e9e9e9;
+                            &:hover {
+                                cursor: not-allowed;
+                            }
                         }
                     }
                 }
