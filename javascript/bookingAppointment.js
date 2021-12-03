@@ -3,6 +3,10 @@ var categoryToShow_Id = ""
 
 var patientsJSON;
 
+
+
+const timeRanges = ["t9", "t10", "t11", "t1", "t2", "t3", "t4"];
+
 // ------helper methods----------
 function valueExist(value, array) {
 
@@ -76,6 +80,19 @@ function generateRandomCharacters() {
     return generatedOutput;
 }
 
+function hoursConvert(hours) {
+    hours = Number.parseInt(hours)
+    if (hours === 12) {
+        return "12 PM"
+    } else if (hours > 12) {
+        return (hours - 12) + " PM"
+    } else {
+        return hours + " AM"
+    }
+
+
+}
+
 // ------service functions----------
 
 function resetServiceCategories() {
@@ -115,16 +132,18 @@ function thisServiceAddToChoosedService(service) {
     var serviceName = service.find(" .serviceName ").text();
     var serviceId = service.attr('id');
     var servicePrice = service.find(" .servicePrice ").text();
+    var serviceDuration = service.find(" .serviceDuration ").text();
 
-    addChoosedServiceInTable(serviceName, serviceId, servicePrice);
+    addChoosedServiceInTable(serviceName, serviceId, servicePrice, serviceDuration);
 }
 
-function addChoosedServiceInTable(serviceName, serviceId, servicePrice) {
+function addChoosedServiceInTable(serviceName, serviceId, servicePrice, serviceDuration) {
     var markup = `
         <tr class="choosedServiceRow">
             <td class="svName">` + serviceName + `</td>
             <td class="serviceId">` + serviceId + `</td>
             <td class="servicePrice">` + servicePrice + `</td>
+            <td class="serviceDuration">` + serviceDuration + `</td>
             <td><button type="button" class="btn-close removeService"></button></td>
         </tr>
     `;
@@ -156,16 +175,53 @@ function setChoosedServiceButtonRemove() {
 
 function calculateTotalServiceAmount() {
     var subTotal = 0;
+    var subTotalDuration = 0;
     var hasPlus = false;
     $('.choosedServiceRow .servicePrice').each(function() {
         if ($(this).text().includes("-")) { hasPlus = true };
         if ($(this).text().includes("+")) { hasPlus = true };
         subTotal += string_to_int($(this).text());
     });
+
+    $('.choosedServiceRow .serviceDuration').each(function() {
+        subTotalDuration += Number.parseInt($(this).text())
+    });
+
     var output = subTotal;
     if (hasPlus) { output = subTotal + " +" };
     $('#totalAmountofAppoinment').text(output);
     $('#appointmentSubTotalAmount').val(subTotal);
+
+    appointmentTotalDuration = subTotalDuration;
+    // console.log(appointmentTotalDuration);
+    duration_output = duration_to_hours(subTotalDuration)
+    $('#totalDurationofAppoinment').text(duration_output);
+}
+
+function duration_to_hours(mins) {
+    // min = Number.parseInt(mins)
+    var d_mins = (mins / 60) % 1;
+    d_mins = d_mins * 60
+    var d_hours = Math.floor(mins / 60);
+
+    if (d_hours === 0 & d_mins === 0) {
+        return "0 mins "
+    } else if (d_hours === 0 & d_mins !== 0) {
+        return d_mins + " mins";
+    } else if (d_hours !== 0 & d_mins === 0) {
+        if (d_hours === 1) {
+            return "1 hr"
+        } else {
+            return d_hours + " hrs"
+        }
+    } else {
+        if (d_hours === 1) {
+            return "1 hr" + " " + d_mins + " mins";
+        } else {
+            return d_hours + " hr" + " " + d_mins + " mins";
+        }
+    }
+
 
 }
 
@@ -195,7 +251,6 @@ function messagePromt(message) {
 }
 
 function goToFormCondition() {
-    console.log("tabble" + $("#appointmentDate_WeekDay").text());
     if ($("#appointmentPatientId").val() === "") {
         $("#patientId").focus();
         messagePromt("Please input your Patient ID");
@@ -424,16 +479,71 @@ $(document).ready(function() {
 
     $('.timeRange').each(function() {
         $(this).click(function() {
-            $('.timeRange').each(function() {
-                $(this).removeClass("selected");
-            });
-            // console.log($(this).attr("value"));
-            $(this).addClass("selected")
-            $('#appointmentTime').text($(this).text());
-            appointmentTime = $(this).text();
+
+            $('#time_msg').text(null)
+            $('#startTime').text(null);
+            $('#endTime').text(null);
+
+            if (!$(this).hasClass("setted")) {
+                $('.timeRange').each(function() {
+                    $(this).removeClass("choosed");
+                    $(this).find("td").text(null);
+                });
+                var timeAlloted;
+                var quotient = (appointmentTotalDuration / 60);
+                var str = quotient.toString();
+                if (str.length === 1) {
+                    timeAlloted = quotient;
+                } else {
+                    timeAlloted = Math.floor(quotient) + 1;
+                }
+
+                appointmentAllottedHours = timeAlloted;
+                var indexOfSelected = timeRanges.indexOf($(this).attr("id"));
+                var lastrange = (indexOfSelected + (timeAlloted - 1));
+                $('#appointmentTime').text(timeAlloted + " hour/s")
+                    // console.log("Time allotted : " + timeAlloted);
+                    // console.log("time range : " + indexOfSelected + "to " + lastrange);
+                var startId = "#" + timeRanges[indexOfSelected];
+                var endtId = "#" + timeRanges[lastrange];
+                var startTime = Number.parseInt($(startId).attr('value'));
+                var endTime = Number.parseInt($(endtId).attr('value')) + 1
+
+                appointmentStartTime = startTime + ":00";
+                appointmentEndTime = endTime + ":00";
+
+
+                if (timeRanges.length > lastrange) {
+                    var flag = true;
+                    for (let i = indexOfSelected; i <= lastrange; i++) {
+                        var id = "#" + timeRanges[i]
+                        if ($(id).hasClass("setted")) {
+                            flag = false;
+                        }
+                    }
+                    if (flag) {
+                        $(this).find("td").text();
+                        for (let i = indexOfSelected; i <= lastrange; i++) {
+                            var id = "#" + timeRanges[i]
+                            $(id).addClass("choosed");
+                        }
+                        $('#startTime').text(hoursConvert(startTime));
+                        $('#endTime').text(hoursConvert(endTime));
+                    } else {
+                        // $('#time_msg').text("Have an appointment")
+                        $(this).find("td").text("Cant chooosed this time");
+                    }
+
+                } else {
+                    $(this).find("td").text("Appoinment Allotted time out range");
+                }
+
+                console.log(appointmentTotalDuration);
+                console.log(appointmentAllottedHours);
+                console.log(appointmentStartTime);
+                console.log(appointmentEndTime);
+            }
         });
-
-
     });
 
     // for forms 
@@ -746,14 +856,17 @@ function showCalendar(month, year) {
             $('.timeRange').each(function() {
                 $(this).removeClass("selected");
             });
-            $('#appointmentTime').text("");
+            $('#appointmentTime').text(null);
+            $('#time_msg').text(null)
+            $('#startTime').text(null);
+            $('#endTime').text(null);
 
             dateInitialSelected = $(this).attr("id");
 
         });
     });
 
-    console.log(dateInitialSelected);
+    // console.log(dateInitialSelected);
 }
 
 function checkIfDateIsHindiNakalipas(year, month, date) {
@@ -830,13 +943,16 @@ const convertTime = timeStr => {
 // APPOINTMENT DATAS  
 var appointmentId;
 var appointmentDate;
-var appointmentTime;
 var patientID;
 var patientContact;
 var appointmentServices = [];
 var appointmentAmount;
 var appointmentPaymentMethod;
 var IsPaid = false;
+var appointmentTotalDuration;
+var appointmentAllottedHours;
+var appointmentStartTime;
+var appointmentEndTime;
 
 
 function getDatas() {
@@ -852,7 +968,6 @@ function getDatas() {
 
     patientID = $("#appointmentPatientId").val();
     patientContact = $("#appointmentPatientContact").val();
-    appointmentTime = convertTime(appointmentTime);
     appointmentServices = serviceChoosedList;
     appointmentAmount = $('#totalAmountofAppoinment').text();
     appointmentPaymentMethod = $(".paymentMethod:checked").val();
@@ -882,7 +997,10 @@ function addNewAppointment() {
             patientID: patientID,
             patientContact: patientContact,
             appointmentDate: appointmentDate,
-            appointmentTime: appointmentTime,
+            appointmentStartTime: appointmentStartTime,
+            appointmentEndTime: appointmentEndTime,
+            appointmentTotalDuration: appointmentTotalDuration,
+            appointmentAllottedHours: appointmentAllottedHours,
             appointmentServices: appointmentServices,
             appointmentAmount: appointmentAmount,
             appointmentPaymentMethod: appointmentPaymentMethod,

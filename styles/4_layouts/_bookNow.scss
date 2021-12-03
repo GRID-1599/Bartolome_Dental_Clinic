@@ -261,26 +261,61 @@
                 display: none;
             }
             .appTimePicker {
-                margin-top: 100px;
-                margin-left: 0;
-                margin-right: 0;
                 .selectedDAte {
                     font-weight: 550;
+                }
+                table {
+                    tbody {
+                        tr {
+                            outline: none;
+                            border: none;
+                            box-shadow: none;
+                            background-color: white;
+                            padding: 20px;
+                            height: 3.65rem;
+                            border-top: 1px solid $pinkBG1;
+                            font-weight: normal;
+                            font-style: normal;
+                            font-size: .9rem;
+                            cursor: pointer;
+                            th {
+                                color: crimson;
+                            }
+                        }
+                        .setted {
+                            background-color: pink;
+                            border-top: none;
+                        }
+                        .choosed {
+                            background-color: $pink2;
+                            color: white;
+                            border-top: none;
+                            th {
+                                color: red;
+                            }
+                        }
+                        .disable {
+                            background-color: #e9e9e9;
+                        }
+                    }
                 }
                 .row {
                     margin: 10px 0;
                     .timeRange {
-                        border: 3px solid $pinkBG1;
-                        background-color: white;
-                        border-radius: 10px;
-                        padding: 10px;
-                        &:hover {
-                            transition: all 0.25s ease-in-out;
-                            transform: scale(1.05);
-                            background-color: $pink1;
-                            color: white;
-                            border: 3px solid white;
-                        }
+                        // outline: none;
+                        // border: none;
+                        // box-shadow: none;
+                        // background-color: white;
+                        // padding: 10px;
+                        // border-top: 2px solid pink;
+                        // background-color: burlywood;
+                        // &:hover {
+                        //     transition: all 0.25s ease-in-out;
+                        //     transform: scale(1.05);
+                        //     background-color: $pink1;
+                        //     color: white;
+                        //     border: 3px solid white;
+                        // }
                     }
                     .unShow {
                         display: none;
@@ -292,6 +327,19 @@
                             background-color: $pinkBG1;
                             border: 3px solid white;
                         }
+                    }
+                }
+                .oras {
+                    // background-color: $pink1;
+                    outline: none;
+                    border: none;
+                    box-shadow: none;
+                    background-color: white;
+                    padding: 10px;
+                    border-top: 2px solid pink;
+                    &:focus {
+                        // outline: none;
+                        // border: none;
                     }
                 }
             }
@@ -491,6 +539,9 @@
                     .serviceId {
                         display: none;
                     }
+                    .serviceDuration {
+                        display: none;
+                    }
                     button {
                         width: 10px;
                         height: 10px;
@@ -504,6 +555,10 @@
                 .totalAmountRow th {
                     border: none;
                     border-top: .25px solid gray;
+                }
+                .totalDurationRow th {
+                    border: none;
+                    // border-top: .25px solid gray;
                 }
             }
         }

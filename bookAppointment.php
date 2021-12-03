@@ -46,13 +46,14 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                                         $serviceName = $row["Name"];
                                         // $serviceDescription = $row["Description"];
                                         $serviceStarting_Price = $row["Starting_Price"];
+                                        $serviceDuration = $row["Duration_Minutes"];
                                         // $ImgFilename = $row["ImgFilename"];
                                         $serviceService_ID = $row["Service_ID"];
 
                                         $serviceServiceCategory_ID = $serviceCategoryIdAndName_Array[$row["ServiceCategory_ID"]];
 
                                         $isSelected = "";
-                                        if (isset($_GET["serviceID"]) && $_GET["serviceID"] == $serviceService_ID) {
+                                        if (isset($_POST["serviceID"]) && $_POST["serviceID"] == $serviceService_ID) {
                                             $isSelected = "serviceSelected";
                                         }
                                         // $imagePath = "resources/Dental_Pics/logov2.png";
@@ -61,6 +62,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                                     <tr id="$serviceService_ID" class="serviceRow $isSelected">
                                     <td colspan="2" class="serviceName">$serviceName</td>
                                     <td class="servicePrice">$serviceStarting_Price</td>
+                                    <td class="serviceDuration visually-hidden">$serviceDuration</td>
                                     </tr>
                                 SERVICEROW;
                                     }
@@ -77,6 +79,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             <h3>Select apppointment date & time: </h3>
             <div class="container h-100   wrapper">
                 <div class="row">
+                    <!-- calendar wrapper  -->
                     <div class="col appCalendar ">
                         <div class="container-fluid ">
                             <div class="container">
@@ -150,32 +153,58 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                             </div>
                         </div>
                     </div>
-                    <div class="col-3  appTimePicker h-100 unShow">
-                        <p class="selectedDAte"></p>
-                        Available Time/s
-                        <div class="container">
-                            <div class="row w-75">
-                                <button class="timeRange" value="9">9:00 am</button>
-                            </div>
-                            <div class="row w-75">
-                                <button class="timeRange" value="10">10:00 am</button>
-                            </div>
-                            <div class="row w-75">
-                                <button class="timeRange" value="11">11:00 am</button>
-                            </div>
-                            <div class="row w-75">
-                                <button class="timeRange" value="1">1:00 pm</button>
-                            </div>
-                            <div class="row w-75">
-                                <button class="timeRange" value="2">2:00 pm</button>
-                            </div>
-                            <div class="row w-75">
-                                <button class="timeRange" value="3">3:00 pm</button>
-                            </div>
-                            <div class="row w-75">
-                                <button class="timeRange" value="4">4:00 pm</button>
-                            </div>
-                        </div>
+                    <div class="col-md-4  appTimePicker unShow h-100  mt-5">
+                        <p class="selectedDAte h5"></p>
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="timeRange " id="t9" value="9">
+                                    <th scope="row">9 AM</th>
+                                    <td colspan="3" class="w-75"></td>
+                                </tr>
+                                <tr class="timeRange" id="t10" value="10">
+                                    <th scope="row">10 AM</th>
+                                    <td colspan="3" class="w-75"></td>
+                                </tr>
+                                <tr class="timeRange" id="t11" value="11">
+                                    <th scope="row">11 AM</th>
+                                    <td colspan="3" class="w-75"></td>
+                                </tr>
+                                <tr class="disable">
+                                    <th scope="row">12 PM</th>
+                                    <td colspan="3" class="w-75">Lunch Break</td>
+                                </tr>
+                                <tr class="timeRange " id="t1" value="13">
+                                    <th scope="row">1 PM</th>
+                                    <td colspan="3" class="w-75"></td>
+                                </tr>
+                                <tr class="timeRange " id="t2" value="14">
+                                    <th scope="row">2 PM</th>
+                                    <td colspan="3" class="w-75"></td>
+                                </tr>
+                                <tr class="timeRange" id="t3" value="15">
+                                    <th scope="row">3 PM</th>
+                                    <td colspan="3" class="w-75"></td>
+                                </tr>
+                                <tr class="timeRange" id="t4" value="16">
+                                    <th scope="row">4 PM</th>
+                                    <td colspan="3" class="w-75 "></td>
+                                </tr>
+                                <tr class="disable">
+                                    <th scope="row">5 PM</th>
+                                    <td colspan="3" class="w-75">End of Clinic Hours</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p id="time_msg"></p>
+
                     </div>
                 </div>
             </div>
@@ -404,7 +433,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             <div class="row">
                 <div class="col patientId-form">
                     <div class="form-floating  patient-inputs">
-                        <input type="text" class="form-control " id="patientId" placeholder="Your Patient ID" onkeypress="return onlyNumberKey(event)" required maxlength="4" autofocus>
+                        <input type="text" class="form-control " id="patientId" placeholder="Your Patient ID" onkeypress="return onlyNumberKey(event)" required maxlength="4">
                         <label for="patientId">Patient ID</label>
                     </div>
 
@@ -446,11 +475,13 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                                 $svName = $_POST["serviceName"];
                                 $svId = $_POST["serviceID"];
                                 $svPrice = $_POST["servicePrice"];
+                                $svDuration = $_POST["serviceDuration"];
                                 echo <<<SERVICEROW
                                         <tr class="choosedServiceRow">
                                             <td class="svName">$svName</td>
                                             <td class="serviceId">$svId</td>
                                             <td class="servicePrice">$svPrice </td>
+                                            <td class="serviceDuration ">$svDuration</td>
                                             <td><button type="button" class="btn-close removeService"></button></td>
                                         </tr>
                                     SERVICEROW;
@@ -466,7 +497,11 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                         <tfoot>
                             <tr class="totalAmountRow">
                                 <th>Estimated Cost:</th>
-                                <th class="w-auto" id="totalAmountofAppoinment"></th>
+                                <th class="" id="totalAmountofAppoinment"></th>
+                            </tr>
+                            <tr class="totalDurationRow">
+                                <th>Estimated Duration:</th>
+                                <th class="w-auto" id="totalDurationofAppoinment"></th>
                             </tr>
                         </tfoot>
                         </tbody>
@@ -485,7 +520,12 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     </div>
                     <div class="container">
                         <div class="row w-75">
-                            <span id="appointmentTime"></span>
+                            <span>Allotted time : <span id="appointmentTime"></span></span>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row w-75">
+                            <p><span id="startTime"></span> - <span id="endTime"></span></p>
                         </div>
                     </div>
                 </div>

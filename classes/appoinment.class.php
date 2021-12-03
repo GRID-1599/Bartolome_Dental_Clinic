@@ -4,11 +4,14 @@ include 'databaseConnection.class.php';
 class Appointment extends DatabaseConnection
 {
     public function addNewAppointment(
-        $Appoinment_Id,
+        $Appointment_Id,
         $Patient_ID,
         $Contact,
         $Appoinment_Date,
-        $Appoinment_Time,
+        $Appointment_StartTime,
+        $Appointment_EndTime,
+        $Duration_Minutes,
+        $Allotted_Hours,
         $Date_Created,
         $Payment_Method,
         $IsPaid,
@@ -16,14 +19,17 @@ class Appointment extends DatabaseConnection
         $appointmentServices
     ) {
 
-        $sql = 'INSERT INTO `appointment`(`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinment_Date`, `Appoinment_Time`, `Date_Created`, `Payment_Method`, `IsPaid`, `Amount`) VALUES (?,?,?,?,?,?,?,?,?)';
+        $sql = 'INSERT INTO `appointment`(`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinment_Date`, `Appointment_StartTime`, `Appointment_EndTime`, `Duration_Minutes`, `Allotted_Hours`,`Date_Created`, `Payment_Method`, `IsPaid`, `Amount`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([
-            $Appoinment_Id,
+            $Appointment_Id,
             $Patient_ID,
             $Contact,
             $Appoinment_Date,
-            $Appoinment_Time,
+            $Appointment_StartTime,
+            $Appointment_EndTime,
+            $Duration_Minutes,
+            $Allotted_Hours,
             $Date_Created,
             $Payment_Method,
             $IsPaid,
@@ -34,14 +40,14 @@ class Appointment extends DatabaseConnection
         $sql2 = 'INSERT INTO `appointment_service`(`Appoinment_Id`, `Service_Id`, `Service_Name`, `Service_Prc`) VALUES (?,?,?,?)';
         $stmt2 = $this->connect()->prepare($sql2);
         foreach ($appointmentServices as $service) {
-        $service = array_values($service);
-        $stmt2->execute([
-            $Appoinment_Id,
-            $service[0],
-            $service[1],
-            $service[2]
-        ]);
-    }
+            $service = array_values($service);
+            $stmt2->execute([
+                $Appointment_Id,
+                $service[0],
+                $service[1],
+                $service[2]
+            ]);
+        }
     }
 
     public function getAllAppointment()
@@ -56,7 +62,7 @@ class Appointment extends DatabaseConnection
         return $stmt;
     }
 
-    public function getAppointmentById( $appoinmentId)
+    public function getAppointmentById($appoinmentId)
     {
 
         $sql = "SELECT * FROM `appointment` WHERE `Appointment_Id` = ?";
@@ -65,16 +71,16 @@ class Appointment extends DatabaseConnection
         $appointmentData = array();
         while ($row = $stmt->fetch()) {
             $appointment = array(
-                "Patient_ID" =>$row["Patient_ID"], 
-                "Contact" =>$row["Contact"],  
-                "Appoinment_Date" =>$row["Appoinment_Date"],  
-                "Appoinment_Time" =>$row["Appoinment_Time"],
-                "Date_Created" =>$row["Date_Created"], 
-                "Payment_Method" =>$row["Payment_Method"],
-                "IsPaid" =>$row["IsPaid"], 
-                "Amount" =>$row["Amount"], 
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appoinment_Time" => $row["Appoinment_Time"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "Amount" => $row["Amount"],
 
-                );
+            );
             array_push($appointmentData, $appointment);
         }
 
@@ -84,10 +90,10 @@ class Appointment extends DatabaseConnection
         $appointmentServices = array();
         while ($row = $stmt2->fetch()) {
             $service = array(
-                "Service_Id" =>$row["Service_Id"], 
-                "Service_Name" =>$row["Service_Name"],  
-                "Service_Prc" =>$row["Service_Prc"],  
-                );
+                "Service_Id" => $row["Service_Id"],
+                "Service_Name" => $row["Service_Name"],
+                "Service_Prc" => $row["Service_Prc"],
+            );
             array_push($appointmentServices, $service);
         }
 
@@ -95,7 +101,7 @@ class Appointment extends DatabaseConnection
         return $appointmentData;
     }
 
-    public function getAppointmentByDate( $appoinmentDate )
+    public function getAppointmentByDate($appoinmentDate)
     {
         $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` = ? ORDER BY `appointment`.`Appoinment_Time` ASC";
         $stmt = $this->connect()->prepare($sql);
@@ -103,46 +109,44 @@ class Appointment extends DatabaseConnection
         $appointmentData = array();
         while ($row = $stmt->fetch()) {
             $appointment = array(
-                "Appointment_Id" =>$row["Appointment_Id"], 
-                "Patient_ID" =>$row["Patient_ID"], 
-                "Contact" =>$row["Contact"],  
-                "Appoinment_Date" =>$row["Appoinment_Date"],  
-                "Appoinment_Time" =>$row["Appoinment_Time"],
-                "Date_Created" =>$row["Date_Created"], 
-                "Payment_Method" =>$row["Payment_Method"],
-                "IsPaid" =>$row["IsPaid"], 
-                "Amount" =>$row["Amount"], 
-                "IsDone" =>$row["IsDone"], 
+                "Appointment_Id" => $row["Appointment_Id"],
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appoinment_Time" => $row["Appoinment_Time"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "Amount" => $row["Amount"],
+                "IsDone" => $row["IsDone"],
 
-                );
+            );
             array_push($appointmentData, $appointment);
         }
         return $appointmentData;
     }
 
-    public function getAppointmentAddedToday( $appoinmentDate )
+    public function getAppointmentAddedToday($appoinmentDate)
     {
-        $sql = "SELECT * FROM `appointment` WHERE `Date_Created` LIKE '%".$appoinmentDate."%' ORDER BY `appointment`.`Appoinment_Time` ASC";
+        $sql = "SELECT * FROM `appointment` WHERE `Date_Created` LIKE '%" . $appoinmentDate . "%' ORDER BY `appointment`.`Appoinment_Time` ASC";
         $stmt = $this->connect()->query($sql);
         // $stmt->execute([$appoinmentDate]);
         $appointmentData = array();
         while ($row = $stmt->fetch()) {
             $appointment = array(
-                "Appointment_Id" =>$row["Appointment_Id"], 
-                "Patient_ID" =>$row["Patient_ID"], 
-                "Contact" =>$row["Contact"],  
-                "Appoinment_Date" =>$row["Appoinment_Date"],  
-                "Appoinment_Time" =>$row["Appoinment_Time"],
-                "Date_Created" =>$row["Date_Created"], 
-                "Payment_Method" =>$row["Payment_Method"],
-                "IsPaid" =>$row["IsPaid"], 
-                "Amount" =>$row["Amount"], 
+                "Appointment_Id" => $row["Appointment_Id"],
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appoinment_Time" => $row["Appoinment_Time"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "Amount" => $row["Amount"],
 
-                );
+            );
             array_push($appointmentData, $appointment);
         }
         return $appointmentData;
     }
 }
-
-

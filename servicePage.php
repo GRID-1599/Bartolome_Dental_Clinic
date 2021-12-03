@@ -91,6 +91,8 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
                                 $serviceName = $row["Name"];
                                 // $serviceDescription = $row["Description"];
                                 $serviceStarting_Price = $row["Starting_Price"];
+                                $serviceDuration = $row["Duration_Minutes"];
+
                                 // $ImgFilename = $row["ImgFilename"];
                                 $serviceService_ID = $row["Service_ID"];
                                 $serviceServiceCategory_ID = $serviceCategoryIdAndName_Array[$row["ServiceCategory_ID"]];
@@ -114,6 +116,7 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
                                                 <input type="hidden" name="serviceID" value="$serviceService_ID">
                                                 <input type="hidden" name="serviceName" value="$serviceName">
                                                 <input type="hidden" name="servicePrice" value="$serviceStarting_Price">
+                                                <input type="hidden" name="serviceDuration" value="$serviceDuration">
                                                 <button type="submit" class="btn btn-primary">Book this</button>
                                             </form>
                                         </div>

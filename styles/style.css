@@ -2433,35 +2433,50 @@ header nav a:hover {
   display: none;
 }
 
-.bookNow .appointmentInputs .bottom .appTimePicker {
-  margin-top: 100px;
-  margin-left: 0;
-  margin-right: 0;
-}
-
 .bookNow .appointmentInputs .bottom .appTimePicker .selectedDAte {
   font-weight: 550;
 }
 
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody tr {
+  outline: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: white;
+  padding: 20px;
+  height: 3.65rem;
+  border-top: 1px solid #F05F79;
+  font-weight: normal;
+  font-style: normal;
+  font-size: .9rem;
+  cursor: pointer;
+}
+
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody tr th {
+  color: crimson;
+}
+
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody .setted {
+  background-color: pink;
+  border-top: none;
+}
+
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody .choosed {
+  background-color: #FFA3AD;
+  color: white;
+  border-top: none;
+}
+
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody .choosed th {
+  color: red;
+}
+
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody .disable {
+  background-color: #e9e9e9;
+}
+
 .bookNow .appointmentInputs .bottom .appTimePicker .row {
   margin: 10px 0;
-}
-
-.bookNow .appointmentInputs .bottom .appTimePicker .row .timeRange {
-  border: 3px solid #F05F79;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.bookNow .appointmentInputs .bottom .appTimePicker .row .timeRange:hover {
-  -webkit-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
-  background-color: #faa2b2;
-  color: white;
-  border: 3px solid white;
 }
 
 .bookNow .appointmentInputs .bottom .appTimePicker .row .unShow {
@@ -2476,6 +2491,16 @@ header nav a:hover {
 .bookNow .appointmentInputs .bottom .appTimePicker .row .selected:hover {
   background-color: #F05F79;
   border: 3px solid white;
+}
+
+.bookNow .appointmentInputs .bottom .appTimePicker .oras {
+  outline: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: white;
+  padding: 10px;
+  border-top: 2px solid pink;
 }
 
 .bookNow .patientForm {
@@ -2733,6 +2758,10 @@ header nav a:hover {
   display: none;
 }
 
+.bookNow .appoinmentDetails .servicesChoosed table tr .serviceDuration {
+  display: none;
+}
+
 .bookNow .appoinmentDetails .servicesChoosed table tr button {
   width: 10px;
   height: 10px;
@@ -2748,6 +2777,10 @@ header nav a:hover {
 .bookNow .appoinmentDetails .servicesChoosed table .totalAmountRow th {
   border: none;
   border-top: .25px solid gray;
+}
+
+.bookNow .appoinmentDetails .servicesChoosed table .totalDurationRow th {
+  border: none;
 }
 
 .bookNow .appoinmentDetails .choosedAppointmentDate {
