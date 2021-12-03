@@ -59,12 +59,12 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                                         // $imagePath = "resources/Dental_Pics/logov2.png";
 
                                         echo <<<SERVICEROW
-                                    <tr id="$serviceService_ID" class="serviceRow $isSelected">
-                                    <td colspan="2" class="serviceName">$serviceName</td>
-                                    <td class="servicePrice">$serviceStarting_Price</td>
-                                    <td class="serviceDuration visually-hidden">$serviceDuration</td>
-                                    </tr>
-                                SERVICEROW;
+                                            <tr id="$serviceService_ID" class="serviceRow $isSelected">
+                                                <td colspan="2" class="serviceName">$serviceName</td>
+                                                <td class="servicePrice">$serviceStarting_Price</td>
+                                                <td class="serviceDuration">$serviceDuration</td>
+                                            </tr>
+                                        SERVICEROW;
                                     }
                                 }
 
