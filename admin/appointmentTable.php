@@ -15,7 +15,6 @@ $stmt_appointments = $appointment_obj->getAllAppointment();
             <th>Appointment Time</th>
             <th>Date Created</th>
             <th>Amount</th>
-            <th>Payment Method</th>
             <th>IsPaid</th>
         </tr>
     </thead>
@@ -27,7 +26,6 @@ $stmt_appointments = $appointment_obj->getAllAppointment();
             <th>Appointment Time</th>
             <th>Date Created</th>
             <th>Amount</th>
-            <th>Payment Method</th>
             <th>IsPaid</th>
         </tr>
     </tfoot>
@@ -44,10 +42,9 @@ $stmt_appointments = $appointment_obj->getAllAppointment();
                 "<td class='appid'>" . $row["Appointment_Id"] . "</td>" .
                 "<td>" . $row["Patient_ID"] . "</td>" .
                 "<td>" . date_format($appDate, "M d, Y"). "</td>" .
-                "<td>" . date_format($appTime_Start, " h:i a") ." - " .date_format($appTime_End, " h:i a"). "</td>" .
+                "<td>" . date_format($appTime_Start, " h:ia") ." - " .date_format($appTime_End, " h:ia"). "</td>" .
                 "<td>" . date_format($dateCreated, "M d, Y h:ia") . "</td>" .
                 "<td>" . $row["Amount"] . "</td>" .
-                "<td>" . $row["Payment_Method"] . "</td>" .
                 "<td>" . $isPaid. "</td>" .
                 "</tr>";
             echo $row;

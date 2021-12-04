@@ -28,7 +28,7 @@
                 $patient = $patient_obj->getPatientById($patientId);
                 ?>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Appoinment</h1>
+                    <h1 class="mt-4">Patient</h1>
 
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active"> <a href="patients"> List of Patient </a></li>

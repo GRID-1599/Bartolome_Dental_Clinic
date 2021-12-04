@@ -48,8 +48,11 @@
                             <?php
                             $appointmentId = $_GET["appoinmentId"];
                             include_once '../classes/appoinment.class.php';
+                            include_once '../classes/patient.class.php';
                             $appointment_obj = new Appointment();
+                            $patient_obj = new Patient();
                             $appointment = $appointment_obj->getAppointmentById($appointmentId);
+                            $patient = $patient_obj->getPatientById( $appointment[0]["Patient_ID"]);
 
                             // echo $appointmentId . "<br>";
                             // echo $appointment[0]["Patient_ID"] . "<br>";
@@ -87,6 +90,7 @@
                                             <div class="row">
                                                 <dt class="col-sm-5">Appointment ID:</dt>
                                                 <dd class="col-sm-7">
+                                                    
                                                     <?php
                                                     echo $appointmentId;
                                                     ?>
@@ -94,8 +98,17 @@
 
                                                 <dt class="col-sm-5">Patient ID:</dt>
                                                 <dd class="col-sm-7">
+                                                    <a href="patients/<?php echo  $appointment[0]["Patient_ID"]?>">
                                                     <?php
                                                     echo $appointment[0]["Patient_ID"];
+                                                    ?>
+                                                    </a>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Patient Name:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo $patient["Name"];
                                                     ?>
                                                 </dd>
 
@@ -125,7 +138,7 @@
                                                     ?>
                                                 </dd>
 
-                                                <dt class="col-sm-5">Duration In Minutes :</dt>
+                                                <dt class="col-sm-5">Duration:</dt>
                                                 <dd class="col-sm-7">
                                                     <?php
                                                     $appTime_Duration = $appointment[0]["Duration_Minutes"];
