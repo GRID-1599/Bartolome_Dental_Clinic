@@ -1018,7 +1018,6 @@ function addNewAppointment() {
                 location.reload();
                 window.location.href = "index.php";
 
-
             }
         },
         error: function(jqXHR, exception) {
