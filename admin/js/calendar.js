@@ -88,7 +88,7 @@ function datesArray(month, year) {
     $.ajax({
         async: false,
         global: false,
-        url: '../ajaxRequest/getDates.php',
+        url: '../ajaxRequest/date.ajax.php',
         method: 'POST',
         data: {
             getAdminCalendarDates: 1,
