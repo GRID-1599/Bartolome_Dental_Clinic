@@ -688,7 +688,7 @@ function getPatients(patientID) {
             try {
                 var patients = JSON.parse(response);
                 // console.log(patients['Email']);
-                $('#appointmentPatientId').val();
+                $('#appointmentPatientId').val(patients['Patient_ID']);
                 getPatientByID(patients['Patient_ID'])
             } catch (e) {
                 patientIdErrorMessage("Patient ID Number Not Found")
@@ -1013,8 +1013,11 @@ function addNewAppointment() {
                 $('#appointmentCode').val(generateRandomCharacters());
             } else {
                 console.log(response);
+
                 alert("Successfully added");
                 location.reload();
+                window.location.href = "index.php";
+
 
             }
         },
