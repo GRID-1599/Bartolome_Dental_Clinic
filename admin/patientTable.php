@@ -15,10 +15,6 @@ $patients = $patient->getAllPatients();
             <th>Birthday</th>
             <th>Age</th>
             <th>Gender</th>
-            <th>Civil Status</th>
-            <th>Address</th>
-            <th>Email</th>
-            <th>Contact</th>
             <th>Date Created</th>
         </tr>
     </thead>
@@ -31,10 +27,6 @@ $patients = $patient->getAllPatients();
             <th>Birthday</th>
             <th>Age</th>
             <th>Gender</th>
-            <th>Civil Status</th>
-            <th>Address</th>
-            <th>Email</th>
-            <th>Contact</th>
             <th>Date Created</th>
         </tr>
     </tfoot>
@@ -42,17 +34,15 @@ $patients = $patient->getAllPatients();
         <?php
         $data = json_encode($patients);
         foreach ($patients as $entry) {
+            $bday = date_create($entry["Birthday"]);
+
             $row = "<tr class='patientRow'>" .
                 "<td>" . $entry["Patient_ID"] . "</td>" .
                 "<td>" . $entry["Name"] . "</td>" .
                 "<td>" . $entry["Nickname"] . "</td>" .
-                "<td>" . $entry["Birthday"] . "</td>" .
+                "<td>" . date_format($bday, "M d, Y") . "</td>" .
                 "<td>" . $entry["Age"] . "</td>" .
                 "<td>" . $entry["Gender"] . "</td>" .
-                "<td>" . $entry["Civil_Status"] . "</td>" .
-                "<td>" . $entry["Address"] . "</td>" .
-                "<td>" . $entry["Email"] . "</td>" .
-                "<td>" . $entry["Contact"] . "</td>" .
                 "<td>" . $entry["Date_Created"] . "</td>" .
                 "</tr>";
             echo $row;
