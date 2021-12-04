@@ -53,3 +53,18 @@ if(isset($_POST["addNewService"])){
 if (isset($_POST["deleteService"])) {
     $service_obj->deleteService($_POST["service_id"]);
 }
+
+if (isset($_POST["getServiceCategory"])) {
+    
+    $serviceByCategory = $service_obj->getAllServices_ByCategoryID($_POST['serviceCategory']);
+    $serviceArray = array();
+    while ($row = $serviceByCategory->fetch()) {
+        $serviceID = $row["Service_ID"];
+        array_push($serviceArray,$serviceID );
+        // $serviceDescription = $row["Description"];
+
+    }
+    echo json_encode($serviceArray);
+    // echo "serv";
+
+}

@@ -16,5 +16,17 @@ if(isset($_POST["addNote"])){
     $patient_obj->addNote($_POST["patient_id"],$_POST["message_body"]);
 }
 
+if (isset($_POST["getAllPatients"])) {
+    include_once '../classes/patient.class.php';
+    $paient_obj = new Patient();
+    echo json_encode($paient_obj->getPatientById($_POST['patientID']));
+}
+
+if (isset($_POST["getPatientByID"])) {
+    include_once '../classes/patient.class.php';
+    $paient_obj = new Patient();
+    echo json_encode($paient_obj->getPatientById($_POST['patientID']));
+}
+
 
 ?>

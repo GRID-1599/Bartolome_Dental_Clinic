@@ -411,7 +411,7 @@ $(document).ready(function() {
     $('#patientId').keyup(function() {
         if ($(this).val().length == 4) {
             getPatients($(this).val());
-            getPatientByID($(this).val())
+
             $('.patientID-input ').each(function() {
                 $(this).addClass("unShow")
             });
@@ -628,7 +628,7 @@ $(document).ready(function() {
 
 function getServiceByCategory(categoryID) {
     $.ajax({
-        url: './ajaxRequest/getService.php',
+        url: './ajaxRequest/services.ajax.php',
         method: 'POST',
         data: {
             getServiceCategory: 1,
@@ -671,7 +671,7 @@ function getServiceByCategory(categoryID) {
 
 function getPatients(patientID) {
     $.ajax({
-        url: './ajaxRequest/getPatients.php',
+        url: './ajaxRequest/patient.ajax.php',
         method: 'POST',
         data: {
             getAllPatients: 1,
@@ -688,7 +688,8 @@ function getPatients(patientID) {
             try {
                 var patients = JSON.parse(response);
                 // console.log(patients['Email']);
-                $('#appointmentPatientId').val(patients['Patient_ID']);
+                $('#appointmentPatientId').val();
+                getPatientByID(patients['Patient_ID'])
             } catch (e) {
                 patientIdErrorMessage("Patient ID Number Not Found")
             }
@@ -718,7 +719,7 @@ function getPatients(patientID) {
 
 function getPatientByID(patientID) {
     $.ajax({
-        url: './ajaxRequest/getPatientByID.php',
+        url: './ajaxRequest/patient.ajax.php',
         method: 'POST',
         data: {
             getPatientByID: 1,
