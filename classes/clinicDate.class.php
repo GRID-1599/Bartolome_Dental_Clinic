@@ -48,12 +48,12 @@ class ClinicDate extends DatabaseConnection
     {
         $dateStart = $Year . "-" . $Month . "-1";
         $dateEnd = $Year . "-" . $Month . "-31";
-        $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` >= '".$dateStart."' AND Appoinment_Date <= '".$dateEnd."' ORDER BY `Appointment_Id` DESC";
+        $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` >= '".$dateStart."' AND Appoinment_Date <= '".$dateEnd."' ORDER BY `Appointment_StartTime` DESC";
         $stmt = $this->connect()->query($sql);
         $allDates = array();
         
         while ($row = $stmt->fetch()) {
-            $appTime = date_create($row["Appoinment_Time"]);
+            $appTime = date_create($row["Appointment_StartTime"]);
             $appointmentDate = array(
                 "Type" => "Appointment",
                 "Appointment_Id" => $row["Appointment_Id"],
