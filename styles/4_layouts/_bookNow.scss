@@ -282,9 +282,8 @@
                                 color: crimson;
                             }
                             &:hover {
-                                th,
-                                td {
-                                    font-size: 1.2rem;
+                                th {
+                                    font-size: 1.125rem;
                                 }
                             }
                         }
@@ -310,6 +309,9 @@
                             background-color: #e9e9e9;
                             &:hover {
                                 cursor: not-allowed;
+                                td {
+                                    font-size: 1.125rem;
+                                }
                             }
                         }
                     }

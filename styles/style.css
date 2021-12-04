@@ -2456,9 +2456,8 @@ header nav a:hover {
   color: crimson;
 }
 
-.bookNow .appointmentInputs .bottom .appTimePicker table tbody tr:hover th,
-.bookNow .appointmentInputs .bottom .appTimePicker table tbody tr:hover td {
-  font-size: 1.2rem;
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody tr:hover th {
+  font-size: 1.125rem;
 }
 
 .bookNow .appointmentInputs .bottom .appTimePicker table tbody .setted {
@@ -2490,6 +2489,10 @@ header nav a:hover {
 
 .bookNow .appointmentInputs .bottom .appTimePicker table tbody .disable:hover {
   cursor: not-allowed;
+}
+
+.bookNow .appointmentInputs .bottom .appTimePicker table tbody .disable:hover td {
+  font-size: 1.125rem;
 }
 
 .bookNow .appointmentInputs .bottom .appTimePicker .row {
