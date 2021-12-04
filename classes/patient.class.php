@@ -1,6 +1,6 @@
 <?php
 
-include 'databaseConnection.class.php';
+include_once 'databaseConnection.class.php';
 
 class Patient extends DatabaseConnection
 {
