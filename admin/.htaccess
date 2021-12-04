@@ -59,6 +59,16 @@ RewriteRule ^appointment appointment.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+
+#  url for patients print
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^patientFile/([0-9A-Za-z-\s]+) patientFile.php?patientId=$1 [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 #  url for patients view
 RewriteCond %{Request_FileName} !-d
 

@@ -21,6 +21,12 @@
         <!-- pages main body -->
         <div id="layoutSidenav_content">
             <main>
+                <?php
+                $patientId = $_GET["patientId"];
+                include_once '../classes/patient.class.php';
+                $patient_obj = new Patient();
+                $patient = $patient_obj->getPatientById($patientId);
+                ?>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Appoinment</h1>
 
@@ -31,36 +37,23 @@
 
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i> Patient View
-                        </div>
-                        <div class="card-body">
-                            <?php
-                            $patientId = $_GET["patientId"];
-                            include_once '../classes/patient.class.php';
-                            $patient_obj = new Patient();
-                            $patient = $patient_obj->getPatientById($patientId);
-
-                            // echo $patient[0]["Patient_ID"] . "<br>";
-                            // echo $patient[0]["Contact"] . "<br>";
-                            // echo $patient[0]["Appoinment_Date"] . "<br>";
-                            // echo $patient[0]["Appoinment_Time"] . "<br>";
-                            // echo $patient[0]["Date_Created"] . "<br>";
-                            // echo $patient[0]["Payment_Method"] . "<br>";
-                            // echo $patient[0]["IsPaid"] . "<br>";
-                            // echo $patient[0]["Amount"] . "<br><br>";
-
-                            // foreach ($patient[1] as $service) {
-                            //      echo $service["Service_Id"] . "<br>";
-                            //      echo $service["Service_Name"] . "<br>";
-                            //      echo $service["Service_Prc"] . "<br>";
-                            // }
-                            ?>
-
-
-
                             <div class="container">
                                 <div class="row">
-                                        <!-- patient info  -->
+                                    <div class="col">
+                                        <i class="fas fa-users"></i> Patient
+                                    </div>
+                                    <div class="col  ">
+                                        <a href="patientFile/<?php echo $patientId?>" class="float-end" target="_blank">
+                                            <button type="button" class="btn btn-dark btn-sm w-auto px-4"><i class="fa fa-print" aria-hidden="true"></i> View File</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="row">
+                                    <!-- patient info  -->
                                     <div class="col  ">
                                         <div class="container">
                                             <dl class="row">
@@ -165,7 +158,7 @@
                                         <div class="row border border-warning position-relative">
                                             <textarea class="form-control border border-light areaNewNote" rows="4" id="service_description" placeholder="Insert new notes here"></textarea>
                                             <div class="d-grid gap-2 d-md-flex d-sm-flex justify-content-sm-end mt-2">
-                                                <button class="btn btn-warning btn-sm rounded-pill btnNewNote" type="button" value="<?php echo $_GET["patientId"];?>">Add this note</button>
+                                                <button class="btn btn-warning btn-sm rounded-pill btnNewNote" type="button" value="<?php echo $_GET["patientId"]; ?>">Add this note</button>
                                             </div>
                                         </div>
 
