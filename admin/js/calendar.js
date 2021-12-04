@@ -52,6 +52,8 @@ function showCalendar(month, year) {
                 break;
             } else {
                 var calendarCell_Day = document.createElement("td");
+                calendarCell_Day.classList.add("date");
+                calendarCell_Day.setAttribute("id", year + "-" + oneDigit_to_twoDigit(month + 1) + "-" + oneDigit_to_twoDigit(tableCalendarRow));
                 var calendarCell_DayText = document.createTextNode(tableCalendarRow);
                 calendarCell_Day.appendChild(calendarCell_DayText);
                 if (tableCalendarRow === todayDate.getDate() && year === todayDate.getFullYear() && month === todayDate.getMonth()) {
@@ -64,14 +66,18 @@ function showCalendar(month, year) {
 
                 dates_Arr.forEach(appointment => {
                     if (appointment["Appoinment_Date"] === thisDate) {
+                        var time = appointment["Appoinment_Time"]
                         let appointment_wrapper = document.createElement('div');
-                        appointment_wrapper.textContent = "Appointment";
+                        appointment_wrapper.textContent = "APP " + time;
                         appointment_wrapper.classList.add("appoinment");
+                        // appointment_wrapper.classList.append(markup);
 
                         // calendarCell_Day.classList.add("hasAppoinment");
                         calendarCell_Day.appendChild(appointment_wrapper);
                     }
                 });
+
+
 
 
                 calendarRow_Week.appendChild(calendarCell_Day);
@@ -80,6 +86,15 @@ function showCalendar(month, year) {
         }
         table.appendChild(calendarRow_Week);
     }
+
+
+    $('.date').each(function() {
+        $(this).click(function() {
+            window.location.href = "calendar/" + $(this).attr("id");
+            console.log($(this).attr("id"));
+        });
+
+    });
 }
 
 

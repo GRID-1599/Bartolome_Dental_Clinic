@@ -87,6 +87,15 @@ RewriteRule ^patients patients.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for date view
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^calendar/([0-9A-Za-z-\s]+) dateview.php?dateToView=$1 [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 #  url for calendar
 RewriteCond %{Request_FileName} !-d
 

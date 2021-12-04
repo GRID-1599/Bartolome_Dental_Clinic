@@ -4,9 +4,8 @@
 <html lang="en">
 
 <head>
+
     <?php include 'html-head.php' ?>
-    <link rel="stylesheet" href="styles/evo_calendar/evo-calendar.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 </head>
 
 <body class="sb-nav-fixed">
@@ -17,65 +16,80 @@
         <!-- pages main body -->
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-xxl px-4">
                     <h1 class="mt-4">Calendar</h1>
-                    <!-- <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">List of Patients</li>
-                    </ol> -->
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Month View</li>
+                    </ol>
 
                     <div class="row">
-                        <div class="container-fluid ">
-                            <div class="calendar-select inputs form-inline">
-                                <label class="lead mr-2 ml-3" for="year">Select year: </label><select class="form-control col-sm-4" name="year" id="year" onchange="jumpp()">
-                                    <option value=2010>2010</option>
-                                    <option value=2011>2011</option>
-                                    <option value=2012>2012</option>
-                                    <option value=2013>2013</option>
-                                    <option value=2014>2014</option>
-                                    <option value=2015>2015</option>
-                                    <option value=2016>2016</option>
-                                    <option value=2017>2017</option>
-                                    <option value=2018>2018</option>
-                                    <option value=2019>2019</option>
-                                    <option value=2020>2020</option>
-                                    <option value=2021>2021</option>
-                                    <option value=2022>2022</option>
-                                    <option value=2023>2023</option>
-                                    <option value=2024>2024</option>
-                                    <option value=2025>2025</option>
-                                    <option value=2026>2026</option>
-                                    <option value=2027>2027</option>
-                                    <option value=2028>2028</option>
-                                    <option value=2029>2029</option>
-                                    <option value=2030>2030</option>
-                                </select>
-                                <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-                                <select class="form-control col-sm-3 " name="month" id="month" onchange="jumpp()">
-                                    <option value=0>January</option>
-                                    <option value=1>Febuary</option>
-                                    <option value=2>March</option>
-                                    <option value=3>April</option>
-                                    <option value=4>May</option>
-                                    <option value=5>June</option>
-                                    <option value=6>July</option>
-                                    <option value=7>August</option>
-                                    <option value=8>September</option>
-                                    <option value=9>October</option>
-                                    <option value=10>November</option>
-                                    <option value=11>December</option>
-                                </select>
+                        <div class="container-fluid calendar-wrapper">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="lead mr-2 ml-3" for="year">Select year: </label>
+                                    <select class="form-control col-sm-4" name="year" id="year" onchange="jumpp()">
+                                        <option value=2010>2010</option>
+                                        <option value=2011>2011</option>
+                                        <option value=2012>2012</option>
+                                        <option value=2013>2013</option>
+                                        <option value=2014>2014</option>
+                                        <option value=2015>2015</option>
+                                        <option value=2016>2016</option>
+                                        <option value=2017>2017</option>
+                                        <option value=2018>2018</option>
+                                        <option value=2019>2019</option>
+                                        <option value=2020>2020</option>
+                                        <option value=2021>2021</option>
+                                        <option value=2022>2022</option>
+                                        <option value=2023>2023</option>
+                                        <option value=2024>2024</option>
+                                        <option value=2025>2025</option>
+                                        <option value=2026>2026</option>
+                                        <option value=2027>2027</option>
+                                        <option value=2028>2028</option>
+                                        <option value=2029>2029</option>
+                                        <option value=2030>2030</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="lead mr-2 ml-2" for="month">Jump To: </label>
+                                    <select class="form-control col-sm-3 " name="month" id="month" onchange="jumpp()">
+                                        <option value=0>January</option>
+                                        <option value=1>Febuary</option>
+                                        <option value=2>March</option>
+                                        <option value=3>April</option>
+                                        <option value=4>May</option>
+                                        <option value=5>June</option>
+                                        <option value=6>July</option>
+                                        <option value=7>August</option>
+                                        <option value=8>September</option>
+                                        <option value=9>October</option>
+                                        <option value=10>November</option>
+                                        <option value=11>December</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-success mt-4 float-end w-50">Week View</button>
+                                </div>
                             </div>
+                            <br>
                             <div class="card">
-                                <div class="tableHeader">
-                                    <button class="btn-light lead " id="pre" type="button" onclick="preMonth()"><i class="fas fa-caret-left"></i> Previous</button>
-
-                                    <h3 class="card-header display-6" id="todayMonthDate"></h3>
-
-                                    <button class="btn-light lead " id="nex" type="button" onclick="nexMonth()">Next <i class="fas fa-caret-right"></i></button>
+                                <div class="tableHeader m-0 w-100 ">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <button class=" btn btn-light w-100 h-100" id="pre" type="button" onclick="preMonth()"><i class="fas fa-caret-left"></i> Previous</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="card-header display-6 text-center h-100" id="todayMonthDate"></p>
+                                        </div>
+                                        <div class="col-3">
+                                            <button class=" btn btn-light w-100 h-100" id="nex" type="button" onclick="nexMonth()">Next <i class="fas fa-caret-right"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <table class="table  table-borderless" id="calendar">
                                     <thead>
-                                        <tr >
+                                        <tr>
                                             <th>Sun</th>
                                             <th>Mon</th>
                                             <th>Tue</th>

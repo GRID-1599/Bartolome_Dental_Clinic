@@ -48,7 +48,7 @@ class ClinicDate extends DatabaseConnection
     {
         $dateStart = $Year . "-" . $Month . "-1";
         $dateEnd = $Year . "-" . $Month . "-31";
-        $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` >= '".$dateStart."' AND Appoinment_Date <= '".$dateEnd."' ORDER BY `Appointment_StartTime` DESC";
+        $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` >= '".$dateStart."' AND Appoinment_Date <= '".$dateEnd."' ORDER BY `Appointment_StartTime` ASC";
         $stmt = $this->connect()->query($sql);
         $allDates = array();
         

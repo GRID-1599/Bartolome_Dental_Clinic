@@ -56,3 +56,24 @@ if (isset($_POST["getAppointment"])) {
     };
     echo json_encode($time_array);
 }
+
+if (isset($_POST["getToInitScheds"])) {
+    $appointment_array = $appoinment_obj->getAppointmentByDate($_POST["theDate"]);
+    $time_array = array();
+    foreach ($appointment_array as $data) {
+        $start_time = $data["Appointment_StartTime"];
+        $end_time = $data["Appointment_EndTime"];
+        $appTime = new DateTime($start_time);
+        $appEnd = new DateTime($end_time);
+        $allotted_time = $data["Allotted_Hours"];
+        $appointment = array(
+            "app_id" => $data["Appointment_Id"],
+            "start_time" => $appTime->format('H'),
+            "time_start" => $appTime->format('ha'),
+            "end_time" => $appEnd->format('ha'),
+            "allotted_time" => $allotted_time
+        );
+        array_push($time_array, $appointment);
+    };
+    echo json_encode($time_array);
+}
