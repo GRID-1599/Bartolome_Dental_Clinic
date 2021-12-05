@@ -8,6 +8,7 @@ if (isset($_GET['adminUser'])) {
 include_once '../classes/appoinment.class.php';
 $appointment_obj = new Appointment();
 $currentDate = new DateTime();
+$currentDate = new DateTime('2021-12-13');
 $todayDate =  $currentDate->format('Y-m-d');
 $appToday_stmt = $appointment_obj->getAppointmentByDate($todayDate);
 $appAddedToday_stmt = $appointment_obj->getAppointmentAddedToday($todayDate);
@@ -52,8 +53,7 @@ foreach ($unreadMessages as $unread) {
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Dashboard</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard</li>
+                    <ol class="breadcrumb ">
                     </ol>
                     <div class="container">
                         Today date
@@ -62,7 +62,7 @@ foreach ($unreadMessages as $unread) {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-5 col-lg-6 ">
+                        <div class="col-xl-5 ">
                             <!-- todays appointment  -->
                             <div class="col">
                                 <div class="card  mb-4">
@@ -228,19 +228,88 @@ foreach ($unreadMessages as $unread) {
                             <div class="row">
                                 <div class="col ">
                                     <div class="card mb-4">
-                                        <div class="card-header">
-                                            <i class="fas fa-chart-area me-1"></i> Area
-                                        </div>
                                         <div class="card-body">
-                                            <a href="message/unread">
-                                                <button type="button" class="btn btn-info position-relative">
-                                                    Unread Message
+                                            <!-- <a href="message/unread">
+                                                <button type="button" class="btn btn-success position-relative  rounded-pill">
+                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                         <?php echo $unreadMessageNum; ?>
                                                         <span class="visually-hidden">unread messages</span>
                                                     </span>
                                                 </button>
-                                            </a>
+                                            </a> -->
+                                            <div class="row">
+                                                <div class="container">
+                                                    Appointments
+                                                    <p style="display: none;" id="theDate"><?php echo $todayDate ?></p>
+
+                                                </div>
+                                                <div class="container">
+                                                    <div class="row pe-4">
+                                                        <div class="col-2">
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">9 AM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">10 AM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">11 AM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">12 PM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">1 PM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">2 PM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">3 PM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">4 PM</p>
+                                                            </div>
+                                                            <div class="row py-3 text-end timeRow">
+                                                                <p class="text-end">5 PM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col mt-4 ">
+                                                            <?php
+                                                            $timesID = array(9, 10, 11, 12, 13, 14, 15, 16, 17);
+
+
+                                                            foreach ($timesID as $id) {
+                                                                if ($id == 12) {
+                                                                    echo '<div class="row py-3 border-top border-dark  timeRow unAvailable"><span>Lunch Break</span></div> ';
+                                                                } else {
+                                                                    printf('<div class="row py-3 border-top border-dark  timeRow" id="%u"><span></span></div> ', $id);
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+
+
+                                                    // $isHave = false;
+                                                    // foreach ($date_apps as $data) {
+                                                    //     $isHave = true;
+                                                    //     $time = $data["Appointment_StartTime"];
+                                                    //     $appTime = new DateTime($time);
+                                                    //     echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
+                                                    //         " at " . $appTime->format('h:i a') .
+                                                    //         "</a><br>";
+                                                    // };
+
+                                                    // if (!$isHave) {
+                                                    //     echo '<p class="display-6"> Nothing to show</p>';
+                                                    // }
+
+                                                    ?>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -283,6 +352,7 @@ foreach ($unreadMessages as $unread) {
         </div>
     </div>
     <?php include 'scripts.php' ?>
+    <script src="js/dateView.js"></script>
     <!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);

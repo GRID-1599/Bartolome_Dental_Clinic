@@ -26,7 +26,7 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
         <!-- pages main body -->
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-sm px-4 float-start">
                     <h1 class="mt-4">Calendar</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">
@@ -36,15 +36,15 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                     </ol>
 
                     <div class="row">
-                        <div class="container">
+                        <div class="container-sm ">
                             Date Showing
                             <div class="row">
                                 <p class=""><strong class="display-6"><?php echo $currentDate->format('l'); ?></strong> <?php echo $currentDate->format('F, d Y'); ?></p>
                                 <p style="display: none;" id="theDate"><?php echo $theDate?></p>
                             </div>
                         </div>
-                        <div class="container">
-                            <div class="row">
+                        <div class="container-sm ">
+                            <div class="row me-3">
                                 <div class="col-2">
                                     <div class="row py-3 text-end timeRow">
                                         <p class="text-end">9 AM</p>
@@ -74,7 +74,7 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                                         <p class="text-end">5 PM</p>
                                     </div>
                                 </div>
-                                <div class="col mt-4 pt-1">
+                                <div class="col-10 mt-4 pt-1">
                                     <!-- <div class="row py-3 border-top border-dark timeRow" id="t9" ><span></span></div>
                                     <div class="row py-3 border-top border-dark timeRow" id="t10"><span></span></div>
                                     <div class="row py-3 border-top border-dark timeRow" id="t11"><span></span></div>

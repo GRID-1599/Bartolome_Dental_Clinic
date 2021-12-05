@@ -16,7 +16,7 @@
         <!-- pages main body -->
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-xxl px-4">
+                <div class="container-xxl px-4 float-start">
                     <h1 class="mt-4">Calendar</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Month View</li>
