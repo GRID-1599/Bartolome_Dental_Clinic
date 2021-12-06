@@ -200,9 +200,9 @@ $theSql = substr($sql, 0, -4);
                                     <div class="modal-body">
                                         <form action="appointment/filtered" method="post" class="container g-5">
                                             <div class="row ">
-                                                <div class="input-group mb-3 w-50">
+                                                <div class="input-group mb-3 w-50" >
                                                     <span class="input-group-text border-0 bg-transparent"> <strong>Patient Id : </strong> </span>
-                                                    <input type="number" class="form-control border-bottom" placeholder="####" id="appPatientId" onKeyPress="if(this.value.length==4) return false;">
+                                                    <input type="number" class="form-control border-bottom" placeholder="####" id="appPatientId" name="appPatientId" onKeyPress="if(this.value.length==4) return false;">
                                                 </div>
                                             </div>
                                             <div class="row px-2">
@@ -226,17 +226,17 @@ $theSql = substr($sql, 0, -4);
                                                         <div class="row " id="appDateSpecificWrapper">
                                                             <label for="appDate" class="col-auto col-form-label ">Date</label>
                                                             <div class="col-sm-5">
-                                                                <input type="date" class="form-control" id="appDate">
+                                                                <input type="date" class="form-control" name="appDate" id="appDate">
                                                             </div>
                                                         </div>
                                                         <div class="row unShow " id="appDateRangeWrapper">
                                                             <label for="appDateStart" class="col-sm-auto col-form-label ">Start with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="date" class="form-control" id="appDateStart">
+                                                                <input type="date" class="form-control" name="appDateStart" id="appDateStart">
                                                             </div>
                                                             <label for="appDateEnd" class="col-sm-auto col-form-label">End with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="date" class="form-control" id="appDateEnd">
+                                                                <input type="date" class="form-control" name="appDateEnd" id="appDateEnd">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -264,17 +264,17 @@ $theSql = substr($sql, 0, -4);
                                                         <div class="row " id="crtDateSpecificWrapper">
                                                             <label for="crtDate" class="col-auto col-form-label ">Date</label>
                                                             <div class="col-sm-5">
-                                                                <input type="date" class="form-control" id="crtDate">
+                                                                <input type="date" class="form-control" name="crtDate" id="crtDate">
                                                             </div>
                                                         </div>
                                                         <div class="row unShow " id="crtDateRangeWrapper">
                                                             <label for="crtDateStart" class="col-sm-auto col-form-label ">Start with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="date" class="form-control" id="crtDateStart">
+                                                                <input type="date" class="form-control" name="crtDateStart" id="crtDateStart">
                                                             </div>
                                                             <label for="crtDateEnd" class="col-sm-auto col-form-label">End with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="date" class="form-control" id="crtDateEnd">
+                                                                <input type="date" class="form-control" name="crtDateEnd" id="crtDateEnd">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -301,17 +301,17 @@ $theSql = substr($sql, 0, -4);
                                                         <div class="row " id="amtSpecificWrapper">
                                                             <label for="appAmount" class="col-auto col-form-label ">Amount </label>
                                                             <div class="col-sm-5">
-                                                                <input type="number" class="form-control" id="appAmount" maxlength="4" size="4">
+                                                                <input type="number" class="form-control" name="appAmount" id="appAmount" maxlength="4" size="4">
                                                             </div>
                                                         </div>
                                                         <div class="row unShow " id="amtRangeWrapper">
                                                             <label for="amStart" class="col-sm-auto col-form-label ">Start with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="number" class="form-control" id="amStart" maxlength="4" size="4">
+                                                                <input type="number" class="form-control" name="amStart" id="amStart" maxlength="4" size="4">
                                                             </div>
                                                             <label for="amtEnd" class="col-sm-auto col-form-label">End with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="number" class="form-control" id="amtEnd" maxlength="4" size="4">
+                                                                <input type="number" class="form-control"  name="amtEnd" id="amtEnd" maxlength="4" size="4">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -321,7 +321,7 @@ $theSql = substr($sql, 0, -4);
                                             <div class="row mt-4">
                                                 <div class="input-group mb-3 w-50">
                                                     <span class="input-group-text border-0 bg-transparent"><strong>Payment Method </strong></span>
-                                                    <select class="form-select w-50" aria-label="" id="appPayment">
+                                                    <select class="form-select w-50" aria-label="" id="appPayment" name="appPayment">
                                                         <option value="" selected>Nothing selected</option>
                                                         <option value="GCash">GCash</option>
                                                         <option value="PayLater">Pay later</option>
@@ -331,17 +331,17 @@ $theSql = substr($sql, 0, -4);
                                             <div class="row mt-3">
                                                 <div class="input-group mb-3 w-50">
                                                     <span class="input-group-text border-0 bg-transparent"><strong>Is Paid </strong></span>
-                                                    <select class="form-select w-50" aria-label="" id="appIspaid">
+                                                    <select class="form-select w-50" aria-label="" id="appIspaid" name="appIspaid">
                                                         <option value="" selected>Nothing selected</option>
                                                         <option value="1">Paid</option>
                                                         <option value="0">Not Paid</option>
                                                     </select>
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="col-12">
                                                 <div class="col align-self-end">
-                                                    <button type="submit" class="btn btn-primary  float-end" data-bs-toggle="modal" data-bs-target="#filteringModal">
+                                                    <button type="submit" class="btn btn-primary  w-auto float-end" data-bs-toggle="modal" data-bs-target="#filteringModal">
                                                         <!-- <i class="fa fa-filter"></i> -->
                                                         Submit
                                                     </button>
