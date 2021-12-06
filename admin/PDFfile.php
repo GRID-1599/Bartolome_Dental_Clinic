@@ -43,7 +43,65 @@ class PDFfile extends FPDF
         $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
     }
 
+    function SetCol($col)
+    {
+        // Set position at a given column
+        $this->col = $col;
+        $x = 10 + $col * 65;
+        $this->SetLeftMargin($x);
+        $this->SetX($x);
+    }
+
+    function AcceptPageBreak()
+    {
+        // Method accepting or not automatic page break
+        if ($this->col < 2) {
+            // Go to next column
+            $this->SetCol($this->col + 1);
+            // Set ordinate to top
+            $this->SetY($this->y0);
+            // Keep on page
+            return false;
+        } else {
+            // Go back to first column
+            $this->SetCol(0);
+            // Page break
+            return true;
+        }
+    }
+
+    function ChapterTitle($num, $label)
+    {
+        // Title
+        $this->SetFont('Arial', '', 12);
+        $this->SetFillColor(200, 220, 255);
+        $this->Cell(0, 6, "Chapter $num : $label", 0, 1, 'L', true);
+        $this->Ln(4);
+        // Save ordinate
+        $this->y0 = $this->GetY();
+    }
+
+    function ChapterBody($file)
+    {
+        // Read text file
+        // $txt = file_get_contents($file);
+        // Font
+        $this->SetFont('Times', '', 12);
+        // Output text in a 6 cm width column
+        $this->MultiCell(100, 5, $file);
+        $this->Ln();
+        // Mention
+        $this->SetFont('', 'I');
+        $this->Cell(0, 5, '(end of excerpt)');
+        // Go back to first column
+        $this->SetCol(0);
+    }
+
+    function PrintChapter($num, $title, $file)
+    {
+        // Add chapter
+        $this->AddPage();
+        $this->ChapterTitle($num, $title);
+        $this->ChapterBody($file);
+    }
 }
-
-
-

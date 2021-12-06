@@ -14,7 +14,7 @@ $appDate_toShow = $_POST["appDateRadio"];
 if ($appDate_toShow == 1) {
     $appDateSpecific = $_POST["appDate"];
     $sqlappDate = ($appDateSpecific != '') ? "`Appoinment_Date` = '" . $appDateSpecific . "' and " : "";
-    $textFilter .= ($appDateSpecific != '') ? "<br> Appoinment Date :  " . date_format(date_create($appDateSpecific), "M d, Y"):"";
+    $textFilter .= ($appDateSpecific != '') ? "<br> Appoinment Date :  " . date_format(date_create($appDateSpecific), "M d, Y") : "";
 } else {
     $appDateStart = $_POST["appDateStart"];
     $appDateEnd = $_POST["appDateEnd"];
@@ -35,7 +35,7 @@ $dateCreated_toShow = $_POST["crtDateRadio"];
 if ($dateCreated_toShow == 1) {
     $crtDate = $_POST["crtDate"];
     $sqldateCreated = ($crtDate != '') ? "`Date_Created` Like '%" . $crtDate . "%' and " : "";
-    $textFilter .= ($crtDate != '') ? "<br> Date Created :  " . date_format(date_create($crtDate), "M d, Y"): "";
+    $textFilter .= ($crtDate != '') ? "<br> Date Created :  " . date_format(date_create($crtDate), "M d, Y") : "";
 } else {
     $crtDateStart = $_POST["crtDateStart"];
     $crtDateEnd = $_POST["crtDateEnd"];
@@ -82,9 +82,20 @@ $sqlisPaid = ($appIspaid != '') ? "`IsPaid` = " . $appIspaid . " and " : "";
 $ispaidtext = ($appIspaid) ? "Paid" : "Not Paid";
 $textFilter .= ($appIspaid != '') ? "<br> Is Paid : " . $ispaidtext : "";
 
+// is sort
+$sortBy = $_POST["sortBy"];
+$sqlsort = ($sortBy != '') ? "ORDER BY `appointment` ." . $sortBy : "";
+$textFilter .= ($sortBy != '') ? "<br> Sort by : " . $sortBy : "";
+
 
 $sql = 'SELECT * FROM `appointment` WHERE ' . $sqlpatientId . $sqlappDate . $sqldateCreated . $sqlamount . $sqlpayment . $sqlisPaid;
-$theSql = substr($sql, 0, -4);
+$theSql;
+if (strpos($sql, 'and') !== false) {
+    $theSql = substr($sql, 0, -4);
+} else {
+    $theSql = 'SELECT * FROM `appointment`';
+}
+$theSql .= $sqlsort;
 ?>
 <!-- SELECT * FROM `appointment` WHERE `Appoinment_Date` <= '2021-12-13' -->
 <!DOCTYPE html>
@@ -121,8 +132,10 @@ $theSql = substr($sql, 0, -4);
                                         <i class="fas fa-table me-1"></i> Appointments Table
                                     </div>
                                     <div class="col align-self-end">
-                                        <form action="post">
-                                            <button type="button" class="btn btn-dark btn-sm w-auto float-end">
+                                        <form action="appointmentFile" method="post" target="_blank">
+                                            <input type="hidden" name="sql" value="<?php echo $theSql ?>">
+                                            <input type="hidden" name="filterTxt" value="<?php echo $textFilter ?>">
+                                            <button type="submit" class="btn btn-dark btn-sm w-auto float-end">
                                                 <i class="fa fa-print"></i>
                                                 Print filtered Appointments
                                             </button>
@@ -200,7 +213,7 @@ $theSql = substr($sql, 0, -4);
                                     <div class="modal-body">
                                         <form action="appointment/filtered" method="post" class="container g-5">
                                             <div class="row ">
-                                                <div class="input-group mb-3 w-50" >
+                                                <div class="input-group mb-3 w-50">
                                                     <span class="input-group-text border-0 bg-transparent"> <strong>Patient Id : </strong> </span>
                                                     <input type="number" class="form-control border-bottom" placeholder="####" id="appPatientId" name="appPatientId" onKeyPress="if(this.value.length==4) return false;">
                                                 </div>
@@ -311,7 +324,7 @@ $theSql = substr($sql, 0, -4);
                                                             </div>
                                                             <label for="amtEnd" class="col-sm-auto col-form-label">End with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="number" class="form-control"  name="amtEnd" id="amtEnd" maxlength="4" size="4">
+                                                                <input type="number" class="form-control" name="amtEnd" id="amtEnd" maxlength="4" size="4">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -338,7 +351,7 @@ $theSql = substr($sql, 0, -4);
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-12">
                                                 <div class="col align-self-end">
                                                     <button type="submit" class="btn btn-primary  w-auto float-end" data-bs-toggle="modal" data-bs-target="#filteringModal">

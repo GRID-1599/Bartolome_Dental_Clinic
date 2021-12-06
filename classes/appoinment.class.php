@@ -18,40 +18,39 @@ class Appointment extends DatabaseConnection
         $Amount,
         $appointmentServices
     ) {
-        try{
+        try {
 
-        $sql = 'INSERT INTO `appointment`(`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinment_Date`, `Appointment_StartTime`, `Appointment_EndTime`, `Duration_Minutes`, `Allotted_Hours`,`Date_Created`, `Payment_Method`, `IsPaid`, `Amount`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([
-            $Appointment_Id,
-            $Patient_ID,
-            $Contact,
-            $Appoinment_Date,
-            $Appointment_StartTime,
-            $Appointment_EndTime,
-            $Duration_Minutes,
-            $Allotted_Hours,
-            $Date_Created,
-            $Payment_Method,
-            $IsPaid,
-            $Amount
-        ]);
-
-
-        $sql2 = 'INSERT INTO `appointment_service`(`Appoinment_Id`, `Service_Id`, `Service_Name`, `Service_Prc`) VALUES (?,?,?,?)';
-        $stmt2 = $this->connect()->prepare($sql2);
-        foreach ($appointmentServices as $service) {
-            $service = array_values($service);
-            $stmt2->execute([
+            $sql = 'INSERT INTO `appointment`(`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinment_Date`, `Appointment_StartTime`, `Appointment_EndTime`, `Duration_Minutes`, `Allotted_Hours`,`Date_Created`, `Payment_Method`, `IsPaid`, `Amount`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([
                 $Appointment_Id,
-                $service[0],
-                $service[1],
-                $service[2]
+                $Patient_ID,
+                $Contact,
+                $Appoinment_Date,
+                $Appointment_StartTime,
+                $Appointment_EndTime,
+                $Duration_Minutes,
+                $Allotted_Hours,
+                $Date_Created,
+                $Payment_Method,
+                $IsPaid,
+                $Amount
             ]);
-        }
 
-        echo "added";
 
+            $sql2 = 'INSERT INTO `appointment_service`(`Appoinment_Id`, `Service_Id`, `Service_Name`, `Service_Prc`) VALUES (?,?,?,?)';
+            $stmt2 = $this->connect()->prepare($sql2);
+            foreach ($appointmentServices as $service) {
+                $service = array_values($service);
+                $stmt2->execute([
+                    $Appointment_Id,
+                    $service[0],
+                    $service[1],
+                    $service[2]
+                ]);
+            }
+
+            echo "added";
         } catch (Exception $ex) {
             echo "0";
         }
@@ -111,6 +110,23 @@ class Appointment extends DatabaseConnection
         return $appointmentData;
     }
 
+    public function getServicesByAppID($appID)
+    {
+        $sql2 = "SELECT * FROM `appointment_service` WHERE `Appoinment_Id` = ?";
+        $stmt2 = $this->connect()->prepare($sql2);
+        $stmt2->execute([$appID]);
+        $appointmentServices = array();
+        while ($row = $stmt2->fetch()) {
+            $service = array(
+                "Service_Id" => $row["Service_Id"],
+                "Service_Name" => $row["Service_Name"],
+                "Service_Prc" => $row["Service_Prc"],
+            );
+            array_push($appointmentServices, $service);
+        }
+        return $appointmentServices;
+    }
+
     public function getAppointmentByDate($appoinmentDate)
     {
         $sql = "SELECT * FROM `appointment` WHERE `Appoinment_Date` = ? ORDER BY `appointment`.`Appointment_StartTime` ASC";
@@ -168,7 +184,7 @@ class Appointment extends DatabaseConnection
 
     public function getByFiltered($sqlText)
     {
-        $sql = $sqlText . " ORDER BY `Date_Created` DESC";
+        $sql = $sqlText;
         $stmt = $this->connect()->query($sql);
         return $stmt;
     }

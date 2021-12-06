@@ -41,6 +41,15 @@ RewriteRule ^service service.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for appoinment file
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule appointmentFile appointmentFile.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 #  url for appoinment filter
 RewriteCond %{Request_FileName} !-d
 
@@ -67,6 +76,8 @@ RewriteCond %{Request_FileName}\.php -f
 RewriteRule ^appointment appointment.php [NC,L,QSA]
 
 # ----------------------------------------------- 
+
+
 
 
 #  url for patients print
