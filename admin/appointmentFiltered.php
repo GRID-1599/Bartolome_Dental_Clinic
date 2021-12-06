@@ -352,6 +352,23 @@ $theSql .= $sqlsort;
                                                 </div>
                                             </div>
 
+                                            <div class="row mt-3">
+                                                <div class="input-group mb-3 w-50">
+                                                    <span class="input-group-text border-0 bg-transparent"><strong>Sort by </strong></span>
+                                                    <select class="form-select w-50" aria-label="" id="sortBy" name="sortBy">
+                                                        <option value="" selected>Nothing selected</option>
+                                                        <option value="`Appoinment_Date` ASC">Appointment Date (ASC)</option>
+                                                        <option value="`Appoinment_Date` DESC">Appointment Date (DESC)</option>
+                                                        <option value="`Date_Created` ASC">Date Created (ASC)</option>
+                                                        <option value="`Date_Created` DESC">Date Created (DESC)</option>
+                                                        <option value="`Amount` ASC">Amount (ASC)</option>
+                                                        <option value="`Amount` DESC">Amount (DESC)</option>
+                                                        <option value="`Appointment_StartTime` ASC">Appointment Time (ASC)</option>
+                                                        <option value="`Appointment_StartTime` DESC">Appointment Time (DESC)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-12">
                                                 <div class="col align-self-end">
                                                     <button type="submit" class="btn btn-primary  w-auto float-end" data-bs-toggle="modal" data-bs-target="#filteringModal">
