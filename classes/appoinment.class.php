@@ -165,4 +165,11 @@ class Appointment extends DatabaseConnection
         }
         return $appointmentData;
     }
+
+    public function getByFiltered($sqlText)
+    {
+        $sql = $sqlText . " ORDER BY `Date_Created` DESC";
+        $stmt = $this->connect()->query($sql);
+        return $stmt;
+    }
 }
