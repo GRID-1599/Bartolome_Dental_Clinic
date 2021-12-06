@@ -1,0 +1,10 @@
+.fltMenu {
+    cursor: pointer;
+    &:hover {
+        font-weight: bold;
+    }
+}
+
+.radio-label {
+    font-size: .75rem;
+}

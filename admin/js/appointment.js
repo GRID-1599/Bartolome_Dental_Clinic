@@ -7,6 +7,12 @@ function appoinmentEventUpdate() {
     });
 }
 
+var myModal = document.getElementById('filteringModal')
+myModal.addEventListener('shown.bs.modal', function() {
+    // myInput.focus()
+    // alert()
+})
+
 $(document).ready(function() {
     $('.appointmentRow').each(function() {
         $(this).click(function() {
@@ -27,39 +33,49 @@ $(document).ready(function() {
     //     return false;
     // });
 
-    $('#filterID').click(function() {
-        $('#filteredBy').text("Patient Id")
-        unShowAllFilterInpt()
-        $('#inptPatientID').removeClass("unShow")
+
+    $('input[type=radio][name=appDateRadio]').change(function() {
+        if (this.value == 1) {
+            $('#appDateSpecificWrapper').removeClass("unShow");
+            $('#appDateRangeWrapper').addClass("unShow");
+
+        } else if (this.value == 2) {
+            $('#appDateSpecificWrapper').addClass("unShow");
+            $('#appDateRangeWrapper').removeClass("unShow");
+
+
+        }
+
     });
 
-    $('#filterAppDate').click(function() {
-        $('#filteredBy').text("Appoinment Date")
-        unShowAllFilterInpt()
-        $('#inptAppDate').removeClass("unShow")
+    $('input[type=radio][name=crtDateRadio]').change(function() {
+        if (this.value == 1) {
+            $('#crtDateSpecificWrapper').removeClass("unShow");
+            $('#crtDateRangeWrapper').addClass("unShow");
+
+        } else if (this.value == 2) {
+            $('#crtDateSpecificWrapper').addClass("unShow");
+            $('#crtDateRangeWrapper').removeClass("unShow");
+
+
+        }
 
     });
 
-    $('#filterDateCreate').click(function() {
-        $('#filteredBy').text("Date Created")
-        unShowAllFilterInpt()
+    $('input[type=radio][name=amtRadio]').change(function() {
+        if (this.value == 1) {
+            $('#amtSpecificWrapper').removeClass("unShow");
+            $('#amtRangeWrapper').addClass("unShow");
+
+        } else if (this.value == 2) {
+            $('#amtSpecificWrapper').addClass("unShow");
+            $('#amtRangeWrapper').removeClass("unShow");
+
+
+        }
+
     });
 
-    $('#filterAmount').click(function() {
-        $('#filteredBy').text("Amount")
-        unShowAllFilterInpt()
-    });
 
-    $('#filterPaid').click(function() {
-        $('#filteredBy').text("Paid")
-        unShowAllFilterInpt()
-    });
 
 });
-
-function unShowAllFilterInpt() {
-    $('.filterInputs').each(function() {
-        $(this).addClass("unShow");
-    });
-
-}

@@ -198,4 +198,16 @@
 .message-wrapper {
   cursor: pointer;
 }
+
+.fltMenu {
+  cursor: pointer;
+}
+
+.fltMenu:hover {
+  font-weight: bold;
+}
+
+.radio-label {
+  font-size: .75rem;
+}
 /*# sourceMappingURL=style.css.map */
