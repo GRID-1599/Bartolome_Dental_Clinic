@@ -19,7 +19,7 @@ $pdf->AddPage();
 $pdf->SetFont('helvetica', '', 12);
 
 if (isset($_POST["app_ID"])) {
-    $pdf->SetTitle("Appointment");
+    $pdf->SetTitle("Appointment " . $_POST["app_ID"]);
 
     $table1 = new easyTable($pdf, 2 ,);
     $table1->easyCell('', 'img:../resources/icons/LOGOV2.6.png, h15; align:L; valign:B;');
