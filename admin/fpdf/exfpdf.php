@@ -15,9 +15,10 @@
         // Position at 1.5 cm from bottom
         $this->SetY(-15);
         // Arial italic 8
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Arial', 'i', 10);
         // Page number
-        $this->Cell(0, 3, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
+        $footertxt = 'Bartolome Dental Clinic                                                                                                                                       ';
+        $this->Cell(0, 3,$footertxt. 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'L');
     }
 
     public function PageBreak(){
