@@ -62,7 +62,7 @@ foreach ($unreadMessages as $unread) {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-5 ">
+                        <div class="col-xl-4 ">
                             <!-- todays appointment  -->
                             <div class="col">
                                 <div class="card  mb-4">
@@ -225,125 +225,145 @@ foreach ($unreadMessages as $unread) {
                             </div>
                         </div>
                         <div class="col ">
-                            <div class="row">
-                                <div class="col ">
-                                    <div class="card mb-4">
-                                        <div class="card-body">
-                                            <!-- <a href="message/unread">
-                                                <button type="button" class="btn btn-success position-relative  rounded-pill">
-                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                        <?php echo $unreadMessageNum; ?>
-                                                        <span class="visually-hidden">unread messages</span>
-                                                    </span>
-                                                </button>
-                                            </a> -->
-                                            <div class="row">
-                                                <div class="container">
-                                                    Appointments
-                                                    <p style="display: none;" id="theDate"><?php echo $todayDate ?></p>
-
-                                                </div>
-                                                <div class="container">
-                                                    <div class="row pe-4">
-                                                        <div class="col-2">
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">9 AM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">10 AM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">11 AM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">12 PM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">1 PM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">2 PM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">3 PM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">4 PM</p>
-                                                            </div>
-                                                            <div class="row py-3 text-end timeRow">
-                                                                <p class="text-end">5 PM</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col mt-4 ">
-                                                            <?php
-                                                            $timesID = array(9, 10, 11, 12, 13, 14, 15, 16, 17);
-
-
-                                                            foreach ($timesID as $id) {
-                                                                if ($id == 12) {
-                                                                    echo '<div class="row py-3 border-top border-dark  timeRow unAvailable"><span>Lunch Break</span></div> ';
-                                                                } else {
-                                                                    printf('<div class="row py-3 border-top border-dark  timeRow" id="%u"><span></span></div> ', $id);
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                    <?php
-
-
-                                                    // $isHave = false;
-                                                    // foreach ($date_apps as $data) {
-                                                    //     $isHave = true;
-                                                    //     $time = $data["Appointment_StartTime"];
-                                                    //     $appTime = new DateTime($time);
-                                                    //     echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
-                                                    //         " at " . $appTime->format('h:i a') .
-                                                    //         "</a><br>";
-                                                    // };
-
-                                                    // if (!$isHave) {
-                                                    //     echo '<p class="display-6"> Nothing to show</p>';
-                                                    // }
-
-                                                    ?>
-                                                </div>
+                            <div class="card mb-4" id="todaySched">
+                                <div class="card-header ">
+                                    <p class="h2">Today Schedule</p>
+                                    <p style="display: none;" id="theDate"><?php echo $todayDate ?></p>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="row pe-5">
+                                        <div class="col-2">
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">9 AM</p>
                                             </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">10 AM</p>
+                                            </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">11 AM</p>
+                                            </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">12 PM</p>
+                                            </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">1 PM</p>
+                                            </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">2 PM</p>
+                                            </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">3 PM</p>
+                                            </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">4 PM</p>
+                                            </div>
+                                            <div class="row py-3 text-end timeRow">
+                                                <p class="text-end">5 PM</p>
+                                            </div>
+                                        </div>
+                                        <div class="col mt-4 ">
+                                            <?php
+                                            $timesID = array(9, 10, 11, 12, 13, 14, 15, 16, 17);
+
+
+                                            foreach ($timesID as $id) {
+                                                if ($id == 12) {
+                                                    echo '<div class="row py-3 border-top border-dark  timeRow unAvailable"><span>Lunch Break</span></div> ';
+                                                } else {
+                                                    printf('<div class="row py-3 border-top border-dark  timeRow" id="%u"><span></span></div> ', $id);
+                                                }
+                                            }
+                                            ?>
+                                            <?php
+
+
+                                            // $isHave = false;
+                                            // foreach ($date_apps as $data) {
+                                            //     $isHave = true;
+                                            //     $time = $data["Appointment_StartTime"];
+                                            //     $appTime = new DateTime($time);
+                                            //     echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
+                                            //         " at " . $appTime->format('h:i a') .
+                                            //         "</a><br>";
+                                            // };
+
+                                            // if (!$isHave) {
+                                            //     echo '<p class="display-6"> Nothing to show</p>';
+                                            // }
+
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-
                     </div>
+                    <div class="row">
+                        <div class="card mb-4 " id="weekSched">
+                            <div class="card-header">
+                                <p class="h2">Today's Week Schedule</p>
 
-
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i> DataTable Example
-                        </div>
-                        <div class="card-body">
-                            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-                                <div class="card flex-fill">
-                                    <div class="card-header">
-
-                                        <h5 class="card-title mb-0">Calendar</h5>
-                                    </div>
-                                    <div class="card-body d-flex">
-                                        <div class="align-self-center w-100">
-                                            <div class="chart">
-                                                <div id="datetimepicker-dashboard"></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class=" m-0 w-100 ">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <button type="button" class="btn btn-outline-secondary float-end w-50"><i class="fas fa-caret-left"></i> Previous</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class=""><?php echo $currentDate->format('Y-m-d'); ?></p>
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="button" class="btn btn-outline-secondary w-50">Next <i class="fas fa-caret-right"></i></button>
                                             </div>
                                         </div>
                                     </div>
+                                    <table class="table  table-borderless" id="calendar">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <small class="h3">01</small>
+                                                    <br>Sun
+                                                </th>
+                                                <th>
+                                                    <small class="h3">02</small>
+                                                    <br>Mon
+                                                </th>
+                                                <th>
+                                                    <small class="h3">03</small>
+                                                    <br>Tue
+                                                </th>
+                                                <th>
+                                                    <small class="h3">04</small>
+                                                    <br>Wed
+                                                </th>
+                                                <th>
+                                                    <small class="h3">05</small>
+                                                    <br>Thu
+                                                </th>
+                                                <th>
+                                                    <small class="h3">06</small>
+                                                    <br>Fri
+                                                </th>
+                                                <th>
+                                                    <small class="h3">07</small>
+                                                    <br>Sat
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="weekBody">
+                                        </tbody>
+                                    </table>
+
+                                    <br />
+                                    <!-- <form class="form-inline">
+                                    <button class="btn-outline-primary lead" id="pre" type="button" onclick="preMonth()"><i class="fas fa-caret-left"></i> Previous</button>
+                                    <button class="btn-outline-primary lead " id="nex" type="button" onclick="nexMonth()">Next <i class="fas fa-caret-right"></i></button>
+                                </form> -->
                                 </div>
                             </div>
-                            <?php
-                            // include 'patientTable.php' 
-
-                            ?>
                         </div>
                     </div>
                 </div>
@@ -353,6 +373,7 @@ foreach ($unreadMessages as $unread) {
     </div>
     <?php include 'scripts.php' ?>
     <script src="js/dateView.js"></script>
+    <script src="js/weekDay.js"></script>
     <!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);

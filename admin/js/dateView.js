@@ -54,9 +54,9 @@ function initScheds() {
                 }
                 j++;
 
-                console.log(app_time);
-                console.log(indexOfSelected1);
-                console.log(timeIds[lastrange1]);
+                // console.log(app_time);
+                // console.log(indexOfSelected1);
+                // console.log(timeIds[lastrange1]);
             });
 
             $('.shedTime').each(function() {
