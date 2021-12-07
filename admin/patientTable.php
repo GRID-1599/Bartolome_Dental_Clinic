@@ -1,6 +1,5 @@
 <?php
-include '../classes/Patient.class.php';
-$patient = new Patient();
+
 $patients = $patient->getAllPatients();
 // echo json_encode($patients);
 ?>
