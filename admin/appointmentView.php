@@ -34,12 +34,16 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
-                                        <i class="fas fa-table me-1"></i> Service Table
+                                        <i class="fas fa-calendar-check me-1"></i> Appointment
                                     </div>
-                                    <div class="col  ">
-                                        <a class="float-end">
-                                            <button type="button" class="btn btn-dark w-auto px-4"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
-                                        </a>
+                                    <div class="col align-self-end">
+                                        <form action="appointmentFile" method="post" target="_blank">
+                                            <input type="hidden" name="app_ID" value="<?php echo $_GET["appoinmentId"] ?>">
+                                            <button type="submit" class="btn btn-dark btn-sm w-auto float-end">
+                                                <i class="fa fa-print"></i>
+                                                Print
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +56,7 @@
                             $appointment_obj = new Appointment();
                             $patient_obj = new Patient();
                             $appointment = $appointment_obj->getAppointmentById($appointmentId);
-                            $patient = $patient_obj->getPatientById( $appointment[0]["Patient_ID"]);
+                            $patient = $patient_obj->getPatientById($appointment[0]["Patient_ID"]);
 
                             // echo $appointmentId . "<br>";
                             // echo $appointment[0]["Patient_ID"] . "<br>";
@@ -90,7 +94,7 @@
                                             <div class="row">
                                                 <dt class="col-sm-5">Appointment ID:</dt>
                                                 <dd class="col-sm-7">
-                                                    
+
                                                     <?php
                                                     echo $appointmentId;
                                                     ?>
@@ -98,10 +102,10 @@
 
                                                 <dt class="col-sm-5">Patient ID:</dt>
                                                 <dd class="col-sm-7">
-                                                    <a href="patients/<?php echo  $appointment[0]["Patient_ID"]?>">
-                                                    <?php
-                                                    echo $appointment[0]["Patient_ID"];
-                                                    ?>
+                                                    <a href="patients/<?php echo  $appointment[0]["Patient_ID"] ?>">
+                                                        <?php
+                                                        echo $appointment[0]["Patient_ID"];
+                                                        ?>
                                                     </a>
                                                 </dd>
 
@@ -144,7 +148,7 @@
                                                     $appTime_Duration = $appointment[0]["Duration_Minutes"];
                                                     echo $appTime_Duration . " mins / " .  convertToHoursMins($appTime_Duration, '%02d hours %02d minutes');;
                                                     // echo "<br>" . date('H:i', mktime(0,$appTime_Duration ));
-                                                    
+
                                                     ?>
                                                 </dd>
 
@@ -230,7 +234,7 @@
         </div>
     </div>
     <?php include 'scripts.php' ?>
-    <script src="js/appointment.js"></script>
+    <!-- <script src="js/appointment.js"></script> -->
 </body>
 
 </html>
