@@ -8,7 +8,9 @@ if (isset($_GET['adminUser'])) {
 include_once '../classes/appoinment.class.php';
 $appointment_obj = new Appointment();
 $currentDate = new DateTime();
-$currentDate = new DateTime('2021-12-13');
+$currentDate->setTimezone(new DateTimeZone('Asia/Manila'));
+
+// $currentDate = new DateTime('2021-12-13');
 $todayDate =  $currentDate->format('Y-m-d');
 $appToday_stmt = $appointment_obj->getAppointmentByDate($todayDate);
 $appAddedToday_stmt = $appointment_obj->getAppointmentAddedToday($todayDate);
