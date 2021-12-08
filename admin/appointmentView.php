@@ -401,13 +401,13 @@
                                                 <dt class="col-sm-5">IsSmoking:</dt>
                                                 <dd class="col-sm-7">
                                                     <?php
-                                                    echo (isset($SocialHistory["IsSmoking"])) ? ($SocialHistory["IsSmoking"]) ? "Yes" : "No" : " ";
+                                                    echo (isset($SocialHistory["IsSmoking"])) ? (($SocialHistory["IsSmoking"]) ? "Yes" : "No") : " ";
                                                     ?>
                                                 </dd>
                                                 <dt class="col-sm-5">IsDrinkingAlcohol:</dt>
                                                 <dd class="col-sm-7">
                                                     <?php
-                                                    echo (isset($SocialHistory["IsDrinkingAlcohol"])) ? ($SocialHistory["IsDrinkingAlcohol"]) ? "Yes" : "No" : " ";
+                                                    echo (isset($SocialHistory["IsDrinkingAlcohol"])) ? (($SocialHistory["IsDrinkingAlcohol"]) ? "Yes" : "No") : " ";
                                                     ?>
                                                 </dd>
 
