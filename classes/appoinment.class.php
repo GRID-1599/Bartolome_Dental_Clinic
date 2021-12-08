@@ -50,7 +50,7 @@ class Appointment extends DatabaseConnection
                 ]);
             }
 
-            echo "added";
+            echo "1";
         } catch (Exception $ex) {
             echo "0";
         }

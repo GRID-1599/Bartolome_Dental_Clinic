@@ -1205,6 +1205,23 @@ header nav a:hover {
           transform: scale(1.125);
 }
 
+#clear_LastDentalVisit,
+#clear_LastMedicalCheckUp {
+  border: none;
+}
+
+#clear_LastDentalVisit:hover,
+#clear_LastMedicalCheckUp:hover {
+  background-color: pink;
+}
+
+#clear_LastDentalVisit:focus,
+#clear_LastMedicalCheckUp:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
 .svServices__cont {
   margin: 0px 25px;
   padding-top: 100px;

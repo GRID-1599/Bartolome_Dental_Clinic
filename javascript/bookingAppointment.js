@@ -280,6 +280,101 @@ function goToFormCondition() {
     return true;
 }
 
+function testFormIsAnswered() {
+    // dental forms 
+    var dentalFlag = false;
+    if ($('#inpt_LastDentalVisit').val()) {
+        dentalFlag = true
+    }
+    if ($('#inpt_PurposeLastDentalVisit').val()) {
+        dentalFlag = true
+    }
+
+    // medical forms 
+    var medicalFlag = false;
+    if ($('#inpt_LastMedicalCheckUp').val()) {
+        medicalFlag = true
+    }
+
+    $("input[type=radio][name=treatment]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            medicalFlag = true
+        }
+    });
+
+    $("input[type=radio][name=medications]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            medicalFlag = true
+        }
+    });
+
+    $("input[type=radio][name=hospitalized]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            medicalFlag = true
+        }
+    });
+
+    if ($('#inpt_Allergies').val()) {
+        medicalFlag = true
+    }
+
+
+    // female forms 
+    var femaleFlag = false
+    $("input[type=radio][name=pregnant]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            femaleFlag = true
+        }
+    });
+
+    $("input[type=radio][name=pills]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            femaleFlag = true
+        }
+    });
+
+
+    // social forms 
+    var socialFlag = false
+    $("input[type=radio][name=smoke]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            socialFlag = true
+        }
+    });
+
+    $("input[type=radio][name=alcoholic]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            socialFlag = true
+        }
+    });
+
+    // medication form 
+    var conditionsFlag = false
+    $("input[type=checkbox][name=conditions]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:checkbox[name=" + name + "]:checked").length != 0) {
+            conditionsFlag = true
+        }
+    });
+
+
+    var flags = {};
+    flags['dentalFlag'] = dentalFlag;
+    flags['medicalFlag'] = medicalFlag;
+    flags['femaleFlag'] = femaleFlag;
+    flags['socialFlag'] = socialFlag;
+    flags['conditionsFlag'] = conditionsFlag;
+
+    return flags;
+}
+
 function submitCondition() {
     if ($('#inpt_LastDentalVisit').val() == "") {
         messagePromt("");
@@ -287,6 +382,7 @@ function submitCondition() {
     }
     return true;
 }
+
 
 //  document ready
 // ________________________________________________________________________
@@ -546,7 +642,7 @@ $(document).ready(function() {
     $('input[type=radio][name=treatment]').change(function() {
         if (this.value == "yes") {
             $('#treatment').removeClass("unShow")
-        } else if (this.value == 'no') {
+        } else if (this.value == 'None') {
             $('#treatment').addClass("unShow")
 
         }
@@ -555,7 +651,7 @@ $(document).ready(function() {
     $('input[type=radio][name=medications]').change(function() {
         if (this.value == "yes") {
             $('#medications').removeClass("unShow")
-        } else if (this.value == 'no') {
+        } else if (this.value == 'None') {
             $('#medications').addClass("unShow")
 
         }
@@ -564,7 +660,7 @@ $(document).ready(function() {
     $('input[type=radio][name=hospitalized]').change(function() {
         if (this.value == "yes") {
             $('#hospitalized').removeClass("unShow")
-        } else if (this.value == 'no') {
+        } else if (this.value == 'None') {
             $('#hospitalized').addClass("unShow")
 
         }
@@ -611,17 +707,226 @@ $(document).ready(function() {
 
     $('#btnSubmitAppointment').click(function() {
         var agree = $('#agree').prop('checked');
-        // alert(agree)
-        getDatas()
-            // showData();
-        addNewAppointment();
+        if (!agree) {
+            $('#agree').addClass("is-invalid")
+            $('#agree').focus()
+            Swal.fire({
+                    icon: 'info',
+                    text: "You must agree before submitting.",
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#F05F79"
+                })
+                // return false
+        } else {
+            $('#agree').removeClass("is-invalid")
+            getDatas()
+            console.log(testFormIsAnswered())
+            if (appFormValidation()) {
+                getDatas()
+                    // dental 
+                if (testFormIsAnswered()["dentalFlag"]) {
+                    var inpt_LastDentalVisit = $('#inpt_LastDentalVisit').val();
+                    var inpt_PurposeLastDentalVisit = $('#inpt_PurposeLastDentalVisit').val();
 
+                    var detalForm = {
+                        Last_Dental_Visit: inpt_LastDentalVisit,
+                        Purpose: inpt_PurposeLastDentalVisit
+                    }
+                    appoinment_obj.Dental_Form = detalForm;
+                }
+                // medical 
+                if (testFormIsAnswered()["medicalFlag"]) {
+                    var inpt_LastMedicalCheckUp = $('#inpt_LastMedicalCheckUp').val();
+                    var treatment;
+                    if ($("#rdTreatmentYes").is(":checked")) {
+                        treatment = $("#inpt_hasTreatment").val()
+                    } else {
+                        treatment = "None"
+                    }
 
+                    var medication;
+                    if ($("#rdMedicationsYes").is(":checked")) {
+                        medication = $("#inpt_hasMedication").val()
+                    } else {
+                        medication = "None"
+                    }
+
+                    var hospitalized;
+                    if ($("#rdHospitalizedYes").is(":checked")) {
+                        hospitalized = $("#inpt_hasHopitalized").val()
+                    } else {
+                        hospitalized = "No"
+                    }
+
+                    var inpt_Allergies = $('#inpt_Allergies').val();
+
+                    var medicalForm = {
+                        Last_Medical_CheckUp: inpt_LastMedicalCheckUp,
+                        Treatment: treatment,
+                        Medication: medication,
+                        Hospitalized: hospitalized,
+                        Allergies: inpt_Allergies,
+                    }
+                    appoinment_obj.Medical_Form = medicalForm;
+
+                }
+                // female 
+                if (testFormIsAnswered()["femaleFlag"]) {
+                    var pregnant;
+                    var months = 0;
+                    if ($("#rdPregnantYes").is(":checked")) {
+                        pregnant = 1
+                        months = $('#inpt_monthsPregnant').val()
+                    } else {
+                        pregnant = 0
+                    }
+
+                    var isTakingPills;
+                    if ($("#rdPillsYes").is(":checked")) {
+                        isTakingPills = 1
+                    } else {
+                        isTakingPills = 0
+                    }
+
+                    var femaleForm = {
+                        IsPregnant: pregnant,
+                        Months_Pregnant: months,
+                        IsTakingPills: isTakingPills
+                    }
+
+                    appoinment_obj.Female_Form = femaleForm;
+                }
+                // social 
+                if (testFormIsAnswered()["socialFlag"]) {
+                    var smoking;
+                    if ($("#rdSmokeYes").is(":checked")) {
+                        smoking = 1
+                    } else {
+                        smoking = 0
+                    }
+
+                    var drinkAlcohol;
+                    if ($("#rdAlcoholicYes").is(":checked")) {
+                        drinkAlcohol = 1
+                    } else {
+                        drinkAlcohol = 0
+                    }
+
+                    var SocialForm = {
+                        IsSmoking: smoking,
+                        IsDringkingAlcohol: drinkAlcohol
+                    }
+
+                    appoinment_obj.Social_Form = SocialForm;
+                }
+                // condition 
+                if (testFormIsAnswered()["conditionsFlag"]) {
+                    var conditions = [];
+                    $.each($("input[name='conditions']:checked"), function() {
+                        conditions.push($(this).val());
+                    });
+                    var conditiondTxt = conditions.join(", ");
+
+                    appoinment_obj.Condtions = conditiondTxt;
+                }
+
+                console.log(JSON.stringify(appoinment_obj));
+                console.log("-------------------------");
+                console.log(appoinment_obj);
+
+                addTheNewAppointment();
+
+            } else {
+                $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 100, function() {
+                    $(this).animate({ scrollTop: 10 }, 100);
+                });
+            }
+
+        }
+
+    });
+
+    $('#clear_LastDentalVisit').click(function() {
+        $('#inpt_LastDentalVisit').val(null)
+    });
+    $('#clear_LastMedicalCheckUp').click(function() {
+        $('#inpt_LastMedicalCheckUp').val(null)
     });
 
 
 
 });
+
+function checkingRadioIfHasChecked(radioName) {
+    $("input[type=radio][name=" + radioName + "]").each(function() {
+        var name = $(this).attr("name");
+        if ($("input:radio[name=" + name + "]:checked").length != 0) {
+            return true;
+        }
+    });
+    return false;
+}
+
+function checkAnwerHasValue(radio_id, input_id) {
+    if ($(radio_id).is(":checked")) {
+        if (!$(input_id).val()) {
+            $(input_id).addClass("is-invalid")
+            return false;
+        } else {
+            $(input_id).removeClass("is-invalid")
+            return true;
+        }
+    } else {
+        return true;
+
+    }
+}
+
+function appFormValidation() {
+    var flag = true;
+    // Dental History
+    if (testFormIsAnswered()["dentalFlag"]) {
+
+        if (!$('#inpt_PurposeLastDentalVisit').val()) {
+            $('#inpt_PurposeLastDentalVisit').addClass("is-invalid")
+            flag = false;
+        } else {
+            $('#inpt_PurposeLastDentalVisit').removeClass("is-invalid")
+
+        }
+        if (!$('#inpt_LastDentalVisit').val()) {
+            $('#inpt_LastDentalVisit').addClass("is-invalid")
+            flag = false;
+        } else {
+            $('#inpt_LastDentalVisit').removeClass("is-invalid")
+        }
+    } else {
+        $('#inpt_PurposeLastDentalVisit').removeClass("is-invalid")
+        $('#inpt_LastDentalVisit').removeClass("is-invalid")
+    }
+    // medical 
+    if (testFormIsAnswered()["medicalFlag"]) {
+        if (!checkAnwerHasValue("#rdTreatmentYes", "#inpt_hasTreatment")) {
+            flag = false;
+        }
+        if (!checkAnwerHasValue("#rdMedicationsYes", "#inpt_hasMedication")) {
+            flag = false;
+        }
+        if (!checkAnwerHasValue("#rdHospitalizedYes", "#inpt_hasHopitalized")) {
+            flag = false;
+        }
+
+    }
+
+    if (testFormIsAnswered()["femaleFlag"]) {
+        if (!checkAnwerHasValue("#rdPregnantYes", "#inpt_monthsPregnant")) {
+            flag = false;
+        }
+
+    }
+
+    return flag
+}
 
 
 // AJAX CALLs
@@ -955,6 +1260,9 @@ var appointmentStartTime;
 var appointmentEndTime;
 
 
+var appoinment_obj;
+
+
 function getDatas() {
     var serviceChoosedList = [];
     $('.choosedServiceRow ').each(function() {
@@ -972,6 +1280,21 @@ function getDatas() {
     appointmentAmount = $('#totalAmountofAppoinment').text();
     appointmentPaymentMethod = $(".paymentMethod:checked").val();
     appointmentId = $('#appointmentCode').val();
+
+    appoinment_obj = {
+        ID: appointmentId,
+        Patient_ID: patientID,
+        Contact: patientContact,
+        Date: appointmentDate,
+        Start_Time: appointmentStartTime,
+        End_Time: appointmentEndTime,
+        Duration: appointmentTotalDuration,
+        Allotted_Hours: appointmentAllottedHours,
+        Services: appointmentServices,
+        Amount: appointmentAmount,
+        Payment_Method: appointmentPaymentMethod,
+        IsPaid: IsPaid,
+    }
 
 }
 
@@ -1019,6 +1342,40 @@ function addNewAppointment() {
                 window.location.href = "index.php";
 
             }
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+}
+
+function addTheNewAppointment() {
+    $.ajax({
+        url: './ajaxRequest/appointment.ajax.php',
+        method: 'POST',
+        data: {
+            addTheNewAppointment: 1,
+            appointmentData: JSON.stringify(appoinment_obj)
+        },
+        success: function(response) {
+            console.log("the response" + response);
         },
         error: function(jqXHR, exception) {
             var msg = '';

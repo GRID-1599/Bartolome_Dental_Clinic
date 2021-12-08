@@ -6,7 +6,7 @@ $appService_obj = new Service();
 $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name();
 ?>
 <div class="appointmentInputs">
-    <div class="serviceInputs">
+    <div class="serviceInputs ">
         <div class="top">
             <div class="container">
                 <div class="row">
@@ -221,7 +221,8 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             <div class="container questionCategoryWrapper">
                 <div class="input-group flex-nowrap ">
                     <span class="input-group-text">Last Dental Visit: </span>
-                    <input type="date" class="form-control " id="inpt_LastDentalVisit">
+                    <input type="date" class="form-control" id="inpt_LastDentalVisit">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="clear_LastDentalVisit">Clear</button>
                 </div>
                 <div class="input-group flex-nowrap question">
                     <span class="input-group-text">Purpose of last Dental Visit</span>
@@ -237,22 +238,23 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                 <!-- last medical check up -->
                 <div class="input-group flex-nowrap question">
                     <span class="input-group-text">When was your last medical check up ? </span>
-                    <input type="date" class="form-control ">
+                    <input type="date" class="form-control" id="inpt_LastMedicalCheckUp">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="clear_LastMedicalCheckUp">Clear</button>
                 </div>
-                <!-- medical treatment -->
-                <div class="input-group flex-nowrap question">
+                <!-- reatment -->
+                <div class="input-group flex-nowrap question medical-treatment">
                     <span class="input-group-text">Are you under any medical treatment right now ?</span>
                     <div class="form-control no-border">
-                        <input type="radio" id="rdTreatmentYes" name="treatment" value="yes">
+                        <input type="radio" id="rdTreatmentYes"   name="treatment" value="yes">
                         <label for="rdTreatmentYes">Yes</label>
-                        <input type="radio" id="rdTreatmentNo" name="treatment" value="no">
+                        <input type="radio" id="rdTreatmentNo"  name="treatment" value="None" >
                         <label for="rdTreatmentNo">No</label>
                     </div>
                 </div>
                 <div class="container ifYes unShow" id="treatment">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text">If yes, what is the condition being treated?</span>
-                        <input type="text" class="form-control ">
+                        <input type="text" class="form-control " id="inpt_hasTreatment">
                     </div>
                 </div>
                 <!-- Medications -->
@@ -261,14 +263,14 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     <div class="form-control no-border">
                         <input type="radio" id="rdMedicationsYes" name="medications" value="yes">
                         <label for="rdMedicationsYes">Yes</label>
-                        <input type="radio" id="rdMedicationsNo" name="medications" value="no">
+                        <input type="radio" id="rdMedicationsNo" name="medications" value="None">
                         <label for="rdMedicationsNo">No</label>
                     </div>
                 </div>
                 <div class="container ifYes unShow" id="medications">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text">If yes, please specify.</span>
-                        <input type="text" class="form-control ">
+                        <input type="text" class="form-control " id="inpt_hasMedication">
                     </div>
                 </div>
 
@@ -278,21 +280,21 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     <div class="form-control no-border">
                         <input type="radio" id="rdHospitalizedYes" name="hospitalized" value="yes">
                         <label for="rdHospitalizedYes">Yes</label>
-                        <input type="radio" id="rdHospitalizedNo" name="hospitalized" value="no">
+                        <input type="radio" id="rdHospitalizedNo" name="hospitalized" value="None">
                         <label for="rdHospitalizedNo">No</label>
                     </div>
                 </div>
                 <div class="container ifYes unShow" id="hospitalized">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text">If so when and why?</span>
-                        <input type="text" class="form-control ">
+                        <input type="text" class="form-control " id="inpt_hasHopitalized">
                     </div>
                 </div>
 
                 <!-- allergies -->
                 <div class="input-group flex-nowrap question">
                     <span class="input-group-text">Any allergies</span>
-                    <input type="text" class="form-control" placeholder="Put n/a if none">
+                    <input type="text" class="form-control" placeholder="Put n/a if none" id="inpt_Allergies">
 
                 </div>
 
@@ -304,22 +306,22 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                         <div class="form-control no-border">
                             <input type="radio" id="rdPregnantYes" name="pregnant" value="yes">
                             <label for="rdPregnantYes">Yes</label>
-                            <input type="radio" id="rdPregnantNo" name="pregnant" value="no" checked>
+                            <input type="radio" id="rdPregnantNo" name="pregnant" value="no" >
                             <label for="rdPregnantNo">No</label>
                         </div>
                     </div>
-                    <div class="container ifYes w-75 unShow isPregnant" id="treatment">
+                    <div class="container ifYes w-75 unShow isPregnant" >
                         <div class="input-group flex-nowrap ">
                             <span class="input-group-text">Ilan months?</span>
-                            <input type="text" class="form-control " id="monthPregnant" onkeypress="return onlyNumberKey(event)" required maxlength="2">
+                            <input type="text" class="form-control" onkeypress="return onlyNumberKey(event)" required maxlength="2" id="inpt_monthsPregnant">
                         </div>
                     </div>
                     <div class="input-group flex-nowrap question">
                         <span class="input-group-text">Are you taking birth control pills ? </span>
                         <div class="form-control no-border">
-                            <input type="radio" id="rdPillsYes" name="pills" value="yes" checked>
+                            <input type="radio" id="rdPillsYes" name="pills" value="yes" >
                             <label for="rdPillsYes">Yes</label>
-                            <input type="radio" id="rdPillsNo" name="pills" value="no" checked>
+                            <input type="radio" id="rdPillsNo" name="pills" value="no" >
                             <label for="rdPillsNo">No</label>
                         </div>
                     </div>
@@ -416,9 +418,13 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     undergo dental treatment under her care.
                 </p>
                 <div>
-                    <input type="checkbox" id="agree" name="agree" value="agree">
-                    <label for="agree" class="agreeLabel"> I confirm that I have read, understand and agree to the statement above.
+                    <input type="checkbox" id="agree" name="agree" value="agree" class="">
+                    <label for="agree" class="agreeLabel"> I confirm that I have read, understand and agree to the statement above.</label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
                 </div>
+
             </div>
             <!-- notey end  -->
         </div>

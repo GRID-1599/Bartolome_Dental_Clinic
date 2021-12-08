@@ -297,3 +297,15 @@
         }
     }
 }
+
+#clear_LastDentalVisit,
+#clear_LastMedicalCheckUp {
+    border: none;
+    &:hover {
+        background-color: pink;
+    }
+    &:focus {
+        box-shadow: none;
+        outline: none;
+    }
+}
