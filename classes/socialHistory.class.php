@@ -8,7 +8,7 @@ class SocialHistory extends DatabaseConnection
         $IsSmoking,
         $IsDrinkingAlcohol
     ) {
-        // try {
+        try {
 
             $sql = 'INSERT INTO `social_history`(`Appoinment_Id`, `IsSmoking`, `IsDrinkingAlcohol`) VALUES (?,?,?)';
             $stmt = $this->connect()->prepare($sql);
@@ -18,9 +18,9 @@ class SocialHistory extends DatabaseConnection
                 $IsDrinkingAlcohol
             ]);
 
-            // echo "1";
-        // } catch (Exception $ex) {
-        //     echo "0";
-        // }
+            return "1";
+        } catch (Exception $ex) {
+            return $ex;
+        }
     }
 }

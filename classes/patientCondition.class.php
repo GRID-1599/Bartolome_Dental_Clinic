@@ -8,7 +8,7 @@ class PatientCondition extends DatabaseConnection
         $Patient_ID,
         $Patient_Condition
     ) {
-        // try {
+        try {
 
             $sql = 'INSERT INTO `appointment_patient_condition`(`Appointmet_ID`, `Patient_ID`, `Patient_Condition`) VALUES (?,?,?)';
             $stmt = $this->connect()->prepare($sql);
@@ -18,9 +18,9 @@ class PatientCondition extends DatabaseConnection
                 $Patient_Condition
             ]);
 
-        //     echo "1";
-        // } catch (Exception $ex) {
-        //     echo "0";
-        // }
+            return "1";
+        } catch (Exception $ex) {
+            return $ex;
+        }
     }
 }

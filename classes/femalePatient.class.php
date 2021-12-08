@@ -11,7 +11,7 @@ class FemalePatient extends DatabaseConnection
         $IsTakingBirthPills,
         $Date_Answered,
     ) {
-        // try {
+        try {
 
             $sql = 'INSERT INTO `female_patient`(`Appoinment_Id`, `Patient_ID`, `IsPregnant`, `Months_Pregnant`, `IsTakingBirthPills`, `Date_Answered`) VALUES (?,?,?,?,?,?)';
             $stmt = $this->connect()->prepare($sql);
@@ -24,9 +24,9 @@ class FemalePatient extends DatabaseConnection
                 $Date_Answered,
             ]);
 
-        //     echo "1";
-        // } catch (Exception $ex) {
-        //     echo "0";
-        // }
+            return "1";
+        } catch (Exception $ex) {
+            return $ex;
+        }
     }
 }

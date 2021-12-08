@@ -5,6 +5,7 @@ $appServiceCat_obj = new ServiceCategory();
 $appService_obj = new Service();
 $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name();
 ?>
+
 <div class="appointmentInputs">
     <div class="serviceInputs ">
         <div class="top">
@@ -245,9 +246,9 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                 <div class="input-group flex-nowrap question medical-treatment">
                     <span class="input-group-text">Are you under any medical treatment right now ?</span>
                     <div class="form-control no-border">
-                        <input type="radio" id="rdTreatmentYes"   name="treatment" value="yes">
+                        <input type="radio" id="rdTreatmentYes" name="treatment" value="yes">
                         <label for="rdTreatmentYes">Yes</label>
-                        <input type="radio" id="rdTreatmentNo"  name="treatment" value="None" >
+                        <input type="radio" id="rdTreatmentNo" name="treatment" value="None">
                         <label for="rdTreatmentNo">No</label>
                     </div>
                 </div>
@@ -306,11 +307,11 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                         <div class="form-control no-border">
                             <input type="radio" id="rdPregnantYes" name="pregnant" value="yes">
                             <label for="rdPregnantYes">Yes</label>
-                            <input type="radio" id="rdPregnantNo" name="pregnant" value="no" >
+                            <input type="radio" id="rdPregnantNo" name="pregnant" value="no">
                             <label for="rdPregnantNo">No</label>
                         </div>
                     </div>
-                    <div class="container ifYes w-75 unShow isPregnant" >
+                    <div class="container ifYes w-75 unShow isPregnant">
                         <div class="input-group flex-nowrap ">
                             <span class="input-group-text">Ilan months?</span>
                             <input type="text" class="form-control" onkeypress="return onlyNumberKey(event)" required maxlength="2" id="inpt_monthsPregnant">
@@ -319,9 +320,9 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                     <div class="input-group flex-nowrap question">
                         <span class="input-group-text">Are you taking birth control pills ? </span>
                         <div class="form-control no-border">
-                            <input type="radio" id="rdPillsYes" name="pills" value="yes" >
+                            <input type="radio" id="rdPillsYes" name="pills" value="yes">
                             <label for="rdPillsYes">Yes</label>
-                            <input type="radio" id="rdPillsNo" name="pills" value="no" >
+                            <input type="radio" id="rdPillsNo" name="pills" value="no">
                             <label for="rdPillsNo">No</label>
                         </div>
                     </div>
@@ -565,10 +566,6 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                 <button type="button" id="btnProceedAppointment" class="buttonAppointment">Proceed</button>
             </div>
 
-
-
-
-
         </div>
 
         <div class="container patient-TransactionWay  unShow">
@@ -610,3 +607,39 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
         </div>
     </div>
 </div>
+
+<!-- modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="loadingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <p class="display-6" id="modalLoadingHeader">Processing</p>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body" id="modalLoadingBody">
+                <p class=" text-center">Please wait</p>
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

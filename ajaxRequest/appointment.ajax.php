@@ -87,9 +87,16 @@ if (isset($_POST["addTheNewAppointment"])) {
 
     // $text = '{"ID":"JQ5GHWFWHL0XIJW","Patient_ID":"1186","Contact":"022312313133","Date":"2021-12-31","Start_Time":"15:00","End_Time":"17:00","Duration":120,"Allotted_Hours":2,"Services":[["S101","Extraction","600"]],"Amount":"600","Payment_Method":"GCash","IsPaid":false,"Dental_Form":{"Last_Dental_Visit":"2021-12-01","Purpose":"waada"},"Medical_Form":{"Last_Medical_CheckUp":"2021-12-02","Treatment":"asd","Medication":"None","Hospitalized":"No","Allergies":"asd asdsadas"},"Female_Form":{"IsPregnant":1,"Months_Pregnant":"1","IsTakingPills":0},"Social_Form":{"IsSmoking":0,"IsDringkingAlcohol":0},"Condtions":"Low Blood Pressure, Heart Disease / Heart Attack"}';
 
+    $appFlag = 1;
+    $dentalFlag = 1;
+    $medicalFlag = 1;
+    $femaleFlag = 1;
+    $socialFlag = 1;
+    $conditionFlag = 1;
+
     $text  = $_POST["appointmentData"];
     $appoinment = json_decode($text);
-    echo "return patient ::: " . $appoinment_obj->addNewAppointment(
+    $appFlag = $appoinment_obj->addNewAppointment(
         $appoinment->ID,
         $appoinment->Patient_ID,
         $appoinment->Contact,
@@ -108,7 +115,7 @@ if (isset($_POST["addTheNewAppointment"])) {
     if (isset($appoinment->Dental_Form)) {
         // echo "Last_Dental_Visit :" . $appoinment->Dental_Form->Last_Dental_Visit  . "<br>";
         // echo "Purpose :" . $appoinment->Dental_Form->Purpose  . "<br>";
-        echo "return dental ::: " . $dentalHistory_obj->addNewDentalHistory(
+        $dentalFlag = $dentalHistory_obj->addNewDentalHistory(
             $appoinment->ID,
             $appoinment->Dental_Form->Last_Dental_Visit,
             $appoinment->Dental_Form->Purpose,
@@ -122,7 +129,7 @@ if (isset($_POST["addTheNewAppointment"])) {
         // echo "Hospitalized :" . $appoinment->Medical_Form->Hospitalized  . "<br>";
         // echo "Allergies :" . $appoinment->Medical_Form->Allergies  . "<br>";
 
-        echo "return medical ::: " . $medicalHistory_obj->addNewMedicalHistory(
+        $medicalFlag = $medicalHistory_obj->addNewMedicalHistory(
             $appoinment->ID,
             $appoinment->Medical_Form->Last_Medical_CheckUp,
             $appoinment->Medical_Form->Treatment,
@@ -138,7 +145,7 @@ if (isset($_POST["addTheNewAppointment"])) {
         // echo "Months_Pregnant :" . $appoinment->Female_Form->Months_Pregnant  . "<br>";
         // echo "IsTakingPills :" . $appoinment->Female_Form->IsTakingPills  . "<br>";
 
-        echo "return female ::: " . $femalePatient_obj->addNewFemalePatient(
+        $femaleFlag = $femalePatient_obj->addNewFemalePatient(
             $appoinment->ID,
             $appoinment->Patient_ID,
             $appoinment->Female_Form->IsPregnant,
@@ -151,7 +158,7 @@ if (isset($_POST["addTheNewAppointment"])) {
     if (isset($appoinment->Social_Form)) {
         // echo "IsSmoking :" . $appoinment->Social_Form->IsSmoking  . "<br>";
         // echo "IsDringkingAlcohol :" . $appoinment->Social_Form->IsDringkingAlcohol  . "<br>";
-        echo "return Social_Form ::: " . $socialHistory_obj->addNewSocialHistory(
+        $socialFlag = $socialHistory_obj->addNewSocialHistory(
             $appoinment->ID,
             $appoinment->Social_Form->IsSmoking,
             $appoinment->Social_Form->IsDringkingAlcohol 
@@ -160,12 +167,23 @@ if (isset($_POST["addTheNewAppointment"])) {
 
     if (isset($appoinment->Condtions)) {
         // echo "Conditions : $appoinment->Condtions  <br>";
-        echo "return Condtions ::: " . $patientCondition_obj->addNewPatientCondition(
+        $conditionFlag =  $patientCondition_obj->addNewPatientCondition(
             $appoinment->ID,
             $appoinment->Patient_ID,
             $appoinment->Condtions
         );
     }
 
-    echo "<br>";
+    if($appFlag != "1" || $medicalFlag != "1" || $dentalFlag != "1" || $femaleFlag != "1"
+    || $socialFlag != "1" || $conditionFlag != "1"){
+        echo "$appFlag | $medicalFlag | $dentalFlag | $femaleFlag | $socialFlag | $conditionFlag | ";
+    }else{
+        echo "1";
+
+    }
+
 }
+
+// if(0 != "1"){
+//     echo "Asdad";
+// }

@@ -11,7 +11,7 @@ class MedicalHistory extends DatabaseConnection
         $Hospitalized,
         $Allergies,
     ) {
-        // try {
+        try {
 
             $sql = 'INSERT INTO `medical_history`(`Appoinment_Id`, `Last_Medical_Checkup`, `Medical_Treatment`, `Medication`, `Hospitalized`, `Allergies`) VALUES (?,?,?,?,?,?)';
             $stmt = $this->connect()->prepare($sql);
@@ -24,9 +24,9 @@ class MedicalHistory extends DatabaseConnection
                 $Allergies,
             ]);
 
-        //     echo "1";
-        // } catch (Exception $ex) {
-        //     echo "0";
-        // }
+            return "1";
+        } catch (Exception $ex) {
+            return $ex;
+        }
     }
 }

@@ -8,7 +8,7 @@ class DentalHistory extends DatabaseConnection
         $Last_Dental_Visit,
         $Purpose
     ) {
-        // try {
+        try {
 
             $sql = 'INSERT INTO `dental_history`(`Appoinment_Id`, `Last_Dental_Visit`, `Purpose`) VALUES (?,?,?)';
             $stmt = $this->connect()->prepare($sql);
@@ -18,9 +18,9 @@ class DentalHistory extends DatabaseConnection
                 $Purpose
             ]);
 
-    //         echo "1";
-    //     } catch (Exception $ex) {
-    //         echo "0";
-    //     }
+            return "1";
+        } catch (Exception $ex) {
+            return $ex;
+        }
     }
 }

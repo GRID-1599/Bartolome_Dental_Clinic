@@ -388,7 +388,7 @@ function submitCondition() {
 // ________________________________________________________________________
 // ------------------------------------------------------------------------
 $(document).ready(function() {
-
+    // $('#loadingModal').modal('show')
 
     $('#btnProceedAppointment').click(function() {
         if (goToFormCondition()) {
@@ -833,8 +833,9 @@ $(document).ready(function() {
                 console.log(JSON.stringify(appoinment_obj));
                 console.log("-------------------------");
                 console.log(appoinment_obj);
-
+                $('#loadingModal').modal('show')
                 addTheNewAppointment();
+
 
             } else {
                 $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 100, function() {
@@ -1375,7 +1376,39 @@ function addTheNewAppointment() {
             appointmentData: JSON.stringify(appoinment_obj)
         },
         success: function(response) {
-            console.log("the response" + response);
+            // $('#loadingModal').modal('hide')
+            $("#modalLoadingBody").empty()
+            $("#modalLoadingHeader").text(null)
+            var markup;
+            var txt;
+            if (response == "1") {
+                console.log("the response : " + response);
+                // $('#loadingModal').modal('hide')
+                markup = `
+                    <p class="">Your appointment is successfully added</p>
+                <button type="button" class="btn btn-primary float-end" id="btnModalLoadingCloseProceed">Close</button>
+                `;
+            } else {
+                console.log("error: " + response);
+                // $('#loadingModal').modal('hide')
+                markup = `
+                    <p class="">Encounter some problem. Please try again</p>
+                <button type="button" class="btn btn-primary float-end" id="btnModalLoadingClose">Close</button>
+                `;
+            }
+            // $("#modalLoadingHeader").text(null)
+            $('#modalLoadingBody').append(markup);
+
+            $('#btnModalLoadingCloseProceed').click(function() {
+                $('#loadingModal').modal('hide')
+                location.reload();
+                window.location.href = "index.php";
+            });
+
+            $('#btnModalLoadingClose').click(function() {
+                $('#loadingModal').modal('hide')
+            });
+
         },
         error: function(jqXHR, exception) {
             var msg = '';
