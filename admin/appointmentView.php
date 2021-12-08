@@ -187,6 +187,17 @@
                                                     ?>
 
                                                 </dd>
+
+                                                <dt class="col-sm-5">IsDone:</dt>
+                                                <dd class="col-sm-7">
+
+                                                    <?php
+                                                    $isDone = ($appointment[0]["IsDone"]) ? "Done" : "Not Done";
+                                                    $colorDone = ($appointment[0]["IsDone"]) ? "info" : "secondary";
+                                                    echo "<span class='bg-$colorDone text-white  px-2 py-1'>" . $isDone . '</span>';
+                                                    ?>
+
+                                                </dd>
                                             </div>
 
                                         </dl>

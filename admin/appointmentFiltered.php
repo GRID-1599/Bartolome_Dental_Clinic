@@ -82,13 +82,19 @@ $sqlisPaid = ($appIspaid != '') ? "`IsPaid` = " . $appIspaid . " and " : "";
 $ispaidtext = ($appIspaid) ? "Paid" : "Not Paid";
 $textFilter .= ($appIspaid != '') ? "<br> Is Paid : " . $ispaidtext : "";
 
+// is done
+$appIsdone = $_POST["appIsdone"];
+$sqlisDone = ($appIsdone != '') ? "`IsDone` = " . $appIsdone . " and " : "";
+$isDonetext = ($appIsdone) ? "Done" : "Not Done";
+$textFilter .= ($appIsdone != '') ? "<br> Is Done : " . $isDonetext : "";
+
 // is sort
 $sortBy = $_POST["sortBy"];
 $sqlsort = ($sortBy != '') ? "ORDER BY `appointment` ." . $sortBy : "";
 $textFilter .= ($sortBy != '') ? "<br> Sort by : " . $sortBy : "";
 
 
-$sql = 'SELECT * FROM `appointment` WHERE ' . $sqlpatientId . $sqlappDate . $sqldateCreated . $sqlamount . $sqlpayment . $sqlisPaid;
+$sql = 'SELECT * FROM `appointment` WHERE ' . $sqlpatientId . $sqlappDate . $sqldateCreated . $sqlamount . $sqlpayment . $sqlisPaid .$sqlisDone;
 $theSql;
 if (strpos($sql, 'and') !== false) {
     $theSql = substr($sql, 0, -4);
@@ -354,6 +360,17 @@ $theSql .= $sqlsort;
 
                                             <div class="row mt-3">
                                                 <div class="input-group mb-3 w-50">
+                                                    <span class="input-group-text border-0 bg-transparent"><strong>Is Done </strong></span>
+                                                    <select class="form-select w-50" aria-label="" id="appIsdone" name="appIsdone">
+                                                        <option value="" selected>Nothing selected</option>
+                                                        <option value="1">Done</option>
+                                                        <option value="0">Not Done</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="input-group mb-3 w-50">
                                                     <span class="input-group-text border-0 bg-transparent"><strong>Sort by </strong></span>
                                                     <select class="form-select w-50" aria-label="" id="sortBy" name="sortBy">
                                                         <option value="" selected>Nothing selected</option>
@@ -369,7 +386,7 @@ $theSql .= $sqlsort;
                                                 </div>
                                             </div>
 
-                                            <div class="col-12">
+                                            <div class="col-12 mb-5">
                                                 <div class="col align-self-end">
                                                     <button type="submit" class="btn btn-primary  w-auto float-end" data-bs-toggle="modal" data-bs-target="#filteringModal">
                                                         <!-- <i class="fa fa-filter"></i> -->

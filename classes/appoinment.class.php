@@ -87,6 +87,7 @@ class Appointment extends DatabaseConnection
                 "Date_Created" => $row["Date_Created"],
                 "Payment_Method" => $row["Payment_Method"],
                 "IsPaid" => $row["IsPaid"],
+                "IsDone" => $row["IsDone"],
                 "Amount" => $row["Amount"],
 
             );
@@ -175,6 +176,7 @@ class Appointment extends DatabaseConnection
                 "Payment_Method" => $row["Payment_Method"],
                 "IsPaid" => $row["IsPaid"],
                 "Amount" => $row["Amount"],
+                "IsDone" => $row["IsDone"],
 
             );
             array_push($appointmentData, $appointment);

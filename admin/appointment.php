@@ -36,7 +36,7 @@ session_start();
                                         <i class="fas fa-table me-1"></i> Appointments Table
                                     </div>
                                     <div class="col align-self-end">
-                                        <form action="appointmentFile" method="post" target="_blank" >
+                                        <form action="appointmentFile" method="post" target="_blank">
                                             <button type="submit" class="btn btn-dark btn-sm w-auto float-end">
                                                 <i class="fa fa-print"></i>
                                                 Print all
@@ -66,7 +66,7 @@ session_start();
                                     <div class="modal-body">
                                         <form action="appointment/filtered" method="post" class="container g-5">
                                             <div class="row ">
-                                                <div class="input-group mb-3 w-50" >
+                                                <div class="input-group mb-3 w-50">
                                                     <span class="input-group-text border-0 bg-transparent"> <strong>Patient Id : </strong> </span>
                                                     <input type="number" class="form-control border-bottom" placeholder="####" id="appPatientId" name="appPatientId" onKeyPress="if(this.value.length==4) return false;">
                                                 </div>
@@ -177,7 +177,7 @@ session_start();
                                                             </div>
                                                             <label for="amtEnd" class="col-sm-auto col-form-label">End with</label>
                                                             <div class="col-sm-4">
-                                                                <input type="number" class="form-control"  name="amtEnd" id="amtEnd" maxlength="4" size="4">
+                                                                <input type="number" class="form-control" name="amtEnd" id="amtEnd" maxlength="4" size="4">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -207,6 +207,17 @@ session_start();
 
                                             <div class="row mt-3">
                                                 <div class="input-group mb-3 w-50">
+                                                    <span class="input-group-text border-0 bg-transparent"><strong>Is Done </strong></span>
+                                                    <select class="form-select w-50" aria-label="" id="appIsdone" name="appIsdone">
+                                                        <option value="" selected>Nothing selected</option>
+                                                        <option value="1">Done</option>
+                                                        <option value="0">Not Done</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="input-group mb-3 w-50">
                                                     <span class="input-group-text border-0 bg-transparent"><strong>Sort by </strong></span>
                                                     <select class="form-select w-50" aria-label="" id="sortBy" name="sortBy">
                                                         <option value="" selected>Nothing selected</option>
@@ -221,8 +232,8 @@ session_start();
                                                     </select>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="col-12">
+
+                                            <div class="col-12 mb-5">
                                                 <div class="col align-self-end">
                                                     <button type="submit" class="btn btn-primary  w-auto float-end" data-bs-toggle="modal" data-bs-target="#filteringModal">
                                                         <!-- <i class="fa fa-filter"></i> -->
@@ -231,10 +242,6 @@ session_start();
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Proceed</button> -->
                                     </div>
                                 </div>
                             </div>

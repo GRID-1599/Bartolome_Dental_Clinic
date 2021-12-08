@@ -161,6 +161,18 @@ if (isset($_POST["app_ID"])) {
     $table->easyCell("", 'colspan:20; ');
     $table->printRow();
 
+    $isDone = ($appointment[0]["IsDone"]) ? "Done" : "Not Done";
+    $table->rowStyle('min-height:7; align:{L}');
+    $table->easyCell('', 'colspan:1; ');
+    $table->easyCell("Done ", $x1);
+    $table->easyCell($isDone, $x2);
+    $table->printRow();
+
+    $table->rowStyle('min-height:10; valign:B; align:{L} ');
+    $table->easyCell("", 'colspan:20; ');
+    $table->printRow();
+
+
     $table->rowStyle('min-height:10');
     $table->easyCell('', 'colspan:1; bgcolor:#fafafa');
     $table->easyCell('Payment', 'colspan:18; bgcolor:#fafafa; font-color:#333333 ; font-style:B; font-size:15;');
@@ -261,8 +273,15 @@ if (isset($_POST["app_ID"])) {
 
         $col2txt .= $servicesTxt;
 
-        $amounttxt = "\n<b>Amount : </b>" . $app["Amount"];
+        $amounttxt = "\n<b>Amount : </b>" . $app["Amount"] . "\n\n";
         $col2txt .= $amounttxt;
+
+        $IsDone = ($app["IsDone"]) ? "Done" : "Not Done";
+        $donetxt = "\n<b>Is Done : </b>" . $IsDone;
+
+        $col2txt .= $donetxt;
+
+
 
         $table->rowStyle('min-height:20; align:{L}');   // let's adjust the height of this row
         $table->easyCell($data, 'colspan:3');
