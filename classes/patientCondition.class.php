@@ -23,4 +23,18 @@ class PatientCondition extends DatabaseConnection
             return $ex;
         }
     }
+
+    public function getPatientConditionByAppId($appoinmentId)
+    {
+        $sql = "SELECT * FROM `appointment_patient_condition` WHERE `Appointmet_ID` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$appoinmentId]);
+        while ($row = $stmt->fetch()) {
+            $theArray = array(
+                "Patient_ID" => $row["Patient_ID"],
+                "Patient_Condition" => $row["Patient_Condition"]
+            );
+            return $theArray;
+        }
+    }
 }

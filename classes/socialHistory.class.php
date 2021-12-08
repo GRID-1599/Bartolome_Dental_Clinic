@@ -23,4 +23,18 @@ class SocialHistory extends DatabaseConnection
             return $ex;
         }
     }
+
+    public function getSocialHistoryByAppId($appoinmentId)
+    {
+        $sql = "SELECT * FROM `social_history` WHERE `Appoinment_Id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$appoinmentId]);
+        while ($row = $stmt->fetch()) {
+            $theArray = array(
+                "IsSmoking" => $row["IsSmoking"],
+                "IsDrinkingAlcohol" => $row["IsDrinkingAlcohol"]
+            );
+            return $theArray;
+        }
+    }
 }

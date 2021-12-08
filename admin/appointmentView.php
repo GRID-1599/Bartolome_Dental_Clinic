@@ -239,7 +239,201 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-file"></i> Form File
+                                    </div>
+                                    <div class="col align-self-end">
+                                        <form action="appointmentFile" method="post" target="_blank">
+                                            <input type="hidden" name="app_ID" value="<?php echo $_GET["appoinmentId"] ?>">
+                                            <button type="submit" class="btn btn-dark btn-sm w-auto float-end">
+                                                <i class="fa fa-print"></i>
+                                                Print
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <?php
+
+                            include_once '../classes/dentalHistory.class.php';
+                            $dentalHistory_obj = new DentalHistory();
+
+                            include_once '../classes/medicalHistory.class.php';
+                            $medicalHistory_obj = new MedicalHistory();
+
+                            include_once '../classes/femalePatient.class.php';
+                            $femalePatient_obj = new FemalePatient();
+
+                            include_once '../classes//socialHistory.class.php';
+                            $socialHistory_obj = new SocialHistory();
+
+                            include_once '../classes/patientCondition.class.php';
+                            $patientCondition_obj = new PatientCondition();
+
+                            // $appointmentId
+
+                            $dentalHistory = $dentalHistory_obj->getDentalHistoryByAppId($appointmentId);
+                            $MedicalHistory = $medicalHistory_obj->getMedicalHistoryByAppId($appointmentId);
+                            $SocialHistory = $socialHistory_obj->getSocialHistoryByAppId($appointmentId);
+                            $FemalePatient = $femalePatient_obj->getFemalePatientByAppId($appointmentId);
+                            $PatientCondition = $patientCondition_obj->getPatientConditionByAppId($appointmentId);
+
+                            // echo $appointmentId . "<br>";
+                            // echo $appointment[0]["Patient_ID"] . "<br>";
+                            // echo $appointment[0]["Contact"] . "<br>";
+                            // echo $appointment[0]["Appoinment_Date"] . "<br>";
+                            // echo $appointment[0]["Appoinment_Time"] . "<br>";
+                            // echo $appointment[0]["Date_Created"] . "<br>";
+                            // echo $appointment[0]["Payment_Method"] . "<br>";
+                            // echo $appointment[0]["IsPaid"] . "<br>";
+                            // echo $appointment[0]["Amount"] . "<br><br>";
+
+                            // foreach ($appointment[1] as $service) {
+                            //      echo $service["Service_Id"] . "<br>";
+                            //      echo $service["Service_Name"] . "<br>";
+                            //      echo $service["Service_Prc"] . "<br>";
+                            // }
+
+
+                            ?>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <dl class="row">
+                                            <div class="row">
+                                                <p class="h4">Dental History</p>
+                                                <dt class="col-sm-5">Last Dental Visit :</dt>
+                                                <dd class="col-sm-7">
+
+                                                    <?php
+                                                    echo (isset($dentalHistory["Last_Dental_Visit"])) ? $dentalHistory["Last_Dental_Visit"] : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Purpose :</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($dentalHistory["Purpose"])) ? $dentalHistory["Purpose"] : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <p class="h4 mt-4">Medical History</p>
+                                                <dt class="col-sm-5">Last_Medical_Checkup:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($MedicalHistory["Last_Medical_Checkup"])) ? $MedicalHistory["Last_Medical_Checkup"] : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Medical_Treatment:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($MedicalHistory["Medical_Treatment"])) ? $MedicalHistory["Medical_Treatment"] : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Medication:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($MedicalHistory["Medication"])) ? $MedicalHistory["Medication"] : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Hospitalized:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($MedicalHistory["Hospitalized"])) ? $MedicalHistory["Hospitalized"] : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <dt class="col-sm-5">Allergies:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($MedicalHistory["Allergies"])) ? $MedicalHistory["Allergies"] : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <?php
+                                                if (!empty($FemalePatient)) {
+                                                ?>
+
+                                                    <dt class="col-sm-5">IsPregnant:</dt>
+                                                    <dd class="col-sm-7">
+                                                        <?php
+                                                        echo ($FemalePatient["IsPregnant"]) ? "Pregnant" : "Not Pregnant";
+                                                        ?>
+                                                    </dd>
+
+                                                    <dt class="col-sm-5">Months_Pregnant:</dt>
+                                                    <dd class="col-sm-7">
+                                                        <?php
+                                                        echo ($FemalePatient["Months_Pregnant"] != 0) ? $FemalePatient["Months_Pregnant"] . " month/s" : "";
+                                                        ?>
+                                                    </dd>
+
+                                                    <dt class="col-sm-5">IsTakingBirthPills:</dt>
+                                                    <dd class="col-sm-7">
+                                                        <?php
+                                                        echo ($FemalePatient["IsTakingBirthPills"]) ? "Yes" : "No";
+                                                        ?>
+                                                    </dd>
+
+                                                    <dt class="col-sm-5">Date_Answered:</dt>
+                                                    <dd class="col-sm-7">
+                                                        <?php
+                                                        echo $FemalePatient["Date_Answered"];
+                                                        ?>
+                                                    </dd>
+
+                                                <?php
+                                                }
+                                                ?>
+
+                                                <p class="h4 mt-4">Social History</p>
+                                                <dt class="col-sm-5">IsSmoking:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($SocialHistory["IsSmoking"])) ? ($SocialHistory["IsSmoking"]) ? "Yes" : "No" : " ";
+                                                    ?>
+                                                </dd>
+                                                <dt class="col-sm-5">IsDrinkingAlcohol:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($SocialHistory["IsDrinkingAlcohol"])) ? ($SocialHistory["IsDrinkingAlcohol"]) ? "Yes" : "No" : " ";
+                                                    ?>
+                                                </dd>
+
+                                                <p class="h4 mt-4">Patient Condition</p>
+                                                <dt class="col-sm-5">Patient:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($PatientCondition["Patient_ID"])) ? $PatientCondition["Patient_ID"] : " ";
+                                                    ?>
+                                                </dd>
+                                                <dt class="col-sm-5">Condition/s:</dt>
+                                                <dd class="col-sm-7">
+                                                    <?php
+                                                    echo (isset($PatientCondition["Patient_Condition"])) ? $PatientCondition["Patient_Condition"] : " ";
+
+                                                    ?>
+                                                </dd>
+
+                                            </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </main>
             <?php include 'html-footer.php' ?>
         </div>

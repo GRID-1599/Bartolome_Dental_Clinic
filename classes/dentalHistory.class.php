@@ -23,4 +23,18 @@ class DentalHistory extends DatabaseConnection
             return $ex;
         }
     }
+
+    public function getDentalHistoryByAppId($appoinmentId)
+    {
+        $sql = "SELECT * FROM `dental_history` WHERE `Appoinment_Id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$appoinmentId]);
+        while ($row = $stmt->fetch()) {
+            $theArray = array(
+                "Last_Dental_Visit" => $row["Last_Dental_Visit"],
+                "Purpose" => $row["Purpose"]
+            );
+            return $theArray;
+        }
+    }
 }
