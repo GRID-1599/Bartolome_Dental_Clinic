@@ -1,64 +1,84 @@
-<footer class="footer">
-    <div class="footer__cont">
-        <!-- <img src="resources/icons/icon1.png" alt="Bartolome Dental Clinic">
-            <p>Copyright 2021 Bartolome Dental Clinic</p> -->
-
-        <div class="footer__quickLinks">
-            <h3>Quick Links</h3>
-            <div class="links">
-                <a href="index">Home</a>
+<footer class="bd-footer pb-5 pt-5 mt-5 px-3 bg-pink">
+    <div class="container-xxl  text-white">
+        <div class="row">
+            <div class="col-md-2  mt-3">
+                <h3>Quick Links</h3>
+                <ul class="list-unstyled ">
+                    <li><a href="">Home</a></li>
+                    <li><a href="service">Services</a>
+                    <li>
+                    <li><a href="about">About Us</a></li>
+                    <li><a href="contactUs">Contact Us</a></li>
+                    <li><a href="bookNow">Book Now</a></li>
+                </ul>
             </div>
-            <div class=" links">
-                <a href="service">Services</a>
-            </div>
-            <div class=" links">
-                <a href="about">About Us</a>
-            </div>
-            <div class="links">
-                <a href="contactUs">Contact Us</a>
-            </div>
-            <div class="links">
-                <a href="bookNow">Book Now</a>
-            </div>
-
-        </div>
-        <div class="footer__services">
-            <h3>Services</h3>
-            <?php
+            <div class="col-md-2  mt-3 mb-2">
+                <h3>Services</h3>
+                <?php
                 include_once 'classes/serviceCategory.class.php';
                 $serviceCategory = new serviceCategory();
                 $serviceCategories = $serviceCategory->getAllServicesCategory();
 
                 foreach ($serviceCategories as $entry) {
                     $serviceCategory_Name = $entry["Name"];
-                    echo '<a href="service/'.$serviceCategory_Name.'"> '.$serviceCategory_Name.'</a><br>';
+                    echo '<a href="service/' . $serviceCategory_Name . '"> ' . $serviceCategory_Name . '</a><br>';
                 }
-               
-            ?>
-        </div>
-        <div class="footer__image">
-            <a href="admin"><img src="resources/icons/icon1.png" alt="Bartolome Dental Clinic"></a>
-            <h3>Bartolome Dental Clinic, Copyright 2021 </h3>
-        </div>
 
-        <div class="footer__contact">
-            <h3>Contact Us:</h3>
-            <div class="contactCont contactCont-link">
-                <a href="http://www.facebook.com/BartolomeDental" target="_blank">http://www.facebook.com/BartolomeDental</a>
+                ?>
+            </div>
+
+            <div class="col-md-4 mt-3 order-md-5">
+                <div class="row">
+                    <h3>Contact Us:</h3>
+                    <dt class="col-1">
+                        <i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i>
+                    </dt>
+                    <dd class="col-11">
+                        <a href="http://www.facebook.com/BartolomeDental" target="_blank" class="text-truncate"> http://www.facebook.com/BartolomeDental</a>
+                    </dd>
+
+
+
+                </div>
+
+                <div class="row mt-3">
+                    <dt class="col-1">
+                        <i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+                    </dt>
+                    <dd class="col-11">
+                        <span class="mt-3 ">(+63) 922 396 4642</span>
+                    </dd>
+                    <dt class="col-1">
+                        <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                    </dt>
+                    <dd class="col-11">
+                        <span>thepinkdmd@gmail.com</span>
+                    </dd>
+                </div>
+
+                <div class="row mt-3">
+                    <h3>Locate Us:</h3>
+                    <dt class="col-1 ">
+                        <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
+                    </dt>
+                    <dd class="col-11">
+                        <a href="https://goo.gl/maps/u1NMVXMtfFro9HHg9" target="_blank" >Calle Gipit, Brgy San Pablo 3000 Malolos, Bulacan</a>
+                    </dd>
+
+                </div>
 
             </div>
-            <div class="contactCont">
-                <p>(+63) 922 396 4642</p>
-            </div>
-            <div class="contactCont">
-                <p>thepinkdmd@gmail.com</p>
-            </div>
-            <br>
-            <h3>Locate Us:</h3>
-            <div class="contactCont contactCont-link">
-                <a href="https://goo.gl/maps/u1NMVXMtfFro9HHg9" target="_blank">Calle Gipit, Brgy San Pablo 3000 Malolos, Bulacan</a>
 
+            <div class="col-md-4 mt-3 ">
+                <div class="row justify-content-center">
+                    <img src="resources/icons/LOGOV2.6.png" alt="Bartolome Dental Clinic" style="width: 350px; height: 150px;" class="mb-3" id="footerImage">
+                    <p class="text-center h4">Bartolome Dental Clinic, Copyright 2021 </p>
+                </div>
+                <script>
+                    $('#footerImage').click(function() {
+                        window.location.href = "admin"
+                    });
+                </script>
             </div>
         </div>
-    </div>
 </footer>

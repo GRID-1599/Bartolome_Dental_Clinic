@@ -4,13 +4,9 @@
 @import "./1_helper/mixins";
 //4_layout
 @import "./4_layouts/globals";
-@import "./4_layouts/header";
-@import "./4_layouts/indexStyle";
-@import "./4_layouts/booking";
-@import "./4_layouts/services";
-@import "./4_layouts/serviceCategory";
+@import "./4_layouts/index";
+@import "./4_layouts/service";
+@import "./4_layouts/registration";
 @import "./4_layouts/about";
 @import "./4_layouts/contactUs";
 @import "./4_layouts/bookNow";
-@import "./4_layouts/registration";
-@import "./4_layouts/footer";

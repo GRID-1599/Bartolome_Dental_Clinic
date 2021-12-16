@@ -43,8 +43,7 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
 
     <link rel="stylesheet" href="styles/bootstap_css/styles.css">
     <link rel="stylesheet" href="styles/style.css">
-    <title>Services | Bartolome Dental Clinic
-    </title>
+    <title>Services | Bartolome Dental Clinic</title>
 
 </head>
 
@@ -53,25 +52,23 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
     $page = "service";
     include('header.php')
     ?>
-
-    <section class="svServiceCategory">
-        <div class="svServiceCategory__cont">
-
-
-            <div class="card mb-4 serviceCat-card ">
-                <img src="<?php echo $imagePath ?>" alt="<?php echo $serviceCategory_Name . " ServiceCategory Image" ?>" class="card-img-top h-50">
+    <main>
+        <div class="container-xxl">
+            <div class="card mb-4 border-0 ">
+                <img src="<?php echo $imagePath ?>" alt="<?php echo $serviceCategory_Name . " ServiceCategory Image" ?>" class="card-img-top" style="max-height: 25rem;">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $serviceCategory_Name; ?></h5>
+                    <h5 class="card-title text-3 h3"><?php echo $serviceCategory_Name; ?></h5>
                     <p class="card-text"> <?php echo $serviceCategory_Description; ?></p>
                     <br>
                     <br>
                     <span>
-                        <h3>Service under <?php echo $serviceCategory_Name; ?><ctegory>
+                        <h3>
+                            Service under <small class="h3 text-2 "><?php echo $serviceCategory_Name; ?></small>
                         </h3>
 
                     </span>
                     <br>
-                    <div class="serviceUnder">
+                    <div class="row gy-3 ">
                         <?php
 
                         include_once  'classes/service.class.php';
@@ -103,9 +100,9 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
 
 
                                 echo <<<SERVICECARD
-                                <div class="col">
-                                    <div class="card  serviceCard">
-                                        <img src="$imagePath" class="card-img-top" alt="$serviceName | $serviceImgFilename">
+                                    <div class='col-md-4 '>
+                                    <div class="card border-0 serviceUnder">
+                                        <img src="$imagePath" class="card-img-top" alt="$serviceName | $serviceImgFilename" style="max-height: 15rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">$serviceName</h5>
                                             <p class="card-text">$serviceServiceCategory_ID</p>
@@ -117,12 +114,12 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
                                                 <input type="hidden" name="serviceName" value="$serviceName">
                                                 <input type="hidden" name="servicePrice" value="$serviceStarting_Price">
                                                 <input type="hidden" name="serviceDuration" value="$serviceDuration">
-                                                <button type="submit" class="btn btn-primary">Book this</button>
+                                                <button type="submit" class="btn btn-primary">BOOK THIS</button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
-                            SERVICECARD;
+                                        </div>
+                                        </div>
+                                    SERVICECARD;
                             }
                         }
 
@@ -134,13 +131,10 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
-    </section>
-
+    </main>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js " integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM " crossorigin="anonymous "></script>
     <?php include('footer.php') ?>
 </body>
 

@@ -1,383 +1,271 @@
-.registration {
-    // background: linear-gradient(180deg, rgba(255, 255, 255, 1) 28%, rgba(240, 95, 117, 1) 100%);
-    &__cont {
-        // max-width: 2500px;
-        height: 1000px;
-        // margin-top: 100px;
-        position: relative;
-        // background-color: rgb(214, 214, 154);
-        .background {
-            background-image: url("../resources/images/dentistBG1.jpg");
-            background-position: top center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-blend-mode: soft-light;
-            background: transparent;
+.content {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    // border: .5px solid black;
+    height: 80%;
+    padding: 25px;
+    .form-box {
+        width: 100%;
+        height: 100%;
+        .user-details {
             width: 100%;
-            height: 700px;
-            position: relative;
-            &__txt {
-                width: fit-content;
-                position: absolute;
-                top: 25%;
-                left: 10%;
-                h1 {
-                    font-family: $font-style-header;
-                    font-size: $font-XXlrg;
-                    color: white;
-                }
-                p {
-                    color: white;
-                    text-align: justify;
-                    font-size: $font-Xlrg;
-                }
-            }
-            &__gradient {
-                width: inherit;
-                height: inherit;
-                position: absolute;
-            }
-        }
-        .registrationForm {
-            background-color: white;
-            -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.32);
-            -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.32);
-            box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.32);
-            height: 700px;
-            width: 70vw;
-            min-width: 1000px;
-            position: absolute;
-            top: 12.5%;
-            right: 50px;
-            display: flex;
-            // transform: translate(-50%, 0%);
-            .registration-txt {
-                width: 35%;
-                background-color: $pinkBG1;
-            }
-            .registration-form {
-                width: 65%;
-                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-                // * {
-                //     margin: 0;
-                //     padding: 0;
-                //     box-sizing: border-box;
-                //     font-family: 'Poppins', sans-serif;
-                // }
-                // body {
-                //     height: 100vh;
-                //     display: flex;
-                //     justify-content: center;
-                //     align-items: center;
-                //     padding: 10px;
-                //     background: linear-gradient(135deg, #71b7e6, #9b59b6);
-                // }
-                .container {
-                    box-sizing: border-box;
-                    // max-width: 650px;
-                    width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(7, 45px);
+            gap: 25px;
+            box-sizing: border-box;
+            .input-box {
+                height: 40px;
+                width: 100%;
+                position: relative;
+                // border: 1px solid black;
+                input {
                     height: 100%;
-                    background-color: #fff;
-                    padding: 25px 30px;
-                    border-radius: 5px;
-                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+                    width: inherit;
+                    border: none;
+                    outline: none;
+                    font-size: 1rem;
+                    padding-left: 10px;
+                    padding-bottom: -12px;
+                    line-height: .125em;
+                    border-bottom: 2px solid $pinkBG1;
                     font-family: 'Poppins', sans-serif;
-                    // display: none;
-                    .title {
-                        font-size: 25px;
-                        font-weight: 500;
-                        position: relative;
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            bottom: 0;
-                            height: 3px;
-                            width: 155px;
-                            border-radius: 5px;
-                            background: linear-gradient(135deg, #e671d8, #c51aa0);
+                    &:focus~.details,
+                    &:valid~.details {
+                        transform: translateY(-24px);
+                        font-size: 1rem;
+                        color: #bf2441;
+                    }
+                    &:focus~.underline:before,
+                    &:valid~.underline:before {
+                        transform: scaleX(1);
+                    }
+                }
+                .details {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 0;
+                    color: grey;
+                    pointer-events: none;
+                    transition: all 0.3s ease;
+                }
+                .underline {
+                    position: absolute;
+                    height: 2.125px;
+                    width: 100%;
+                    bottom: 0;
+                    &:before {
+                        position: absolute;
+                        content: "";
+                        height: 100%;
+                        width: 100%;
+                        background: #bf2441;
+                        transform: scaleX(0);
+                        transform-origin: center;
+                        transition: transform 0.3s ease;
+                    }
+                }
+            }
+            // Fullname
+            .input-box:nth-of-type(1) {
+                grid-column-start: 1;
+                grid-column-end: 7;
+            }
+            // nickname
+            .input-box:nth-of-type(2) {
+                grid-column-start: 7;
+                grid-column-end: 11;
+            }
+            // bday
+            .input-box:nth-of-type(3) {
+                line-height: normal;
+                grid-column-start: 1;
+                grid-column-end: 6;
+                input[type="date"]::-webkit-clear-button {
+                    display: none;
+                }
+                /* Removes the spin button */
+                input[type="date"]::-webkit-inner-spin-button {
+                    display: none;
+                }
+                input[type='date'] {
+                    appearance: none;
+                    -webkit-appearance: none;
+                    color: white;
+                    font-size: 1rem;
+                    padding: 5px;
+                    line-height: normal;
+                }
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                    color: #2c3e50;
+                    display: none;
+                    display: block;
+                }
+                input[type="date"]:focus {
+                    color: black;
+                }
+                input[type="date"]:valid {
+                    color: black;
+                }
+                input[type="date"]:focus~input[type="date"]::-webkit-calendar-picker-indicator {
+                    display: none;
+                }
+            }
+            // age
+            .input-box:nth-of-type(4) {
+                grid-column-start: 6;
+                grid-column-end: 11;
+            }
+            // gender
+            .input-box:nth-of-type(5) {
+                grid-column-start: 1;
+                grid-column-end: 6;
+                .genderBox__container {
+                    z-index: 500;
+                    box-shadow: 0 0px 10px gray;
+                    position: absolute;
+                    top: 45px;
+                    background: white;
+                    width: 300px;
+                    order: 1;
+                    max-height: 0;
+                    width: 100%;
+                    opacity: 0;
+                    transition: all 0.4s;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    &-active {
+                        max-height: 200px;
+                        opacity: 1;
+                        overflow-y: scroll;
+                    }
+                    &::-webkit-scrollbar {
+                        width: 8px;
+                        background-color: white;
+                        border-radius: 0 8px 8px 0;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background-color: $pinkBG1;
+                        border-radius: 12px;
+                    }
+                    .genderBox__options {
+                        padding: 12px 24px;
+                        cursor: pointer;
+                        label {
+                            cursor: pointer;
+                        }
+                        input[type="radio"] {
+                            display: none;
+                        }
+                        &:hover {
+                            background-color: $pink2;
+                            color: whitesmoke;
                         }
                     }
-                    .content {
-                        // border: .5px solid black;
-                        height: 80%;
-                        padding: 25px;
-                        margin-top: 50px;
-                        .form-box {
-                            width: 100%;
-                            height: 100%;
-                            .user-details {
-                                width: 100%;
-                                height: 100%;
-                                display: grid;
-                                grid-template-columns: repeat(10, 1fr);
-                                grid-template-rows: repeat(7, 45px);
-                                gap: 25px;
-                                box-sizing: border-box;
-                                .input-box {
-                                    height: 40px;
-                                    width: 100%;
-                                    position: relative;
-                                    // border: 1px solid black;
-                                    input {
-                                        height: 100%;
-                                        width: inherit;
-                                        border: none;
-                                        outline: none;
-                                        font-size: 17px;
-                                        padding-left: 10px;
-                                        padding-bottom: -12px;
-                                        line-height: .125em;
-                                        border-bottom: 2px solid $pinkBG1;
-                                        font-family: 'Poppins', sans-serif;
-                                        &:focus~.details,
-                                        &:valid~.details {
-                                            transform: translateY(-24px);
-                                            font-size: 12px;
-                                            color: #bf2441;
-                                        }
-                                        &:focus~.underline:before,
-                                        &:valid~.underline:before {
-                                            transform: scaleX(1);
-                                        }
-                                    }
-                                    .details {
-                                        position: absolute;
-                                        bottom: 10px;
-                                        left: 0;
-                                        color: grey;
-                                        pointer-events: none;
-                                        transition: all 0.3s ease;
-                                    }
-                                    .underline {
-                                        position: absolute;
-                                        height: 2.125px;
-                                        width: 100%;
-                                        bottom: 0;
-                                        &:before {
-                                            position: absolute;
-                                            content: "";
-                                            height: 100%;
-                                            width: 100%;
-                                            background: #bf2441;
-                                            transform: scaleX(0);
-                                            transform-origin: center;
-                                            transition: transform 0.3s ease;
-                                        }
-                                    }
-                                }
-                                // Fullname
-                                .input-box:nth-of-type(1) {
-                                    grid-column-start: 1;
-                                    grid-column-end: 7;
-                                }
-                                // nickname
-                                .input-box:nth-of-type(2) {
-                                    grid-column-start: 7;
-                                    grid-column-end: 11;
-                                }
-                                // bday
-                                .input-box:nth-of-type(3) {
-                                    line-height: normal;
-                                    grid-column-start: 1;
-                                    grid-column-end: 6;
-                                    input[type="date"]::-webkit-clear-button {
-                                        display: none;
-                                    }
-                                    /* Removes the spin button */
-                                    input[type="date"]::-webkit-inner-spin-button {
-                                        display: none;
-                                    }
-                                    input[type='date'] {
-                                        appearance: none;
-                                        -webkit-appearance: none;
-                                        color: white;
-                                        font-size: 18px;
-                                        padding: 5px;
-                                        line-height: normal;
-                                    }
-                                    input[type="date"]::-webkit-calendar-picker-indicator {
-                                        color: #2c3e50;
-                                        display: none;
-                                        display: block;
-                                    }
-                                    input[type="date"]:focus {
-                                        color: black;
-                                    }
-                                    input[type="date"]:valid {
-                                        color: black;
-                                    }
-                                    input[type="date"]:focus~input[type="date"]::-webkit-calendar-picker-indicator {
-                                        display: none;
-                                    }
-                                }
-                                // age
-                                .input-box:nth-of-type(4) {
-                                    grid-column-start: 7;
-                                    grid-column-end: 10;
-                                }
-                                // gender
-                                .input-box:nth-of-type(5) {
-                                    grid-column-start: 1;
-                                    grid-column-end: 7;
-                                    // input {
-                                    //     &:not(:empty)~.details {
-                                    //         transform: translateY(-24px);
-                                    //         font-size: 12px;
-                                    //         color: #bf2441;
-                                    //     }
-                                    // }
-                                    .genderBox__container {
-                                        z-index: 500;
-                                        box-shadow: 0 0px 10px gray;
-                                        position: absolute;
-                                        top: 45px;
-                                        background: white;
-                                        width: 300px;
-                                        order: 1;
-                                        max-height: 0;
-                                        width: 100%;
-                                        opacity: 0;
-                                        transition: all 0.4s;
-                                        border-radius: 8px;
-                                        overflow: hidden;
-                                        &-active {
-                                            max-height: 200px;
-                                            opacity: 1;
-                                            overflow-y: scroll;
-                                        }
-                                        &::-webkit-scrollbar {
-                                            width: 8px;
-                                            background-color: white;
-                                            border-radius: 0 8px 8px 0;
-                                        }
-                                        &::-webkit-scrollbar-thumb {
-                                            background-color: $pinkBG1;
-                                            border-radius: 12px;
-                                        }
-                                        .genderBox__options {
-                                            padding: 12px 24px;
-                                            cursor: pointer;
-                                            label {
-                                                cursor: pointer;
-                                            }
-                                            input[type="radio"] {
-                                                display: none;
-                                            }
-                                            &:hover {
-                                                background-color: $pink2;
-                                                color: whitesmoke;
-                                            }
-                                        }
-                                    }
-                                }
-                                // civil status
-                                .input-box:nth-of-type(6) {
-                                    grid-column-start: 7;
-                                    grid-column-end: 11;
-                                    .civilBox__container {
-                                        z-index: 500;
-                                        box-shadow: 0 0px 10px gray;
-                                        position: absolute;
-                                        top: 45px;
-                                        background: white;
-                                        width: 300px;
-                                        order: 1;
-                                        max-height: 0;
-                                        width: 100%;
-                                        opacity: 0;
-                                        transition: all 0.4s;
-                                        border-radius: 8px;
-                                        overflow: hidden;
-                                        &-active {
-                                            max-height: 200px;
-                                            opacity: 1;
-                                            overflow-y: scroll;
-                                        }
-                                        &::-webkit-scrollbar {
-                                            width: 8px;
-                                            background-color: white;
-                                            border-radius: 0 8px 8px 0;
-                                        }
-                                        &::-webkit-scrollbar-thumb {
-                                            background-color: $pinkBG1;
-                                            border-radius: 12px;
-                                        }
-                                        .civilBox__options {
-                                            padding: 12px 24px;
-                                            cursor: pointer;
-                                            label {
-                                                cursor: pointer;
-                                            }
-                                            input[type="radio"] {
-                                                display: none;
-                                            }
-                                            &:hover {
-                                                background-color: $pink2;
-                                                color: whitesmoke;
-                                            }
-                                        }
-                                    }
-                                }
-                                // address
-                                .input-box:nth-of-type(7) {
-                                    grid-column-start: 1;
-                                    grid-column-end: 11;
-                                }
-                                // email
-                                .input-box:nth-of-type(8) {
-                                    grid-column-start: 1;
-                                    grid-column-end: 7;
-                                }
-                                // contact
-                                .input-box:nth-of-type(9) {
-                                    grid-column-start: 7;
-                                    grid-column-end: 11;
-                                    input {
-                                        padding-left: 55px;
-                                        position: inherit;
-                                        &:focus~.addons,
-                                        &:valid~.addons {
-                                            opacity: 1;
-                                        }
-                                    }
-                                    .addons {
-                                        content: "(+63)";
-                                        left: 5px;
-                                        bottom: 19px;
-                                        position: absolute;
-                                        outline: none;
-                                        font-size: 15px;
-                                        padding-bottom: -12px;
-                                        line-height: .125em;
-                                        opacity: 0;
-                                        transition: all 250ms ease-in-out;
-                                    }
-                                }
-                                // button
-                                .input-box:nth-of-type(10) {
-                                    grid-row-start: 7;
-                                    grid-column-start: 7;
-                                    grid-column-end: 11;
-                                    #regPatientSubmit {
-                                        letter-spacing: 0.225rem;
-                                        background-color: $pinkBG1;
-                                        color: white;
-                                        padding: 15px;
-                                        width: 100%;
-                                        height: 45px;
-                                        font-family: $font-style-header;
-                                        border: none;
-                                        cursor: pointer;
-                                        transition: all 0.5s ease-in-out;
-                                        &:hover {
-                                            border-radius: 50px;
-                                            transform: scale(1.125);
-                                        }
-                                    }
-                                }
-                            }
+                }
+            }
+            // civil status
+            .input-box:nth-of-type(6) {
+                grid-column-start: 6;
+                grid-column-end: 11;
+                .civilBox__container {
+                    z-index: 500;
+                    box-shadow: 0 0px 10px gray;
+                    position: absolute;
+                    top: 45px;
+                    background: white;
+                    width: 300px;
+                    order: 1;
+                    max-height: 0;
+                    width: 100%;
+                    opacity: 0;
+                    transition: all 0.4s;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    &-active {
+                        max-height: 200px;
+                        opacity: 1;
+                        overflow-y: scroll;
+                    }
+                    &::-webkit-scrollbar {
+                        width: 8px;
+                        background-color: white;
+                        border-radius: 0 8px 8px 0;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background-color: $pinkBG1;
+                        border-radius: 12px;
+                    }
+                    .civilBox__options {
+                        padding: 12px 24px;
+                        cursor: pointer;
+                        label {
+                            cursor: pointer;
                         }
+                        input[type="radio"] {
+                            display: none;
+                        }
+                        &:hover {
+                            background-color: $pink2;
+                            color: whitesmoke;
+                        }
+                    }
+                }
+            }
+            // address
+            .input-box:nth-of-type(7) {
+                grid-column-start: 1;
+                grid-column-end: 11;
+            }
+            // email
+            .input-box:nth-of-type(8) {
+                grid-column-start: 1;
+                grid-column-end: 7;
+            }
+            // contact
+            .input-box:nth-of-type(9) {
+                grid-column-start: 7;
+                grid-column-end: 11;
+                input {
+                    padding-left: 50px;
+                    position: inherit;
+                    &:focus~.addons,
+                    &:valid~.addons {
+                        opacity: 1;
+                    }
+                }
+                .addons {
+                    content: "(+63)";
+                    left: 5px;
+                    bottom: 19px;
+                    position: absolute;
+                    outline: none;
+                    font-size: 1rem;
+                    padding-bottom: -12px;
+                    line-height: .125em;
+                    opacity: 0;
+                    transition: all 250ms ease-in-out;
+                }
+            }
+            // button
+            .input-box:nth-of-type(10) {
+                grid-row-start: 7;
+                grid-column-start: 7;
+                grid-column-end: 11;
+                #regPatientSubmit {
+                    letter-spacing: 0.225rem;
+                    background-color: $pinkBG1;
+                    color: white;
+                    padding: 15px;
+                    width: 100%;
+                    height: 45px;
+                    font-family: $font-style-header;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.5s ease-in-out;
+                    &:hover {
+                        border-radius: 50px;
+                        transform: scale(1.125);
                     }
                 }
             }

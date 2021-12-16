@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 function ajaxAddNewMessage() {
     $.ajax({
-        url: './contactUs.php',
+        url: './ajaxRequest/message.ajax.php',
         method: 'POST',
         data: {
             message: 1,
@@ -58,7 +58,6 @@ function ajaxAddNewMessage() {
         },
         success: function(response) {
             console.log(response);
-            console.log("message sent");
             Swal.fire({
                 icon: 'success',
                 title: "Message Sent"
@@ -97,8 +96,8 @@ function ajaxAddNewMessage() {
 
 
 function SetEmptyMessageInputs() {
-    inputSenderName.value = null;
-    inputSendercontact.value = null;
-    inputSenderMessage.value = null;
-    inputSenderEmail.value = null;
+    $('#inputSenderName').val(null)
+    $('#inputSendercontact').val(null)
+    $('#inputSenderEmail').val(null)
+    $('#inputSenderMessage').val(null)
 }

@@ -1,0 +1,115 @@
+.banner {
+    position: relative;
+    min-height: 25rem;
+    /* height: fit-content; */
+    content: '';
+    background-image: url("../resources/clinicImages/dental_banner.jpg");
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-position: 0px center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #66092a58;
+    background-blend-mode: soft-light;
+    z-index: 10;
+    .banner-text {
+        font-size: 3rem;
+        font-weight: bolder;
+    }
+    .text-2 {
+        color: white;
+        color: #ee2185;
+    }
+    #btnBookAppointment {
+        background-color: white;
+        color: #bf2441;
+        outline: none;
+        border: none;
+        &:hover {
+            box-shadow: rgba(110, 110, 121, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+            transform: scale(1.05);
+        }
+    }
+}
+
+.text-spacing {
+    letter-spacing: .25rem;
+}
+
+#header {
+    transition: all 500ms ease-in-out;
+    img {
+        transition: 200ms;
+    }
+}
+
+.bd-footer {
+    a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    font-size: .75rem;
+    background-image: linear-gradient(to right top,
+    #bf2441,
+    #cb354f,
+    #d8435c,
+    #e4516b,
+    #f05f79);
+}
+
+.service {
+    display: display;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 5px;
+    &__box {
+        height: 170px;
+        width: 170px;
+        position: relative;
+        box-sizing: border-box;
+        padding: 0;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+    &__box:hover {
+        cursor: pointer;
+        transform: scale(1.075);
+        bottom: 20px;
+        transition: all .25s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+    &__img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        box-sizing: border-box;
+        img {
+            width: inherit;
+            height: inherit;
+            border-radius: 5%;
+            //box-sizing: border-box;
+        }
+    }
+    &__title {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        height: fit-content;
+        color: white;
+        padding: 0 0 5px 5px;
+        p {
+            letter-spacing: .2rem;
+            margin: 0 10px;
+            padding: 5px 0;
+            text-align: center;
+            font-size: .85rem;
+            color: white;
+            font-family: $font-style-header;
+            background-color: rgba(128, 128, 128, 0.255);
+        }
+    }
+}

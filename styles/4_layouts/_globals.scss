@@ -1,40 +1,57 @@
-* {
-    font-size: 100%;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
 body {
-    padding: 0;
-    font-family: $font-style-txt;
-    font-size: $font-med;
-    line-height: 1.3;
-    min-width: 1000px;
+    min-height: 60rem;
+    padding-top: 5rem;
 }
 
-a,
-a:visited,
-a:hover {
-    text-decoration: none;
-    color: black;
+.unShow {
+    display: none;
 }
 
-//FlexBox
-.flex {
-    display: flex;
-    &-jc-sb {
-        justify-content: space-between;
+.bg-boxDot {
+    background-image: url("../resources/icons/block_box.png");
+    background-position: 0px center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.text-2 {
+    color: #ee2185;
+}
+
+.text-3 {
+    color: #bf2441;
+    font-family: 'Inter', sans-serif;
+    text-transform: lowercase;
+    &::first-letter {
+        text-transform: uppercase;
+        font-size: 2rem;
     }
-    &-jc-c {
-        justify-content: center;
-    }
-    &-ai-c {
-        align-items: center;
-    }
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-sm {
+    font-size: .75rem;
+}
+
+.letter-spacing-1 {
+    letter-spacing: .25rem;
+}
+
+.text-gray {
+    color: #2F2E2E;
+}
+
+.bg-pink-2 {
+    background-color: #f05f7a88;
+}
+
+.line-1 {
+    line-height: 1.75em;
+}
+
+.border-1 {
+    border-radius: 54% 46% 63% 37% / 66% 36% 64% 34%;
 }

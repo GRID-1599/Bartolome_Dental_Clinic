@@ -54,13 +54,19 @@
     --bs-light-rgb: 248, 249, 250;
     --bs-dark-rgb: 33, 37, 41;
     --bs-white-rgb: 255, 255, 255;
+    --bs-pink-rgb: 238, 33, 133;
     --bs-black-rgb: 0, 0, 0;
     --bs-body-color-rgb: 33, 37, 41;
     --bs-body-bg-rgb: 255, 255, 255;
     --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-ubuntu-san-serif: 'Ubuntu', sans-serif;
+    --bs-font-inter: 'Inter', sans-serif;
+    --bs-font-balsamiq: 'Balsamiq Sans', cursive;
+    --bs-font-ubuntu: 'Ubuntu', neuton-regular;
+    /* --bs-font-ubuntu: ; */
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-family: var(--bs-font-ubuntu);
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
@@ -3156,16 +3162,19 @@ fieldset:disabled .btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
+    background-color: #ec4664;
+    border-color: #FFA3AD;
+    transform: scale(1.05);
+    transition: all .2s ease-in-out;
 }
 
 .btn-check:focus+.btn-primary,
 .btn-primary:focus {
     color: #fff;
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
-    box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
+    background-color: #ec4664;
+    border-color: #FFA3AD;
+    ;
+    box-shadow: 0 0 0 0.25rem rgba(253, 49, 168, 0.5);
 }
 
 .btn-check:checked+.btn-primary,
@@ -3174,8 +3183,8 @@ fieldset:disabled .btn {
 .btn-primary.active,
 .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #0a58ca;
-    border-color: #0a53be;
+    background-color: #ec4664;
+    border-color: #FFA3AD;
 }
 
 .btn-check:checked+.btn-primary:focus,
@@ -3183,7 +3192,7 @@ fieldset:disabled .btn {
 .btn-primary:active:focus,
 .btn-primary.active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(253, 49, 168, 0.5);
 }
 
 .btn-primary:disabled,
@@ -4912,7 +4921,8 @@ fieldset:disabled .btn {
 
 .navbar-light .navbar-nav .show>.nav-link,
 .navbar-light .navbar-nav .nav-link.active {
-    color: rgba(0, 0, 0, 0.9);
+    color: #ee2185;
+    font-weight: 600;
 }
 
 .navbar-light .navbar-toggler {
@@ -8617,6 +8627,11 @@ fieldset:disabled .btn {
     background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-pink {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-pink-rgb), var(--bs-bg-opacity)) !important;
+}
+
 .bg-body {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
@@ -11707,4 +11722,14 @@ body {
     width: 20px !important;
     font-size: 0.75rem;
     border-radius: 0.25rem !important;
+}
+
+.text-color-pink {
+    color: #ee2185;
+}
+
+.text-header {
+    /* font-family: var(--bs-font-inter); */
+    font-size: 2rem;
+    font-weight: 550;
 }

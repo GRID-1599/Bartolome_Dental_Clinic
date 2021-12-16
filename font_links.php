@@ -31,4 +31,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
+<script src="https://kit.fontawesome.com/4bb5a1c9ed.js" crossorigin="anonymous"></script>
+
+
 

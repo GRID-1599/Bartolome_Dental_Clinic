@@ -1,19 +1,3 @@
-const genderbox = document.querySelector("#regPatientGender");
-const genderOptionsContainer = document.querySelector(".genderBox__container");
-const genderOptionsList = document.querySelectorAll(".genderBox__options");
-
-genderbox.addEventListener("click", () => {
-    genderOptionsContainer.classList.toggle("genderBox__container-active");
-});
-
-
-genderOptionsList.forEach(o => {
-    o.addEventListener("click", () => {
-        genderbox.value = o.querySelector("label").innerHTML;
-        genderOptionsContainer.classList.remove("genderBox__container-active");
-    });
-});
-
 const civilbox = document.querySelector("#regPatientCivil");
 const civilOptionsContainer = document.querySelector(".civilBox__container");
 const civiOptionsList = document.querySelectorAll(".civilBox__options");
@@ -29,6 +13,25 @@ civiOptionsList.forEach(o => {
         civilOptionsContainer.classList.remove("civilBox__container-active");
     });
 });
+
+
+const genderbox = document.querySelector("#regPatientGender");
+const genderOptionsContainer = document.querySelector(".genderBox__container");
+const genderOptionsList = document.querySelectorAll(".genderBox__options");
+
+genderbox.addEventListener("click", () => {
+    genderOptionsContainer.classList.toggle("genderBox__container-active");
+});
+
+
+genderOptionsList.forEach(i => {
+    i.addEventListener("click", () => {
+        genderbox.value = i.querySelector("label").innerHTML;
+        genderOptionsContainer.classList.remove("genderBox__container-active");
+    });
+});
+
+
 
 // regPatientName = "";
 // regPatientNickname = "";
@@ -281,9 +284,9 @@ function addSuccessful(patient_ID, patient_Name, patient_email) {
     }).then((result) => {
         if (result.isConfirmed) {
             window.open('https://mail.google.com/mail', '_blank');
-            window.location.href = "index.php";
+            window.location.href = "index";
         } else {
-            window.location.href = "index.php";
+            window.location.href = "index";
         }
     })
 }
@@ -306,12 +309,11 @@ function setRegInputEmpty() {
 function sendEmail(email, message) {
     Email.send({
         Host: "smtp.gmail.com",
-        Username: "catudiochristianjude@gmail.com",
-        Password: "tndvivkjuxyfqpjk",
+        Username: "bartolome.dentalclinic@gmail.com",
+        Password: "qnbrlagqmkzchcuf",
         To: email,
-        From: "catudio.christianjude.j.7987@gmail.com",
+        From: "bartolome.dentalclinic@gmail.com",
         Subject: 'New Patient | Bartolome Dental Clinic',
         Body: message,
-
     });
 }
