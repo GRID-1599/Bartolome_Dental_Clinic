@@ -222,7 +222,7 @@ function ajaxAddNewPatient() {
             // console.log(1212);
             // console.log(response);
             // console.log(patient_data[0].patient_id);
-            // console.log(patient_data[0].name);
+            // console.log(patient_data[0].name);Patient
             // console.log(patient_data[0].email);
             var patient_data = JSON.parse(responseData);
             addSuccessful(patient_data[0].patient_id, patient_data[0].name, patient_data[0].email);

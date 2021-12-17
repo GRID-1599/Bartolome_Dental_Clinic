@@ -1,5 +1,5 @@
 <?php session_start();
-include '../classes/Patient.class.php';
+include '../classes/patient.class.php';
 $patient = new Patient();
 if (isset($_POST["ptName"])) {
     $ptName = $_POST["ptName"];

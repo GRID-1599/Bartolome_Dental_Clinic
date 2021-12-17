@@ -26,7 +26,7 @@ foreach ($appAddedToday_stmt as $data) {
     $appoinmentAddedTodayNum = $appoinmentAddedTodayNum + 1;
 };
 
-include_once '../classes/Message.class.php';
+include_once '../classes/message.class.php';
 $objMessage = new Message();
 $unreadMessages = $objMessage->getUnreadMessage();
 $unreadMessageNum = 0;

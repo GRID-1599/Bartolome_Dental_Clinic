@@ -1,6 +1,6 @@
 <?php
 include_once '../classes/serviceCategory.class.php';
-include_once '../classes/Service.class.php';
+include_once '../classes/service.class.php';
 
 $serviceCategory_obj = new ServiceCategory();
 $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name();

@@ -43,7 +43,7 @@
                         <div class="card-body">
                             <?php
                             include_once '../classes/serviceCategory.class.php';
-                            include_once '../classes/Service.class.php';
+                            include_once '../classes/service.class.php';
 
                             $serviceCategory_obj = new ServiceCategory();
                             $serviceCategory_Array = $serviceCategory_obj->getAllServicesCategory();

@@ -21,7 +21,7 @@ $pdf->SetFont('helvetica', '', 12);
 if (isset($_POST["app_ID"])) {
     $pdf->SetTitle("Appointment " . $_POST["app_ID"]);
 
-    $table1 = new easyTable($pdf, 2 ,);
+    $table1 = new easyTable($pdf, 2 );
     $table1->easyCell('', 'img:../resources/icons/LOGOV2.6.png, h15; align:L; valign:B;');
     // $table1->easyCell('Appointment', 'font-size:25; font-style:B; font-color:#F05F79; valign:B;');
     $table1->printRow();
@@ -235,7 +235,7 @@ if (isset($_POST["app_ID"])) {
             $pdf->AddPage();
         }
         // Title
-        $table = new easyTable($pdf, 12,);
+        $table = new easyTable($pdf, 12);
         $table->easyCell('Appointment', 'colspan:12; bgcolor:#faa2b2; font-color:#ffffff ; font-style:B;');
         $table->printRow();
 

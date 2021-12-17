@@ -1,8 +1,8 @@
 <?php
-include '../classes/Message.class.php';
-    $message_obj = new Message();
+include '../classes/message.class.php';
+$message_obj = new Message();
 if (isset($_POST['message'])) {
-    
+
     // $testObj->getUser();
 
     $Name = $_POST['msgName'];
@@ -14,7 +14,7 @@ if (isset($_POST['message'])) {
     $currentDate->setTimezone(new DateTimeZone('Asia/Manila'));
     $Date_Send = $currentDate->format('Y-m-d H:i:s');
 
-    $message_obj->addMessage($Body,$Name,$Contact,$Email,$Date_Send);
+    $message_obj->addMessage($Body, $Name, $Contact, $Email, $Date_Send);
     exit();
     // exit($patient_id);
 }

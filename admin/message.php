@@ -1,5 +1,5 @@
 <?php session_start();
-include '../classes/Message.class.php';
+include '../classes/message.class.php';
 $objMessage = new Message();
 $unreadMessages = $objMessage->getUnreadMessage();
 $unreadMessageNum = 0;
