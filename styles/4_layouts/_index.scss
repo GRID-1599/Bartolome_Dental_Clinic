@@ -38,6 +38,14 @@
     letter-spacing: .25rem;
 }
 
+#btnViewApp {
+    background-color: transparent;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
 #header {
     transition: all 500ms ease-in-out;
     img {

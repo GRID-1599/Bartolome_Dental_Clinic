@@ -35,7 +35,7 @@ session_destroy();
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header bg-white border">
                                     <p class="text-center font-weight-light my-4">
-                                        <strong class="display-5">Bartolome Dental</strong> <br>
+                                        <a class="navbar-brand ps-3" href="../" id="headerIcon"><img src="../resources/icons/LOGOV2.6.png" class="img-fluid  borderless me-3" alt="Bartolome Dental Logo " style="width: 85%; height: auto; transition: 500ms;"></a>
                                         <strong class="h4"> Admin Login </strong>
                                     </p>
                                 </div>
@@ -49,10 +49,6 @@ session_destroy();
                                         <input class="form-control" id="adminPassword" type="password" placeholder="Password" />
                                         <label for="adminPassword">Password</label>
                                         <div class="invalid-feedback" id="password_invalid"></div>
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                        <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <a class="small" href="password.php">Forgot Password?</a>

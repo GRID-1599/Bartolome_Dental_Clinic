@@ -15,7 +15,7 @@
 <body>
     <?php $page = "home";
     include('header.php') ?>
-    <main >
+    <main>
         <div class="card text-white p-0 banner">
             <div class="card-img-overlay container-xxl px-md-5   ">
                 <div class="row row align-items-end h-100 ">
@@ -32,10 +32,10 @@
                         <div class="row  ">
                             <div class="col-auto ">
                                 <p class="m-0"><small>Already have an appointment?</small></p>
-                                <a class="text-white" href="">View appointment</a>
+                                <button class="btn btn-primary btn-sm" id="btnViewApp" data-bs-toggle="modal" data-bs-target="#modalInputs">View appointment</button>
                             </div>
                             <div class="col ">
-                                <a type="button" class="btn btn-primary w-100 h-100 btn-lg  text-center p-2 " id="btnBookAppointment">  <strong>Book Appointment </strong></a>
+                                <a type="button" class="btn btn-primary w-100 h-100 btn-lg  text-center p-2 " id="btnBookAppointment"> <strong>Book Appointment </strong></a>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     <div class="container">
                         <img src="resources/images/dental-5.png" class="img-fluid" style="min-height: 20rem; height:auto;" alt="">
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -199,12 +199,97 @@
         </div>
 
 
+        <!-- Modal app inputs-->
+        <div class="modal fade" id="modalInputs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="staticBackdropLabel">View Appointment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col px-5 position-relative">
+                                <div class="form-floating mb-3 text-center">
+                                    <input type="text" class="form-control" id="viewAppId" placeholder="Enter appointment id" maxlength="15">
+                                    <label for="viewAppId">Please enter the Appoinment Id</label>
+                                    <div class="invalid-feedback">
+                                        Appointment Id not found
+                                    </div>
+                                    <p class="text-xsm text-start mt-3">Note : If you dont remember the appointment id. Please check your emails theres a copy of appointment details that has been sent by bartolome.dentalclinic@gmail.com</p>
+                                    <div class="text-center mt-2 unShow position-absolute top-50 start-50" id="loaderApp">
+                                        <div class="spinner-border text-danger" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="displa-6 text-center">Or</p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col d-flex justify-content-center">
+                                <button class="btn btn-primary btn-sm" id="btnViewPatient">View my patient details</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary unShow" id="btnAppProceed">Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal pateint inputs-->
+        <div class="modal fade" id="modalPatientInputs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="staticBackdropLabel">View Patient Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col px-5 position-relative">
+                                <div class="form-floating mb-3 text-center">
+                                    <input type="text" class="form-control" id="viewPatientId" placeholder="Enter patient id" maxlength="4">
+                                    <label for="viewPatientId">Please enter the Patient Id</label>
+                                    <div class="invalid-feedback">
+                                        Patient Id not found
+                                    </div>
+                                    <div class="valid-feedback" id="patientIdName"></div>
+                                    <div class="text-center mt-2 unShow position-absolute top-50 start-50" id="loaderPatient">
+                                        <div class="spinner-border text-danger" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary unShow" id="btnIdSubmit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- hiddden form para sa patient ID POST Submit -->
+        <form style="display: none" action="patient" method="POST" id="formPatientID">
+            <input type="hidden" id="formInputPatientId" name="patientId" value="" />
+        </form>
+
 
     </main>
     <?php include 'footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js " integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM " crossorigin="anonymous "></script>
-
+    <script src="javascript/index.js"></script>
 </body>
 
 </html>

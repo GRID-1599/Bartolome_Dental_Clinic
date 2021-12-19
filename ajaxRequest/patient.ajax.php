@@ -17,16 +17,28 @@ if(isset($_POST["addNote"])){
 }
 
 if (isset($_POST["getAllPatients"])) {
-    include_once '../classes/patient.class.php';
     $paient_obj = new Patient();
     echo json_encode($paient_obj->getPatientById($_POST['patientID']));
 }
 
 if (isset($_POST["getPatientByID"])) {
-    include_once '../classes/patient.class.php';
     $paient_obj = new Patient();
     echo json_encode($paient_obj->getPatientById($_POST['patientID']));
 }
 
+if(isset($_POST["editPatient"])){
+    $patient_obj->editPatientDetails(
+        $_POST['patientID'],
+        $_POST['ptName'],
+        $_POST['ptNickname'],
+        $_POST['ptBday'],
+        $_POST['ptAge'],
+        $_POST['ptGender'],
+        $_POST['ptStatus'],
+        $_POST['ptAddress'],
+        $_POST['ptEmail'],
+        $_POST['ptContact']
+    );
+}
 
 ?>

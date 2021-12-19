@@ -38,6 +38,10 @@ body {
   font-size: .75rem;
 }
 
+.text-xsm {
+  font-size: .70rem;
+}
+
 .letter-spacing-1 {
   letter-spacing: .25rem;
 }
@@ -102,6 +106,15 @@ body {
 
 .text-spacing {
   letter-spacing: .25rem;
+}
+
+#btnViewApp {
+  background-color: transparent;
+  text-decoration: underline;
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 #header {
@@ -307,6 +320,8 @@ body {
   -ms-grid-column: 1;
       grid-column-start: 1;
   grid-column-end: 6;
+  background: none;
+  background-color: transparent;
   /* Removes the spin button */
 }
 

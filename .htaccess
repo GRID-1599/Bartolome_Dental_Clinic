@@ -2,6 +2,23 @@ RewriteEngine on
 
 
 
+#  url for view appointment
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule appointment/([0-9A-Za-z-\s]+) appointment.php?appointmentId=$1 [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for view patinet
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule patient patient.php [NC,L,QSA]
+
+# ----------------------------------------------- 
 
 #  url for about 
 RewriteCond %{Request_FileName} !-d
@@ -58,7 +75,6 @@ RewriteCond %{Request_FileName}\.php -f
 RewriteRule service service.php [NC,L,QSA]
 
 # ----------------------------------------------- 
-
 
 
 

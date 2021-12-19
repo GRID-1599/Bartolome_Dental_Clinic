@@ -9,7 +9,7 @@ class MedicalHistory extends DatabaseConnection
         $Medical_Treatment,
         $Medication,
         $Hospitalized,
-        $Allergies,
+        $Allergies
     ) {
         try {
 

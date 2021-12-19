@@ -97,5 +97,16 @@ class Patient extends DatabaseConnection
 
     }
 
+    public function editPatientDetails($Id, $Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact)
+    {
+        $sql = "UPDATE `patient` SET `Name`='".$Name."',`Nickname`='".$Nickname."',`Birthday`='".$Birthday."',`Age`='".$Age."',`Gender`='".$Gender."',`Civil Status`='".$Civil_Status."',`Address`='".$Address."',`Email`='".$Email."',`Contact`='".$Contact."' WHERE `Patient_ID` = '".$Id."' ";
+
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+
+        echo "patient details edited";
+
+    }
+
     
 }

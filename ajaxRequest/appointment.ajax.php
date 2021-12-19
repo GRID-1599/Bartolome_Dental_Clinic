@@ -11,7 +11,7 @@ $medicalHistory_obj = new MedicalHistory();
 include_once '../classes/femalePatient.class.php';
 $femalePatient_obj = new FemalePatient();
 
-include_once '../classes//socialHistory.class.php';
+include_once '../classes/socialHistory.class.php';
 $socialHistory_obj = new SocialHistory();
 
 include_once '../classes/patientCondition.class.php';
@@ -78,8 +78,6 @@ if (isset($_POST["getToInitScheds"])) {
     };
     echo json_encode($time_array);
 }
-
-
 
 if (isset($_POST["addTheNewAppointment"])) {
     // $appoinment = json_encode($text);
@@ -182,6 +180,11 @@ if (isset($_POST["addTheNewAppointment"])) {
 
     }
 
+}
+
+
+if(isset($_POST["getAppointmentId"])){
+    echo $appoinment_obj->getAppointmentID($_POST["appId"]);
 }
 
 // if(0 != "1"){

@@ -9,7 +9,7 @@ class FemalePatient extends DatabaseConnection
         $IsPregnant,
         $Months_Pregnant,
         $IsTakingBirthPills,
-        $Date_Answered,
+        $Date_Answered
     ) {
         try {
 

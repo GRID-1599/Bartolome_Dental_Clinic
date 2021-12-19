@@ -75,7 +75,7 @@ class Service extends DatabaseConnection
 
         $set = substr($set, 0, -2);
 
-        $sql1 = "UPDATE `service` SET  " . $set . " WHERE `service`.`Service_ID` = '" . $service_id . "'";
+        $sql1 = "UPDATE `service` SET  " . $set . " WHERE  `Service_ID` = '" . $service_id . "'";
      
         $stmt = $this->connect()->query($sql1);
         $stmt->execute();

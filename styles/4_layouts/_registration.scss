@@ -81,6 +81,8 @@
                 line-height: normal;
                 grid-column-start: 1;
                 grid-column-end: 6;
+                background: none;
+                background-color: transparent;
                 input[type="date"]::-webkit-clear-button {
                     display: none;
                 }

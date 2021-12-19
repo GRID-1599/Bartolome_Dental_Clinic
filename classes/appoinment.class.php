@@ -1,5 +1,5 @@
 <?php
-include 'databaseConnection.class.php';
+include_once 'databaseConnection.class.php';
 
 class Appointment extends DatabaseConnection
 {
@@ -189,5 +189,44 @@ class Appointment extends DatabaseConnection
         $sql = $sqlText;
         $stmt = $this->connect()->query($sql);
         return $stmt;
+    }
+
+    public function getAppointmentID($appoinmentId)
+    {
+        $sql = "SELECT * FROM `appointment` WHERE `Appointment_Id` = ? ";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$appoinmentId]);
+        while ($row = $stmt->fetch()) {
+            return $row["Appoinment_Date"];
+        }
+    }
+
+    public function getAppointmentByPatientID($patientId)
+    {
+
+        $sql = "SELECT * FROM `appointment` WHERE `Patient_ID` = ? ORDER BY `appointment`.`Appoinment_Date` DESC";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$patientId]);
+        $appointmentData = array();
+        while ($row = $stmt->fetch()) {
+            $appointment = array(
+                "Appointment_Id" => $row["Appointment_Id"],
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "IsDone" => $row["IsDone"],
+                "Amount" => $row["Amount"],
+
+            );
+            array_push($appointmentData, $appointment);
+        }
+        return $appointmentData;
     }
 }
