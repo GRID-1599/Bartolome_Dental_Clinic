@@ -417,6 +417,9 @@ $(document).ready(function() {
             $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 100, function() {
                 $(this).animate({ scrollTop: 10 }, 100);
             });
+
+            console.log(patientEmail);
+
         }
 
 
@@ -834,6 +837,7 @@ $(document).ready(function() {
                 console.log("-------------------------");
                 console.log(appoinment_obj);
                 $('#loadingModal').modal('show')
+
                 addTheNewAppointment();
 
 
@@ -846,6 +850,11 @@ $(document).ready(function() {
         }
 
     });
+
+    `
+    {"ID":"AFFBO0ZJEGWCC37","Patient_ID":"1001","Contact":"09973356901","Date":"2022-01-11","Start_Time":"11:00","End_Time":"14:00","Duration":120,"Allotted_Hours":2,"Services":[["S101","Extraction","600"]],"Amount":"600","Payment_Method":"GCash","IsPaid":false}
+
+    `
 
     $('#clear_LastDentalVisit').click(function() {
         $('#inpt_LastDentalVisit').val(null)
@@ -927,6 +936,50 @@ function appFormValidation() {
     }
 
     return flag
+}
+
+function messageSendEmail() {
+    var theDate = new Date(appoinment_obj["Date"]);
+    var options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    var date = theDate.toLocaleDateString("en-US", options)
+
+    var startTime = convertTimeTo12(appoinment_obj["Start_Time"])
+    var endTime = convertTimeTo12(appoinment_obj["End_Time"])
+
+    var strService = "";
+    appoinment_obj["Services"].forEach(service => {
+        strService += '<em style="margin-left: 25px">' + service[1] + '</em><br>'
+    });
+
+    var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appoinment_obj["ID"]
+    var message = `
+        <p><strong style='color:#bf2441; padding:2px; '>Hi! ${patientName} </strong><br>
+                Your appointment has been successfully added
+                <br><br>
+                <strong>Details</strong> <br>
+                Patient ID : ` + appoinment_obj["Patient_ID"] + ` <br>
+                Appointment ID : ` + appoinment_obj["ID"] + ` <br>
+                Appointment Date : ` + date + ` <br>
+                Appointment Time : ` + startTime + ` to ` + endTime + `<br>
+                Appointment Service/s<br>
+                ` + strService + `
+                Amount : ` + appoinment_obj["Amount"] + ` php<br>
+                Payment Method : ` + appoinment_obj["Payment_Method"] + ` <br>
+            <p>See more Appointment details <a href="${applnk}" target="_blank">Click here</a></p>
+            Please come on time. Thank you!
+            <br><br>
+            <strong>Bartolome Dental Clinic</strong><br>
+            0975-123-8396
+    `
+
+
+    sendEmail(patientEmail, message);
+
 }
 
 
@@ -1041,7 +1094,9 @@ function getPatientByID(patientID) {
             $('#appointmentPatientContact').val(patients['Contact']);
             $('#patientName').text("Patient Name: " + patients['Name']);
             $('#patientGender').val(patients['Gender']);
-
+            patientEmail = patients['Email']
+            patientName = patients['Name']
+            console.log(patientEmail);
             // }
             // console.log(response);
         },
@@ -1245,6 +1300,24 @@ const convertTime = timeStr => {
     return `${hours}:${minutes}`;
 };
 
+const convertTimeTo12 = timeStr => {
+    const [time, modifier] = timeStr.split(' ');
+    let [hours, minutes] = time.split(':');
+    var aft = 'AM'
+    if (hours === 12) {
+        aft = 'PM'
+    } else if (hours > 12) {
+        hours = hours - 12;
+        aft = 'PM'
+    }
+    // if (modifier === 'PM' || modifier === 'pm') {
+    //     hours = parseInt(hours, 10) + 12;
+    // }
+    return `${hours}:${minutes} ${aft}`;
+};
+
+var patientEmail;
+var patientName;
 
 // APPOINTMENT DATAS  
 var appointmentId;
@@ -1388,6 +1461,7 @@ function addTheNewAppointment() {
                     <p class="">Your appointment is successfully added</p>
                 <button type="button" class="btn btn-primary float-end" id="btnModalLoadingCloseProceed">Close</button>
                 `;
+                messageSendEmail();
             } else {
                 console.log("error: " + response);
                 // $('#loadingModal').modal('hide')
@@ -1492,5 +1566,18 @@ function getAppointmentByDate(date) {
             console.log(msg);
         },
 
+    });
+}
+
+
+function sendEmail(email, message) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "bartolome.dentalclinic@gmail.com",
+        Password: "qnbrlagqmkzchcuf",
+        To: email,
+        From: "bartolome.dentalclinic@gmail.com",
+        Subject: 'Appointment Details | Bartolome Dental Clinic',
+        Body: message,
     });
 }
