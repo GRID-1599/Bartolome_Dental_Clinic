@@ -62,12 +62,14 @@
             }
             .table-appService {
                 float: left;
+                height: fit-content;
                 // box-shadow: -3px 3px 9px 0px rgb(179, 179, 179);
                 tr {
                     cursor: pointer;
                     border: none;
                     margin-bottom: 5px;
                     height: 2.5rem;
+                    max-height: 2.5rem;
                     border-radius: 10px;
                     &:hover {
                         background-color: $pink1;
