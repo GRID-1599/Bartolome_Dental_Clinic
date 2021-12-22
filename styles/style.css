@@ -213,6 +213,12 @@ body {
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.select-style:disabled {
+  background-color: none;
+  background: transparent;
+  border: none;
+}
+
 .content {
   height: 80%;
   padding: 25px;
@@ -726,6 +732,9 @@ body {
 
 .appointmentInputs .top .appService-box .table-appService {
   float: left;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .appointmentInputs .top .appService-box .table-appService tr {
@@ -733,6 +742,7 @@ body {
   border: none;
   margin-bottom: 5px;
   height: 2.5rem;
+  max-height: 2.5rem;
   border-radius: 10px;
 }
 

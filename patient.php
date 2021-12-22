@@ -57,7 +57,7 @@
 
                                             <dt class="col-sm-3">Gender:</dt>
                                             <dd class="col-sm-9">
-                                                <select class="form-select detail" id="ptGender" disabled>
+                                                <select class="form-select detail select-style" id="ptGender" disabled>
                                                     <?php
                                                     $genderArray = ['Male', 'Female', 'Bigender', 'Transgender', 'Prefer not to say'];
                                                     foreach ($genderArray as $value) {
@@ -74,7 +74,7 @@
 
                                             <dt class="col-sm-3">Civil Status:</dt>
                                             <dd class="col-sm-9">
-                                                <select class="form-select detail" id="ptStatus" disabled>
+                                                <select class="form-select detail select-style" id="ptStatus" disabled>
                                                     <?php
                                                     $civilArray = ['Single', 'Married', 'In a relationship', 'Engaged', 'Widowed', 'Seperated', 'Divorced', "In a open relationship", "It's complicated"];
                                                     foreach ($civilArray as $value) {
