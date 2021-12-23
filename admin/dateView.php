@@ -35,12 +35,17 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                         <li class="breadcrumb-item active" aria-current="page">Date View</li>
                     </ol>
 
-                    <div class="row">
+                    <div class="row  " style="max-width: 35rem;">
                         <div class="container-sm ">
                             Date Showing
                             <div class="row">
-                                <p class=""><strong class="display-6"><?php echo $currentDate->format('l'); ?></strong> <?php echo $currentDate->format('F, d Y'); ?></p>
-                                <p style="display: none;" id="theDate"><?php echo $theDate?></p>
+                                <div class="col">
+                                    <p class=""><strong class="display-6"><?php echo $currentDate->format('l'); ?></strong> <?php echo $currentDate->format('F, d Y'); ?></p>
+                                    <p style="display: none;" id="theDate"><?php echo $theDate ?></p>
+                                </div>
+                                <div class="col">
+                                    <button type="button " class="btn btn-dark btn-sm w-75 float-end" data-bs-toggle="modal" data-bs-target="#modalCancel">Cancel all appointment on this day</button>
+                                </div>
                             </div>
                         </div>
                         <div class="container-sm ">
@@ -91,7 +96,7 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                                     //     $time = $data["Appointment_StartTime"];
                                     //     $alloted = $data["Allotted_Hours"];
                                     //     $appTime = new DateTime($time);
-                                        
+
                                     //     $startT = $appTime->format('H');
                                     //     for ($i = $startT; $i < $startT + $alloted; $i++) {
                                     //         array_push($schedTime, $i);
@@ -99,14 +104,14 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                                     //     $appId = $data["Appointment_Id"];
                                     //     $scheds[$startT] = $appId ;
                                     // };
-                                    
+
                                     $timesID = array(9, 10, 11, 12, 13, 14, 15, 16, 17);
 
 
                                     foreach ($timesID as $id) {
                                         if ($id == 12) {
                                             echo '<div class="row py-3 border-top border-dark  timeRow unAvailable"><span>Lunch Break</span></div> ';
-                                        } else{
+                                        } else {
                                             printf('<div class="row py-3 border-top border-dark  timeRow" id="%u"><span></span></div> ', $id);
                                         }
                                     }
@@ -131,6 +136,29 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                             // }
 
                             ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalCancel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Canceling all Appointment</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Date : </strong> <?php echo $currentDate->format('F, d Y'); ?></p>
+                                <p>Please state the reason that will be emailed to the patient</p>
+                                <div class="input-group">
+                                    <textarea class="form-control" aria-label="With textarea" rows="8"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger">Go</button>
+                            </div>
                         </div>
                     </div>
                 </div>

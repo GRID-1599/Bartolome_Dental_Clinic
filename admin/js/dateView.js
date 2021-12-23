@@ -1,6 +1,6 @@
 $(document).ready(function() {
     initScheds();
-
+    $('#modalCancel').modal('show')
 
 
 });
