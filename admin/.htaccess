@@ -41,6 +41,24 @@ RewriteRule ^service service.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for appoinment archived view
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^archiveAppointments/([0-9A-Za-z-\s]+) archivedAppointmentView.php?appoinmentId=$1 [NC,L,QSA]
+
+# -----------------------------------------------  
+
+#  url for appoinment archived
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^archiveAppointments archiveAppointments.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 #  url for appoinment file
 RewriteCond %{Request_FileName} !-d
 

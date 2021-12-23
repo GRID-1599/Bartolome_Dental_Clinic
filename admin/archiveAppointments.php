@@ -20,9 +20,9 @@ session_start();
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Appoinment</h1>
+                    <h1 class="mt-4">Archived Appoinment</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active" aria-current="page">List of Appoinment</li>
+                        <li class="breadcrumb-item active" aria-current="page">List of Archived Appoinment</li>
                     </ol>
 
 
@@ -33,11 +33,12 @@ session_start();
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
-                                        <i class="fas fa-table me-1"></i> Appointments Table
+                                        <i class="fas fa-table me-1"></i>Archived Appointments Table
                                     </div>
                                     <div class="col-3 align-self-end">
 
                                         <form action="appointmentFile" method="post" target="_blank">
+                                            <input type="hidden" name="archives" value="archives">
                                             <button type="submit" class="btn btn-dark btn-sm w-auto float-end">
                                                 <i class="fa fa-print"></i>
                                                 Print all
@@ -56,9 +57,9 @@ session_start();
                                             </a>
 
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <li class=" mb-1 ">
-                                                    <a href="archiveAppointments" type="button" class="btn btn-light w-100 text-start" id="btnArchiveApp"><i class="fa fa-archive me-3" aria-hidden="true"> </i>Archives</a>
-                                                </li>
+                                                <!-- <li class=" mb-1 ">
+                                                    <a href="archiveAppointments" type="button" class="btn btn-light w-100 text-start" id="btnArchiveApp"><i class="fa fa-archive me-3" aria-hidden="true"> </i>Archive</a>
+                                                </li> -->
 
                                             </ul>
                                         </div>
@@ -68,8 +69,59 @@ session_start();
                         </div>
                         <div class="card-body">
                             <?php
-                            include 'appointmentTable.php'
+                            include_once '../classes/appoinment.class.php';
+                            $appointment_obj = new Appointment();
+                            $stmt_appointments = $appointment_obj->getAllArchiveAppointment();
+                            // echo json_encode($patients);
                             ?>
+
+
+                            <table class="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>Appointment ID</th>
+                                        <th>Patient ID</th>
+                                        <th>Appointment Date</th>
+                                        <th>Appointment Time</th>
+                                        <th>Date Created</th>
+                                        <th>Amount</th>
+                                        <th>IsPaid</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Appointment ID</th>
+                                        <th>Patient ID</th>
+                                        <th>Appointment Date</th>
+                                        <th>Appointment Time</th>
+                                        <th>Date Created</th>
+                                        <th>Amount</th>
+                                        <th>IsPaid</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php
+                                    while ($row = $stmt_appointments->fetch()) {
+                                        $isPaid = ($row["IsPaid"]) ? "Paid" : "Not Paid";
+                                        $appDate = date_create($row["Appoinment_Date"]);
+                                        $appTime_Start = date_create($row["Appointment_StartTime"]);
+                                        $appTime_End = date_create($row["Appointment_EndTime"]);
+                                        $dateCreated = date_create($row["Date_Created"]);
+                                        $row = "<tr class='appointmentRow' data-bs-toggle='tooltip' data-bs-placement='bottom' " .
+                                            "title='Click to view'>" .
+                                            "<td class='appid'>" . $row["Appointment_Id"] . "</td>" .
+                                            "<td>" . $row["Patient_ID"] . "</td>" .
+                                            "<td>" . date_format($appDate, "M d, Y") . "</td>" .
+                                            "<td>" . date_format($appTime_Start, " h:ia") . " - " . date_format($appTime_End, " h:ia") . "</td>" .
+                                            "<td>" . date_format($dateCreated, "M d, Y h:ia") . "</td>" .
+                                            "<td>" . $row["Amount"] . "</td>" .
+                                            "<td>" . $isPaid . "</td>" .
+                                            "</tr>";
+                                        echo $row;
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- MODAL  -->
                         <div class="modal fade" id="filteringModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -269,7 +321,89 @@ session_start();
         </div>
     </div>
     <?php include 'scripts.php' ?>
-    <script src="js/appointment.js"></script>
+    <script>
+        function appoinmentEventUpdate() {
+            $('.appointmentRow').each(function() {
+                $(this).click(function() {
+                    var appID = $(this).find("td:eq(0)").text();
+                    window.location.href = "archiveAppointments/" + appID;
+                });
+            });
+        }
+
+        var myModal = document.getElementById('filteringModal')
+        myModal.addEventListener('shown.bs.modal', function() {
+            // myInput.focus()
+            // alert()
+        })
+
+        $(document).ready(function() {
+            $('.appointmentRow').each(function() {
+                $(this).click(function() {
+                    var appID = $(this).find("td:eq(0)").text();
+                    window.location.href = "archiveAppointments/" + appID;
+                });
+            });
+
+
+            setInterval(function() {
+                appoinmentEventUpdate();
+
+            }, 1000);
+
+
+            // $('#filterDD').on('hide.bs.dropdown', function() {
+            //     console.log(1);
+            //     return false;
+            // });
+
+
+            $('input[type=radio][name=appDateRadio]').change(function() {
+                if (this.value == 1) {
+                    $('#appDateSpecificWrapper').removeClass("unShow");
+                    $('#appDateRangeWrapper').addClass("unShow");
+
+                } else if (this.value == 2) {
+                    $('#appDateSpecificWrapper').addClass("unShow");
+                    $('#appDateRangeWrapper').removeClass("unShow");
+
+
+                }
+
+            });
+
+            $('input[type=radio][name=crtDateRadio]').change(function() {
+                if (this.value == 1) {
+                    $('#crtDateSpecificWrapper').removeClass("unShow");
+                    $('#crtDateRangeWrapper').addClass("unShow");
+
+                } else if (this.value == 2) {
+                    $('#crtDateSpecificWrapper').addClass("unShow");
+                    $('#crtDateRangeWrapper').removeClass("unShow");
+
+
+                }
+
+            });
+
+            $('input[type=radio][name=amtRadio]').change(function() {
+                if (this.value == 1) {
+                    $('#amtSpecificWrapper').removeClass("unShow");
+                    $('#amtRangeWrapper').addClass("unShow");
+
+                } else if (this.value == 2) {
+                    $('#amtSpecificWrapper').addClass("unShow");
+                    $('#amtRangeWrapper').removeClass("unShow");
+
+
+                }
+
+            });
+
+
+
+        });
+    </script>
 
 </body>
 

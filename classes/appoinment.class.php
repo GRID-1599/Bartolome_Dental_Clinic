@@ -229,4 +229,120 @@ class Appointment extends DatabaseConnection
         }
         return $appointmentData;
     }
+
+    public function deleteAppointment($appId)
+    {
+        $sql1 = "DELETE FROM `appointment` WHERE `Appointment_Id` = '" . $appId . "'";
+
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+        echo "Appointment  " . $appId . " succssfully deleted";
+    }
+
+    public function archiveAppointment($appId)
+    {
+        $sql1 = "INSERT INTO archived_appointment SELECT * FROM appointment WHERE Appointment_Id = '".$appId."'; DELETE FROM appointment WHERE Appointment_Id = '".$appId."';";
+        echo $sql1 . "<br>";
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+
+        // $sql2 = "DELETE FROM appointment WHERE Appointment_Id = '".$appId."';";
+        // $stmt2 = $this->connect()->query($sql2);
+        // $stmt2->execute();
+
+        echo "Appointment  " . $appId . " succssfully archived";
+    }
+
+
+    public function unArchiveAppointment($appId)
+    {
+        $sql1 = "INSERT INTO appointment SELECT * FROM archived_appointment WHERE Appointment_Id = '".$appId."'; DELETE FROM archived_appointment WHERE Appointment_Id = '".$appId."';";
+        echo $sql1 . "<br>";
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+
+        // $sql2 = "DELETE FROM appointment WHERE Appointment_Id = '".$appId."';";
+        // $stmt2 = $this->connect()->query($sql2);
+        // $stmt2->execute();
+
+        echo "Appointment  " . $appId . " succssfully archived";
+    }
+
+
+     public function getAllArchiveAppointment()
+    {
+        $sql = "SELECT * FROM `archived_appointment` ORDER BY `Date_Created` DESC";
+        $stmt = $this->connect()->query($sql);
+        return $stmt;
+
+    }
+
+    public function getArchivedAppointmentById($appoinmentId)
+    {
+
+        $sql = "SELECT * FROM `archived_appointment` WHERE `Appointment_Id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$appoinmentId]);
+        $appointmentData = array();
+        while ($row = $stmt->fetch()) {
+            $appointment = array(
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "IsDone" => $row["IsDone"],
+                "Amount" => $row["Amount"],
+
+            );
+            array_push($appointmentData, $appointment);
+        }
+
+        $sql2 = "SELECT * FROM `appointment_service` WHERE `Appoinment_Id` = ?";
+        $stmt2 = $this->connect()->prepare($sql2);
+        $stmt2->execute([$appoinmentId]);
+        $appointmentServices = array();
+        while ($row = $stmt2->fetch()) {
+            $service = array(
+                "Service_Id" => $row["Service_Id"],
+                "Service_Name" => $row["Service_Name"],
+                "Service_Prc" => $row["Service_Prc"],
+            );
+            array_push($appointmentServices, $service);
+        }
+
+        array_push($appointmentData, $appointmentServices);
+        return $appointmentData;
+    }
+
+    public function getAllArchivedAppointment()
+    {
+        $sql = "SELECT * FROM `archived_appointment` ORDER BY `Date_Created` DESC";
+        $stmt = $this->connect()->query($sql);
+        $allServices = array();
+        return $stmt;
+    }
+
+    public function deleteArchivedAppointment($appId)
+    {
+        $sql1 = "DELETE FROM `archived_appointment` WHERE `Appointment_Id` = '" . $appId . "'";
+
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+        echo "archived_appointment  " . $appId . " succssfully deleted";
+    }
 }
+
+
+//  INSERT INTO archived_appointment
+//           SELECT *
+//           FROM appointment
+//           WHERE Appointment_Id = ''
+
+// INSERT INTO archived_appointment SELECT * FROM appointment WHERE Appointment_Id = '1HM9LAXXYFAQO56';
+// DELETE FROM appointment WHERE Appointment_Id = '1HM9LAXXYFAQO56';

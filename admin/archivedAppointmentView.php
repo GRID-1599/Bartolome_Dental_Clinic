@@ -22,12 +22,12 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Appoinment</h1>
+                    <h1 class="mt-4">Archived Appoinment</h1>
                     <p id="appId" class="unShow"><?php echo $_GET["appoinmentId"] ?></p>
 
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active"> <a href="appointment"> List of Appoinment </a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Appoinment View</li>
+                        <li class="breadcrumb-item active"> <a href="archiveAppointments"> List of Archived Appoinment </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Archived Appointment View</li>
                     </ol>
 
                     <div class="card mb-4">
@@ -46,7 +46,7 @@
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                 <li class=" mb-1 ">
                                                     <form action="appointmentFile" method="post" target="_blank">
-                                                        <input type="hidden" name="app_ID" value="<?php echo $_GET["appoinmentId"] ?>">
+                                                        <input type="hidden" name="archivedApp_ID" value="<?php echo $_GET["appoinmentId"] ?>">
                                                         <button type="submit" class="btn btn-light w-100 text-start ">
                                                             <i class="fa fa-print me-3"></i>
                                                             Print
@@ -54,7 +54,7 @@
                                                     </form>
                                                 </li>
                                                 <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnDeleteApp"><i class="fa fa-trash-o me-3" aria-hidden="true"></i> Delete</button></li>
-                                                <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnArchiveApp"><i class="fa fa-archive me-3" aria-hidden="true"> </i>Archive</button></li>
+                                                <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnArchiveApp"><i class="fa fa-archive me-3" aria-hidden="true"> </i>Unarchive</button></li>
 
                                             </ul>
                                         </div>
@@ -70,7 +70,7 @@
                             include_once '../classes/patient.class.php';
                             $appointment_obj = new Appointment();
                             $patient_obj = new Patient();
-                            $appointment = $appointment_obj->getAppointmentById($appointmentId);
+                            $appointment = $appointment_obj->getArchivedAppointmentById($appointmentId);
                             $patient = $patient_obj->getPatientById($appointment[0]["Patient_ID"]);
 
                             // echo $appointmentId . "<br>";
@@ -462,15 +462,15 @@
 
                                         </div>
                                         <div class="col-2">
-                                        <div class="d-flex justify-content-end">
+                                            <div class="d-flex justify-content-end">
 
-                                            <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status" role="status">
-                                                <span class="visually-hidden">Loading...</span>
+                                                <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -480,7 +480,8 @@
         </div>
     </div>
     <?php include 'scripts.php' ?>
-    <script src="js/appointmentView.js"></script>
+    <script src="js/archivedAppView.js"></script>
+    
 </body>
 
 </html>

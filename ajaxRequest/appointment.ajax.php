@@ -187,6 +187,23 @@ if(isset($_POST["getAppointmentId"])){
     echo $appoinment_obj->getAppointmentID($_POST["appId"]);
 }
 
+if(isset($_POST["deleteAppointment"])){
+    $appoinment_obj->deleteAppointment($_POST['appId']);
+}
+
+if(isset($_POST["archiveAppointment"])){
+    $appoinment_obj->archiveAppointment($_POST['appId']);
+}
+
+if(isset($_POST["unArchiveAppointment"])){
+    $appoinment_obj->unArchiveAppointment($_POST['appId']);
+}
+
+if(isset($_POST["deleteArchivedAppointment"])){
+    // echo $_POST['appId'];
+    $appoinment_obj->deleteArchivedAppointment($_POST['appId']);
+}
+
 // if(0 != "1"){
 //     echo "Asdad";
 // }
