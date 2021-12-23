@@ -168,6 +168,7 @@
                         </div>
                     </div>
                 </div>
+                <p id="patientID"><?php echo $_GET["patientId"]; ?></p>
             </main>
             <?php include 'html-footer.php' ?>
         </div>

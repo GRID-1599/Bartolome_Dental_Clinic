@@ -2,18 +2,26 @@
 include_once "../classes/patient.class.php";
 $patient_obj = new Patient();
 
+include_once "../classes/activityLog.class.php";
+$actLog_obj = new ActivityLog();
+
 if(isset($_POST["deleteNote"])){
     $patient_obj->deleteNote($_POST["note_id"]);
+    $actLog_obj->addNewLog('Delete', 'Patient '.$_POST["patient_id"].' note deleted ');
+
 }
 
 if(isset($_POST["editNote"])){
     // $note_id, $note_message
     $patient_obj->editNote($_POST["note_id"],$_POST["message_body"]);
+    $actLog_obj->addNewLog('Edit', 'Patient '.$_POST["patient_id"].' note edited ');
 }
 
 if(isset($_POST["addNote"])){
     // $patient_id, $note_message
     $patient_obj->addNote($_POST["patient_id"],$_POST["message_body"]);
+    $actLog_obj->addNewLog('New', 'Patient '.$_POST["patient_id"].' new note added ');
+
 }
 
 if (isset($_POST["getAllPatients"])) {
@@ -39,6 +47,9 @@ if(isset($_POST["editPatient"])){
         $_POST['ptEmail'],
         $_POST['ptContact']
     );
+    $actLog_obj->addNewLog('Edit', 'Patient '.$_POST['patientID'].' details edited');
+
+
 }
 
 ?>

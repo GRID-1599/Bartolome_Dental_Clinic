@@ -2,6 +2,8 @@
 include_once "../classes/admin.class.php";
 $admin_obj = new Admin();
 
+include_once "../classes/activityLog.class.php";
+$actLog_obj = new ActivityLog();
 
 if(isset($_POST["adminRegister"])){
     $admin_obj->registerNewAdmin(
@@ -12,6 +14,9 @@ if(isset($_POST["adminRegister"])){
         $_POST["admin_username"],
         $_POST["admin_password"]
     );
+
+    $actLog_obj->addNewLog('Register', 'New Admin Added : ' . $_POST["admin_username"]);
+
 }
 
 
@@ -23,6 +28,9 @@ if(isset($_POST["adminEdit"])){
         $_POST["admin_contact"],
         $_POST["admin_username"]
     );
+
+    $actLog_obj->addNewLog('Edit', 'Admin Details Edited');
+
 }
 
 if(isset($_POST["checkPassword"])){
@@ -38,6 +46,8 @@ if(isset($_POST["savePassword"])){
         $_POST["admin_username"],
         $_POST["admin_password"]
     );
+    $actLog_obj->addNewLog('Edit', 'Password Edit');
+
 }
 
 if(isset($_POST["checkUsername"])){

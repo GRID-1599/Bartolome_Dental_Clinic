@@ -2,6 +2,17 @@
   display: none;
 }
 
+table {
+  border: none;
+  outline: none;
+}
+
+table tr,
+table td,
+table th {
+  border: none;
+}
+
 .tableHeader {
   background-color: #F05F79;
   color: white;

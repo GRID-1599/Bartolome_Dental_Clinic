@@ -207,6 +207,15 @@ RewriteRule ^admin admin.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for admin 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^activityLog activityLog.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 
 
 

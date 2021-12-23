@@ -1,3 +1,5 @@
+var patient_id
+
 $(document).ready(function() {
     $('.btnSaveNote').each(function() {
         $(this).hide();
@@ -36,6 +38,8 @@ $(document).ready(function() {
         });
     });
 
+    patient_id = $('#patientID').text();
+
 });
 
 
@@ -46,7 +50,8 @@ function deleteNote(note_id) {
         method: 'POST',
         data: {
             deleteNote: 1,
-            note_id: note_id,
+            patient_id: patient_id,
+            note_id: note_id
         },
         success: function(response) {
             console.log(response);
@@ -81,7 +86,8 @@ function editNote(note_id, message_body) {
         data: {
             editNote: 1,
             note_id: note_id,
-            message_body: message_body,
+            patient_id: patient_id,
+            message_body: message_body
 
         },
         success: function(response) {

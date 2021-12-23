@@ -17,6 +17,9 @@ $socialHistory_obj = new SocialHistory();
 include_once '../classes/patientCondition.class.php';
 $patientCondition_obj = new PatientCondition();
 
+include_once "../classes/activityLog.class.php";
+$actLog_obj = new ActivityLog();
+
 
 $currentDate = new DateTime();
 $currentDate->setTimezone(new DateTimeZone('Asia/Manila'));
@@ -189,19 +192,26 @@ if(isset($_POST["getAppointmentId"])){
 
 if(isset($_POST["deleteAppointment"])){
     $appoinment_obj->deleteAppointment($_POST['appId']);
+    $actLog_obj->addNewLog('Delete', 'Appointment '. $_POST['appId']. ' has been deleted');
+
 }
 
 if(isset($_POST["archiveAppointment"])){
+    $actLog_obj->addNewLog('Move', 'Appointment '. $_POST['appId']. ' has been moved to archives');
     $appoinment_obj->archiveAppointment($_POST['appId']);
+
 }
 
 if(isset($_POST["unArchiveAppointment"])){
+    $actLog_obj->addNewLog('Move', 'Appointment '. $_POST['appId']. ' has been unmoved from archives');
     $appoinment_obj->unArchiveAppointment($_POST['appId']);
+
 }
 
 if(isset($_POST["deleteArchivedAppointment"])){
     // echo $_POST['appId'];
     $appoinment_obj->deleteArchivedAppointment($_POST['appId']);
+    $actLog_obj->addNewLog('Delete', 'Appointment '. $_POST['appId']. ' has been deleted from archives');
 }
 
 // if(0 != "1"){

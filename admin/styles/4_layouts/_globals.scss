@@ -16,3 +16,13 @@
 .unShow {
     display: none;
 }
+
+table {
+    border: none;
+    outline: none;
+    tr,
+    td,
+    th {
+        border: none;
+    }
+}
