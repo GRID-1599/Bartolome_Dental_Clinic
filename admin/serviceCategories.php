@@ -92,6 +92,33 @@
     </div>
     <?php include 'scripts.php' ?>
     <!-- <script src="js/service.js"></script> -->
+    <script>
+        function serviceEventUpdate() {
+            $('.serviceCategoryrow').each(function() {
+                $(this).click(function() {
+                    var ID = $(this).find("td:eq(0)").text();
+                    window.location.href = "service/categories/" + ID;
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            $('.serviceCategoryrow').each(function() {
+                $(this).click(function() {
+                    var ID = $(this).find("td:eq(0)").text();
+                    window.location.href = "service/categories/" + ID;
+                });
+            });
+
+
+            setInterval(function() {
+                serviceEventUpdate();
+
+            }, 1000);
+
+
+        });
+    </script>
 
 </body>
 

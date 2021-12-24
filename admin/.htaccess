@@ -11,6 +11,24 @@ RewriteRule ^service/add serviceAdd.php [NC,L,QSA]
 
 # ----------------------------------------------- 
 
+#  url for service category add
+
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^service/categories/add serviceCategoryAdd.php? [NC,L,QSA]
+
+#  url for service  view category
+
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule ^service/categories/([0-9A-Za-z-\s]+) serviceCategoriesView.php?svCategoryId=$1 [NC,L,QSA]
+
+# ----------------------------------------------
+
 #  url for service  add category
 
 RewriteCond %{Request_FileName} !-d
@@ -94,8 +112,6 @@ RewriteCond %{Request_FileName}\.php -f
 RewriteRule ^appointment appointment.php [NC,L,QSA]
 
 # ----------------------------------------------- 
-
-
 
 
 #  url for patients print

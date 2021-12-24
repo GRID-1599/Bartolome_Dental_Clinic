@@ -6,8 +6,8 @@ if (isset($_POST['message'])) {
     // $testObj->getUser();
 
     $Name = $_POST['msgName'];
-    $Email  = $_POST['msgContact'];
-    $Contact = $_POST['msgEmail'];
+    $Contact  = $_POST['msgContact'];
+    $Email = $_POST['msgEmail'];
     $Body = $_POST['msgMessage'];
     //date Today
     $currentDate = new DateTime();

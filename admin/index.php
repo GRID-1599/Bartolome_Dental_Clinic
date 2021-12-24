@@ -301,73 +301,6 @@ foreach ($unreadMessages as $unread) {
 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="card mb-4 " id="weekSched">
-                            <div class="card-header">
-                                <p class="h2">Today's Week Schedule</p>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="card">
-                                    <div class=" m-0 w-100 ">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <button type="button" class="btn btn-outline-secondary float-end w-50"><i class="fas fa-caret-left"></i> Previous</button>
-                                            </div>
-                                            <div class="col-6">
-                                                <p class=""><?php echo $currentDate->format('Y-m-d'); ?></p>
-                                            </div>
-                                            <div class="col-3">
-                                                <button type="button" class="btn btn-outline-secondary w-50">Next <i class="fas fa-caret-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <table class="table  table-borderless" id="calendar">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <small class="h3">01</small>
-                                                    <br>Sun
-                                                </th>
-                                                <th>
-                                                    <small class="h3">02</small>
-                                                    <br>Mon
-                                                </th>
-                                                <th>
-                                                    <small class="h3">03</small>
-                                                    <br>Tue
-                                                </th>
-                                                <th>
-                                                    <small class="h3">04</small>
-                                                    <br>Wed
-                                                </th>
-                                                <th>
-                                                    <small class="h3">05</small>
-                                                    <br>Thu
-                                                </th>
-                                                <th>
-                                                    <small class="h3">06</small>
-                                                    <br>Fri
-                                                </th>
-                                                <th>
-                                                    <small class="h3">07</small>
-                                                    <br>Sat
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="weekBody">
-                                        </tbody>
-                                    </table>
-
-                                    <br />
-                                    <!-- <form class="form-inline">
-                                    <button class="btn-outline-primary lead" id="pre" type="button" onclick="preMonth()"><i class="fas fa-caret-left"></i> Previous</button>
-                                    <button class="btn-outline-primary lead " id="nex" type="button" onclick="nexMonth()">Next <i class="fas fa-caret-right"></i></button>
-                                </form> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </main>
             <?php include 'html-footer.php' ?>
@@ -376,18 +309,7 @@ foreach ($unreadMessages as $unread) {
     <?php include 'scripts.php' ?>
     <script src="js/dateView.js"></script>
     <script src="js/weekDay.js"></script>
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
-            var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-            document.getElementById("datetimepicker-dashboard").flatpickr({
-                inline: true,
-                prevArrow: "<span title=\"Previous month\">&laquo;</span>",
-                nextArrow: "<span title=\"Next month\">&raquo;</span>",
-                defaultDate: defaultDate
-            });
-        });
-    </script> -->
+   
 </body>
 
 </html>

@@ -11,13 +11,14 @@ class ServiceCategory extends DatabaseConnection
         $stmt = $this->connect()->query($sql);
         $allServiceCategory = array();
         while ($row = $stmt->fetch()) {
-            $serviceCategory = array("ServiceCategory_Id" =>$row["ServiceCategory_Id"], "Name" =>$row["Name"],  "Description" =>$row["Description"],  "ImgFileName" =>$row["ImgFileName"]);
+            $serviceCategory = array("ServiceCategory_Id" => $row["ServiceCategory_Id"], "Name" => $row["Name"],  "Description" => $row["Description"],  "ImgFileName" => $row["ImgFileName"]);
             array_push($allServiceCategory, $serviceCategory);
         }
         return $allServiceCategory;
     }
 
-    public function getServicesCategory_ID($serviceCategory_Name){
+    public function getServicesCategory_ID($serviceCategory_Name)
+    {
         $sql = "SELECT `ServiceCategory_Id`  FROM `service_category` WHERE `Name` = ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$serviceCategory_Name]);
@@ -27,60 +28,80 @@ class ServiceCategory extends DatabaseConnection
         return false;
     }
 
-    public function getServicesCategory_ById($serviceCategory_Id){
+    public function getServicesCategory_ById($serviceCategory_Id)
+    {
         $sql = "SELECT `Name`, `Description`, `ImgFileName` FROM `service_category` WHERE `ServiceCategory_Id` = ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$serviceCategory_Id]);
         while ($row = $stmt->fetch()) {
-            return array( "Name" =>$row["Name"],  "Description" =>$row["Description"],  "ImgFileName" =>$row["ImgFileName"]);
+            return array("Name" => $row["Name"],  "Description" => $row["Description"],  "ImgFileName" => $row["ImgFileName"]);
         }
     }
 
-    public function getServicesCategory_Name(){
+    public function getServicesCategory_Name()
+    {
         $sql = "SELECT `ServiceCategory_Id`, `Name` FROM `service_category`";
         $stmt = $this->connect()->query($sql);
         $allServiceCategory = array();
         while ($row = $stmt->fetch()) {
-            $serviceCategory = array($row["ServiceCategory_Id"] =>$row["Name"]);
-            $allServiceCategory+=$serviceCategory ;
+            $serviceCategory = array($row["ServiceCategory_Id"] => $row["Name"]);
+            $allServiceCategory += $serviceCategory;
         }
         return $allServiceCategory;
     }
 
-
-
-    public function addNewPatient( $Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created){
-
-        $sql = 'INSERT INTO `patient`( `Name`, `Nickname`, `Birthday`, `Age`, `Gender`, `Civil Status`, `Address`, `Email`, `Contact`, `Date_Created`) VALUES (?,?,?,?,?,?,?,?,?,?)';
-        $stmt = $this->connect()->prepare($sql);
-        // print [$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created];
-
-        // echo implode(" ",[$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created]);
-        $stmt->execute([$Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created]);
-        
-
-    }
-
-    public function getPatientIdByName($name, $bday)
+    public function editServiceCAtegory($serviceCat_id, $serviceCat_data)
     {
-        // $sql = "SELECT `Patient_ID` FROM `patient` WHERE`Name` LIKE '".$name."' AND `Birthday` = '".$bday."'";
-        $sql = "SELECT `Patient_ID` FROM `patient` WHERE Name = ? AND Birthday = ? ";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$name, $bday]);
-        while ($row = $stmt->fetch()) {
-            $Patient_ID = $row["Patient_ID"];
-            return $Patient_ID;
+        $set = "";
+        foreach ($serviceCat_data as $key => $val) {
+            $set .= "`" . $key . "` = '" . $val . "', ";
         }
-        return 'Not found';
-    }
-    // public function getUserStmt()
-    // {
-    //     $sql = "SELECT * FROM service_category ";
-    //     $stmt = $this->connect()->query($sql);
 
-    //     while ($row = $stmt->fetch()) {
-    //         $serviceName = $row["Name"];
-    //         echo $serviceName . "<br>";
-    //     }
-    // }
+        $set = substr($set, 0, -2);
+
+        $sql1 = "UPDATE `service_category` SET  " . $set . " WHERE  `ServiceCategory_Id` = '" . $serviceCat_id . "'";
+        // echo  $sql1;
+
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+    }
+
+    public function changeServiceCategoryImage($serviceCat_id, $filename)
+    {
+        $sql = "UPDATE `service_category` SET `ImgFilename`='" . $filename . "' WHERE `service_category`.`ServiceCategory_Id` = '" . $serviceCat_id . "'";
+        echo $sql;
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+    }
+
+    public function getLastServiceCategoryID()
+    {
+        $sql = "SELECT `ServiceCategory_Id` FROM `service_category` ORDER BY `ServiceCategory_Id` DESC LIMIT 1";
+        $stmt = $this->connect()->query($sql);
+        while ($row = $stmt->fetch()) {
+            return $row["ServiceCategory_Id"];
+        };
+    }
+
+
+    public function addNewServiceCategory(
+        $Id,
+        $Name,
+        $Description,
+        $Image
+    ) {
+
+        $sql = 'INSERT INTO `service_category`(`ServiceCategory_Id`, `Name`, `Description`, `ImgFileName`) VALUES (?,?,?,?)';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute(
+            [
+                $Id,
+                $Name,
+                $Description,
+                ''
+            ]
+        );
+
+        echo $Id . " " . $Name . "New Service Successfully Added";
+    }
 }
