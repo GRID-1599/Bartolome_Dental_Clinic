@@ -50,10 +50,25 @@ if(isset($_POST["savePassword"])){
 
 }
 
+if(isset($_POST["adminResetPassword"])){
+    $admin_obj->savePassword(
+        $_POST["adminUsername"],
+        $_POST["adminNewPassword"]
+    );
+
+}
+
 if(isset($_POST["checkUsername"])){
     $admin_obj->getAdminByUsername(
         $_POST["admin_username"]
     );
 }
+
+
+if(isset($_POST["adminGetEmail"])){
+    // echo $_POST["adminEmail"];
+   echo json_encode($admin_obj->getAdminByEmail($_POST["adminEmail"]));
+}
+
 
 ?>

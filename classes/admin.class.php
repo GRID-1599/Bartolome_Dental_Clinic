@@ -50,7 +50,7 @@ class Admin extends DatabaseConnection
 
     public function editAdminNewInfo($admin_firstname, $admin_lastname, $admin_email, $admin_contact, $admin_username)
     {
-        $sql = "UPDATE `admin` SET `First_Name`='".$admin_firstname."',`Last_Name`='".$admin_lastname."',`Contact`='".$admin_contact."',`Email`='".$admin_email."' WHERE `admin`.`Username` = '" . $admin_username . "'";
+        $sql = "UPDATE `admin` SET `First_Name`='" . $admin_firstname . "',`Last_Name`='" . $admin_lastname . "',`Contact`='" . $admin_contact . "',`Email`='" . $admin_email . "' WHERE `admin`.`Username` = '" . $admin_username . "'";
         $stmt = $this->connect()->query($sql);
         $stmt->execute();
         echo "Changes saved";
@@ -65,17 +65,26 @@ class Admin extends DatabaseConnection
         while ($row = $stmt->fetch()) {
             $admin_password =  $row["Password"];
         }
-        echo password_verify($password, $admin_password) ;
+        echo password_verify($password, $admin_password);
     }
 
     public function savePassword($admin_username, $password)
     {
         $admin_password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE `admin` SET `Password`='".$admin_password."' WHERE `admin`.`Username` = '" . $admin_username . "'";
+        $sql = "UPDATE `admin` SET `Password`='" . $admin_password . "' WHERE `admin`.`Username` = '" . $admin_username . "'";
         $stmt = $this->connect()->query($sql);
         $stmt->execute();
         echo "Password changes saved";
     }
 
-
+    public function getAdminByEmail($email)
+    {
+        $sql = "SELECT * FROM `admin` WHERE `Email` = ? ";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$email]);
+        while ($row = $stmt->fetch()) {
+            $admin = array("Username" => $row["Username"], "First_Name" => $row["First_Name"],  "Last_Name" => $row["Last_Name"], "Contact" => $row["Contact"], "Email" => $row["Email"]);
+            return  $admin;
+        }
+    }
 }
