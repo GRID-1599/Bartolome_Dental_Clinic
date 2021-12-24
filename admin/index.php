@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (isset($_GET['adminUser'])) {
-    $_SESSION['userAdmin'] = $_GET['adminUser'];
-}
-
 include_once '../classes/appoinment.class.php';
 $appointment_obj = new Appointment();
 $currentDate = new DateTime();

@@ -34,10 +34,18 @@ if(isset($_POST["adminEdit"])){
 }
 
 if(isset($_POST["checkPassword"])){
-    $admin_obj->checkPassword(
+    $result = $admin_obj->checkPassword(
         $_POST["admin_username"],
         $_POST["admin_password"]
     );
+
+    if($result == 1){
+        session_start();
+        $_SESSION['userAdmin'] = $_POST["admin_username"];
+         echo 1;
+    }else{
+        echo 2;
+    }
 }
 
 

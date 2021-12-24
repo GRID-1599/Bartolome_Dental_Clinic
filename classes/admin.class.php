@@ -65,7 +65,7 @@ class Admin extends DatabaseConnection
         while ($row = $stmt->fetch()) {
             $admin_password =  $row["Password"];
         }
-        echo password_verify($password, $admin_password);
+        return password_verify($password, $admin_password);
     }
 
     public function savePassword($admin_username, $password)

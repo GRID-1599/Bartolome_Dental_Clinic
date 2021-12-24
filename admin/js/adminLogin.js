@@ -115,6 +115,8 @@ function checkIfPasswordCorrect(username) {
 
         },
         success: function(response) {
+            console.log(response);
+
             if (response != 1) {
                 $('#adminPassword').focus();
                 $('#adminPassword').addClass("is-invalid");
@@ -124,10 +126,12 @@ function checkIfPasswordCorrect(username) {
                 trial()
 
             } else {
-                user = $('#adminUserName').val();
-                window.location.href = "index.php?adminUser=" + user;
+                // console.log(response);
+                // user = $('#adminUserName').val();
+                window.location.href = "";
 
             }
+
 
         },
         error: function(jqXHR, exception) {
