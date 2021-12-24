@@ -108,5 +108,17 @@ class Patient extends DatabaseConnection
 
     }
 
+    public function getPatientByDetails($patientName, $patientGender, $patientBday)
+    {
+        // $sql = "SELECT `Patient_ID` FROM `patient` WHERE`Name` LIKE '".$name."' AND `Birthday` = '".$bday."'";
+        $sql = "SELECT `Patient_ID`, `Name`, `Nickname`, `Birthday`, `Age`, `Gender`, `Civil Status`, `Address`, `Email`, `Contact`, `Date_Created` FROM `patient` WHERE `Name` LIKE '%".$patientName."%' AND `Birthday` = '".$patientBday."' AND `Gender` LIKE '".$patientGender."'";
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+        while ($row = $stmt->fetch()) {
+            $patient = array("Patient_ID" =>$row["Patient_ID"], "Name" =>$row["Name"],  "Nickname" =>$row["Nickname"],  "Birthday" =>$row["Birthday"],"Age" =>$row["Age"], "Gender" =>$row["Gender"],"Civil_Status" =>$row["Civil Status"], "Address" =>$row["Address"],"Email" =>$row["Email"], "Contact" =>$row["Contact"],"Date_Created" =>$row["Date_Created"]);;
+            return $patient;
+        }
+    }
+
     
 }

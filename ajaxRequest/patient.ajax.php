@@ -34,6 +34,10 @@ if (isset($_POST["getPatientByID"])) {
     echo json_encode($paient_obj->getPatientById($_POST['patientID']));
 }
 
+if (isset($_POST["checkPatient"])) {
+    echo json_encode($patient_obj->getPatientByDetails($_POST['pt_Name'],$_POST['pt_Gender'],$_POST['pt_Birthday']));
+}
+
 if(isset($_POST["editPatient"])){
     $patient_obj->editPatientDetails(
         $_POST['patientID'],
