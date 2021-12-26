@@ -49,7 +49,7 @@ function inputValidity() {
 
 function checkPAtientDetails() {
     $.ajax({
-        url: 'ajaxRequest/patient.ajax.php',
+        url: './ajaxRequest/patient.ajax.php',
         method: 'POST',
         data: {
             checkPatient: 1,

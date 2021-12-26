@@ -174,9 +174,67 @@
                                         <strong><?php echo $appointment[0]["Amount"] ?> php</strong>
                                     </div>
                                 </div>
+                                <?php
+                                if ($appointment[0]["Payment_Method"] != "PayLater") {
+
+                                ?>
+                                    <p class="h5 my-3">Proof of Payment</p>
+                                    <div class="row ">
+                                        <dl class="row ">
+                                            <dt class="col-sm-5">Payment Method:</dt>
+                                            <dd class="col-sm-7">
+                                                <?php
+                                                echo $appointment[0]["Payment_Method"]
+                                                ?>
+                                            </dd>
+
+                                        </dl>
+                                        <div class="row">
+                                            <div class="col-sm-6 ">
+                                                <div class="row ">
+                                                    <span>Clinic GCash Number</span><br>
+                                                    <span style="font-size: 1rem; color:#bf2441;">09223964642</span>
+                                                </div>
+                                                <img src="resources/images/clinic_gcash.jpg" alt="Default Service Image" class="img-thumbnail">
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <?php
+                                                $pop = $app_obj->getPOP($_GET["appointmentId"]);
+                                                $imgSrc = 'resources/images/Proof_of_Payment.png';
+                                                if ($pop != null) {
+                                                    $imgSrc = 'resources/Proof_of_Payments/' . $pop['ImgFileName'] . '.jpg';
+                                                }
+                                                ?>
+                                                <span>Proof of Payment</span>
+                                                <img src="<?php echo $imgSrc ?>" alt="Image for Proof of Payment " class="img-thumbnail mb-3" id="imgPOP">
+
+                                                <form id="formImage" onsubmit="return false">
+                                                    <input type="file" id="pop_image" class="" aria-describedby="inputGroupFileAddon01" accept="image/jpeg" style="display: none;">
+                                                    <label class="btn btn-primary w-100" for="pop_image">Upload File</label>
+                                                </form>
+                                                <p class="text-muted">Please submit an image of the proof of payment to be verified</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <?php
+                                               if ($pop == null) {
+                                                   echo ' <button class="btn btn-primary w-100" id="btnPOPAdd"> Submit Add </button>';
+                                               }else{
+                                                   echo '<button class="btn btn-primary w-100" id="btnPOPEdit"> Submit Edit </button>';
+                                               }
+                                            ?>
+                                            
+                                        </div>
+                                    </div>
+
+                                <?php
+                                }
+                                ?>
 
                             </div>
                         </div>
+                        <p id="app_Id" class="unShow" ><?php echo $_GET['appointmentId'] ?></p>
                         <div class="row mt-5">
                             <?php
 
@@ -208,80 +266,80 @@
                             ?>
                             <p class="h5">Form</p>
                             <div class="col-md-6">
-                                
+
                                 <div class="row ps-3 mb-3">
                                     <p class="h5">Medical History</p>
                                     <div class="row ps-5">
                                         <dt class="col-sm-5">Last Medical Checkup:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($MedicalHistory["Last_Medical_Checkup"])) ? $MedicalHistory["Last_Medical_Checkup"] : " ";
-                                        ?>
-                                    </dd>
-
-                                    <dt class="col-sm-5">Medical Treatment:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($MedicalHistory["Medical_Treatment"])) ? $MedicalHistory["Medical_Treatment"] : " ";
-                                        ?>
-                                    </dd>
-
-                                    <dt class="col-sm-5">Medication:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($MedicalHistory["Medication"])) ? $MedicalHistory["Medication"] : " ";
-                                        ?>
-                                    </dd>
-
-                                    <dt class="col-sm-5">Hospitalized:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($MedicalHistory["Hospitalized"])) ? $MedicalHistory["Hospitalized"] : " ";
-                                        ?>
-                                    </dd>
-
-                                    <dt class="col-sm-5">Allergies:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($MedicalHistory["Allergies"])) ? $MedicalHistory["Allergies"] : " ";
-                                        ?>
-                                    </dd>
-
-                                    <?php
-                                    if (!empty($FemalePatient)) {
-                                    ?>
-
-                                        <dt class="col-sm-5">Pregnant:</dt>
                                         <dd class="col-sm-7">
                                             <?php
-                                            echo ($FemalePatient["IsPregnant"]) ? "Pregnant" : "Not Pregnant";
+                                            echo (isset($MedicalHistory["Last_Medical_Checkup"])) ? $MedicalHistory["Last_Medical_Checkup"] : " ";
                                             ?>
                                         </dd>
 
-                                        <dt class="col-sm-5">Months Pregnant:</dt>
+                                        <dt class="col-sm-5">Medical Treatment:</dt>
                                         <dd class="col-sm-7">
                                             <?php
-                                            echo ($FemalePatient["Months_Pregnant"] != 0) ? $FemalePatient["Months_Pregnant"] . " month/s" : "";
+                                            echo (isset($MedicalHistory["Medical_Treatment"])) ? $MedicalHistory["Medical_Treatment"] : " ";
                                             ?>
                                         </dd>
 
-                                        <dt class="col-sm-5">Taking Birth Pills:</dt>
+                                        <dt class="col-sm-5">Medication:</dt>
                                         <dd class="col-sm-7">
                                             <?php
-                                            echo ($FemalePatient["IsTakingBirthPills"]) ? "Yes" : "No";
+                                            echo (isset($MedicalHistory["Medication"])) ? $MedicalHistory["Medication"] : " ";
                                             ?>
                                         </dd>
 
-                                        <dt class="col-sm-5">Date Answered:</dt>
+                                        <dt class="col-sm-5">Hospitalized:</dt>
                                         <dd class="col-sm-7">
                                             <?php
-                                            echo $FemalePatient["Date_Answered"];
+                                            echo (isset($MedicalHistory["Hospitalized"])) ? $MedicalHistory["Hospitalized"] : " ";
                                             ?>
                                         </dd>
 
-                                    <?php
-                                    }
-                                    ?>
+                                        <dt class="col-sm-5">Allergies:</dt>
+                                        <dd class="col-sm-7">
+                                            <?php
+                                            echo (isset($MedicalHistory["Allergies"])) ? $MedicalHistory["Allergies"] : " ";
+                                            ?>
+                                        </dd>
+
+                                        <?php
+                                        if (!empty($FemalePatient)) {
+                                        ?>
+
+                                            <dt class="col-sm-5">Pregnant:</dt>
+                                            <dd class="col-sm-7">
+                                                <?php
+                                                echo ($FemalePatient["IsPregnant"]) ? "Pregnant" : "Not Pregnant";
+                                                ?>
+                                            </dd>
+
+                                            <dt class="col-sm-5">Months Pregnant:</dt>
+                                            <dd class="col-sm-7">
+                                                <?php
+                                                echo ($FemalePatient["Months_Pregnant"] != 0) ? $FemalePatient["Months_Pregnant"] . " month/s" : "";
+                                                ?>
+                                            </dd>
+
+                                            <dt class="col-sm-5">Taking Birth Pills:</dt>
+                                            <dd class="col-sm-7">
+                                                <?php
+                                                echo ($FemalePatient["IsTakingBirthPills"]) ? "Yes" : "No";
+                                                ?>
+                                            </dd>
+
+                                            <dt class="col-sm-5">Date Answered:</dt>
+                                            <dd class="col-sm-7">
+                                                <?php
+                                                echo $FemalePatient["Date_Answered"];
+                                                ?>
+                                            </dd>
+
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -309,17 +367,17 @@
                                     <p class="h5">Social History History</p>
                                     <div class="row ps-5">
                                         <dt class="col-sm-5">Smoking:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($SocialHistory["IsSmoking"])) ? (($SocialHistory["IsSmoking"]) ? "Yes" : "No") : " ";
-                                        ?>
-                                    </dd>
-                                    <dt class="col-sm-5">DrinkingAlcohol:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($SocialHistory["IsDrinkingAlcohol"])) ? (($SocialHistory["IsDrinkingAlcohol"]) ? "Yes" : "No") : " ";
-                                        ?>
-                                    </dd>
+                                        <dd class="col-sm-7">
+                                            <?php
+                                            echo (isset($SocialHistory["IsSmoking"])) ? (($SocialHistory["IsSmoking"]) ? "Yes" : "No") : " ";
+                                            ?>
+                                        </dd>
+                                        <dt class="col-sm-5">DrinkingAlcohol:</dt>
+                                        <dd class="col-sm-7">
+                                            <?php
+                                            echo (isset($SocialHistory["IsDrinkingAlcohol"])) ? (($SocialHistory["IsDrinkingAlcohol"]) ? "Yes" : "No") : " ";
+                                            ?>
+                                        </dd>
                                     </div>
                                 </div>
 
@@ -327,12 +385,12 @@
                                     <p class="h5">Patient Condition</p>
                                     <div class="row ps-5">
                                         <dt class="col-sm-5">Condition/s:</dt>
-                                    <dd class="col-sm-7">
-                                        <?php
-                                        echo (isset($PatientCondition["Patient_Condition"])) ? $PatientCondition["Patient_Condition"] : " ";
+                                        <dd class="col-sm-7">
+                                            <?php
+                                            echo (isset($PatientCondition["Patient_Condition"])) ? $PatientCondition["Patient_Condition"] : " ";
 
-                                        ?>
-                                    </dd>
+                                            ?>
+                                        </dd>
                                     </div>
 
                                 </div>
@@ -374,6 +432,7 @@
     <?php include 'footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js " integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM " crossorigin="anonymous "></script>
+    <script src="javascript/appointment.js"></script>
 </body>
 
 </html>

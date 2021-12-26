@@ -227,6 +227,35 @@ if(isset($_POST["saveChanges"])){
     $actLog_obj->addNewLog('Edit', 'Appointment '. $_POST['appId']. ' has been changed');
 }
 
+if (isset($_FILES['file']['name'])) {
+    $filename = $_FILES['file']['name'];
+
+    /* Location */
+    $location = "../resources/Proof_of_Payments/" . $filename;
+    $imageFileType = pathinfo($location, PATHINFO_EXTENSION);
+    $imageFileType = strtolower($imageFileType);
+
+    /* Valid extensions */
+    $valid_extensions = array("jpg");
+
+    /* Check file extension */
+    if (in_array(strtolower($imageFileType), $valid_extensions)) {
+        /* Upload file */
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+            $response = $location;
+            $filename = substr($filename, 0, -4);
+           echo  $appoinment_obj->addPOP($_GET["appID"], $filename);
+            // $actLog_obj->addNewLog('Edit', 'Service category ' . $_GET["serviceCategoryId"] . ' image changed');
+        }
+    } else {
+        echo "Error : Invalid File";
+    }
+}
+
+if(isset($_POST["deletePOP"])){
+    $appoinment_obj->deletePOP($_POST['popID']);
+}
+
 // if(0 != "1"){
 //     echo "Asdad";
 // }

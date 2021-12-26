@@ -243,10 +243,10 @@ class Appointment extends DatabaseConnection
         return $appointmentData;
     }
 
-//  SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '07:00:00' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
-//  SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '07:00:00' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
-// SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '19:00:31' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
-    public function getAppointmentToDoneByTodayDate($date , $time)
+    //  SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '07:00:00' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
+    //  SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '07:00:00' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
+    // SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '19:00:31' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
+    public function getAppointmentToDoneByTodayDate($date, $time)
     {
         $sql = " SELECT * FROM `appointment` WHERE `Appoinment_Date` = '$date' AND `Appointment_EndTime` < '$time' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC";
         $stmt = $this->connect()->query($sql);
@@ -360,10 +360,10 @@ class Appointment extends DatabaseConnection
 
     public function archiveAppointment($appId)
     {
-        $sql1 = "INSERT INTO archived_appointment SELECT * FROM appointment WHERE Appointment_Id = '".$appId."'; DELETE FROM appointment WHERE Appointment_Id = '".$appId."';";
+        $sql1 = "INSERT INTO archived_appointment SELECT * FROM appointment WHERE Appointment_Id = ? ; DELETE FROM appointment WHERE Appointment_Id = ? ;";
         echo $sql1 . "<br>";
-        $stmt = $this->connect()->query($sql1);
-        $stmt->execute();
+        $stmt = $this->connect()->prepare($sql1);
+        $stmt->execute([$appId, $appId]);
 
         // $sql2 = "DELETE FROM appointment WHERE Appointment_Id = '".$appId."';";
         // $stmt2 = $this->connect()->query($sql2);
@@ -375,10 +375,10 @@ class Appointment extends DatabaseConnection
 
     public function unArchiveAppointment($appId)
     {
-        $sql1 = "INSERT INTO appointment SELECT * FROM archived_appointment WHERE Appointment_Id = '".$appId."'; DELETE FROM archived_appointment WHERE Appointment_Id = '".$appId."';";
+        $sql1 = "INSERT INTO appointment SELECT * FROM archived_appointment WHERE Appointment_Id = ? ; DELETE FROM archived_appointment WHERE Appointment_Id = ? ;";
         echo $sql1 . "<br>";
-        $stmt = $this->connect()->query($sql1);
-        $stmt->execute();
+        $stmt = $this->connect()->prepare($sql1);
+        $stmt->execute([$appId, $appId]);
 
         // $sql2 = "DELETE FROM appointment WHERE Appointment_Id = '".$appId."';";
         // $stmt2 = $this->connect()->query($sql2);
@@ -388,12 +388,11 @@ class Appointment extends DatabaseConnection
     }
 
 
-     public function getAllArchiveAppointment()
+    public function getAllArchiveAppointment()
     {
         $sql = "SELECT * FROM `archived_appointment` ORDER BY `Date_Created` DESC";
         $stmt = $this->connect()->query($sql);
         return $stmt;
-
     }
 
     public function getArchivedAppointmentById($appoinmentId)
@@ -473,6 +472,43 @@ class Appointment extends DatabaseConnection
         $stmt = $this->connect()->query($sql1);
         $stmt->execute();
         echo "appointment  " . $appId . " succssfully changed";
+    }
+
+
+    public function addPOP($app_id, $filename)
+    {
+        try {
+            $sql = "INSERT INTO `proof_of_payments`(`App_Id`, `ImgFileName`) VALUES (?,?)";
+            // echo $sql;
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$app_id, $filename]);
+            return "1";
+        } catch (Exception $ex) {
+            return $ex;
+        }
+    }
+
+    public function getPOP($app_id)
+    {
+        $sql = "SELECT * FROM `proof_of_payments` WHERE `App_Id` = ?";
+        // echo $sql;
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$app_id]);
+        while ($row = $stmt->fetch()) {
+            $pop = array(
+                "App_Id" => $row["App_Id"],
+                "ImgFileName" => $row["ImgFileName"]
+            );
+            return $pop;
+        }
+    }
+
+    public function deletePOP($app_id )
+    {
+        $sql = "DELETE FROM `proof_of_payments` WHERE `App_Id` = ?";
+        // echo $sql;
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$app_id]);
     }
 }
 

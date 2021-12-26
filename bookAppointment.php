@@ -215,7 +215,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
             </div>
         </div>
 
-        <div class="contaier patientForm mb-5 unShow">
+        <div class="contaier patientForm mb-5 unShow ">
             <br>
             <h3 class="text-center display-6 text-2">Please answer this form</h3>
             <!-- Dental History -->
@@ -511,15 +511,15 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                         <div class="row align-items-center ">
                             <div class="col-1 align-items-center justify-items-end ">
                                 <input type="checkbox" id="agree" name="agree" value="agree" class="">
-                                
+
                             </div>
                             <div class="col-11">
                                 <label for="agree" class="agreeLabel"> I confirm that I have read, understand and agree to the statement above.</label>
                                 <div class="invalid-feedback">
-                                You must agree before submitting.
+                                    You must agree before submitting.
+                                </div>
                             </div>
-                            </div>
-                            
+
                         </div>
                     </div>
 
@@ -554,7 +554,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                 </div>
             </div>
 
-            <div class="container patient-bookDetails">
+            <div class="container patient-bookDetails ">
                 <h5 class="w-auto">Booking Details:</h5>
                 <br>
                 <div class="row">
@@ -698,7 +698,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
 
 <!-- modal -->
 
-<!-- Modal -->
+<!-- Modal loading -->
 <div class="modal fade" id="loadingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -710,23 +710,73 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                 <p class=" text-center">Please wait</p>
                 <div class="d-flex justify-content-center">
                     <div class="spinner-grow text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <div class="spinner-grow text-danger" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <div class="spinner-grow text-success" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <div class="spinner-grow text-warning" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <div class="spinner-grow text-info" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
 
 
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal enter gcash -->
+<div class="modal fade" id="modalGcashPayment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">For Online Payment</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body">
+                <div class="row gy-4">
+                    <div class="col-sm-4 ">
+                        <div class="row mt-3 shadow p-3 bg-body rounded">
+                            <span style="font-size: 1.25rem;">Payment Method </span><br>
+                            <span style="font-size: 2rem; color:#bf2441;">GCash</span><br>
+                        </div>
+                        <div class="row mt-3 shadow p-3 bg-body rounded" style="font-size: 1.25rem;">
+                            <span>Clinic GCash Number</span><br>
+                            <span style="font-size: 2rem; color:#bf2441;">09223964642</span>
+                        </div>
+                        <div class="row mt-3 shadow p-3 bg-body rounded" style="font-size: 1.25rem;">
+                            <span>Amount to pay</span><br>
+                            <span style="font-size: 2rem; color:#bf2441;"><span id="paymentAmount">6000</span> <span> PHP</span></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 order-md-first">
+                        <img src="resources/images/clinic_gcash.jpg" alt="Default Service Image" class="img-thumbnail">
+                    </div>
+
+                    <div class="col-sm-4 mb-3">
+                        <img src="resources/images/Proof_of_Payment.png" alt="Image for Proof of Payment " class="img-thumbnail mb-3" id="imgPOP">
+                        
+                        <form id="formImage" onsubmit="return false">
+                            <input type="file" id="pop_image" class="" aria-describedby="inputGroupFileAddon01" accept="image/jpeg" style="display: none;">
+                            <label class="btn btn-primary w-100" for="pop_image">Upload File</label>
+                        </form>
+                        <p class="text-muted">Please submit an image of the proof of payment to be verified</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnClosePOP" >Maybe later</button>
+                    <button type="button" class="btn btn-primary" id="btnSumbitPOP" >Submit</button>
+                </div>
 
             </div>
         </div>

@@ -241,6 +241,45 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                                                 <strong><?php echo $appointment[0]["Amount"] ?> php</strong>
                                             </div>
                                         </div>
+                                        <?php
+                                        if ($appointment[0]["Payment_Method"] != "PayLater") {
+
+                                        ?>
+                                            <p class="h5 mt-5">Proof of Payment</p>
+                                            <div class="row ">
+                                                <dl class="row ">
+                                                    <dt class="col-sm-5">Payment Method:</dt>
+                                                    <dd class="col-sm-7">
+                                                        <?php
+                                                        echo $appointment[0]["Payment_Method"]
+                                                        ?>
+                                                    </dd>
+
+                                                </dl>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-sm-7 mb-3">
+                                                        <?php
+                                                        $pop = $appointment_obj->getPOP($appointmentId);
+                                                        $imgSrc = '../resources/images/Proof_of_Payment.png';
+                                                        if ($pop != null) {
+                                                            $imgSrc = '../resources/Proof_of_Payments/' . $pop['ImgFileName'] . '.jpg';
+                                                        }else{
+                                                            echo '<span style="color:red;" >No Proof of Payment found</span>';
+
+                                                        }
+                                                        ?>
+                                                        
+                                                        <img src="<?php echo $imgSrc ?>" alt="Image for Proof of Payment " class="img-thumbnail mb-3 " id="imgPOP">
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        <?php
+                                        }
+                                        ?>
 
 
 
@@ -564,8 +603,8 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                                                 <div class="input-group mb-3">
                                                     <input type="password" class="form-control text-center" placeholder="* * * * * *" aria-label="adminPassword" aria-describedby="adminPassword" id="inputAdminPassword">
                                                     <div class="invalid-feedback">
-                                                        <span>Admin : <?php echo $_SESSION['userAdmin']?> </span><br>
-                                                        <span class="text-end" style="color: red;" > Wrong admin password</span>   
+                                                        <span>Admin : <?php echo $_SESSION['userAdmin'] ?> </span><br>
+                                                        <span class="text-end" style="color: red;"> Wrong admin password</span>
                                                     </div>
                                                 </div>
 

@@ -836,6 +836,10 @@ $(document).ready(function() {
                 console.log(JSON.stringify(appoinment_obj));
                 console.log("-------------------------");
                 console.log(appoinment_obj);
+
+                var paymentMethod = $('input[name="payment"]:checked').val()
+                    // console.log(paymentMethod);
+
                 $('#loadingModal').modal('show')
 
                 addTheNewAppointment();
@@ -849,12 +853,15 @@ $(document).ready(function() {
 
         }
 
+
+
     });
 
     `
     {"ID":"AFFBO0ZJEGWCC37","Patient_ID":"1001","Contact":"09973356901","Date":"2022-01-11","Start_Time":"11:00","End_Time":"14:00","Duration":120,"Allotted_Hours":2,"Services":[["S101","Extraction","600"]],"Amount":"600","Payment_Method":"GCash","IsPaid":false}
 
     `
+    // $('#modalGcashPayment').modal('show')
 
     $('#clear_LastDentalVisit').click(function() {
         $('#inpt_LastDentalVisit').val(null)
@@ -863,9 +870,87 @@ $(document).ready(function() {
         $('#inpt_LastMedicalCheckUp').val(null)
     });
 
+    $('#btnSumbitPOP').click(function() {
+        if ($('#pop_image').val()) {
+            submitImagePOP();
+        } else {
+            alert("Empty Image File\nNothing to submit")
+        }
+    });
+
+    $('#btnClosePOP').click(function() {
+        window.location.href = 'index'
+    });
+
+    imgPOP_Edit();
 
 
 });
+
+// edit POP image
+function imgPOP_Edit() {
+    btnImageInput = document.getElementById("pop_image");
+    previewImage = document.getElementById("imgPOP");
+
+    // previewImage.setAttribute("src", document.getElementById("userProfile").getAttribute('src'));
+
+    btnImageInput.addEventListener("change", function() {
+        const file = this.files[0];
+        thisFile = file;
+        if (file) {
+            reader = new FileReader();
+            reader.addEventListener("load", function() {
+                previewImage.setAttribute("src", this.result);
+                isImageDeleted = false;
+                isImageEdited = true;
+            });
+            reader.readAsDataURL(file);
+        }
+    });
+
+    return
+}
+
+function submitImagePOP() {
+    var fd = new FormData();
+    var files = $('#pop_image')[0].files;
+    fd.append('file', files[0]);
+    var theURL = './ajaxRequest/appointment.ajax.php?appID=' + appoinment_obj["ID"];
+    console.log(fd);
+    console.log("url -" + theURL);
+    $.ajax({
+        url: theURL,
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            // response = JSON.stringify(response);
+            console.log("response txt : " + response);
+            window.location.href = 'index';
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+}
 
 function checkingRadioIfHasChecked(radioName) {
     $("input[type=radio][name=" + radioName + "]").each(function() {
@@ -1457,11 +1542,21 @@ function addTheNewAppointment() {
             if (response == "1") {
                 console.log("the response : " + response);
                 // $('#loadingModal').modal('hide')
+                var paymentMethod = $('input[name="payment"]:checked').val()
+
+                var forPayment = ""
+
+                if (paymentMethod !== 'PayLater') {
+                    forPayment = `
+                        <button type="button" class="btn btn-primary float-end mx-2" id="btnModalPaymentProceed">Proceed to Payment</button>
+                    `
+                }
                 markup = `
-                    <p class="">Your appointment is successfully added</p>
-                <button type="button" class="btn btn-primary float-end" id="btnModalLoadingCloseProceed">Close</button>
-                `;
+                    <p class="">Your appointment is successfully added. Please wait for the approval. Thank You</p>
+                <button type="button" class="btn btn-secondary float-end" id="btnModalLoadingCloseProceed">Close</button>
+                ` + forPayment;
                 messageSendEmail();
+
             } else {
                 console.log("error: " + response);
                 // $('#loadingModal').modal('hide')
@@ -1475,8 +1570,11 @@ function addTheNewAppointment() {
 
             $('#btnModalLoadingCloseProceed').click(function() {
                 $('#loadingModal').modal('hide')
-                location.reload();
-                window.location.href = "index.php";
+                window.location.href = 'index'
+            });
+
+            $('#btnModalPaymentProceed').click(function() {
+                $('#modalGcashPayment').modal('show')
             });
 
             $('#btnModalLoadingClose').click(function() {
