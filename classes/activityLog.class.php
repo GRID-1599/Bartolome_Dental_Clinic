@@ -30,6 +30,24 @@ class ActivityLog extends DatabaseConnection
         ]);
     }
 
+    public function addNewLogInUserSide($action, $activity)
+    {
+        session_start();
+        $currentDateTime = new DateTime();
+        $theAdmin = "Patient";
+        $currentDateTime->setTimezone(new DateTimeZone('Asia/Manila'));
+
+        // echo $theAdmin;
+        // echo '<br>' . date_format($currentDateTime, "Y-m-d H:i:s");
+
+        $sql = 'INSERT INTO `activity_log`(`DateTime_Happen`, `Admin`, `Action`, `Activity`) VALUES (?,?,?,?)';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([
+            date_format($currentDateTime, "Y-m-d H:i:s"),
+            $theAdmin, $action, $activity
+        ]);
+    }
+
     public function cleanLog()       
     {
         $sql = "DELETE FROM `activity_log`";

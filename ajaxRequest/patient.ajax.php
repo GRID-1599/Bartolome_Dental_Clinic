@@ -51,7 +51,7 @@ if(isset($_POST["editPatient"])){
         $_POST['ptEmail'],
         $_POST['ptContact']
     );
-    $actLog_obj->addNewLog('Edit', 'Patient '.$_POST['patientID'].' details edited');
+    $actLog_obj->addNewLogInUserSide('Edit', 'Patient '.$_POST['patientID'].' details edited');
 
 
 }

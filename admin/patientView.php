@@ -43,7 +43,7 @@
                                         <i class="fas fa-users"></i> Patient
                                     </div>
                                     <div class="col  ">
-                                        <a href="patientFile/<?php echo $patientId?>" class="float-end" target="_blank">
+                                        <a href="patientFile/<?php echo $patientId ?>" class="float-end" target="_blank">
                                             <button type="button" class="btn btn-dark btn-sm w-auto px-4"><i class="fa fa-print" aria-hidden="true"></i> View File</button>
                                         </a>
                                     </div>
@@ -167,8 +167,64 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="h5 mb-3">Appointments</p>
+                                        <div class="row overflow-auto gy-3" style="max-height: 80vh;">
+                                            <?php
+                                            include_once '../classes/appoinment.class.php';
+                                            $app_obj = new Appointment();
+                                            $appointment_arr = $app_obj->getAppointmentByPatientID($_GET["patientId"]);
+                                            foreach ($appointment_arr as $appointment) {
+                                                $appId = $appointment["Appointment_Id"];
+                                                $thedate = date_create($appointment["Appoinment_Date"]);
+                                                $appDate = date_format($thedate, "M d, Y");
+                                                $appTime_Start = date_create($appointment["Appointment_StartTime"]);
+                                                $appTime_End = date_create($appointment["Appointment_EndTime"]);
+                                                $apptime = date_format($appTime_Start, ' h:i a') . " - " . date_format($appTime_End, " h:i a");
+
+                                                $payment = $appointment["Payment_Method"];
+                                                $isPaid = ($appointment["IsPaid"]) ? "Paid" : "Not Paid";
+                                                $isDone = ($appointment["IsDone"]) ? "Done" : "Not Done";
+                                                $amount =  $appointment["Amount"];
+
+                                                echo <<<APP
+                                                    <div class="col-lg-4">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">Appointment</h5>
+                                                                <a href="appointment/$appId" class="card-text">$appId</a>
+                                                                <p class="card-text m-0">$appDate</p>
+                                                                <p class="card-text m-0">$apptime</p>
+                                                                <p class="card-text m-0">$amount php</p>
+                                                                <p class="card-text m-0">$payment</p>
+                                                                <p class="card-text m-0">$isPaid</p>
+                                                                <p class="card-text m-0">$isDone</p>
+                                                                <a type="button" class="btn btn-primary btn-sm w-50 mt-3" href="appointment/$appId">View</a>
+                                                            
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                APP;
+                                            }
+                                            ?>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p id="patientID"><?php echo $_GET["patientId"]; ?></p>
+                <p id="patientID" class="unShow"><?php echo $_GET["patientId"]; ?></p>
+
+
             </main>
             <?php include 'html-footer.php' ?>
         </div>
