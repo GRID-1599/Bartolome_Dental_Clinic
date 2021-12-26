@@ -89,6 +89,7 @@ class Appointment extends DatabaseConnection
                 "IsPaid" => $row["IsPaid"],
                 "IsDone" => $row["IsDone"],
                 "Amount" => $row["Amount"],
+                "IsApproved" => $row["IsApproved"],
 
             );
             array_push($appointmentData, $appointment);
@@ -159,6 +160,124 @@ class Appointment extends DatabaseConnection
     public function getAppointmentAddedToday($appoinmentDate)
     {
         $sql = "SELECT * FROM `appointment` WHERE `Date_Created` LIKE '%" . $appoinmentDate . "%' ORDER BY `appointment`.`Appointment_StartTime` ASC";
+        $stmt = $this->connect()->query($sql);
+        // $stmt->execute([$appoinmentDate]);
+        $appointmentData = array();
+        while ($row = $stmt->fetch()) {
+            $appointment = array(
+                "Appointment_Id" => $row["Appointment_Id"],
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "Amount" => $row["Amount"],
+                "IsDone" => $row["IsDone"],
+
+            );
+            array_push($appointmentData, $appointment);
+        }
+        return $appointmentData;
+    }
+
+
+    public function getAppointmentToApproved()
+    {
+        $sql = "SELECT * FROM `appointment` WHERE `IsApproved` = 0 ORDER BY `appointment`.`Appoinment_Date` ASC";
+        $stmt = $this->connect()->query($sql);
+        // $stmt->execute([$appoinmentDate]);
+        $appointmentData = array();
+        while ($row = $stmt->fetch()) {
+            $appointment = array(
+                "Appointment_Id" => $row["Appointment_Id"],
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "Amount" => $row["Amount"],
+                "IsDone" => $row["IsDone"],
+
+            );
+            array_push($appointmentData, $appointment);
+        }
+        return $appointmentData;
+    }
+
+
+    public function getAppointmentToDoneByPastDate($date)
+    {
+        $sql = " SELECT * FROM `appointment` WHERE `Appoinment_Date` < '$date'  AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC";
+        $stmt = $this->connect()->query($sql);
+        // $stmt->execute([$appoinmentDate]);
+        $appointmentData = array();
+        while ($row = $stmt->fetch()) {
+            $appointment = array(
+                "Appointment_Id" => $row["Appointment_Id"],
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "Amount" => $row["Amount"],
+                "IsDone" => $row["IsDone"],
+
+            );
+            array_push($appointmentData, $appointment);
+        }
+        return $appointmentData;
+    }
+
+//  SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '07:00:00' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
+//  SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '07:00:00' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
+// SELECT * FROM `appointment` WHERE `Appoinment_Date` = '2021-12-27' AND `Appointment_EndTime` < '19:00:31' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC
+    public function getAppointmentToDoneByTodayDate($date , $time)
+    {
+        $sql = " SELECT * FROM `appointment` WHERE `Appoinment_Date` = '$date' AND `Appointment_EndTime` < '$time' AND `IsDone` = 0 ORDER BY `Appoinment_Date` ASC";
+        $stmt = $this->connect()->query($sql);
+        // $stmt->execute([$appoinmentDate]);
+        $appointmentData = array();
+        while ($row = $stmt->fetch()) {
+            $appointment = array(
+                "Appointment_Id" => $row["Appointment_Id"],
+                "Patient_ID" => $row["Patient_ID"],
+                "Contact" => $row["Contact"],
+                "Appoinment_Date" => $row["Appoinment_Date"],
+                "Appointment_StartTime" => $row["Appointment_StartTime"],
+                "Appointment_EndTime" => $row["Appointment_EndTime"],
+                "Duration_Minutes" => $row["Duration_Minutes"],
+                "Allotted_Hours" => $row["Allotted_Hours"],
+                "Date_Created" => $row["Date_Created"],
+                "Payment_Method" => $row["Payment_Method"],
+                "IsPaid" => $row["IsPaid"],
+                "Amount" => $row["Amount"],
+                "IsDone" => $row["IsDone"],
+
+            );
+            array_push($appointmentData, $appointment);
+        }
+        return $appointmentData;
+    }
+
+
+    public function getAppointmentNotPaid()
+    {
+        $sql = " SELECT * FROM `appointment` WHERE `IsPaid` = 0 ORDER BY `Appoinment_Date` ASC";
         $stmt = $this->connect()->query($sql);
         // $stmt->execute([$appoinmentDate]);
         $appointmentData = array();
@@ -335,6 +454,25 @@ class Appointment extends DatabaseConnection
         $stmt = $this->connect()->query($sql1);
         $stmt->execute();
         echo "archived_appointment  " . $appId . " succssfully deleted";
+    }
+
+
+    public function approvedAppointment($appId)
+    {
+        $sql1 = "UPDATE `appointment` SET `IsApproved`='1' WHERE `Appointment_Id` = '" . $appId . "'";
+
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+        echo "archived_appointment  " . $appId . " succssfully deleted";
+    }
+
+    public function saveChanges($appId, $isPaid, $amount, $isDone)
+    {
+        $sql1 = "UPDATE `appointment` SET `IsPaid`='$isPaid',`Amount`='$amount',`IsDone`='$isDone' WHERE `Appointment_Id`  = '" . $appId . "'";
+
+        $stmt = $this->connect()->query($sql1);
+        $stmt->execute();
+        echo "appointment  " . $appId . " succssfully changed";
     }
 }
 

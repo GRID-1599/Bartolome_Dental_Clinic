@@ -10,9 +10,16 @@ $currentDate->setTimezone(new DateTimeZone('Asia/Manila'));
 $todayDate =  $currentDate->format('Y-m-d');
 $appToday_stmt = $appointment_obj->getAppointmentByDate($todayDate);
 $appAddedToday_stmt = $appointment_obj->getAppointmentAddedToday($todayDate);
+$appToApproved_stmt = $appointment_obj->getAppointmentToApproved();
+$appToDoneByPastDate_stmt = $appointment_obj->getAppointmentToDoneByPastDate(date_format($currentDate, "Y-m-d"));
+$appToDoneByTodayDate_stmt = $appointment_obj->getAppointmentToDoneByTodayDate(date_format($currentDate, "Y-m-d"), date_format($currentDate, "H:i:s"));
+$appToPay_stmt = $appointment_obj->getAppointmentNotPaid();
 
 $todayAppoinmentNum = 0;
 $appoinmentAddedTodayNum = 0;
+$appoinmentToApprovedNum = 0;
+$appoinmentToDone = 0;
+$appoinmentToPay= 0;
 
 foreach ($appToday_stmt as $data) {
     $todayAppoinmentNum += 1;
@@ -20,6 +27,22 @@ foreach ($appToday_stmt as $data) {
 
 foreach ($appAddedToday_stmt as $data) {
     $appoinmentAddedTodayNum = $appoinmentAddedTodayNum + 1;
+};
+
+foreach ($appToApproved_stmt as $data) {
+    $appoinmentToApprovedNum += 1;
+};
+
+foreach ($appToDoneByPastDate_stmt as $data) {
+    $appoinmentToDone += 1;
+};
+
+foreach ($appToDoneByTodayDate_stmt as $data) {
+    $appoinmentToDone += 1;
+};
+
+foreach ($appToPay_stmt as $data) {
+  $appoinmentToPay += 1;
 };
 
 include_once '../classes/message.class.php';
@@ -53,24 +76,23 @@ foreach ($unreadMessages as $unread) {
                     <h1 class="mt-4">Dashboard</h1>
                     <ol class="breadcrumb ">
                     </ol>
-                    <div class="container">
+                    <div class="container-xxl">
                         Today date
                         <div class="row">
                             <p class=""><strong class="display-6"><?php echo $currentDate->format('l'); ?></strong> <?php echo $currentDate->format('F, d Y'); ?></p>
                         </div>
-                    </div>
-                    <div class="row">
+                        <div class="row">
                         <div class="col-xl-4 ">
                             <!-- todays appointment  -->
                             <div class="col">
                                 <div class="card  mb-4">
                                     <div class="card-header bg-primary text-white">
-                                        Todays Appointment
+                                        <button class="btn text-start text-white  w-100" type="button" data-bs-toggle="collapse" data-bs-target="#todaysAppointment" aria-expanded="false" aria-controls="todaysAppointment">
+                                            <span>Today Appointments</span>
+                                            <span class="float-end "><strong><?php echo $todayAppoinmentNum; ?></strong><i class="fas fa-chevron-down ms-2"></i></span>
+                                        </button>
                                     </div>
-                                    <button class="btn   py-3 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#todaysAppointment" aria-expanded="false" aria-controls="todaysAppointment">
-                                        Totals of Appointments Today : <?php echo $todayAppoinmentNum; ?>
-                                        <i class="fas fa-chevron-down r"></i>
-                                    </button>
+
                                     <div class="card-body  align-items-center justify-content-between ">
                                         <div class="collapse" id="todaysAppointment">
                                             <div class="container">
@@ -102,12 +124,12 @@ foreach ($unreadMessages as $unread) {
                             <div class="col">
                                 <div class="card  mb-4">
                                     <div class="card-header bg-info text-white">
-                                        Appointments Added Today
+                                        <button class="btn text-start text-white w-100" type="button" data-bs-toggle="collapse" data-bs-target="#appAddedToday" aria-expanded="false" aria-controls="appAddedToday" style="box-shadow: none;">
+                                            <span>Totals of Appointments Added Today </span>
+                                            <span class="float-end"><strong><?php echo $appoinmentAddedTodayNum; ?></strong><i class="fas fa-chevron-down ms-2"></i></span>
+                                        </button>
                                     </div>
-                                    <button class="btn   py-3 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#appAddedToday" aria-expanded="false" aria-controls="appAddedToday">
-                                        Totals of Appointments Added Today : <?php echo $appoinmentAddedTodayNum; ?>
-                                        <i class="fas fa-chevron-down r"></i>
-                                    </button>
+
                                     <div class="card-body  align-items-center justify-content-between ">
                                         <div class="collapse" id="appAddedToday">
                                             <div class="container">
@@ -137,8 +159,47 @@ foreach ($unreadMessages as $unread) {
                                 </div>
                             </div>
 
-                            <!-- appointment done / not done  -->
+                            <!-- appointment to be approved -->
                             <div class="col">
+                                <div class="card  mb-4">
+                                    <div class="card-header " style="background-color: #F05F79;">
+                                        <button class="btn text-start  text-white w-100" type="button" data-bs-toggle="collapse" data-bs-target="#appToApprove" aria-expanded="false" aria-controls="appToApprove" style="box-shadow: none;">
+                                            <span>Totals of Appointment to approve </span>
+                                            <span class="float-end"><strong><?php echo $appoinmentToApprovedNum; ?></strong>
+                                                <i class="fas fa-chevron-down ms-2"></i></span>
+                                        </button>
+                                    </div>
+
+                                    <div class="card-body  align-items-center justify-content-between ">
+                                        <div class="collapse" id="appToApprove">
+                                            <div class="container">
+                                                <div class="row">
+
+                                                    <?php
+
+                                                    foreach ($appToApproved_stmt as $data) {
+                                                        $appDate = new DateTime($data["Date_Created"]);
+                                                        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
+                                                            " added at " . date_format($appDate, "M d, Y") .
+                                                            "</a>";
+                                                    };
+
+                                                    if ($appoinmentToApprovedNum == 0) {
+
+                                                        echo "<p>No appoinments to be Approved</p>";
+                                                    }
+
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- appointment done / not done  -->
+                            <!-- <div class="col">
                                 <div class="card  mb-4">
                                     <div class="card-header bg-warning text-white">
                                         Appointment Done Today
@@ -149,13 +210,13 @@ foreach ($unreadMessages as $unread) {
                                                 <button class="btn   py-3 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#appDone" aria-expanded="false" aria-controls="appDone">
                                                     Done :
                                                     <?php
-                                                    $done = 0;
-                                                    foreach ($appToday_stmt as $data) {
-                                                        if ($data["IsDone"]) {
-                                                            $done += 1;
-                                                        }
-                                                    };
-                                                    echo $done
+                                                    // $done = 0;
+                                                    // foreach ($appToday_stmt as $data) {
+                                                    //     if ($data["IsDone"]) {
+                                                    //         $done += 1;
+                                                    //     }
+                                                    // };
+                                                    // echo $done
                                                     ?>
                                                     <i class="fas fa-chevron-down r"></i>
                                                 </button>
@@ -164,13 +225,13 @@ foreach ($unreadMessages as $unread) {
                                                 <button class="btn   py-3 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#appNotDone" aria-expanded="false" aria-controls="appNotDone">
                                                     Not Done :
                                                     <?php
-                                                    $notdone = 0;
-                                                    foreach ($appToday_stmt as $data) {
-                                                        if (!$data["IsDone"]) {
-                                                            $notdone += 1;
-                                                        }
-                                                    };
-                                                    echo $notdone
+                                                    // $notdone = 0;
+                                                    // foreach ($appToday_stmt as $data) {
+                                                    //     if (!$data["IsDone"]) {
+                                                    //         $notdone += 1;
+                                                    //     }
+                                                    // };
+                                                    // echo $notdone
                                                     ?>
                                                     <i class="fas fa-chevron-down r"></i>
                                                 </button>
@@ -184,15 +245,15 @@ foreach ($unreadMessages as $unread) {
                                                     <span>Appointment Done</span>
                                                     <div class="ms-3">
                                                         <?php
-                                                        foreach ($appToday_stmt as $data) {
-                                                            if ($data["IsDone"]) {
-                                                                $time = $data["Appointment_StartTime"];
-                                                                $appTime = new DateTime($time);
-                                                                echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at " .
-                                                                    " " . $appTime->format('h:i a') .
-                                                                    "</a><br>";
-                                                            }
-                                                        };
+                                                        // foreach ($appToday_stmt as $data) {
+                                                        //     if ($data["IsDone"]) {
+                                                        //         $time = $data["Appointment_StartTime"];
+                                                        //         $appTime = new DateTime($time);
+                                                        //         echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at " .
+                                                        //             " " . $appTime->format('h:i a') .
+                                                        //             "</a><br>";
+                                                        //     }
+                                                        // };
                                                         ?>
                                                     </div>
                                                 </div>
@@ -204,17 +265,110 @@ foreach ($unreadMessages as $unread) {
                                                     <span>Appointment Not Done</span>
                                                     <div class="ms-3">
                                                         <?php
-                                                        foreach ($appToday_stmt as $data) {
-                                                            if (!$data["IsDone"]) {
-                                                                $time = $data["Appointment_StartTime"];
-                                                                $appTime = new DateTime($time);
-                                                                echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at" .
-                                                                    " " . $appTime->format('h:i a') .
-                                                                    "</a><br>";
-                                                            }
-                                                        };
+                                                        // foreach ($appToday_stmt as $data) {
+                                                        //     if (!$data["IsDone"]) {
+                                                        //         $time = $data["Appointment_StartTime"];
+                                                        //         $appTime = new DateTime($time);
+                                                        //         echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment at" .
+                                                        //             " " . $appTime->format('h:i a') .
+                                                        //             "</a><br>";
+                                                        //     }
+                                                        // };
                                                         ?>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- appointment that must be changed by now  -->
+                            <div class="col">
+                                <div class="card  mb-4">
+                                    <div class="card-header bg-success ">
+                                        <button class="btn text-start  text-white w-100" type="button" data-bs-toggle="collapse" data-bs-target="#appToDone" aria-expanded="false" aria-controls="appToApprove" style="box-shadow: none;">
+                                            <span>Appointment to change to done </span>
+                                            <span class="float-end"><strong><?php echo $appoinmentToDone; ?></strong>
+                                                <i class="fas fa-chevron-down ms-2"></i></span>
+                                        </button>
+                                    </div>
+
+                                    <div class="card-body  align-items-center justify-content-between ">
+                                        <div class="collapse" id="appToDone">
+                                            <div class="container">
+                                                <div class="row">
+
+                                                    <?php
+
+                                                    
+
+                                                    foreach ($appToDoneByPastDate_stmt as $data) {
+                                                        $appDate = new DateTime($data["Appoinment_Date"]);
+                                                        $appTimeEnd = new DateTime($data["Appointment_EndTime"]);
+                                                        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
+                                                            " done at " . date_format($appDate, "M d, Y") ." ". date_format($appTimeEnd, "h:i a") .
+                                                            "</a>";
+                                                    };
+                                                    foreach ($appToDoneByTodayDate_stmt as $data) {
+                                                        $appDate = new DateTime($data["Appoinment_Date"]);
+                                                        $appTimeEnd = new DateTime($data["Appointment_EndTime"]);
+                                                        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
+                                                            " done at " . date_format($appDate, "M d, Y") ." ". date_format($appTimeEnd, "h:i a") .
+                                                            "</a>";
+                                                    };
+
+                                                    
+
+                                                    if ($appoinmentToDone == 0) {
+
+                                                        echo "<p>No appoinments to be changed</p>";
+                                                    }
+
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card  mb-4">
+                                    <div class="card-header bg-warning ">
+                                        <button class="btn text-start  text-white w-100" type="button" data-bs-toggle="collapse" data-bs-target="#appToPay" aria-expanded="false" aria-controls="appToApprove" style="box-shadow: none;">
+                                            <span>Appointments Not Paid </span>
+                                            <span class="float-end"><strong><?php echo $appoinmentToPay; ?></strong>
+                                                <i class="fas fa-chevron-down ms-2"></i></span>
+                                        </button>
+                                    </div>
+
+                                    <div class="card-body  align-items-center justify-content-between ">
+                                        <div class="collapse" id="appToPay">
+                                            <div class="container">
+                                                <div class="row">
+
+                                                    <?php
+
+                                                    
+
+                                                    foreach ($appToPay_stmt as $data) {
+                                                        $appDate = new DateTime($data["Appoinment_Date"]);
+                                                        $appTimeEnd = new DateTime($data["Appointment_EndTime"]);
+                                                        echo "<a href='appointment/" . $data["Appointment_Id"] . "'>" . "Appointment" .
+                                                            "  at " . date_format($appDate, "M d, Y") ." ". date_format($appTimeEnd, "h:i a") .
+                                                            "</a>";
+                                                    };
+
+                                                    
+
+                                                    if ($appoinmentToPay == 0) {
+
+                                                        echo "<p>No appoinments to be paid</p>";
+                                                        
+                                                    }
+
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -297,6 +451,8 @@ foreach ($unreadMessages as $unread) {
 
                         </div>
                     </div>
+                    </div>
+                    
                 </div>
             </main>
             <?php include 'html-footer.php' ?>
@@ -305,7 +461,7 @@ foreach ($unreadMessages as $unread) {
     <?php include 'scripts.php' ?>
     <script src="js/dateView.js"></script>
     <script src="js/weekDay.js"></script>
-   
+
 </body>
 
 </html>

@@ -48,6 +48,20 @@ if(isset($_POST["checkPassword"])){
     }
 }
 
+if(isset($_POST["changesCheckPassword"])){
+    session_start();
+    $result = $admin_obj->checkPassword(
+        $_SESSION['userAdmin'],
+        $_POST["admin_password"]
+    );
+
+    if($result == 1){
+         echo 1;
+    }else{
+        echo 2;
+    }
+}
+
 
 if(isset($_POST["savePassword"])){
     $admin_obj->savePassword(

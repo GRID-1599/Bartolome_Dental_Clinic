@@ -214,6 +214,19 @@ if(isset($_POST["deleteArchivedAppointment"])){
     $actLog_obj->addNewLog('Delete', 'Appointment '. $_POST['appId']. ' has been deleted from archives');
 }
 
+
+if(isset($_POST["approvedAppointment"])){
+    // echo $_POST['appId'];
+    $appoinment_obj->approvedAppointment($_POST['appId']);
+    $actLog_obj->addNewLog('Edit', 'Appointment '. $_POST['appId']. ' has been approved');
+}
+
+if(isset($_POST["saveChanges"])){
+    // echo $_POST['isPaid'] . $_POST['isDone']. $_POST['amount'];
+    $appoinment_obj->saveChanges($_POST['appId'], $_POST['isPaid'] ,  $_POST['amount'], $_POST['isDone']  );
+    $actLog_obj->addNewLog('Edit', 'Appointment '. $_POST['appId']. ' has been changed');
+}
+
 // if(0 != "1"){
 //     echo "Asdad";
 // }

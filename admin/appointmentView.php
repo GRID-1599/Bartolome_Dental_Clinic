@@ -4,7 +4,29 @@
 //     exit();
 // }
 
+$appointmentId = $_GET["appoinmentId"];
+include_once '../classes/appoinment.class.php';
+include_once '../classes/patient.class.php';
+$appointment_obj = new Appointment();
+$patient_obj = new Patient();
+$appointment = $appointment_obj->getAppointmentById($appointmentId);
+$patient = $patient_obj->getPatientById($appointment[0]["Patient_ID"]);
+
+$isApproved = $appointment[0]["IsApproved"];
+
+
+
+function convertToHoursMins($time, $format = '%02d:%02d')
+{
+    if ($time < 1) {
+        return;
+    }
+    $hours = floor($time / 60);
+    $minutes = ($time % 60);
+    return sprintf($format, $hours, $minutes);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +75,14 @@
                                                         </button>
                                                     </form>
                                                 </li>
-                                                <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnDeleteApp"><i class="fa fa-trash-o me-3" aria-hidden="true"></i> Delete</button></li>
-                                                <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnArchiveApp"><i class="fa fa-archive me-3" aria-hidden="true"> </i>Archive</button></li>
+                                                <?php
+                                                if ($isApproved) {
+                                                ?>
+                                                    <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnDeleteApp"><i class="fa fa-trash-o me-3" aria-hidden="true"></i> Delete</button></li>
+                                                    <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnArchiveApp"><i class="fa fa-archive me-3" aria-hidden="true"> </i>Archive</button></li>
+                                                <?php
+                                                }
+                                                ?>
 
                                             </ul>
                                         </div>
@@ -64,44 +92,6 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <?php
-                            $appointmentId = $_GET["appoinmentId"];
-                            include_once '../classes/appoinment.class.php';
-                            include_once '../classes/patient.class.php';
-                            $appointment_obj = new Appointment();
-                            $patient_obj = new Patient();
-                            $appointment = $appointment_obj->getAppointmentById($appointmentId);
-                            $patient = $patient_obj->getPatientById($appointment[0]["Patient_ID"]);
-
-                            // echo $appointmentId . "<br>";
-                            // echo $appointment[0]["Patient_ID"] . "<br>";
-                            // echo $appointment[0]["Contact"] . "<br>";
-                            // echo $appointment[0]["Appoinment_Date"] . "<br>";
-                            // echo $appointment[0]["Appoinment_Time"] . "<br>";
-                            // echo $appointment[0]["Date_Created"] . "<br>";
-                            // echo $appointment[0]["Payment_Method"] . "<br>";
-                            // echo $appointment[0]["IsPaid"] . "<br>";
-                            // echo $appointment[0]["Amount"] . "<br><br>";
-
-                            // foreach ($appointment[1] as $service) {
-                            //      echo $service["Service_Id"] . "<br>";
-                            //      echo $service["Service_Name"] . "<br>";
-                            //      echo $service["Service_Prc"] . "<br>";
-                            // }
-
-                            function convertToHoursMins($time, $format = '%02d:%02d')
-                            {
-                                if ($time < 1) {
-                                    return;
-                                }
-                                $hours = floor($time / 60);
-                                $minutes = ($time % 60);
-                                return sprintf($format, $hours, $minutes);
-                            }
-                            ?>
-
-
-
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
@@ -184,7 +174,7 @@
                                                 </dd>
                                             </div>
 
-                                            <div class="row  mt-5 ">
+                                            <div class="row py-3 mx-2 mt-5 border border-3 border-success rounded">
                                                 <dt class="col-sm-5">Payment Method:</dt>
                                                 <dd class="col-sm-7">
                                                     <?php
@@ -192,27 +182,30 @@
                                                     ?>
                                                 </dd>
 
-                                                <dt class="col-sm-5">IsPaid:</dt>
+                                                <dt class="col-sm-5 ">IsPaid:</dt>
                                                 <dd class="col-sm-7">
 
                                                     <?php
                                                     $isPaid = ($appointment[0]["IsPaid"]) ? "Paid" : "Not Paid";
                                                     $color = ($appointment[0]["IsPaid"]) ? "info" : "warning";
-                                                    echo '<span class="bg-' . $color . ' px-2 py-1">' . $isPaid . '</span>';
+                                                    echo "<span class='bg-$color px-2 py-1'>" . $isPaid . "</span>";
                                                     ?>
 
                                                 </dd>
 
-                                                <dt class="col-sm-5">IsDone:</dt>
-                                                <dd class="col-sm-7">
+                                                <dt class="col-sm-5 mt-2">IsDone:</dt>
+                                                <dd class="col-sm-7 mt-2">
 
                                                     <?php
                                                     $isDone = ($appointment[0]["IsDone"]) ? "Done" : "Not Done";
-                                                    $colorDone = ($appointment[0]["IsDone"]) ? "info" : "secondary";
-                                                    echo "<span class='bg-$colorDone text-white  px-2 py-1'>" . $isDone . '</span>';
+                                                    $colorDone = ($appointment[0]["IsDone"]) ? "info" : "warning";
+                                                    echo "<span class='bg-$colorDone  px-2 py-1'>" . $isDone . '</span>';
                                                     ?>
 
                                                 </dd>
+                                                <div class="col-sm-12">
+                                                    <button class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#modalSetChanges">Change</button>
+                                                </div>
                                             </div>
 
                                         </dl>
@@ -249,8 +242,21 @@
                                             </div>
                                         </div>
 
+
+
                                     </div>
                                 </div>
+                                <?php
+                                if (!$isApproved) {
+                                ?>
+                                    <div class="row justify-content-center mt-3">
+                                        <div class="col-12">
+                                            <button class="btn btn-primary bg-pink w-100" data-bs-toggle="modal" data-bs-target="#modalSetApproved"> Approve Appointment</button>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -449,7 +455,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Modal -->
+                    <!-- Modal filter -->
                     <div class="modal fade" id="modalLoader" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -462,19 +468,128 @@
 
                                         </div>
                                         <div class="col-2">
-                                        <div class="d-flex justify-content-end">
+                                            <div class="d-flex justify-content-end">
 
-                                            <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status" role="status">
-                                                <span class="visually-hidden">Loading...</span>
+                                                <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+                    <!-- Modal approval -->
+                    <div class="modal fade" id="modalSetApproved" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Approve Appointment</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <span><strong>Appointment ID</strong> : <?php echo $appointmentId ?></span><br>
+                                    <span><strong>Patient </strong> : <?php echo  $appointment[0]["Patient_ID"] ?> | <?php echo $patient["Name"]; ?></span><br>
+                                    <span><strong>Appointment Date Time </strong> : <?php echo date_format($appDate, "M d, Y") . " " . date_format($appTime_Start, " h:i a") . " - " . date_format($appTime_End, " h:i a") ?></span><br> <br>
+                                    <span><strong>Date Created </strong> : <?php echo date_format($dateCreated, "M d, Y h:i a") ?></span><br>
+                                </div>
+                                <div class="modal-footer">
+                                    <div id="approvedBtns">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="btnConfirmApprove">Confirm</button>
+                                    </div>
+                                    <div class="spinner-border text-danger unShow" role="status" id="approveLoader">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal approval -->
+                    <div class="modal fade" id="modalSetChanges" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Set Changes</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body ">
+                                    <div class="row px-3 unShow" id="changes-wrapper">
+                                        <div class="col">
+                                            <span><strong>Set Paid</strong></span><br>
+                                            <div class="row gx-0">
+                                                <div class="col-sm-6">
+                                                    <input type="radio" class="btn-check" name="options-IsPaid" id="paid" value="0" autocomplete="off" <?php echo ($appointment[0]["IsPaid"]) ? "" : "checked" ?>>
+                                                    <label class="btn btn-outline-warning mb-2" for="paid">Not Paid</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="radio" class="btn-check" name="options-IsPaid" id="notPaid" value="1" autocomplete="off" <?php echo ($appointment[0]["IsPaid"]) ? "checked" : "" ?>>
+                                                    <label class="btn btn-outline-primary mb-2" for="notPaid">Paid</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col">
+                                            <span><strong>Set Done</strong></span><br>
+                                            <div class="row gx-0">
+                                                <div class="col-sm-6">
+                                                    <input type="radio" class="btn-check " name="options-IsDone" id="done" value="0" autocomplete="off" <?php echo ($appointment[0]["IsDone"]) ? "" : "checked" ?>>
+                                                    <label class="btn btn-outline-warning mb-2" for="done">Not Done</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="radio" class="btn-check" name="options-IsDone" id="notDone" value="1" autocomplete="off" <?php echo ($appointment[0]["IsDone"]) ? "checked" : "" ?>>
+                                                    <label class="btn btn-outline-primary mb-2" for="notDone">Done</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row px-3 mt-4 unShow" id="paid-wrapper">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text bg-white border-0" id="inpt-AmountPaid">Amount Paid</span>
+                                            <span class="input-group-text w-auto">₱</span>
+                                            <input type="number" id="inpt-amountPaid" class="form-control" placeholder="Amount" aria-label="AmountPaid" aria-describedby="AmountPaid" value="<?php echo $appointment[0]["Amount"] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="row px-3 mt-3 " id="adminPassword-wrapper">
+                                        <div class="border border-2 border-danger shadow-lg p-3 mb-5 bg-body rounded ">
+                                            <p class="text-muted text-center" style="font-size: 1.25rem;">Input your admin account password</p>
+                                            <div class="px-4">
+                                                <div class="input-group mb-3">
+                                                    <input type="password" class="form-control text-center" placeholder="* * * * * *" aria-label="adminPassword" aria-describedby="adminPassword" id="inputAdminPassword">
+                                                    <div class="invalid-feedback">
+                                                        <span>Admin : <?php echo $_SESSION['userAdmin']?> </span><br>
+                                                        <span class="text-end" style="color: red;" > Wrong admin password</span>   
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <button class="btn btn-success float-end" id="btnCheckAdminPassword">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div id="changesBtns">
+                                        <button type="button" class="btn btn-primary unShow" id="btnConfirmChanges">Confirm</button>
+                                    </div>
+                                    <div class="spinner-border text-danger unShow" role="status" id="changeLoader">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
             </main>
             <?php include 'html-footer.php' ?>
         </div>
