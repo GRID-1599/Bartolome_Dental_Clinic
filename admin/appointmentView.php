@@ -58,7 +58,9 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                             <div class="container">
                                 <div class="row p-0">
                                     <div class="col">
-                                        <i class="fas fa-calendar-check me-1"></i> Appointment
+                                        <i class="fas fa-calendar-check me-1"></i>
+                                        Appointment <?php echo (!$isApproved) ? " to be Approved":"";?>
+
                                     </div>
                                     <div class="col-auto me-0">
                                         <div class="dropdown float-end">
@@ -76,10 +78,11 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                                                         </button>
                                                     </form>
                                                 </li>
+                                                <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnDeleteApp"><i class="fa fa-trash-o me-3" aria-hidden="true"></i> Delete</button></li>
                                                 <?php
                                                 if ($isApproved) {
                                                 ?>
-                                                    <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnDeleteApp"><i class="fa fa-trash-o me-3" aria-hidden="true"></i> Delete</button></li>
+                                                    
                                                     <li class=" mb-1 "><button class="btn btn-light w-100 text-start" id="btnArchiveApp"><i class="fa fa-archive me-3" aria-hidden="true"> </i>Archive</button></li>
                                                 <?php
                                                 }
