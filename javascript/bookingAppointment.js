@@ -1056,7 +1056,6 @@ function messageSendEmail() {
                 Amount : ` + appoinment_obj["Amount"] + ` php<br>
                 Payment Method : ` + appoinment_obj["Payment_Method"] + ` <br>
             <p>See more Appointment details <a href="${applnk}" target="_blank">Click here</a></p>
-            Please come on time. Thank you!
             <br><br>
             <strong>Bartolome Dental Clinic</strong><br>
             0975-123-8396

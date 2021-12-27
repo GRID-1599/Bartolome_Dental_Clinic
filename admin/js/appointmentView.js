@@ -15,7 +15,7 @@ $(document).ready(function() {
     appAmount = $('#appAmount').text().replace(/ /g, '')
     appPayment = $('#appPayment').text().replace(/ /g, '')
 
-    sendEmailApproved(appEmail, 'Hi!')
+    // sendEmailApproved(appEmail, 'Hi!')
 
     console.log(appDate +
         appTime +
