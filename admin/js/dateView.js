@@ -1,6 +1,20 @@
 $(document).ready(function() {
     initScheds();
-    $('#modalCancel').modal('show')
+    // $('#modalCancel').modal('show')
+    $('#btnSetNotAvailable').click(function() {
+        var dateToCancel = $('#dateToCancel').text();
+        var reason = $('#reason').text();
+        console.log(dateToCancel);
+        setNotAvailable(dateToCancel, reason)
+    });
+
+    $('#toAvailable').click(function() {
+        if (confirm("Set Available?")) {
+            var dateToCancel = $('#dateToCancel').text();
+            console.log(dateToCancel);
+            setNAvailable(dateToCancel)
+        }
+    });
 
 
 });
@@ -64,6 +78,77 @@ function initScheds() {
                     window.location.href = "appointment/" + $(this).attr('value')
                 });
             });
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+}
+
+function setNotAvailable(date, reason) {
+    $.ajax({
+        url: '../ajaxRequest/date.ajax.php',
+        method: 'POST',
+        data: {
+            setNotAvailable: 1,
+            theDate: date,
+            theReason: reason
+        },
+        success: function(response) {
+            console.log(response);
+            window.location.reload();
+        },
+        error: function(jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
+        },
+
+    });
+}
+
+function setNAvailable(date) {
+    $.ajax({
+        url: '../ajaxRequest/date.ajax.php',
+        method: 'POST',
+        data: {
+            setNAvailable: 1,
+            theDate: date
+        },
+        success: function(response) {
+            console.log(response);
+            window.location.reload();
         },
         error: function(jqXHR, exception) {
             var msg = '';

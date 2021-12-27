@@ -5,9 +5,15 @@ $currentDate = new DateTime($dateToShow);
 
 
 include_once '../classes/appoinment.class.php';
+include_once '../classes/clinicDate.class.php';
+
 $appointment_obj = new Appointment();
+$noClinicDate_obj = new ClinicDate();
+
 $theDate =  $currentDate->format('Y-m-d');
 $date_apps = $appointment_obj->getAppointmentByDate($theDate);
+
+$noClinic = $noClinicDate_obj->getNoClinicDateByDAte($theDate);
 
 ?>
 
@@ -35,7 +41,7 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                         <li class="breadcrumb-item active" aria-current="page">Date View</li>
                     </ol>
 
-                    <div class="row  " style="max-width: 35rem;">
+                    <div class="row  " style="max-width: 45rem;">
                         <div class="container-sm ">
                             Date Showing
                             <div class="row">
@@ -44,11 +50,26 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                                     <p style="display: none;" id="theDate"><?php echo $theDate ?></p>
                                 </div>
                                 <div class="col">
-                                    <button type="button " class="btn btn-dark btn-sm w-75 float-end" data-bs-toggle="modal" data-bs-target="#modalCancel">Cancel all appointment on this day</button>
+                                    <?php 
+                                    if($noClinic == 1){
+                                        echo '<button type="button " class="btn btn-primary btn-sm w-75 float-end" id="toAvailable">Set To Available Date</button>';
+                                    }else{
+                                        echo '<button type="button " class="btn btn-dark btn-sm w-75 float-end" data-bs-toggle="modal" data-bs-target="#notAvailable">Set Not Available Date</button>';
+                                    }
+                                    
+                                    ?>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="container-sm ">
+                                <?php
+                                    if($noClinic == 1){
+                                        echo '<p class="display-6 text-center" style="color: red;">Not Available Date</p>';
+                                    }
+                                ?>
+                               
                             <div class="row me-3">
                                 <div class="col-2">
                                     <div class="row py-3 text-end timeRow">
@@ -141,23 +162,24 @@ $date_apps = $appointment_obj->getAppointmentByDate($theDate);
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="modalCancel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="notAvailable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Canceling all Appointment</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Set Date : Not Available </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <p>Date : </strong> <?php echo $currentDate->format('F, d Y'); ?></p>
-                                <p>Please state the reason that will be emailed to the patient</p>
+                                <p id="dateToCancel" class="unShow"><?php echo $currentDate->format('Y-m-d'); ?></p>
+                                <p>Please state the reason</p>
                                 <div class="input-group">
-                                    <textarea class="form-control" aria-label="With textarea" rows="8"></textarea>
+                                    <textarea class="form-control" aria-label="With textarea" rows="8" id="reason"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger">Go</button>
+                                <button type="button" class="btn btn-danger" id="btnSetNotAvailable">Go</button>
                             </div>
                         </div>
                     </div>

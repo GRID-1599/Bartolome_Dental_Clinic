@@ -38,6 +38,33 @@ class ClinicDate extends DatabaseConnection
         }
         echo json_encode($allDates);
     }
+
+    public function addNoClinicDates($theDate, $reason)
+    {
+        $sql = "INSERT INTO `no_clinic_date`(`Date`, `Reason`) VALUES (?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$theDate, $reason]);
+    }
+
+    public function deleteDate($theDate)
+    {
+        $sql = "DELETE FROM `no_clinic_date` WHERE `Date` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$theDate]);
+        echo "deleted";
+    }
+
+    public function getNoClinicDateByDAte($theDate)
+    {
+        $sql = "SELECT * FROM `no_clinic_date` WHERE `Date` = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$theDate]);
+        while ($row = $stmt->fetch()) {
+            // echo $row['Date'];
+            return 1;
+        }
+        return 0;
+    }
 }
 
 // $dates = new ClinicDate();
