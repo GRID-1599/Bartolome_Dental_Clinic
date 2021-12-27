@@ -1,8 +1,10 @@
 <?php
 include_once "classes/serviceCategory.class.php";
 include_once "classes/service.class.php";
+include_once "classes/clinicDate.class.php";
 $appServiceCat_obj = new ServiceCategory();
 $appService_obj = new Service();
+$clinic_no_date_obj = new ClinicDate();
 $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name();
 ?>
 <div class="row ">
@@ -210,6 +212,7 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                             <p id="time_msg"></p>
 
                         </div>
+                        <p id="no_clinic_dates" class="unShow"><?php echo $clinic_no_date_obj->getAllNoClinicDate() ?></p>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ var categoryToShow_Id = ""
 
 var patientsJSON;
 
-
+var no_clinic_dates_array = [];
 
 const timeRanges = ["t9", "t10", "t11", "t1", "t2", "t3", "t4"];
 
@@ -388,7 +388,12 @@ function submitCondition() {
 // ________________________________________________________________________
 // ------------------------------------------------------------------------
 $(document).ready(function() {
-    // $('#loadingModal').modal('show')
+    // var initDates = $('#no_clinic_dates').text();
+    // var dates = initDates.substring(1, initDates.length - 1);
+    // no_clinic_dates_array = dates.split(',')
+    no_clinic_dates_array = $.parseJSON($('#no_clinic_dates').text())
+        // console.log(no_clinic_dates_array);
+        // $('#loadingModal').modal('show')
 
     $('#btnProceedAppointment').click(function() {
         if (goToFormCondition()) {
@@ -1347,18 +1352,31 @@ function settingCalendarDateSched(year, month, day, objElement) {
     var thisDay = oneDigit_to_twoDigit(day);
 
     theDate = new Date(thisYear + "-" + thisMonth + "-" + thisDay)
-    nov30 = new Date("2021-11-30");
-    dec24 = new Date("2021-12-24");
+    nov30 = new Date("2021-12-30");
+    dec24 = new Date("2021-12-31");
+
+
+
     if (compareDates(theDate, nov30)) {
         objElement.classList.add("date");
-        objElement.classList.add("holiday");
+        objElement.classList.add("noClinic");
         objElement.classList.remove("pwedeDate");
     }
     if (compareDates(theDate, dec24)) {
         objElement.classList.add("date");
-        objElement.classList.add("holiday");
+        objElement.classList.add("noClinic");
         objElement.classList.remove("pwedeDate");
     }
+
+    no_clinic_dates_array.forEach(function(date) {
+        noClinic = new Date(date);
+
+        if (compareDates(theDate, noClinic)) {
+            objElement.classList.add("date");
+            objElement.classList.add("noClinic");
+            objElement.classList.remove("pwedeDate");
+        }
+    });
     // console.log(theDate);
 }
 
