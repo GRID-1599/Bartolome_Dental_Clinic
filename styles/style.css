@@ -919,12 +919,12 @@ body {
   background-color: #F05F79;
 }
 
-.appointmentInputs .bottom .appCalendar #calendar #calendarBody tr .holiday {
+.appointmentInputs .bottom .appCalendar #calendar #calendarBody tr .noClinic {
   color: #aaa;
   position: relative;
 }
 
-.appointmentInputs .bottom .appCalendar #calendar #calendarBody tr .holiday::after {
+.appointmentInputs .bottom .appCalendar #calendar #calendarBody tr .noClinic::after {
   position: absolute;
   top: 65%;
   left: 50%;
@@ -933,7 +933,7 @@ body {
   -webkit-transform: translate(-50%, 0%);
           transform: translate(-50%, 0%);
   font-size: 12px;
-  content: 'holiday';
+  content: 'no clinic';
   z-index: 100;
   color: black;
 }
