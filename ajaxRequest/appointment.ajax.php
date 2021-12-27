@@ -259,7 +259,9 @@ if (isset($_FILES['file']['name'])) {
 if (isset($_POST["deletePOP"])) {
     $appoinment_obj->deletePOP($_POST['popID']);
 }
-
+if (isset($_POST["getMonthsVal"])) {
+    $appoinment_obj->getAppPerMonth($_POST['yearApp']);
+}
 // if(0 != "1"){
 //     echo "Asdad";
 // }

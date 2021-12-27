@@ -501,12 +501,68 @@ class Appointment extends DatabaseConnection
         }
     }
 
-    public function deletePOP($app_id )
+    public function deletePOP($app_id)
     {
         $sql = "DELETE FROM `proof_of_payments` WHERE `App_Id` = ?";
         // echo $sql;
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$app_id]);
+    }
+
+    public function getAppPerMonth($year)
+    {
+        $sql = "SELECT * FROM appointment WHERE `Appoinment_Date` BETWEEN  '$year-01-01' AND '$year-12-31'";
+        // echo  $sql;
+        //  $stmt = $this->connect()->prepare($sql);
+        // $stmt->execute([$year,$year]);
+
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+        $appointments = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        while ($row = $stmt->fetch()) {
+            $date = date_create($row['Appoinment_Date']);
+            $month =  date_format($date, "m");
+            switch ($month) {
+                case '01':
+                    $appointments[0] += 1;
+                    break;
+                case '02':
+                    $appointments[1] += 1;
+                    break;
+                case '03':
+                    $appointments[2] += 1;
+                    break;
+                case '04':
+                    $appointments[3] += 1;
+                    break;
+                case '05':
+                    $appointments[4] += 1;
+                    break;
+                case '06':
+                    $appointments[5] += 1;
+                    break;
+                case '07':
+                    $appointments[6] += 1;
+                    break;
+                case '08':
+                    $appointments[7] += 1;
+                    break;
+                case '09':
+                    $appointments[8] += 1;
+                    break;
+                case '10':
+                    $appointments[9] += 1;
+                    break;
+                case '11':
+                    $appointments[10] += 1;
+                    break;
+                case '12':
+                    $appointments[11] += 1;
+                    break;
+                default:
+            }
+        }
+        echo  json_encode($appointments);
     }
 }
 
