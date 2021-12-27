@@ -117,59 +117,13 @@ function capitalizeEachWord(str) {
 
 $(document).ready(function() {
     $("#regPatientSubmit").on('click', function() {
-        // console.log("bday: " + $('#regPatientBday').val())
-        // console.log("email: " + $('#regPatientEmail').val());
-        // if (!validateEmail($('#regPatientEmail').val()) || !validateEmail2($('#regPatientEmail').val())) {
-        //     swal("Invalid Email Address", {
-        //         icon: "error",
-        //     });
-        //     $('#regPatientAddress').focus();
-        //     flag = true;
-        // }
-
-        // regPatientName: $('#regPatientName').val(),
-        // regPatientNickname: $('#regPatientNickname').val(),
-        // regPatientBday: $('#regPatientBday').val(),
-        // regPatientAge: $('#regPatientAge').val(),
-        // regPatientGender: $('#regPatientGender').val(),
-        // regPatientCivil: $('#regPatientCivil').val(),
-        // regPatientAddress: $('#regPatientAddress').val(),
-        // regPatientEmail: $('#regPatientEmail').val(),
-        // regPatientContact: $('#regPatientContact').val()
         if (!isInputsEmpty()) {
+            $('#modalLoader').modal('show')
             ajaxAddNewPatient();
-        } else {
-            // setRegInputEmpty();
-            // console.log("TJERES AN EMPTY INPUT");
-            // Swal.fire('Any fool can use a computer');
-
-
-            // swal({
-            //         title: "",
-            //         text: "Item successfully added to your cart",
-            //         icon: "success",
-            //         buttons: ["Ok", "Go to my cart"],
-            //     })
-            //     .then((willGo) => {
-            //         if (willGo) {
-            //             // window.location.href = "cart.php?";
-            //             // window.location.href = "https://mail.google.com/mail";
-            //             window.open('https://mail.google.com/mail', '_blank');
-
-            //         } else {
-
-            //         }
-            //     });
-        }
-        // var name = $('#regPatientName').val();
-        // swal({
-        //     title: "",
-        //     text: "Thank you for ordering\nto our fictional bookstore\n\nPlease wait for your order within 7-9 days",
-        //     icon: "success",
-        // });
-
-
+        } else {}
     });
+
+
 });
 
 function toUpperCaseFirstLetterofText(str) {
@@ -224,6 +178,10 @@ function ajaxAddNewPatient() {
             // console.log(patient_data[0].patient_id);
             // console.log(patient_data[0].name);Patient
             // console.log(patient_data[0].email);
+            // $('#modalLoader').modal('show')
+            setTimeout(function() {
+                $("#modalLoader").modal("hide");
+            }, 500);
             var patient_data = JSON.parse(responseData);
             addSuccessful(patient_data[0].patient_id, patient_data[0].name, patient_data[0].email);
             setRegInputEmpty();

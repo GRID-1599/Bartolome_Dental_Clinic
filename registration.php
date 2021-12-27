@@ -19,9 +19,9 @@ if (isset($_POST['registration'])) {
     $Date_Created = $currentDate->format('Y-m-d');
 
     $testObj->addNewPatient($Name, $Nickname, $Birthday, $Age, $Gender, $Civil_Status, $Address, $Email, $Contact, $Date_Created);
-   
-    $patient_id  = $testObj->getPatientIdByName($Name, $Birthday); 
-    $responseData[] = array("name"=>$Name, "patient_id"=>$patient_id ,"email"=>$Email); 
+
+    $patient_id  = $testObj->getPatientIdByName($Name, $Birthday);
+    $responseData[] = array("name" => $Name, "patient_id" => $patient_id, "email" => $Email);
     exit(json_encode($responseData));
 }
 
@@ -164,11 +164,26 @@ if (isset($_POST['registration'])) {
                     </div>
                 </div>
             </div>
+            <!-- Modal loader -->
+            <div class="modal fade" id="modalLoader" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="clearfix">
+                                Please wait...
+                                <div class="spinner-border text-danger float-end" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <?php include 'footer.php'; ?>
-    
+
     <script src="sweetalert2/sweetalert2.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js " integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM " crossorigin="anonymous "></script>
