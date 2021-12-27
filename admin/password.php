@@ -19,14 +19,14 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body class="bg-pink">
-    <div id="layoutAuthentication">
+<body >
+    <div id="layoutAuthentication" class="bg_image">
         <div id="layoutAuthentication_content">
             <main>
                 <div class="container">
-                    <div class="row justify-content-center ">
+                    <div class="row justify-content-center align-items-center " style="height: 100vh;">
                         <div class="col-lg-5 ">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5  " id="forgot">
+                            <div class="card shadow-lg border-0 rounded-lg " id="forgot">
                                 <div class="card-header bg-white">
                                     <h3 class="text-center font-weight-light my-4">Password Recovery</h3>
                                 </div>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <div class="card shadow-lg border-0 rounded-lg mt-5 unShow" id="enter">
+                            <div class="card shadow-lg border-0 rounded-lg  unShow" id="enter">
                                 <div class="card-header bg-white">
                                     <h3 class="text-center font-weight-light my-4">Enter 6 Digits Code </h3>
                                 </div>
@@ -76,7 +76,7 @@
 
                             </div>
 
-                            <div class="card shadow-lg border-0 rounded-lg mt-5 unShow" id="reset">
+                            <div class="card shadow-lg border-0 rounded-lg  unShow" id="reset">
                                 <div class="card-header bg-white">
                                     <h3 class="text-center font-weight-light my-4">Reset Password </h3>
                                 </div>
@@ -105,19 +105,17 @@
                 </div>
             </main>
         </div>
-        <div id="layoutAuthentication_footer">
+        <!-- <div id="layoutAuthentication_footer">
             <footer class="py-4  mt-auto bg-pink">
                 <div class="container-fluid px-4 ">
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-white ">Copyright &copy; Bartolome E-Dental Clinic</div>
                         <div>
-                            <!-- <a href="#">Privacy Policy</a> &middot;
-                            <a href="#">Terms &amp; Conditions</a> -->
                         </div>
                     </div>
                 </div>
             </footer>
-        </div>
+        </div> -->
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script> -->

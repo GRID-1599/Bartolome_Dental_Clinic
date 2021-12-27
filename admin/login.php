@@ -25,22 +25,22 @@ session_destroy();
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body class="bg-pink">
-    <div id="layoutAuthentication">
+<body class="bg_image">
+    <div id="layoutAuthentication" >
         <div id="layoutAuthentication_content">
             <main>
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center align-items-center " style="height: 100vh;">
                         <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card shadow-lg border-0 rounded-lg ">
                                 <div class="card-header bg-white border">
                                     <p class="text-center font-weight-light my-4">
-                                        <a class="navbar-brand ps-3" href="../" id="headerIcon"><img src="../resources/icons/LOGOV2.6.png" class="img-fluid  borderless me-3" alt="Bartolome Dental Logo " style="width: 85%; height: auto; transition: 500ms;"></a>
+                                        <a class="navbar-brand ps-3" href="../" id="headerIcon"><img src="../resources/icons/LOGOV2.6.png" class="img-fluid  borderless me-3" alt="Bartolome Dental Logo " style="width: 75%; height: auto; transition: 500ms;"></a><br>
                                         <strong class="h4"> Admin Login </strong>
                                     </p>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-floating mb-3">
+                                    <div class="form-floating mb-3 ">
                                         <input class="form-control" id="adminUserName" type="text" placeholder="name@example.com" />
                                         <label for="adminUserName">Username</label>
                                         <div class="invalid-feedback" id="username_invalid"></div>
@@ -83,19 +83,17 @@ session_destroy();
                 </div>
             </main>
         </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4  mt-auto bg-pink">
+        <!-- <div id="layoutAuthentication_footer">
+            <footer class="py-4  mt-auto bg-">
                 <div class="container-fluid px-4 ">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-white ">Copyright &copy; Bartolome E-Dental Clinic</div>
+                        <div class="text-black ">Copyright &copy; Bartolome E-Dental Clinic</div>
                         <div>
-                            <!-- <a href="#">Privacy Policy</a> &middot;
-                            <a href="#">Terms &amp; Conditions</a> -->
                         </div>
                     </div>
                 </div>
             </footer>
-        </div>
+        </div> -->
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script> -->
