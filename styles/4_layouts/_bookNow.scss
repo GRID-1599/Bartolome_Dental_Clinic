@@ -222,7 +222,7 @@
                                 background-color: $pinkBG1;
                             }
                         }
-                        .holiday {
+                        .noClinic {
                             color: #aaa;
                             position: relative;
                             &::after {
@@ -233,7 +233,7 @@
                                 height: 50%;
                                 transform: translate(-50%, 0%);
                                 font-size: 12px;
-                                content: 'holiday';
+                                content: 'no clinic';
                                 z-index: 100;
                                 color: black;
                             }
