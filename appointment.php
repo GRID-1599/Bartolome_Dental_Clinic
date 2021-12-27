@@ -118,7 +118,7 @@
                                             ?>
                                         </dd>
 
-                                        <dt class="col-sm-5">IsPaid:</dt>
+                                        <dt class="col-sm-5">Paid:</dt>
                                         <dd class="col-sm-7">
 
                                             <?php
@@ -129,13 +129,23 @@
 
                                         </dd>
 
-                                        <dt class="col-sm-5">IsDone:</dt>
+                                        <dt class="col-sm-5">Done:</dt>
                                         <dd class="col-sm-7">
 
                                             <?php
                                             $isDone = ($appointment[0]["IsDone"]) ? "Done" : "Not Done";
-                                            $colorDone = ($appointment[0]["IsDone"]) ? "info" : "secondary";
-                                            echo "<span class='bg-$colorDone text-white  px-2 py-1'>" . $isDone . '</span>';
+                                            $colorDone = ($appointment[0]["IsDone"]) ? "info" : "warning";
+                                            echo "<span class='bg-$colorDone  px-2 py-1'>" . $isDone . '</span>';
+                                            ?>
+
+                                        </dd>
+                                        <dt class="col-sm-5">Approve:</dt>
+                                        <dd class="col-sm-7">
+
+                                            <?php
+                                            $isApproved = ($appointment[0]["IsApproved"]) ? "Approved" : "Not Approve";
+                                            $colorApprove = ($appointment[0]["IsApproved"]) ? "info" : "warning";
+                                            echo "<span class='bg-$colorApprove  px-2 py-1'>" . $isApproved . '</span>';
                                             ?>
 
                                         </dd>
@@ -218,13 +228,13 @@
                                         </div>
                                         <div class="row">
                                             <?php
-                                               if ($pop == null) {
-                                                   echo ' <button class="btn btn-primary w-100" id="btnPOPAdd"> Submit Add </button>';
-                                               }else{
-                                                   echo '<button class="btn btn-primary w-100" id="btnPOPEdit"> Submit Edit </button>';
-                                               }
+                                            if ($pop == null) {
+                                                echo ' <button class="btn btn-primary rounded-pill w-100" id="btnPOPAdd">Submit</button>';
+                                            } else {
+                                                echo '<button class="btn btn-primary rounded-pill w-100" id="btnPOPEdit">Submit</button>';
+                                            }
                                             ?>
-                                            
+
                                         </div>
                                     </div>
 
@@ -234,7 +244,7 @@
 
                             </div>
                         </div>
-                        <p id="app_Id" class="unShow" ><?php echo $_GET['appointmentId'] ?></p>
+                        <p id="app_Id" class="unShow"><?php echo $_GET['appointmentId'] ?></p>
                         <div class="row mt-5">
                             <?php
 
@@ -424,8 +434,22 @@
         }
 
         ?>
-
-
+        <!-- modal loader  -->
+        <div class="modal fade" id="loaderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="clearfix">
+                            Please wait...
+                            <div class="spinner-border text-danger float-end" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
 
     </main>

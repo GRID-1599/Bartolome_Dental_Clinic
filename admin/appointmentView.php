@@ -46,6 +46,7 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Appoinment</h1>
                     <p id="appId" class="unShow"><?php echo $_GET["appoinmentId"] ?></p>
+                    <p id="appEmail" class="unShow"><?php echo $patient['Email'] ?></p>
 
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active"> <a href="appointment"> List of Appoinment </a></li>
@@ -115,10 +116,7 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                                                 </dd>
 
                                                 <dt class="col-sm-5">Patient Name:</dt>
-                                                <dd class="col-sm-7">
-                                                    <?php
-                                                    echo $patient["Name"];
-                                                    ?>
+                                                <dd class="col-sm-7" id="appPtName"><?php echo $patient["Name"]; ?>
                                                 </dd>
 
                                                 <dt class="col-sm-5">Contact:</dt>
@@ -131,16 +129,14 @@ function convertToHoursMins($time, $format = '%02d:%02d')
 
                                             <div class="row mt-5 ">
                                                 <dt class="col-sm-5">Appoinment Date:</dt>
-                                                <dd class="col-sm-7">
-                                                    <?php
-                                                    $appDate = date_create($appointment[0]["Appoinment_Date"]);
-                                                    echo date_format($appDate, "M d, Y");
-                                                    ?>
+                                                <dd class="col-sm-7" id="appDate"><?php
+                                                                        $appDate = date_create($appointment[0]["Appoinment_Date"]);
+                                                                        echo date_format($appDate, "M d, Y");
+                                                                        ?>
                                                 </dd>
 
                                                 <dt class="col-sm-5">Appoinment Time:</dt>
-                                                <dd class="col-sm-7">
-                                                    <?php
+                                                <dd class="col-sm-7" id="appTime" ><?php
                                                     $appTime_Start = date_create($appointment[0]["Appointment_StartTime"]);
                                                     $appTime_End = date_create($appointment[0]["Appointment_EndTime"]);
                                                     echo date_format($appTime_Start, " h:i a") . " - " . date_format($appTime_End, " h:i a");
@@ -176,8 +172,7 @@ function convertToHoursMins($time, $format = '%02d:%02d')
 
                                             <div class="row py-3 mx-2 mt-5 border border-3 border-success rounded">
                                                 <dt class="col-sm-5">Payment Method:</dt>
-                                                <dd class="col-sm-7">
-                                                    <?php
+                                                <dd class="col-sm-7" id="appPayment"><?php
                                                     echo $appointment[0]["Payment_Method"]
                                                     ?>
                                                 </dd>
@@ -238,7 +233,7 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                                                 Estimated Minimum Amount:
                                             </div>
                                             <div class="col-4 text-end pe-4">
-                                                <strong><?php echo $appointment[0]["Amount"] ?> php</strong>
+                                                <strong id="appAmount"><?php echo $appointment[0]["Amount"] ?> php</strong>
                                             </div>
                                         </div>
                                         <?php
@@ -263,12 +258,11 @@ function convertToHoursMins($time, $format = '%02d:%02d')
                                                         $imgSrc = '../resources/images/Proof_of_Payment.png';
                                                         if ($pop != null) {
                                                             $imgSrc = '../resources/Proof_of_Payments/' . $pop['ImgFileName'] . '.jpg';
-                                                        }else{
+                                                        } else {
                                                             echo '<span style="color:red;" >No Proof of Payment found</span>';
-
                                                         }
                                                         ?>
-                                                        
+
                                                         <img src="<?php echo $imgSrc ?>" alt="Image for Proof of Payment " class="img-thumbnail mb-3 " id="imgPOP">
 
                                                     </div>
@@ -634,6 +628,7 @@ function convertToHoursMins($time, $format = '%02d:%02d')
         </div>
     </div>
     <?php include 'scripts.php' ?>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="js/appointmentView.js"></script>
 </body>
 

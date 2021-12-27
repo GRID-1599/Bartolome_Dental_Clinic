@@ -377,7 +377,8 @@ if (isset($_POST["archivedApp_ID"])) {
 
 
     $pdf->Output();
-} else if ($_POST["archives"]) {
+
+} else if (isset($_POST["archives"])) {
     if (isset($_POST["sql"])) {
         $stmt_appointments = $appointment_obj->getByFiltered($_POST["sql"]);
         $textFilter = $_POST["filterTxt"];

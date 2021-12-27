@@ -162,7 +162,7 @@ if (isset($_POST["addTheNewAppointment"])) {
         $socialFlag = $socialHistory_obj->addNewSocialHistory(
             $appoinment->ID,
             $appoinment->Social_Form->IsSmoking,
-            $appoinment->Social_Form->IsDringkingAlcohol 
+            $appoinment->Social_Form->IsDringkingAlcohol
         );
     }
 
@@ -175,56 +175,60 @@ if (isset($_POST["addTheNewAppointment"])) {
         );
     }
 
-    if($appFlag != "1" || $medicalFlag != "1" || $dentalFlag != "1" || $femaleFlag != "1"
-    || $socialFlag != "1" || $conditionFlag != "1"){
+    if (
+        $appFlag != "1" || $medicalFlag != "1" || $dentalFlag != "1" || $femaleFlag != "1"
+        || $socialFlag != "1" || $conditionFlag != "1"
+    ) {
         echo "$appFlag | $medicalFlag | $dentalFlag | $femaleFlag | $socialFlag | $conditionFlag | ";
-    }else{
+    } else {
         echo "1";
-
     }
-
 }
 
 
-if(isset($_POST["getAppointmentId"])){
+if (isset($_POST["getAppointmentId"])) {
     echo $appoinment_obj->getAppointmentID($_POST["appId"]);
 }
 
-if(isset($_POST["deleteAppointment"])){
+if (isset($_POST["deleteAppointment"])) {
     $appoinment_obj->deleteAppointment($_POST['appId']);
-    $actLog_obj->addNewLog('Delete', 'Appointment '. $_POST['appId']. ' has been deleted');
-
+    $actLog_obj->addNewLog('Delete', 'Appointment ' . $_POST['appId'] . ' has been deleted');
 }
 
-if(isset($_POST["archiveAppointment"])){
-    $actLog_obj->addNewLog('Move', 'Appointment '. $_POST['appId']. ' has been moved to archives');
+if (isset($_POST["archiveAppointment"])) {
+    $actLog_obj->addNewLog('Move', 'Appointment ' . $_POST['appId'] . ' has been moved to archives');
     $appoinment_obj->archiveAppointment($_POST['appId']);
-
 }
 
-if(isset($_POST["unArchiveAppointment"])){
-    $actLog_obj->addNewLog('Move', 'Appointment '. $_POST['appId']. ' has been unmoved from archives');
+if (isset($_POST["unArchiveAppointment"])) {
+    $actLog_obj->addNewLog('Move', 'Appointment ' . $_POST['appId'] . ' has been unmoved from archives');
     $appoinment_obj->unArchiveAppointment($_POST['appId']);
-
 }
 
-if(isset($_POST["deleteArchivedAppointment"])){
+if (isset($_POST["deleteArchivedAppointment"])) {
     // echo $_POST['appId'];
     $appoinment_obj->deleteArchivedAppointment($_POST['appId']);
-    $actLog_obj->addNewLog('Delete', 'Appointment '. $_POST['appId']. ' has been deleted from archives');
+    $actLog_obj->addNewLog('Delete', 'Appointment ' . $_POST['appId'] . ' has been deleted from archives');
 }
 
 
-if(isset($_POST["approvedAppointment"])){
+if (isset($_POST["approvedAppointment"])) {
     // echo $_POST['appId'];
     $appoinment_obj->approvedAppointment($_POST['appId']);
-    $actLog_obj->addNewLog('Edit', 'Appointment '. $_POST['appId']. ' has been approved');
+    $actLog_obj->addNewLog('Edit', 'Appointment ' . $_POST['appId'] . ' has been approved');
+    $currentDateTime = new DateTime();
+    $currentDateTime->setTimezone(new DateTimeZone('Asia/Manila'));
+    echo date_format($currentDateTime, "M d, Y h:i a");
 }
 
-if(isset($_POST["saveChanges"])){
+if (isset($_POST["saveChanges"])) {
     // echo $_POST['isPaid'] . $_POST['isDone']. $_POST['amount'];
-    $appoinment_obj->saveChanges($_POST['appId'], $_POST['isPaid'] ,  $_POST['amount'], $_POST['isDone']  );
-    $actLog_obj->addNewLog('Edit', 'Appointment '. $_POST['appId']. ' has been changed');
+    $appoinment_obj->saveChanges($_POST['appId'], $_POST['isPaid'],  $_POST['amount'], $_POST['isDone']);
+    $actLog_obj->addNewLog('Edit', 'Appointment ' . $_POST['appId'] . ' has been changed');
+
+    $currentDateTime = new DateTime();
+    $currentDateTime->setTimezone(new DateTimeZone('Asia/Manila'));
+    echo date_format($currentDateTime, "M d, Y h:i a");
 }
 
 if (isset($_FILES['file']['name'])) {
@@ -244,7 +248,7 @@ if (isset($_FILES['file']['name'])) {
         if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
             $response = $location;
             $filename = substr($filename, 0, -4);
-           echo  $appoinment_obj->addPOP($_GET["appID"], $filename);
+            echo  $appoinment_obj->addPOP($_GET["appID"], $filename);
             // $actLog_obj->addNewLog('Edit', 'Service category ' . $_GET["serviceCategoryId"] . ' image changed');
         }
     } else {
@@ -252,7 +256,7 @@ if (isset($_FILES['file']['name'])) {
     }
 }
 
-if(isset($_POST["deletePOP"])){
+if (isset($_POST["deletePOP"])) {
     $appoinment_obj->deletePOP($_POST['popID']);
 }
 

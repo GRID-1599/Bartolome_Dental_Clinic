@@ -462,7 +462,6 @@ class Appointment extends DatabaseConnection
 
         $stmt = $this->connect()->query($sql1);
         $stmt->execute();
-        echo "archived_appointment  " . $appId . " succssfully deleted";
     }
 
     public function saveChanges($appId, $isPaid, $amount, $isDone)
@@ -471,7 +470,6 @@ class Appointment extends DatabaseConnection
 
         $stmt = $this->connect()->query($sql1);
         $stmt->execute();
-        echo "appointment  " . $appId . " succssfully changed";
     }
 
 

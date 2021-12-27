@@ -7,17 +7,18 @@ $(document).ready(function() {
 
     $('#btnPOPAdd').click(function() {
         if ($('#pop_image').val()) {
+            $('#loaderModal').modal('show')
             submitImagePOP()
         }
     });
 
     $('#btnPOPEdit').click(function() {
         if ($('#pop_image').val()) {
+            $('#loaderModal').modal('show')
             deletePOP();
-
-
         }
     });
+
 });
 
 

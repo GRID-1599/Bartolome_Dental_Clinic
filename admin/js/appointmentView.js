@@ -1,8 +1,26 @@
 var appID;
+var appEmail;
+var appPtName;
+var appDate;
+var appTime;
+var appAmount;
+var appPayment;
 
 $(document).ready(function() {
-    appID = $('#appId').text()
-        // console.log(appID);
+    appID = $('#appId').text().replace(/ /g, '')
+    appEmail = $('#appEmail').text().replace(/ /g, '')
+    appPtName = $('#appPtName').text()
+    appDate = $('#appDate').text().replace(/ /g, '')
+    appTime = $('#appTime').text().replace(/ /g, '')
+    appAmount = $('#appAmount').text().replace(/ /g, '')
+    appPayment = $('#appPayment').text().replace(/ /g, '')
+
+    sendEmailApproved(appEmail, 'Hi!')
+
+    console.log(appDate +
+        appTime +
+        appAmount +
+        appPayment)
     $('#btnDeleteApp').click(function() {
         if (confirm("Delete this appointment? \n\nWarning:  This can't be undone")) {
             $('#modalLoader').modal('show')
@@ -55,6 +73,22 @@ $(document).ready(function() {
         saveChangesApp(IsPaidVal, IsDoneVal, AmountPaidVal)
 
     });
+
+    // var currentdate = new Date();
+    // var datetime = currentdate.getDate() + "/" +
+    //     (currentdate.getMonth() + 1) + "/" +
+    //     currentdate.getFullYear() + " @ " +
+    //     currentdate.getHours() + ":" +
+    //     currentdate.getMinutes() + ":" +
+    //     currentdate.getSeconds();
+
+    // // document.write(datetime);
+    // console.log(currentdate);
+    // console.log(datetime);
+
+    // var d = new Date();
+    // d + ''; // "Sun Dec 08 2013 18:55:38 GMT+0100"
+    // console.log(d.toUTCString());
 
 });
 
@@ -155,8 +189,51 @@ function saveChangesApp(IsPaidVal, IsDoneVal, AmountPaidVal) {
             // response = JSON.stringify(response);
             // $("#serviceDelete").modal("hide");
             // alert(response);
+            console.log(appPtName);
+            if (IsPaidVal == 1) {
+                var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appID
+
+                var message = `
+                    <p><strong style='color:#bf2441; padding:2px; '>Hi! ` + appPtName + `</strong><br>
+                            Your appointment has been changed to PAID.
+                            <br><br>
+                            <strong>Details</strong> <br>
+                            Appointment ID : ` + appID + ` <br>
+                            Appointment Date : ` + appDate + ` <br>
+                            Appointment Time : ` + appTime + `<br>
+                            Amount : ` + appAmount + `<br>
+                            Payment Method : ` + appPayment + ` <br>
+                            <p>See more Appointment details <a href="${applnk}" target="_blank">Click here</a></p>
+                            <br><br>
+                            <strong>Bartolome Dental Clinic</strong><br>
+                            0975-123-8396
+                    `
+                    // console.log('email to send');
+                sendEmailPaid(appEmail, message);
+            }
+            if (IsDoneVal == 1) {
+                var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appID
+
+                var message = `
+                    <p><strong style='color:#bf2441; padding:2px; '>Hi! ` + appPtName + `</strong><br>
+                            Your appointment has been changed to DONE.
+                            <br><br>
+                            <strong>Details</strong> <br>
+                            Appointment ID : ` + appID + ` <br>
+                            Appointment Date : ` + appDate + ` <br>
+                            Appointment Time : ` + appTime + `<br>
+                            Amount : ` + appAmount + `<br>
+                            Payment Method : ` + appPayment + ` <br>
+                            <p>See more Appointment details <a href="${applnk}" target="_blank">Click here</a></p>
+                            <br><br>
+                            <strong>Bartolome Dental Clinic</strong><br>
+                            0975-123-8396
+                    `
+                sendEmailDone(appEmail, message);
+
+            }
             window.location.reload();
-            // console.log(response);
+            console.log(response);
         },
         error: function(jqXHR, exception) {
             var msg = '';
@@ -196,8 +273,29 @@ function approveApp() {
             // response = JSON.stringify(response);
             // $("#serviceDelete").modal("hide");
             // alert(response);
-            window.location.reload();
+
             console.log(response);
+
+            var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appID
+
+            var message = `
+                    <p><strong style='color:#bf2441; padding:2px; '>Hi! ` + appPtName + `</strong><br>
+                            Your appointment has been approved.
+                            <br><br>
+                            <strong>Details</strong> <br>
+                            Appointment ID : ` + appID + ` <br>
+                            Appointment Date : ` + appDate + ` <br>
+                            Appointment Time : ` + appTime + `<br>
+                            Amount : ` + appAmount + `<br>
+                            Payment Method : ` + appPayment + ` <br>
+                            <p>See more Appointment details <a href="${applnk}" target="_blank">Click here</a></p>
+                            <br><br>
+                            <strong>Bartolome Dental Clinic</strong><br>
+                            0975-123-8396
+                    `
+            console.log('email to send');
+            window.location.reload();
+            sendEmailApproved(appEmail, message);
         },
         error: function(jqXHR, exception) {
             var msg = '';
@@ -233,7 +331,6 @@ function checkIfPasswordCorrect(adminPassword) {
 
         },
         success: function(response) {
-            console.log(response);
 
             if (response != 1) {
                 $('#inputAdminPassword').addClass('is-invalid')
@@ -278,4 +375,46 @@ function onlyNumberKey(evt) {
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
         return false;
     return true;
+}
+
+
+function sendEmailPaid(email, message) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "bartolome.dentalclinic@gmail.com",
+        Password: "qnbrlagqmkzchcuf",
+        To: email,
+        From: "bartolome.dentalclinic@gmail.com",
+        Subject: 'Paid Appointment | Bartolome Dental Clinic',
+        Body: message,
+    });
+    console.log(email + ' | \n' + message);
+}
+
+function sendEmailDone(email, message) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "bartolome.dentalclinic@gmail.com",
+        Password: "qnbrlagqmkzchcuf",
+        To: email,
+        From: "bartolome.dentalclinic@gmail.com",
+        Subject: 'Appointment Done | Bartolome Dental Clinic',
+        Body: message,
+    });
+    console.log(email + ' | \n' + message);
+
+}
+
+function sendEmailApproved(email, message) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "bartolome.dentalclinic@gmail.com",
+        Password: "qnbrlagqmkzchcuf",
+        To: email,
+        From: "bartolome.dentalclinic@gmail.com",
+        Subject: 'Approved Appointment | Bartolome Dental Clinic',
+        Body: message,
+    });
+    console.log(email + ' | \n' + message);
+
 }
