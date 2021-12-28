@@ -564,6 +564,115 @@ class Appointment extends DatabaseConnection
         }
         echo  json_encode($appointments);
     }
+
+
+    public function getAllAppointmentTotal()
+    {
+        $sql = "SELECT `Appointment_Id` FROM `appointment` ORDER BY `Date_Created` DESC";
+        $stmt = $this->connect()->query($sql);
+        $allAppTotal = 0;
+        while ($row = $stmt->fetch()) {
+            $allAppTotal +=1;
+        }
+
+        return $allAppTotal ;
+    }
+
+
+    public function getAppByYear($year)
+    {
+        $sql = "SELECT * FROM appointment WHERE `Appoinment_Date` BETWEEN  '$year-01-01' AND '$year-12-31'";
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+
+         $allAppTotal = 0;
+         $allAppAprroveTotal = 0;
+         $allAppNotAprroveTotal = 0;
+         $allAppTotal_NP_ND = 0;
+         $allAppTotal_P_ND = 0;
+         $allAppTotal_NP_D = 0;
+         $allAppTotal_P_D = 0;
+
+
+
+        while ($row = $stmt->fetch()) {
+            $allAppTotal +=1;
+            ($row['IsApproved']) ? $allAppAprroveTotal+=1 : $allAppNotAprroveTotal+=1;
+            if($row['IsPaid'] & $row['IsDone']){
+                $allAppTotal_P_D +=1;
+            }else if($row['IsPaid'] & !$row['IsDone']){
+                $allAppTotal_P_ND +=1;
+
+            }else if(!$row['IsPaid'] & $row['IsDone']){
+                $allAppTotal_NP_D +=1;
+
+            }else if(!$row['IsPaid'] & !$row['IsDone']){
+                $allAppTotal_NP_ND +=1;
+
+            }
+        }
+
+        $appJSON = array(
+            "allAppTotal" => $allAppTotal, 
+            "allAppAprroveTotal" => $allAppAprroveTotal, 
+            "allAppNotAprroveTotal" => $allAppNotAprroveTotal, 
+            "allAppTotal_NP_ND" => $allAppTotal_NP_ND, 
+            "allAppTotal_P_ND" => $allAppTotal_P_ND, 
+            "allAppTotal_NP_D" => $allAppTotal_NP_D,
+            "allAppTotal_P_D" => $allAppTotal_P_D
+            );
+
+        echo json_encode($appJSON);
+
+    }
+
+    public function getAppByYearMonth($year, $month)
+    {
+        $sql = "SELECT * FROM appointment WHERE `Appoinment_Date` BETWEEN  '$year-$month-01' AND '$year-$month-31'";
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+
+         $allAppTotal = 0;
+         $allAppAprroveTotal = 0;
+         $allAppNotAprroveTotal = 0;
+         $allAppTotal_NP_ND = 0;
+         $allAppTotal_P_ND = 0;
+         $allAppTotal_NP_D = 0;
+         $allAppTotal_P_D = 0;
+
+
+
+        while ($row = $stmt->fetch()) {
+            $allAppTotal +=1;
+            ($row['IsApproved']) ? $allAppAprroveTotal+=1 : $allAppNotAprroveTotal+=1;
+            if($row['IsPaid'] & $row['IsDone']){
+                $allAppTotal_P_D +=1;
+            }else if($row['IsPaid'] & !$row['IsDone']){
+                $allAppTotal_P_ND +=1;
+
+            }else if(!$row['IsPaid'] & $row['IsDone']){
+                $allAppTotal_NP_D +=1;
+
+            }else if(!$row['IsPaid'] & !$row['IsDone']){
+                $allAppTotal_NP_ND +=1;
+
+            }
+        }
+
+        $appJSON = array(
+            "allAppTotal" => $allAppTotal, 
+            "allAppAprroveTotal" => $allAppAprroveTotal, 
+            "allAppNotAprroveTotal" => $allAppNotAprroveTotal, 
+            "allAppTotal_NP_ND" => $allAppTotal_NP_ND, 
+            "allAppTotal_P_ND" => $allAppTotal_P_ND, 
+            "allAppTotal_NP_D" => $allAppTotal_NP_D,
+            "allAppTotal_P_D" => $allAppTotal_P_D
+            );
+
+        echo json_encode($appJSON);
+
+    }
+      
 }
 
 

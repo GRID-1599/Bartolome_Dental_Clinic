@@ -262,6 +262,18 @@ if (isset($_POST["deletePOP"])) {
 if (isset($_POST["getMonthsVal"])) {
     $appoinment_obj->getAppPerMonth($_POST['yearApp']);
 }
+
+if (isset($_POST["getYearVal"])) {
+    $appoinment_obj->getAppByYear($_POST['yearApp']);
+}
+
+if (isset($_POST["getYearMonthVal"])) {
+    $appoinment_obj->getAppByYearMonth($_POST['year2App'], $_POST['monthApp']);
+}
 // if(0 != "1"){
 //     echo "Asdad";
 // }
+// E:\xampp\htdocs\Dental Clinic\ajaxRequest\appointment.ajax.php
+
+// $appoinment_obj->getAppByYear('2020');
+    // $appoinment_obj->getAppByYearMonth('2021', '11');

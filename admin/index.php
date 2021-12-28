@@ -454,20 +454,86 @@ foreach ($unreadMessages as $unread) {
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <div class="row">
-                                            <div class="col-sm-7">
-                                                <i class="fas fa-chart-bar me-1"></i>
-                                                Appointments per Month
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Appointments Summary
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <p><strong>All Appointments Total</strong> : <?php echo $appointment_obj->getAllAppointmentTotal() ?></p>
                                             </div>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-transparent" id="basic-addon1">Year</span>
-                                                    <input type="number" class="form-control" id="yearToSet" maxlength="4" min="2010" max="<?php echo date_format($currentDate, "Y") + 10 ?>" value="<?php echo date_format($currentDate, "Y") ?>">
+                                            <div class="row">
+                                                <div class="card shadow-none ">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Appointments Summary</h5>
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-text">
+                                                                        <input class="form-check-input mt-0" type="radio" value="1" name="forAppTo"checked >
+                                                                    </div>
+
+                                                                    <span class="input-group-text bg-transparent " id="forYear">By year</span>
+                                                                    <input type="number" class="form-control" id="yearToApp" maxlength="4" min="2010" max="<?php echo date_format($currentDate, "Y") + 10 ?>" value="<?php echo date_format($currentDate, "Y") ?>">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-text">
+                                                                        <input class="form-check-input mt-0" type="radio" value="2" name="forAppTo" >
+                                                                    </div>
+
+                                                                    <span class="input-group-text" id="forYearMonth">By year & month</span>
+                                                                    <input type="number" class="form-control" id="yearToApp2" maxlength="4" min="2010" max="<?php echo date_format($currentDate, "Y") + 10 ?>" value="<?php echo date_format($currentDate, "Y") ?>" style="width: fit-content;" disabled>
+                                                                    <?php
+                                                                    $months = array(
+                                                                        '01' => "January",
+                                                                        '02' => "Febuary",
+                                                                        '03' => "March",
+                                                                        '04' => "April",
+                                                                        '05' => "May",
+                                                                        '06' => "June",
+                                                                        '07' => "July",
+                                                                        '08' => "August",
+                                                                        '09' => "September",
+                                                                        '10' => "October",
+                                                                        '11' => "November",
+                                                                        '12' => "December",
+                                                                    );
+
+                                                                    ?>
+                                                                    <select class="form-select" aria-label="Default select example" id="monthToApp" style="width: fit-content;" disabled>
+                                                                        <?php
+                                                                        foreach ($months as $akey => $avalue) {
+                                                                            $setSelected = "";
+                                                                            if ($akey == date_format($currentDate, "m")) {
+                                                                                $setSelected = 'selected';
+                                                                            }
+                                                                            echo "<option value='" . $akey . "' " . $setSelected . ">" . $avalue . "</option>";
+                                                                        }
+
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="card-text text-muted mt-3">Showing : <span id="toShowSpan" ><? echo date_format($currentDate, "Y")?></span></p>
+                                                        <p class="card-text mt-2">Appointments : <span id="allAppointmentsToShow" ></span></p>
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-12">
+                                                                <canvas id="approvedPie" width="100%" height="60"></canvas>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <canvas id="paiddonePie" width="100%" height="70"></canvas>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body"><canvas id="appMonthChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -486,10 +552,10 @@ foreach ($unreadMessages as $unread) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                    </div>
+                                    <div class="card-body"><canvas id="appMonthChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -504,6 +570,7 @@ foreach ($unreadMessages as $unread) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="js/chartBar.js"></script>
+    <script src="js/chartPie.js"></script>
 
 </body>
 
