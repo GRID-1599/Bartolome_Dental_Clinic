@@ -35,7 +35,7 @@
                                 <button class="btn btn-primary btn-sm" id="btnViewApp" data-bs-toggle="modal" data-bs-target="#modalInputs">View appointment</button>
                             </div>
                             <div class="col ">
-                                <a type="button" class="btn btn-primary w-100 h-100 btn-lg  text-center p-2 " id="btnBookAppointment"> <strong>Book Appointment </strong></a>
+                                <a type="button" class="btn btn-primary w-100 h-100 btn-lg  text-center p-2 " href="bookNow" id="btnBookAppointment"> <strong>Book Appointment </strong></a>
                             </div>
                         </div>
                     </div>

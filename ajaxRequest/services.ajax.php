@@ -34,7 +34,7 @@ if (isset($_FILES['file']['name'])) {
             $response = $location;
             $filename = substr($filename, 0, -4);
             $service_obj->changeServiceImage($_GET["serviceId"], $filename);
-            $actLog_obj->addNewLog('Edit', 'Service ' . $_POST["service_id"] . ' image changed');
+            $actLog_obj->addNewLog('Edit', 'Service ' . $_GET["serviceId"] . ' image changed');
         }
     } else {
         echo "Error : Invalid File";

@@ -83,7 +83,7 @@ $admin_obj = new Admin();
                                 <div class="container ">
                                     <div class="row shadow mb-5 rounded">
                                         <!-- admin username  -->
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <p class="my-3 h5">For Username</p>
                                             <div class="mb-3">
                                                 <div class="form-floating mb-3">
@@ -106,7 +106,7 @@ $admin_obj = new Admin();
                                                 <button class="btn bg-pink text-white w-auto float-end" id="btnSaveNewUsername" value="<?php echo $admin_username ?>">Save Username Changes</button>
 
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <!-- admin password  -->
 

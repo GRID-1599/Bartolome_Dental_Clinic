@@ -56,18 +56,21 @@ $(document).ready(function() {
 
     $('#bntConfirmChanges').click(function() {
         if (ifImageOnlyChanged === false) {
+            $('#editloader').removeClass('unShow');
+            $('#btnEditWrapper').addClass('unShow');
+            $('.closeModal').addClass('unShow');
             editService();
         }
+
         if (isImageEdited) {
             // console.log("image changes");
             imageChange();
+        } else {
+            setTimeout(function() {
+                $("#serviceChanges").modal("hide");
+                // location.reload();
+            }, 500);
         }
-        setTimeout(function() {
-            $("#serviceChanges").modal("hide");
-            location.reload();
-        }, 500);
-
-
 
     });
 
@@ -254,6 +257,7 @@ function editService() {
         success: function(response) {
             // response = JSON.stringify(response);
             console.log(response);
+
         },
         error: function(jqXHR, exception) {
             var msg = '';
@@ -294,6 +298,10 @@ function imageChange() {
         success: function(response) {
             // response = JSON.stringify(response);
             console.log("response txt : " + response);
+            setTimeout(function() {
+                $("#serviceChanges").modal("hide");
+                // location.reload();
+            }, 500);
         },
         error: function(jqXHR, exception) {
             var msg = '';

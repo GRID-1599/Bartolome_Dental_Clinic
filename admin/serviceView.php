@@ -60,7 +60,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Name</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text"  value="<?php echo $service["Name"]; ?>" class="w-100 form-control" id="service_name">
+                                        <input type="text" value="<?php echo $service["Name"]; ?>" class="w-100 form-control" id="service_name">
                                     </dd>
 
                                     <dt class="col-sm-3">Category</dt>
@@ -80,14 +80,14 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Starting Price</dt>
                                     <dd class="col-sm-9">
-                                        <input type="text"  id="service_price" value="<?php echo $service["Starting_Price"]; ?>" class="form-control">
+                                        <input type="text" id="service_price" value="<?php echo $service["Starting_Price"]; ?>" class="form-control">
                                     </dd>
 
 
 
                                     <dt class="col-sm-3">Description</dt>
                                     <dd class="col-sm-9">
-                                        <textarea class="form-control" rows="8" id="service_description"><?php echo $service["Description"]?></textarea>
+                                        <textarea class="form-control" rows="8" id="service_description"><?php echo $service["Description"] ?></textarea>
                                     </dd>
 
                                     <dt class="col-sm-3">Service Image</dt>
@@ -98,8 +98,8 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                         ?>
                                         <img src="<?php echo $imagePath; ?>" alt="" class="img-thumbnail" id="serviceImage">
                                         <form id="formImage" onsubmit="return false">
-                                        <input type="file" id="service_image" class="" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
-                                        <label class="" for="service_image">Choose file <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
+                                            <input type="file" id="service_image" class="" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
+                                            <label class="" for="service_image">Choose file <i class="fa fa-file-image-o" aria-hidden="true"></i></label>
                                         </form>
                                         <button type="button" id="btnImage" class="btn btn-secondary "> <i class="fa fa-trash" aria-hidden="true"></i>
                                             Delete Picture</button>
@@ -125,7 +125,7 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
 
                                     <dt class="col-sm-3">Service Duration</dt>
                                     <dd class="col-sm-9">
-                                        <input type="range" class="form-range w-50"  id="service_duration"  value="<?php echo $service["Duration"]; ?>" min="0" step="15" max="240">
+                                        <input type="range" class="form-range w-50" id="service_duration" value="<?php echo $service["Duration"]; ?>" min="0" step="15" max="240">
                                         <span id="duration_value"></span>
                                     </dd>
 
@@ -142,12 +142,12 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                     </div>
 
                                     <!-- edit Modal -->
-                                    <div class="modal fade" id="serviceChanges" tabindex="-1" aria-labelledby="serviceViewModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="serviceChanges"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="serviceViewModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="serviceViewModalLabel">Here's the changes</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close" ></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <dl class="row" id="changesList">
@@ -156,8 +156,13 @@ $serviceCategoryIdAndName_Array = $serviceCategory_obj->getServicesCategory_Name
                                                 </div>
                                                 <div class="modal-footer">
                                                     <!-- <p>Press confirm to save the changes</p> -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" id="bntConfirmChanges">Confirm Changes</button>
+                                                    <div id="btnEditWrapper">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" id="bntConfirmChanges">Confirm Changes</button>
+                                                    </div>
+                                                    <div class="spinner-border text-danger unShow" role="status" id="editloader">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

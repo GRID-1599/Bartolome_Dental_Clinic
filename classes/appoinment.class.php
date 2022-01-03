@@ -20,7 +20,7 @@ class Appointment extends DatabaseConnection
     ) {
         try {
 
-            $sql = 'INSERT INTO `appointment`(`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinment_Date`, `Appointment_StartTime`, `Appointment_EndTime`, `Duration_Minutes`, `Allotted_Hours`,`Date_Created`, `Payment_Method`, `IsPaid`, `Amount`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+            $sql = 'INSERT INTO `appointment`(`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinment_Date`, `Appointment_StartTime`, `Appointment_EndTime`, `Duration_Minutes`, `Allotted_Hours`,`Date_Created`, `Payment_Method`, `IsPaid`, `Amount`,`IsDone`,`IsApproved`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute([
                 $Appointment_Id,
@@ -33,8 +33,8 @@ class Appointment extends DatabaseConnection
                 $Allotted_Hours,
                 $Date_Created,
                 $Payment_Method,
-                $IsPaid,
-                $Amount
+                0,
+                $Amount,0,0
             ]);
 
 

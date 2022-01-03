@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['registration'])) {
-    include 'includes/autoIncludes.inc.php';
+    include 'classes/patient.class.php';
     $testObj = new Patient();
 
     $Name = $_POST['regPatientName'];
@@ -44,7 +44,7 @@ if (isset($_POST['registration'])) {
 <body>
     <?php include('header.php') ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5 border">
         <div class="row justify-content-center">
             <div class="content col-lg-7 bg-white border ">
                 <div class="text-2 display-6 pb-4">New Patient Registration</div>
