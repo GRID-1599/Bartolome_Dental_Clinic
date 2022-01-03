@@ -191,7 +191,7 @@ function saveChangesApp(IsPaidVal, IsDoneVal, AmountPaidVal) {
             // alert(response);
             console.log(appPtName);
             if (IsPaidVal == 1) {
-                var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appID
+                var applnk = 'http://bartolomedental.epizy.com/appointment/' + appID
 
                 var message = `
                     <p><strong style='color:#bf2441; padding:2px; '>Hi! ` + appPtName + `</strong><br>
@@ -212,7 +212,7 @@ function saveChangesApp(IsPaidVal, IsDoneVal, AmountPaidVal) {
                 sendEmailPaid(appEmail, message);
             }
             if (IsDoneVal == 1) {
-                var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appID
+                var applnk = 'http://bartolomedental.epizy.com/appointment/' + appID
 
                 var message = `
                     <p><strong style='color:#bf2441; padding:2px; '>Hi! ` + appPtName + `</strong><br>
@@ -276,7 +276,7 @@ function approveApp() {
 
             console.log(response);
 
-            var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appID
+            var applnk = 'http://bartolomedental.epizy.com/appointment/' + appID
 
             var message = `
                     <p><strong style='color:#bf2441; padding:2px; '>Hi! ` + appPtName + `</strong><br>

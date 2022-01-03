@@ -1046,7 +1046,7 @@ function messageSendEmail() {
         strService += '<em style="margin-left: 25px">' + service[1] + '</em><br>'
     });
 
-    var applnk = 'http://localhost/Dental%20Clinic/appointment/' + appoinment_obj["ID"]
+    var applnk = 'http://bartolomedental.epizy.com/appointment/' + appoinment_obj["ID"]
     var message = `
         <p><strong style='color:#bf2441; padding:2px; '>Hi! ${patientName} </strong><br>
                 Your appointment has been successfully added
