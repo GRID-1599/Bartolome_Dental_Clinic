@@ -43,7 +43,27 @@ $isReadClass = $message_data["IsRead"] ? "Read" : "Unread";
 
                     <div class="card">
                         <div class="card-header bg-white">
-                            Message
+                            <div class="row">
+                                <div class="col-md-10">
+                                    Message
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="dropdown float-end">
+                                        <a class="btn btn-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                            <li class=" mb-1 ">
+                                                <button class="btn btn-light w-100 text-start" id="btnDeleteMessage"><i class="fa fa-trash-o me-3" aria-hidden="true"></i> Delete</button>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">
@@ -68,7 +88,7 @@ $isReadClass = $message_data["IsRead"] ? "Read" : "Unread";
         </div>
     </div>
     <?php include 'scripts.php' ?>
-    <script src="js/message.js"></script>
+    <script src="js/messageView.js"></script>
 </body>
 
 </html>

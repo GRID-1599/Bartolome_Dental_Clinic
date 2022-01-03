@@ -18,3 +18,8 @@ if (isset($_POST['message'])) {
     exit();
     // exit($patient_id);
 }
+
+if(isset($_POST['deleteMessage'])){
+    // echo $_POST['message_id'];
+    $message_obj->deleteMessage( $_POST['message_id'] );
+}

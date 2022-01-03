@@ -65,4 +65,12 @@ class Message extends DatabaseConnection
         }
         return $allMsg;
     }
+
+    public function deleteMessage($message_id)
+    {
+        $sql = "DELETE FROM `message` WHERE `Message_ID` =  '" . $message_id . "'";
+        $stmt = $this->connect()->query($sql);
+        $stmt->execute();
+        echo "Message Deleted";
+    }
 }
