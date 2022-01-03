@@ -256,12 +256,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col px-5 position-relative">
-                                <div class="form-floating mb-3 text-center">
+                                <div class="form-floating mb-3 text-center ">
                                     <input type="text" class="form-control" id="viewPatientId" placeholder="Enter patient id" maxlength="4">
                                     <label for="viewPatientId">Please enter the Patient Id</label>
                                     <div class="invalid-feedback">
                                         Patient Id not found
                                     </div>
+                                    
                                     <div class="valid-feedback" id="patientIdName"></div>
                                     <div class="text-center mt-2 unShow position-absolute top-50 start-50" id="loaderPatient">
                                         <div class="spinner-border text-danger" role="status">
@@ -269,6 +270,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <a href="forgot-patient-id.php" class="text-start mt-5 ">Forgot Patient Id?</a>
                             </div>
                         </div>
                     </div>
