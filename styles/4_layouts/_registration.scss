@@ -1,6 +1,4 @@
 .content {
-
-    
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
     // border: .5px solid black;
     height: 80%;
@@ -275,4 +273,20 @@
             }
         }
     }
+}
+
+.bg_image {
+    content: '';
+    // E:\xampp\htdocs\Dental Clinic\admin\resources\images\bg-image.png
+    background-image: url("../resources/images/bg-image.png");
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-position: 0px center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #ffffff58;
+    // background-blend-mode: soft-light;
+    z-index: 10;
 }
