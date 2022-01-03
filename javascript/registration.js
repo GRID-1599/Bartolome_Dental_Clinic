@@ -33,6 +33,7 @@ genderOptionsList.forEach(i => {
 
 
 
+
 // regPatientName = "";
 // regPatientNickname = "";
 // regPatientBday = "";
@@ -123,6 +124,13 @@ $(document).ready(function() {
         } else {}
     });
 
+    $('#regPatientBday').change(function() {
+        var date = $(this).val();
+        if (getAge(date) >= 1 & getAge(date) <= 100) {
+            $('#regPatientAge').val(getAge(date))
+        }
+    });
+
 
 });
 
@@ -135,6 +143,17 @@ function toUpperCaseFirstLetterofText(str) {
     }
     // Directly return the joined string
     return splitStr.join(' ');
+}
+
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
 }
 
 

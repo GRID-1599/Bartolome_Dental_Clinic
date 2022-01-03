@@ -41,10 +41,12 @@ if (isset($_POST['registration'])) {
     <link href="styles/style.css" rel="stylesheet" />
 </head>
 
-<body>
-    <?php include('header.php') ?>
+<body class="bg_image">
+    
+    <?php include('header.php') ?> 
 
-    <div class="container mt-5 border">
+
+    <div class="container mt-5 ">
         <div class="row justify-content-center">
             <div class="content col-lg-7 bg-white border ">
                 <div class="text-2 display-6 pb-4">New Patient Registration</div>
