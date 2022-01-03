@@ -205,7 +205,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-center" id="staticBackdropLabel">View Appointment</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close closex" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -238,7 +238,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary closex" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary unShow" id="btnAppProceed">Proceed</button>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-center" id="staticBackdropLabel">View Patient Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close closex" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -275,7 +275,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary closex" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary unShow" id="btnIdSubmit">Submit</button>
                     </div>
                 </div>

@@ -36,6 +36,15 @@ $(document).ready(function() {
         $("#formPatientID").submit();
     });
 
+    $('.closex').click(function() {
+        $('#viewAppId').val(null)
+        $('#viewPatientId').val(null)
+        $('#viewAppId').removeClass("is-invalid")
+        $('#viewAppId').removeClass("is-valid")
+        $('#viewPatientId').removeClass("is-invalid")
+        $('#viewPatientId').removeClass("is-valid")
+    });
+
 });
 
 function getAppointments(appointmentID) {
