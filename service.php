@@ -30,7 +30,7 @@
             $tryNum = 0;
             foreach ($serviceCategories as $entry) {
                 $serviceCategory_Name = $entry["Name"];
-                $sampleTxt = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga tempora architecto minima esse? Recusandae dolorem, eius totam magnam non eum!";
+                $sampleTxt = "\n\n";
                 $serviceCategory_Description = (strcmp($entry["Description"], "") != 0) ? $entry["Description"] : $sampleTxt;
                 $serviceCategory_FileName = (strcmp($entry["ImgFileName"], "") != 0) ? $entry["ImgFileName"] : "dentistBG";
                 $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_FileName . ".jpg";

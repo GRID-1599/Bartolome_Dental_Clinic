@@ -17,7 +17,7 @@ $serviceCategory_Array = $serviceCategory_Obj->getServicesCategory_ById($service
 
 
 $fileName = $serviceCategory_Array["ImgFileName"];
-$sampleTxt = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga tempora architecto minima esse? Recusandae dolorem, eius totam magnam non eum!";
+$sampleTxt = "";
 
 $serviceCategory_Name = $_GET['serviceCategory'];
 $serviceCategory_Description = (strcmp($serviceCategory_Array["Description"], "") != 0) ? $serviceCategory_Array["Description"] : $sampleTxt;;
@@ -79,7 +79,7 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
 
                         $service_obj = new Service();
                         $stmt_GetAllServices = $service_obj->getAllServicesData_ByCategoryID($serviceCategory_Id);
-                        $sampleTxt = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga tempora architecto minima esse? Recusandae dolorem, eius totam magnam non eum!";
+                        $sampleTxt = "";
                         $imageType = ".jpg";
                         while ($row = $stmt_GetAllServices->fetch()) {
                             if ($row["Availability"]) {
