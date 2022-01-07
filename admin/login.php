@@ -51,7 +51,7 @@ session_destroy();
                                         <div class="invalid-feedback" id="password_invalid"></div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <a class="small" href="password.php">Forgot Password?</a>
+                                        <a class="small" href="forgot-password">Forgot Password?</a>
 
                                         <button class="btn w-50 text-white bg-pink" id="btnLogin">Login</button>
 

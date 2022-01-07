@@ -191,6 +191,15 @@ RewriteCond %{Request_FileName} !-d
 
 RewriteCond %{Request_FileName}\.php -f
 
+RewriteRule ^forgot-password forgot-password.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
+#  url for admin log in
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
 RewriteRule ^login login.php [NC,L,QSA]
 
 # ----------------------------------------------- 

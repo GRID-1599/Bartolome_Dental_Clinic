@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Forgot Passwprd | Bartolome Dental Clinic</title>
+    <title>Forgot Password | Bartolome Dental Clinic</title>
     <!-- <link rel="icon" href="../resources/icons/logov2.png"> -->
     <base href="/Dental Clinic/admin/">
     <link rel="icon" href="../resources/icons/icon.jpg">
@@ -38,7 +38,7 @@
                                             <label for="inputEmail">Email address</label>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="login.php">Return to login</a>
+                                            <a class="small" href="login">Return to login</a>
                                             <div class="loader unShow">
                                                 Checking Please wait...
                                                 <div class="spinner-border spinner-border-sm text-danger" role="status">
