@@ -94,7 +94,7 @@ $sqlsort = ($sortBy != '') ? "ORDER BY `appointment` ." . $sortBy : "";
 $textFilter .= ($sortBy != '') ? "<br> Sort by : " . $sortBy : "";
 
 
-$sql = 'SELECT * FROM `appointment` WHERE ' . $sqlpatientId . $sqlappDate . $sqldateCreated . $sqlamount . $sqlpayment . $sqlisPaid .$sqlisDone;
+$sql = 'SELECT * FROM `appointment` WHERE ' . $sqlpatientId . $sqlappDate . $sqldateCreated . $sqlamount . $sqlpayment . $sqlisPaid . $sqlisDone;
 $theSql;
 if (strpos($sql, 'and') !== false) {
     $theSql = substr($sql, 0, -4);
@@ -217,31 +217,39 @@ $theSql .= $sqlsort;
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="appointment/filtered" method="post" class="container g-5">
-                                            <div class="row ">
-                                                <div class="input-group mb-3 w-50">
-                                                    <span class="input-group-text border-0 bg-transparent"> <strong>Patient Id : </strong> </span>
-                                                    <input type="number" class="form-control border-bottom" placeholder="####" id="appPatientId" name="appPatientId" onKeyPress="if(this.value.length==4) return false;">
+                                        <form action="appointment/filtered" method="post" class="container ">
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <div class="input-group mb-3 ">
+                                                        <span class="input-group-text border-0 bg-transparent"> <strong>Patient Id : </strong> </span>
+                                                        <input type="number" class="form-control border-bottom" placeholder="####" id="appPatientId" name="appPatientId" onKeyPress="if(this.value.length==4) return false;">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row px-2">
-                                                <div class="container">
-                                                    <div class="row-5 ">
-                                                        <label for="" class="me-5"><strong>Appointment Date</strong></label>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="appDateRadio" id="appDateSpecific" checked value="1">
-                                                            <label class="form-check-label  radio-label" for="appDateSpecific">
-                                                                Specific Date
-                                                            </label>
+                                                <div class="container ">
+                                                    <div class="row ">
+                                                        <div class="col-sm-4 ">
+                                                            <label for="" class="me-5"><strong>Appointment Date</strong></label>
                                                         </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="appDateRadio" id="appDateRange" value="2">
-                                                            <label class="form-check-label  radio-label" for="appDateRange">
-                                                                Range
-                                                            </label>
+                                                        <div class="col-sm-auto ">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="appDateRadio" id="appDateSpecific" checked value="1">
+                                                                <label class="form-check-label  radio-label" for="appDateSpecific">
+                                                                    Specific Date
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="appDateRadio" id="appDateRange" value="2">
+                                                                <label class="form-check-label  radio-label" for="appDateRange">
+                                                                    Range
+                                                                </label>
+                                                            </div>
                                                         </div>
+
+
                                                     </div>
-                                                    <div class="row ps-3">
+                                                    <div class="row ps-3 ">
                                                         <div class="row " id="appDateSpecificWrapper">
                                                             <label for="appDate" class="col-auto col-form-label ">Date</label>
                                                             <div class="col-sm-5">
@@ -264,20 +272,26 @@ $theSql .= $sqlsort;
                                             </div>
                                             <div class="row mt-3 px-2 ">
                                                 <div class="container ">
-                                                    <div class="row-5">
-                                                        <label for="" class="me-5"><strong>Date Created</strong></label>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="crtDateRadio" id="crtDateSpecific" checked value="1">
-                                                            <label class="form-check-label  radio-label" for="crtDateSpecific">
-                                                                Specific Date
-                                                            </label>
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="" class="me-5"><strong>Date Created</strong></label>
                                                         </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="crtDateRadio" id="crtDateRange" value="2">
-                                                            <label class="form-check-label  radio-label" for="crtDateRange">
-                                                                Range
-                                                            </label>
+                                                        <div class="col-sm-auto">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="crtDateRadio" id="crtDateSpecific" checked value="1">
+                                                                <label class="form-check-label  radio-label" for="crtDateSpecific">
+                                                                    Specific Date
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="crtDateRadio" id="crtDateRange" value="2">
+                                                                <label class="form-check-label  radio-label" for="crtDateRange">
+                                                                    Range
+                                                                </label>
+                                                            </div>
                                                         </div>
+
+
                                                     </div>
                                                     <div class="row ps-3">
                                                         <div class="row " id="crtDateSpecificWrapper">
@@ -301,20 +315,26 @@ $theSql .= $sqlsort;
                                             </div>
                                             <div class="row mt-3 px-2">
                                                 <div class="container">
-                                                    <div class="row-5">
-                                                        <label for="" class="me-5"><strong>Amount</strong></label>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="amtRadio" id="amtSpecific" checked value="1">
-                                                            <label class="form-check-label  radio-label" for="amtSpecific">
-                                                                Specific
-                                                            </label>
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="" class="me-5"><strong>Amount</strong></label>
+
                                                         </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="amtRadio" id="amtRange" value="2">
-                                                            <label class="form-check-label  radio-label" for="amtRange">
-                                                                Range
-                                                            </label>
+                                                        <div class="col-sm-auto">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="amtRadio" id="amtSpecific" checked value="1">
+                                                                <label class="form-check-label  radio-label" for="amtSpecific">
+                                                                    Specific
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="amtRadio" id="amtRange" value="2">
+                                                                <label class="form-check-label  radio-label" for="amtRange">
+                                                                    Range
+                                                                </label>
+                                                            </div>
                                                         </div>
+
                                                     </div>
                                                     <div class="row ps-3">
                                                         <div class="row " id="amtSpecificWrapper">
@@ -338,51 +358,60 @@ $theSql .= $sqlsort;
                                             </div>
 
                                             <div class="row mt-4">
-                                                <div class="input-group mb-3 w-50">
-                                                    <span class="input-group-text border-0 bg-transparent"><strong>Payment Method </strong></span>
-                                                    <select class="form-select w-50" aria-label="" id="appPayment" name="appPayment">
-                                                        <option value="" selected>Nothing selected</option>
-                                                        <option value="GCash">GCash</option>
-                                                        <option value="PayLater">Pay later</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="input-group mb-3 w-50">
-                                                    <span class="input-group-text border-0 bg-transparent"><strong>Is Paid </strong></span>
-                                                    <select class="form-select w-50" aria-label="" id="appIspaid" name="appIspaid">
-                                                        <option value="" selected>Nothing selected</option>
-                                                        <option value="1">Paid</option>
-                                                        <option value="0">Not Paid</option>
-                                                    </select>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group mb-3 ">
+                                                        <span class="input-group-text border-0 bg-transparent"><strong>Payment Method </strong></span>
+                                                        <select class="form-select w-50" aria-label="" id="appPayment" name="appPayment">
+                                                            <option value="" selected>Nothing selected</option>
+                                                            <option value="GCash">GCash</option>
+                                                            <option value="PayLater">Pay later</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="row mt-3">
-                                                <div class="input-group mb-3 w-50">
-                                                    <span class="input-group-text border-0 bg-transparent"><strong>Is Done </strong></span>
-                                                    <select class="form-select w-50" aria-label="" id="appIsdone" name="appIsdone">
-                                                        <option value="" selected>Nothing selected</option>
-                                                        <option value="1">Done</option>
-                                                        <option value="0">Not Done</option>
-                                                    </select>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group mb-3 ">
+                                                        <span class="input-group-text border-0 bg-transparent"><strong>Is Paid </strong></span>
+                                                        <select class="form-select w-50" aria-label="" id="appIspaid" name="appIspaid">
+                                                            <option value="" selected>Nothing selected</option>
+                                                            <option value="1">Paid</option>
+                                                            <option value="0">Not Paid</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="row mt-3">
-                                                <div class="input-group mb-3 w-50">
-                                                    <span class="input-group-text border-0 bg-transparent"><strong>Sort by </strong></span>
-                                                    <select class="form-select w-50" aria-label="" id="sortBy" name="sortBy">
-                                                        <option value="" selected>Nothing selected</option>
-                                                        <option value="`Appoinment_Date` ASC">Appointment Date (ASC)</option>
-                                                        <option value="`Appoinment_Date` DESC">Appointment Date (DESC)</option>
-                                                        <option value="`Date_Created` ASC">Date Created (ASC)</option>
-                                                        <option value="`Date_Created` DESC">Date Created (DESC)</option>
-                                                        <option value="`Amount` ASC">Amount (ASC)</option>
-                                                        <option value="`Amount` DESC">Amount (DESC)</option>
-                                                        <option value="`Appointment_StartTime` ASC">Appointment Time (ASC)</option>
-                                                        <option value="`Appointment_StartTime` DESC">Appointment Time (DESC)</option>
-                                                    </select>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group mb-3 ">
+                                                        <span class="input-group-text border-0 bg-transparent"><strong>Is Done </strong></span>
+                                                        <select class="form-select w-50" aria-label="" id="appIsdone" name="appIsdone">
+                                                            <option value="" selected>Nothing selected</option>
+                                                            <option value="1">Done</option>
+                                                            <option value="0">Not Done</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-sm-8">
+                                                    <div class="input-group mb-3 ">
+                                                        <span class="input-group-text border-0 bg-transparent"><strong>Sort by </strong></span>
+                                                        <select class="form-select w-50" aria-label="" id="sortBy" name="sortBy">
+                                                            <option value="" selected>Nothing selected</option>
+                                                            <option value="`Appoinment_Date` ASC">Appointment Date (ASC)</option>
+                                                            <option value="`Appoinment_Date` DESC">Appointment Date (DESC)</option>
+                                                            <option value="`Date_Created` ASC">Date Created (ASC)</option>
+                                                            <option value="`Date_Created` DESC">Date Created (DESC)</option>
+                                                            <option value="`Amount` ASC">Amount (ASC)</option>
+                                                            <option value="`Amount` DESC">Amount (DESC)</option>
+                                                            <option value="`Appointment_StartTime` ASC">Appointment Time (ASC)</option>
+                                                            <option value="`Appointment_StartTime` DESC">Appointment Time (DESC)</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
 
