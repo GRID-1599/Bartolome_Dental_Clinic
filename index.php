@@ -154,7 +154,7 @@
                                     <img src="resources/Dental_Pics/ALL_CATEGORIES/$serviceCategory_FileName.jpg" alt="$serviceCategory_FileName">
                                 </div>
                                 <div class="service__title">
-                                    <p class="text-truncate">$serviceCategory_Name</p>
+                                    <p class="">$serviceCategory_Name</p>
                                 </div>
                              </a>    
                     SERVICES_BOX;
@@ -270,7 +270,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="forgot-patient-id.php" class="text-start mt-5 ">Forgot Patient Id?</a>
+                                <a href="forgot-patient-id" class="text-start mt-5 ">Forgot Patient Id?</a>
                             </div>
                         </div>
                     </div>

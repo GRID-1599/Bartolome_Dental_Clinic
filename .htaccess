@@ -11,6 +11,15 @@ RewriteRule appointment/([0-9A-Za-z-\s]+) appointment.php?appointmentId=$1 [NC,L
 
 # ----------------------------------------------- 
 
+#  url for forgotPatientId 
+RewriteCond %{Request_FileName} !-d
+
+RewriteCond %{Request_FileName}\.php -f
+
+RewriteRule forgot-patient-id forgot-patient-id.php [NC,L,QSA]
+
+# ----------------------------------------------- 
+
 #  url for view patinet
 RewriteCond %{Request_FileName} !-d
 
@@ -75,6 +84,7 @@ RewriteCond %{Request_FileName}\.php -f
 RewriteRule service service.php [NC,L,QSA]
 
 # ----------------------------------------------- 
+
 
 
 

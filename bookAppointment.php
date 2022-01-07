@@ -543,8 +543,8 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
                             <label for="patientId">Patient ID</label>
                         </div>
 
-                        <a href="registration.php" class="patientID-input text-center unShow">New Patient?</a>
-                        <a href="forgot-patient-id.php" class=" patientID-input text-center  unShow">Forgot Patient Id?</a>
+                        <a href="registration" class="patientID-input text-center unShow">New Patient?</a>
+                        <a href="forgot-patient-id" class=" patientID-input text-center  unShow">Forgot Patient Id?</a>
                         <div id="patientIdError" class="text-sm text-center unShow">asdad</div>
                         <div id="patientName" class="text-sm "></div>
                         <div><input type="text" id="patientGender" class="unShow" readonly></div>
