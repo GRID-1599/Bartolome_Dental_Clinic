@@ -286,10 +286,10 @@ function setRegInputEmpty() {
 function sendEmail(email, message) {
     Email.send({
         Host: "smtp.gmail.com",
-        Username: "bartolome.dentalclinic@gmail.com",
-        Password: "qnbrlagqmkzchcuf",
+        Username: "bartolome.dentalclinic001@gmail.com",
+        Password: "jehsdwbvqkarndck",
         To: email,
-        From: "bartolome.dentalclinic@gmail.com",
+        From: "bartolome.dentalclinic001@gmail.com",
         Subject: 'New Patient | Bartolome Dental Clinic',
         Body: message,
     });
