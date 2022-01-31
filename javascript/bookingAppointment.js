@@ -274,7 +274,10 @@ function goToFormCondition() {
         messagePromt("Please choose for yout appointment date and time ");
         return false;
     } else if ($("#appointmentTime").text() == "") {
-        messagePromt("Please choose for yout appointment time ");
+        messagePromt("Please choose for your appointment time ");
+        return false;
+    } else if ($('#startTime').text() == '' || $('#endTime').text() == '') {
+        messagePromt("Please select a valid appointment time ");
         return false;
     }
     return true;
