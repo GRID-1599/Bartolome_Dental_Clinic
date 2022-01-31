@@ -80,6 +80,9 @@ function isInputsEmpty() {
     } else if ($('#regPatientContact').val() == "") {
         $('#regPatientContact').focus();
         flag = true;
+    } else if (!validateContact()) {
+        $('#regPatientContact').focus();
+        flag = true;
     }
     return flag;
 
@@ -108,6 +111,21 @@ function validateEmail2(emailID) {
     } else {
         return true;
     }
+}
+
+function validateContact() {
+    var contact_entered = $('#regPatientContact').val()
+    var flag = true
+    console.log("asdad " + contact_entered.length);
+
+    if (contact_entered.match(/[a-z]/i)) {
+        flag = false
+    }
+    if (contact_entered.length != 10) {
+        flag = false
+    }
+
+    return flag
 }
 
 function capitalizeEachWord(str) {

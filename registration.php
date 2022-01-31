@@ -75,7 +75,7 @@ if (isset($_POST['registration'])) {
                         <div class="input-box">
                             <input type="text" name="regPatientGender" id="regPatientGender" required>
                             <div class="underline"></div>
-                            <span class="details">Gender</span>
+                            <span class="details">Sex</span>
                             <div class="genderBox__container">
                                 <div class="genderBox__options ">
                                     <input type="radio" class="radio" id="01" name="gender" />
@@ -84,14 +84,6 @@ if (isset($_POST['registration'])) {
                                 <div class="genderBox__options ">
                                     <input type="radio" class="radio" id="02" name="gender" />
                                     <label for="02">Female</label>
-                                </div>
-                                <div class="genderBox__options">
-                                    <input type="radio" class="radio" id="03" name="gender" />
-                                    <label for="03">Bigender</label>
-                                </div>
-                                <div class="genderBox__options">
-                                    <input type="radio" class="radio" id="04" name="gender" />
-                                    <label for="04">Transgender</label>
                                 </div>
                                 <div class="genderBox__options">
                                     <input type="radio" class="radio" id="05" name="gender" />
