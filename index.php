@@ -16,7 +16,7 @@
     <?php $page = "home";
     include('header.php') ?>
     <main>
-        <div class="card text-white p-0 banner">
+        <div class="card text-white p-0 mb-5 banner">
             <div class="card-img-overlay container-xxl px-md-5   ">
                 <div class="row row align-items-end h-100 ">
                     <div class="container">
@@ -28,25 +28,25 @@
                         <p class="h5 m-0">New Patient?</p>
                         <a class="text-white" href="registration">Register Now</a>
                     </div>
-                    <div class="col-md-7  ">
-                        <div class="row  ">
-                            <div class="col-auto ">
-                                <p class="m-0"><small>Already have an appointment?</small></p>
-                                <button class="btn btn-primary btn-sm" id="btnViewApp" data-bs-toggle="modal" data-bs-target="#modalInputs">View appointment</button>
+                    <div class="col-md-7   ">
+                        <div class="row justify-content-end  ">
+                            <div class="col-sm-4  ">
+                                <p class="m-0">Already have an appointment?</p>
+                                <button class="btn btn-primary btn-sm" id="btnViewApp" data-bs-toggle="modal" data-bs-target="#modalInputs" style="font-size: 1rem;">View appointment</button>
                             </div>
-                            <div class="col ">
-                                <a type="button" class="btn btn-primary w-100 h-100 btn-lg  text-center p-2 " href="bookNow" id="btnBookAppointment"> <strong>Book Appointment </strong></a>
+                            <div class="col-sm-5  ">
+                                <a type="button" class="btn btn-primary w-100 btn-lg  text-center py-2 px-3 " href="bookNow" id="btnBookAppointment"> <strong>Book Appointment </strong></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-xxl dentalInfo mt-3 px-4">
+        <div class="container-xxl dentalInfo my-5 px-4 pt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <p class="text-header">Welcome to Bartolome Dental!</p>
-                    <p class="line-1">
+                    <p class="text-header text-center text-md-start">Welcome to Bartolome Dental!</p>
+                    <p class="line-1 text-center text-md-start">
                         Bartolome Dental Clinic offers a wide range of specialized dental care services, all conveniently located at one location in a new, state-of-the-art facility with additional treatment options to suit your smile. Our top objective is to provide the greatestlevel of evidence-based dental care, as well as healthy teeth and a happy smile.<br><br>Bartolome Dental Clinic has a comprehensive solution for all of your dental needs, and we assure you that we will strive to provide you and all of our patients with a happy, comfortable experience during their treatment.
                     </p>
                 </div>
@@ -59,14 +59,16 @@
             </div>
         </div>
 
-        <div class="container-xxl mt-3 px-4">
-            <div class="row justify-content-center">
-                <div class="col-md-5 pt-5">
+        <div class="container-fluid my-5 px-4 " >
+            <!-- style="background-color: #FFCCD2;" -->
+            <div class="container-xxl py-5">
+                <div class="row justify-content-center">
+                <div class="col-md-5 mb-3 ">
                     <img src="resources/images/clinic_station.jpg" class="img-fluid rounded" style="max-height: 25rem ;" alt="...">
                 </div>
                 <div class="col-md-6">
-                    <p class="text-header">Why choose Us?</p>
-                    <p class="line-1">
+                    <p class="text-header text-center text-md-start">Why choose Us?</p>
+                    <p class="line-1 text-center text-md-start">
                         From the minute you walk into our clinic, you can be assured that you made that right choice in choosing us. Not only do we have the expertise and affordability in the dental services we offer, our patients frequently comment on our pleasant service that gives them a refreshingly easy experience.
                         <br><br>
                         When you meet our friendly, highly experienced dentist, she can put you at ease and any fear you have of dentists will be gone. We’ll make sure you are properly diagnosed and well informed so you can be assured that your needs and expectations are being met. This is just one of the many reasons patients put their trust in us.
@@ -76,9 +78,11 @@
                 </div>
 
             </div>
+            </div>
         </div>
 
-        <div class="container-xxl mt-3 mb-5 px-4">
+        <div class="container-fluid my-5 px-4" >
+            <div class="container-xxl ">
             <div class="row justify-content-center g-3">
                 <div class="col-lg-6">
                     <div class="card px-3 border-0">
@@ -133,8 +137,9 @@
             </div>
 
         </div>
+        </div>
 
-        <div class="container-xxl mt-5 px-4 ">
+        <div class="container-xxl  my-5 px-4 ">
             <p class="text-header text-center">Services Offered</p>
             <div class="row justify-content-center service ">
 
@@ -163,10 +168,15 @@
 
 
             </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-11 mt-5  ">
+                                <a type="button" class="btn btn-primary w-100 btn-lg  text-center py-2 px-3 " href="bookNow" id="btnBookAppointment" style="letter-spacing: .125rem;"> <strong>Book Appointment Now </strong></a>
+                            </div>
+            </div>
 
         </div>
 
-        <div class="container-xxl mt-5 px-4">
+        <div class="container-xxl  my-5 px-5">
             <div class="row">
                 <div class="col-md-8 pb-3" style="min-height: 25rem;">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.6956766118165!2d120.84433771484316!3d14.84232828964889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339653fafe0843b5%3A0x6a774ff99d0d60ba!2sBartolome%20Dental%20Clinic!5e0!3m2!1sen!2sph!4v1632594667618!5m2!1sen!2sph" width="100%" height="100%" style="border:0; " allowfullscreen="" loading="lazy"></iframe>
@@ -175,20 +185,10 @@
                     <h1>Office Hours</h1>
                     <div class="row">
                         <div class="col-6">
-                            <p>Monday</p>
-                            <p>Tuesday</p>
-                            <p>Wednesday</p>
-                            <p>Thursday</p>
-                            <p>Friday</p>
-                            <p>Saturday</p>
+                            Monday to Saturday
                         </div>
 
                         <div class="col-6">
-                            <p>9:00am to 5:00pm </p>
-                            <p>9:00am to 5:00pm </p>
-                            <p>9:00am to 5:00pm </p>
-                            <p>9:00am to 5:00pm </p>
-                            <p>9:00am to 5:00pm </p>
                             <p>9:00am to 5:00pm </p>
                         </div>
 

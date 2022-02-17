@@ -598,7 +598,8 @@ $serviceCategoryIdAndName_Array = $appServiceCat_obj->getServicesCategory_Name()
 
                             <tfoot>
                                 <tr class="totalAmountRow">
-                                    <th>Estimated Cost:</th>
+                                    <!-- <th>Estimated Cost:</th> -->
+                                    <th>Estimated Cost: <span class="float-end">₱</span></th>
                                     <th class="" id="totalAmountofAppoinment"></th>
                                 </tr>
                                 <tr class="totalDurationRow">

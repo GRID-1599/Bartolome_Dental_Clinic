@@ -16,6 +16,7 @@
     <?php $page = "service";
     include('header.php') ?>
     <main>
+        
         <div class="container-fluid">
             <?php
             // include_once 'classes/serviceCategory.class.php';
@@ -46,7 +47,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <p class="card-title text-3 h3 letter-spacing-1 "><?php echo $serviceCategory_Name ?></p>
+                                    <p class="card-title text-3 h3 letter-spacing-1 text-capitalize"><?php echo $serviceCategory_Name ?></p>
                                     <p class="card-text text-gray line-1"><?php echo $serviceCategory_Description?></p>
                                     <a type="button" href="<?php echo 'service/'.$serviceCategory_Name?>" class="btn btn-primary">See more</a>
                                 </div>

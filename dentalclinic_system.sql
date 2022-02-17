@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2021 at 09:43 AM
+-- Generation Time: Feb 17, 2022 at 02:22 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -128,7 +128,21 @@ INSERT INTO `activity_log` (`ActLog_Id`, `DateTime_Happen`, `Admin`, `Action`, `
 (168, '2021-12-28 01:59:47', 'jude', 'Edit', 'Date 2022-01-23 has been set to not available'),
 (169, '2021-12-28 01:59:51', 'jude', 'Edit', 'Date 2022-01-23 has been set to available'),
 (170, '2021-12-28 02:00:26', 'jude', 'Edit', 'Date 2022-01-23 has been set to not available'),
-(171, '2021-12-28 02:00:30', 'jude', 'Edit', 'Date 2022-01-23 has been set to available');
+(171, '2021-12-28 02:00:30', 'jude', 'Edit', 'Date 2022-01-23 has been set to available'),
+(172, '2021-12-28 17:11:43', 'admin', 'Edit', 'Appointment NVE4GXG6ZSJ7E1F has been approved'),
+(173, '2021-12-28 17:47:59', 'admin', 'Move', 'Appointment NVE4GXG6ZSJ7E1F has been moved to archives'),
+(174, '2021-12-28 17:48:17', 'admin', 'Move', 'Appointment NVE4GXG6ZSJ7E1F has been unmoved from archives'),
+(175, '2021-12-28 19:39:10', 'admin', 'Edit', 'Date 2021-12-15 has been set to not available'),
+(176, '2021-12-28 19:39:20', 'admin', 'Edit', 'Date 2021-12-15 has been set to available'),
+(177, '2021-12-28 20:08:34', 'admin', 'Edit', 'Service S227 image changed'),
+(178, '2021-12-28 20:12:08', 'admin', 'Edit', 'Service S227 image changed'),
+(179, '2021-12-28 20:12:40', 'admin', 'Edit', 'Service S227 image changed'),
+(180, '2021-12-28 20:13:11', 'admin', 'Edit', 'Service S227 image changed'),
+(181, '2021-12-28 20:37:50', 'admin', 'Edit', 'Service S227 image changed'),
+(182, '2022-01-07 20:50:01', 'jude', 'Edit', 'Appointment C87R2Z03FI1VVWJ has been changed'),
+(183, '2022-01-07 20:50:29', 'jude', 'Edit', 'Appointment C87R2Z03FI1VVWJ has been changed'),
+(184, '2022-01-07 20:52:28', 'jude', 'Edit', 'Appointment B5MFSNI161H36ND has been changed'),
+(185, '2022-02-17 21:20:39', 'admin', 'Edit', 'Service category C114 edited');
 
 -- --------------------------------------------------------
 
@@ -189,14 +203,18 @@ INSERT INTO `appointment` (`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinmen
 ('3OUVDL0Y5CP1WHE', 1001, '09973356903', '2022-01-14', '15:00:00', '16:00:00', 60, 1, '2021-12-27 00:09:58', 'GCash', 1, 600, 0, 1),
 ('4RJBA4U0Z6ZMCPO', 1001, '09973356903', '2022-01-07', '11:00:00', '14:00:00', 120, 2, '2021-12-27 00:06:21', 'PayLater', 0, 600, 1, 1),
 ('6F85KQU3TBNIXJR', 1186, '022312313133', '2021-12-27', '15:00:00', '17:00:00', 120, 2, '2021-12-09 02:23:07', 'GCash', 0, 600, 0, 0),
+('6ZJYDHQYRPYY90Z', 1001, '09973356903', '2022-01-08', '10:00:00', '12:00:00', 120, 2, '2021-12-28 18:18:09', 'GCash', 0, 600, 0, 0),
 ('8ZV6FOMBDPHLDYY', 1001, '09973356903', '2022-02-26', '14:00:00', '16:00:00', 120, 2, '2021-12-27 14:01:34', 'PayLater', 0, 600, 0, 1),
-('B5MFSNI161H36ND', 1001, '09973356903', '2022-02-17', '13:00:00', '14:00:00', 30, 1, '2021-12-27 21:06:59', 'GCash', 1, 1500, 0, 1),
+('B5MFSNI161H36ND', 1001, '09973356903', '2022-02-17', '13:00:00', '14:00:00', 30, 1, '2021-12-27 21:06:59', 'GCash', 1, 1500, 1, 1),
 ('BK6BHR3HF3ULTZY', 1001, '09973356903', '2021-12-14', '13:00:00', '15:00:00', 120, 2, '2021-12-13 20:11:11', 'GCash', 0, 600, 1, 1),
+('C87R2Z03FI1VVWJ', 1001, '09973356903', '2022-01-21', '11:00:00', '14:00:00', 120, 2, '2021-12-28 19:31:19', 'GCash', 1, 600, 1, 0),
+('FFXCFAUFXTJUIMO', 1222, '09973356903', '2022-01-14', '13:00:00', '14:00:00', 30, 1, '2021-12-28 19:28:55', 'GCash', 0, 1500, 0, 0),
 ('H8BNU0ID7WPB4D7', 1001, '09973356903', '2021-12-31', '15:00:00', '17:00:00', 120, 2, '2021-12-09 01:45:38', 'GCash', 0, 600, 0, 1),
+('IV95A4MQO2HYUB0', 1001, '9973356903', '0000-00-00', '13:00:00', '15:00:00', 120, 2, '2021-12-28 17:57:32', 'GCash', 0, 600, 0, 0),
 ('JL0RST5U2CAWN93', 1001, '09973356903', '2022-01-29', '15:00:00', '16:00:00', 60, 1, '2021-12-27 01:27:29', 'GCash', 1, 700, 0, 1),
 ('KGTQWRUCH98QSS5', 1001, '09973356903', '2022-01-07', '14:00:00', '16:00:00', 120, 2, '2021-12-27 21:10:28', 'GCash', 0, 600, 0, 0),
 ('LFZMGVM87FXXVRR', 1001, '09973356903', '2021-12-31', '13:00:00', '15:00:00', 120, 2, '2021-12-26 23:58:56', 'GCash', 0, 600, 0, 0),
-('NVE4GXG6ZSJ7E1F', 1001, '09973356903', '2022-01-07', '09:00:00', '10:00:00', 60, 1, '2021-12-27 21:11:51', 'PayLater', 0, 600, 0, 0),
+('NVE4GXG6ZSJ7E1F', 1001, '09973356903', '2022-01-07', '09:00:00', '10:00:00', 60, 1, '2021-12-27 21:11:51', 'PayLater', 0, 600, 0, 1),
 ('NWK2VKTFL6I82OT', 1001, '09973356903', '2021-12-30', '09:00:00', '11:00:00', 120, 2, '2021-12-09 01:18:18', 'GCash', 1, 2300, 1, 1),
 ('QSF7YUZ0RUJ32OF', 1186, '022312313133', '2021-12-17', '13:00:00', '15:00:00', 120, 2, '2021-12-13 20:39:18', 'GCash', 0, 6000, 1, 1),
 ('QSHOKVUWAWA7Z4K', 1186, '022312313133', '2021-12-29', '14:00:00', '16:00:00', 120, 2, '2021-12-09 01:46:43', 'GCash', 0, 600, 0, 1),
@@ -204,8 +222,10 @@ INSERT INTO `appointment` (`Appointment_Id`, `Patient_ID`, `Contact`, `Appoinmen
 ('S2XFH573YDKIOUC', 1001, '09973356903', '2021-12-10', '15:00:00', '17:00:00', 120, 2, '2021-12-09 01:29:07', 'GCash', 0, 2200, 0, 1),
 ('W2VX6Q4EY7343IL', 1001, '09973356903', '2022-01-10', '15:00:00', '17:00:00', 120, 2, '2021-12-27 00:06:42', 'GCash', 0, 600, 0, 1),
 ('WO83IQHL8X3YQJD', 1001, '09973356903', '2021-12-30', '11:00:00', '14:00:00', 120, 2, '2021-12-26 22:59:01', 'GCash', 0, 600, 0, 0),
+('XV95A4MQO2HYUB0', 1001, '9973356903', '2022-01-08', '13:00:00', '15:00:00', 120, 2, '2021-12-28 17:57:32', 'GCash', 0, 600, 0, 0),
 ('YCWHE4EZG172IBE', 1001, '09973356903', '2022-02-12', '10:00:00', '12:00:00', 120, 2, '2021-12-27 14:12:50', 'GCash', 1, 600, 1, 1),
-('Z095MZ191SZAEZD', 1001, '09973356903', '2021-12-23', '13:00:00', '15:00:00', 120, 2, '2021-12-14 10:48:45', 'PayLater', 1, 600, 1, 1);
+('Z095MZ191SZAEZD', 1001, '09973356903', '2021-12-23', '13:00:00', '15:00:00', 120, 2, '2021-12-14 10:48:45', 'PayLater', 1, 600, 1, 1),
+('ZV95A4MQO2HYUB0', 1001, '9973356903', '2022-01-08', '13:00:00', '15:00:00', 120, 2, '2021-12-28 17:57:32', 'GCash', 0, 600, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -294,7 +314,10 @@ INSERT INTO `appointment_service` (`AS_ID`, `Appoinment_Id`, `Service_Id`, `Serv
 (120, '1Z1ZR7DD1WOIX1H', 'S223', 'Denture Reline', '1,500'),
 (121, 'B5MFSNI161H36ND', 'S223', 'Denture Reline', '1,500'),
 (122, 'KGTQWRUCH98QSS5', 'S101', 'Extraction', '600'),
-(123, 'NVE4GXG6ZSJ7E1F', 'S114', 'Light Cure Composite', '600');
+(123, 'NVE4GXG6ZSJ7E1F', 'S114', 'Light Cure Composite', '600'),
+(124, '6ZJYDHQYRPYY90Z', 'S101', 'Extraction', '600'),
+(125, 'FFXCFAUFXTJUIMO', 'S223', 'Denture Reline', '1,500'),
+(126, 'C87R2Z03FI1VVWJ', 'S101', 'Extraction', '600');
 
 -- --------------------------------------------------------
 
@@ -432,7 +455,7 @@ INSERT INTO `message` (`Message_ID`, `Body`, `From_Name`, `Phone`, `Email`, `Dat
 (1, 'With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni voluptatum reiciendis quisquam neque, numquam, ullam animi labore, error rerum similique modi iusto repellendus eius id. Unde ea praesentium deserunt odio.', 'qwe', 'qwe312', 'qwe', '2021-11-08 15:31:20', 0),
 (3, 'With supporting text below as a natural lead-in to additional Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam ab ipsum fuga illo officia nisi ipsam sequi nam doloremque iste deleniti natus at assumenda id excepturi reiciendis, odio mollitia quidem! content.', NULL, NULL, 'sadadads', '2021-11-08 15:31:08', 0),
 (4, 'qwwqeqeqeqwewqeqweqweqweqwewqeq asdasd ', 'Jude', '091686523', 'catudioadad@gmail.com', '2021-11-09 00:33:12', 1),
-(5, 'qwwqeqeqeqwewqeqweqweqweqwewqeq asdasd ', 'Jude', '091686523', 'catudioadad@gmail.com', '2021-11-09 00:33:12', 0),
+(5, 'qwwqeqeqeqwewqeqweqweqweqwewqeq asdasd ', 'Jude', '091686523', 'catudioadad@gmail.com', '2021-11-09 00:33:12', 1),
 (11, 'qwewqe', '', '', '', '2021-11-11 16:42:00', 1),
 (12, 'Hi!', '', '', '', '2021-11-11 16:42:50', 0),
 (13, 'qweqwe', 'qwewqe', 'qweqw', 'qweqw', '2021-11-11 16:45:37', 0),
@@ -442,13 +465,7 @@ INSERT INTO `message` (`Message_ID`, `Body`, `From_Name`, `Phone`, `Email`, `Dat
 (17, 'aasda', '', '', '', '2021-11-18 19:31:22', 1),
 (18, 'asdadad', 'Christian Jude Jamolangue Catudio', 'catudiochristia', '+639973356903', '2021-11-22 09:03:17', 1),
 (19, 'teert', '', '', '', '2021-11-25 22:26:55', 1),
-(20, 'asdada', '', '', '', '2021-11-30 20:32:55', 1),
-(21, 'adsff asdf sfsf sdfas sf asasdf as', 'CATUDIO, CHRISTIAN JUDE J', 'catudio.christi', '+639973356903', '2021-12-14 21:04:13', 0),
-(22, 'asdsa asd asdasd adasd asda  ', 'CATUDIO, CHRISTIAN JUDE J', 'catudio.christi', '+639973356903', '2021-12-14 21:09:02', 0),
-(23, 'qeqwe qweq weqweqw qwe', 'Christian Jude Jamolangue Catudio', 'catudiochristia', '+639973356903', '2021-12-14 21:11:06', 1),
-(24, 'weqeqwe qwe q', 'CATUDIO, CHRISTIAN JUDE J', 'catudio.christi', '', '2021-12-14 21:50:08', 1),
-(25, 'asdada', 'Wilma Jamolangue Catudio', 'catudiochristia', '+639168258446', '2021-12-23 19:54:59', 1),
-(26, 'werewrew', 'Catudio, Christian Jude, J.', '+639973356903', 'christianjude.catudio.j@bulsu.edu.ph', '2021-12-23 19:56:35', 1);
+(21, 'adsff asdf sfsf sdfas sf asasdf as', 'CATUDIO, CHRISTIAN JUDE J', 'catudio.christi', '+639973356903', '2021-12-14 21:04:13', 0);
 
 -- --------------------------------------------------------
 
@@ -538,7 +555,8 @@ INSERT INTO `patient` (`Patient_ID`, `Name`, `Nickname`, `Birthday`, `Age`, `Gen
 (1221, 'Lexda Mae Atienza', 'Lexda', '1999-09-29', 22, 'Female', 'Single', 'Hagonoy, Bulacan', 'Lexyatienza@gmail.com', '09155220291', '2021-12-15'),
 (1222, 'Christian Jude Catudio ', 'Christian', '2021-12-25', 22, 'Male', 'Single', 'None', 'catudiochristianjude@gmail.com', '09973356903', '2021-12-27'),
 (1223, 'Christian Jude Catudio ', '1', '2021-12-01', 1, 'Male', 'Single', '1', 'catudiochristianjude@gmail.com', '01', '2021-12-27'),
-(1224, 'Christian Jude Catudio ', 'Qwe', '2021-12-08', 1, 'Male', 'Single', '2', 'catudiochristianjude@gmail.com', '0321', '2021-12-27');
+(1224, 'Christian Jude Catudio ', 'Qwe', '2021-12-08', 1, 'Male', 'Single', '2', 'catudiochristianjude@gmail.com', '0321', '2021-12-27'),
+(1225, 'Christian Jude Catudio ', 'Qwe', '2021-12-09', 2, 'Male', 'Single', 'Qwe', 'catudionicole1218@gmail.com', '0123', '2021-12-28');
 
 -- --------------------------------------------------------
 
@@ -556,6 +574,9 @@ CREATE TABLE `proof_of_payments` (
 --
 
 INSERT INTO `proof_of_payments` (`App_Id`, `ImgFileName`) VALUES
+('6ZJYDHQYRPYY90Z', '120770599_2215124871964916_6534420109982184615_n'),
+('C87R2Z03FI1VVWJ', '120589084_2215125081964895_2536350470340704381_n'),
+('FFXCFAUFXTJUIMO', '120820190_2215124955298241_3255555329355204296_n'),
 ('JL0RST5U2CAWN93', '258445776_857549964942454_945782423769618730_n'),
 ('K928N4D2A6KE8JP', '241825176_283817726905979_3242186317388062852_n'),
 ('RIQNBX2U48OIJ17', '258445776_857549964942454_945782423769618730_n'),
@@ -709,7 +730,7 @@ INSERT INTO `service` (`Service_ID`, `ServiceCategory_ID`, `Name`, `Description`
 ('S224', 'C114', 'Denture Repair', 'Usually, if a denture is cracked into two or three pieces, it can be repaired. However, if a denture has broken into many pieces, it may not be possible. ... The denture will be cleaned and then a special resin will be poured into the denture to join the broken parts back together. This process usually takes around 1 hour.', 30, '500 - 1,500', 'denture_repair', 1),
 ('S225', 'C114', 'Additional Pontic', 'A pontic is defined as an artificial tooth on a fixed dental prosthesis that replaces a missing natural tooth, restoring its function and esthetics. It usually fills the space previously occupied by the clinical crown of the missing tooth. ... Pontics are represented on treatment setups as translucent teeth.', 30, '1,500', 'additional_pontic', 1),
 ('S226', 'C101', 'wwrwerewrw', 'fdgsdfgergt', 90, '1500', '', 0),
-('S227', 'C101', 'qwe', 'qwe', 60, '123', '', 1);
+('S227', 'C101', 'qwe', 'qwe', 60, '123', 'dentistBG', 1);
 
 -- --------------------------------------------------------
 
@@ -742,7 +763,7 @@ INSERT INTO `service_category` (`ServiceCategory_Id`, `Name`, `Description`, `Im
 ('C111', 'UPGRADES', '', ''),
 ('C112', 'THERMOPLASTIC', '', ''),
 ('C113', 'METAL FRAMEWORK', '', ''),
-('C114', 'DENTURE REPAIRs', 'dsgdsfdsfa sdf', ''),
+('C114', 'DENTURE REPAIR', '', ''),
 ('C115', 'PORCELAIN', '', '');
 
 -- --------------------------------------------------------
@@ -873,13 +894,13 @@ ALTER TABLE `social_history`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `ActLog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `ActLog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT for table `appointment_service`
 --
 ALTER TABLE `appointment_service`
-  MODIFY `AS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `AS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -897,13 +918,13 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `no_clinic_date`
 --
 ALTER TABLE `no_clinic_date`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `Patient_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1225;
+  MODIFY `Patient_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1226;
 
 --
 -- Constraints for dumped tables

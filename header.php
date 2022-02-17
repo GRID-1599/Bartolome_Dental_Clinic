@@ -18,11 +18,12 @@ if (!isset($page)) {
                         <a class="nav-link <?php echo ($page == "home" ? "active" : "") ?>"  href="">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo ($page == "service" ? "active" : "") ?>" href="service">Services</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link <?php echo ($page == "about" ? "active" : "") ?>" href="about">About Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo ($page == "service" ? "active" : "") ?>" href="service">Services</a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($page == "contactUs" ? "active" : "") ?>" href="contactUs">Contact Us</a>
                     </li>

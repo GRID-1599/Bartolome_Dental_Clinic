@@ -15,12 +15,22 @@
 <body>
     <?php $page = "about";
     include('header.php') ?>
+    <div class="container-fluid contactBanner">
+            <div class="container-xxl ">
+                <div class="row align-items-center  ">
+                    <div class="col mt-5">
+                        <h1 class="m-0 banner-text pt-2 text-white ms-5">About Us</h1>
+                        <!-- <p class="display-6 text-white">Feel free to contact us any time.<br> We will get back to you as soon as we can</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <div class="container-xxl mt-5 mb-5  px-4">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-center">
             <div class="col-md-6">
-                <p class="text-header">Dental Clinic</p>
-                <p class="text-lg">
+                <p class="text-header text-center h1 ">The Dental Clinic</p>
+                <p class="text-lg text-center px-4" style="font-size: 1.5rem;">
                     Since our inception in 2017, we have created over 2000 smiles and we are looking forward to bringing even more to everyone. Check out our dental clinic in Malolos Bulacan.
                 </p>
             </div>
@@ -73,10 +83,10 @@
                 </div>
             </div>
             <div class="col-md-6 align-self-center">
-                <p class="h3 mb-0 text-color-pink" style="font-weight: 550;">Dr. Mirzi Leigh Hannah DC. Bartolome</p>
-                <p class="h5 mt-0 lead">General Dentist</p>
-                <p class="h4 mt-0">Specialized in Orthodontist</p>
-                <p>Our Founder, Dr. Bartolome, has spent the last five years educating her patients about the importance of dental health. And how the health of your mouth, teeth, and gums can affect your general health. Also, there's a connection between the condition of your teeth and gums.</p>
+                <p class="h3 mb-0 text-color-pink text-center text-md-start" style="font-weight: 550;">Dr. Mirzi Leigh Hannah DC. Bartolome</p>
+                <p class="h5 mt-0 lead text-center text-md-start">General Dentist</p>
+                <p class="h4 mt-0 text-center text-md-start " >Specialized in Orthodontist</p>
+                <p class="text-center text-md-start fs-5" style="font-size: 1rem;">Our Founder, Dr. Bartolome, has spent the last five years educating her patients about the importance of dental health. And how the health of your mouth, teeth, and gums can affect your general health. Also, there's a connection between the condition of your teeth and gums.</p>
             </div>
 
         </div>
@@ -87,26 +97,31 @@
 
         <div class="card mb-3 border-0">
             <div class="row justify-content-center">
-                <div class="col-md-3 order-md-4 p-3 align-self-center">
+                
+
+                <div class="col-md-6 pb-3" style="min-height: 25rem;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.6956766118165!2d120.84433771484316!3d14.84232828964889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339653fafe0843b5%3A0x6a774ff99d0d60ba!2sBartolome%20Dental%20Clinic!5e0!3m2!1sen!2sph!4v1632594667618!5m2!1sen!2sph" width="100%" height="100%" style="border:0; " allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="col-md-3  p-3 align-self-center">
                     <div class="card-body">
                         <div class="row ">
-                            <i class="fa fa-map-marker fa-5x icon-pink" aria-hidden="true"></i>
+                            <i class="fa fa-map-marker fa-5x icon-pink " aria-hidden="true"></i>
                             <p class=" h3 mt-3">Visit Us</p>
                             <a href="https://goo.gl/maps/u1NMVXMtfFro9HHg9" target="_blank" class=" text-black"> Calle Gipit, San Pablo 3000 Malolos</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 pb-3" style="min-height: 25rem;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.6956766118165!2d120.84433771484316!3d14.84232828964889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339653fafe0843b5%3A0x6a774ff99d0d60ba!2sBartolome%20Dental%20Clinic!5e0!3m2!1sen!2sph!4v1632594667618!5m2!1sen!2sph" width="100%" height="100%" style="border:0; " allowfullscreen="" loading="lazy"></iframe>
-                </div>
+
             </div>
         </div>
+        
 
     </div>
 
     <div class="container-xxl mt-5  px-4">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center px-3">
             <div class="col-sm-3">
                 <i class="fa fa-phone-square fa-5x icon-pink" aria-hidden="true"></i>
                 <h3>Call or Text Us</h3>
@@ -123,7 +138,6 @@
                 <a href="http://www.facebook.com/BartolomeDental" target="_blank" class="text-black"> Bartolome Dental Clinic </a>
             </div>
         </div>
-
     </div>
 
 

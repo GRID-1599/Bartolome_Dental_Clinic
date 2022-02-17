@@ -22,10 +22,6 @@ body {
     color: #bf2441;
     font-family: 'Inter', sans-serif;
     text-transform: lowercase;
-    &::first-letter {
-        text-transform: uppercase;
-        font-size: 2rem;
-    }
 }
 
 .text-lg {
@@ -50,6 +46,10 @@ body {
 
 .bg-pink-2 {
     background-color: #f05f7a88;
+}
+
+.bg-pink-3 {
+    background-color: #FFC0D3;
 }
 
 .line-1 {
