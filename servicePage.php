@@ -57,7 +57,7 @@ $imagePath = "resources/Dental_Pics/ALL_CATEGORIES/" . $serviceCategory_ImgFileN
             <div class="card mb-4 border-0 ">
                 <img src="<?php echo $imagePath ?>" alt="<?php echo $serviceCategory_Name . " ServiceCategory Image" ?>" class="card-img-top" style="max-height: 25rem;">
                 <div class="card-body">
-                    <h5 class="card-title text-3 h3"><?php echo $serviceCategory_Name; ?></h5>
+                    <h5 class="card-title  h3"><?php echo $serviceCategory_Name; ?></h5>
                     <p class="card-text"> <?php echo $serviceCategory_Description; ?></p>
                     <br>
                     <br>

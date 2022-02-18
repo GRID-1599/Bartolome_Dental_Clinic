@@ -20,7 +20,7 @@
                 <div class="row align-items-center  ">
                     <div class="col mt-5">
                         <h1 class="m-0 banner-text pt-2 text-white ms-5">About Us</h1>
-                        <!-- <p class="display-6 text-white">Feel free to contact us any time.<br> We will get back to you as soon as we can</p> -->
+                        <p class="display-6 text-white ms-5 mt-2">No need to wait for <span class="h1"> TOOTH-HURTY!</span></br><span class="h1" >NOW</span> is the best time to visit the dentist</p>
                     </div>
                 </div>
             </div>
